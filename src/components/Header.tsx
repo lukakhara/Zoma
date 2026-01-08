@@ -10,6 +10,7 @@ import collapseIcon from "../assets/collapse.png";
 import userIcon from "../assets/user.png";
 import cartIcon from "../assets/cart.png";
 
+
 interface HeaderProps {
   language: string;
   setLanguage: (lang: string) => void;

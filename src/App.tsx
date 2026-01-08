@@ -1,18 +1,18 @@
 import './App.css'
-import Header from './components/Header';
-import Category from './components/Category';
+import Header from './components/Header.tsx';
+import Category from './components/Category.tsx';
 import { useState } from 'react';
 
-const [language,setLanguage] = useState('georgian');
 
 
 function App() {
+  const [language,setLanguage] = useState('georgian');
 
   return (
     <>
     <div className='min-h-screen h-full w-full'> 
            <Header language={language} setLanguage={setLanguage} />
-          <Category/>
+          <Category language={language}/>
     </div>
     
     </>

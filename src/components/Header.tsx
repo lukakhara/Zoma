@@ -31,7 +31,7 @@ const Header = ({ language }: HeaderProps) => {
 
         <div className="flex items-center justify-between">
           <img src={logo} alt="logo" />
-          <div className="test hidden md:flex gap-2 text-white">
+          <div className=" hidden md:flex gap-2 text-white">
             <a className="flex items-center">
               <button>Products</button>
               <img src={collapseIcon} alt="collapse icon" className="size-4" />

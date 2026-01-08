@@ -6,12 +6,17 @@
     --color-gray-50:#D2D2D2;
     --color-playButton:#2E47903B;
     --color-orange:#FF6565;
+    --color-gray-100: #686868;
+
     
 }
 
 @layer base {
   .test {
     @apply border-2 border-red-600
+  }
+  .categorybutton{
+    @apply rounded-4xl px-2 bg-red-600
   }
  
 }

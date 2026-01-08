@@ -18,5 +18,8 @@
   .categorybutton{
     @apply rounded-4xl px-2 bg-red-600
   }
+  .headerButton{
+    @apply rounded-full size-9 grid place-items-center bg-white cursor-pointer hover:opacity-90
+  }
  
 }

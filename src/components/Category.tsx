@@ -1,24 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import en from "../en.json";
 import ka from "../ka.json";
 
 interface CategoryProps {
-  language: string;
+  languageGeorgian: Boolean;
 }
 
-const Category = ({ language }: CategoryProps) => {
-  const isGeorgian = language === "georgian";
-  const data = isGeorgian ? ka : en;
+const Category = ({ languageGeorgian }: CategoryProps) => {
+  const data = languageGeorgian ? en : ka;
+  console.log(data);
   const [isActive, setIsActive] = useState(false);
+
+    useEffect(()=> {
+         const data = languageGeorgian ? en : ka;
+    } 
+    ,[])
 
   const activeButtonStyle = isActive
     ? "bg-blue-50 text-white"
     : "bg-gray-50 text-gray-100";
 
+
+
+
   return (
     <>
-      <section className="mt-4 ">
-        <ul className="flex gap-2 overflow-hidden">
+      <section className="mt-4 md:mt-9 mx-1 w-full  flex justify-center ">
+        <ul className="flex gap-2 overflow-hidden  md:gap-10">
           {Object.values(data.categories).map((category, index) => (
             <li key={index}>
               <button className={`${activeButtonStyle}

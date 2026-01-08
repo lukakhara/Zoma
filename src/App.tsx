@@ -6,13 +6,13 @@ import { useState } from 'react';
 
 
 function App() {
-  const [language,setLanguage] = useState('georgian');
+  const [languageGeorgian,setLanguageGeorgian] = useState(true);
 
   return (
     <>
     <div className='min-h-screen h-full w-full'> 
-           <Header language={language} setLanguage={setLanguage} />
-          <Category language={language}/>
+           <Header languageGeorgian={languageGeorgian} setLanguageGeorgian={setLanguageGeorgian} />
+          <Category languageGeorgian={languageGeorgian}/>
     </div>
     
     </>

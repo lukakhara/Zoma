@@ -5,5 +5,25 @@
     "bathroom": "აბაზანა",
     "paper": "ქაღალდი",
     "textiles": "ტილოები"
-  }
+  },
+  "products": [
+    {
+      "id": 1,
+      "name": "ზომა - ქაფი",
+      "categorie": "დასუფთავება",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "productIcon": "../assets/product.png"
+    },
+    {
+      "id": 1,
+      "name": "ზომა - ქაფი",
+      "categorie": "დასუფთავება",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "productIcon": "../assets/product.png"
+    }
+  ]
 }

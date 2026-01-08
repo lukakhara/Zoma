@@ -5,5 +5,25 @@
     "bathroom": "Bathroom",
     "paper": "Paper",
     "textiles": "Rags"
-  }
+  },
+  "products": [
+    {
+      "id": 1,
+      "name": "ZOMA BAFIX FOAM",
+      "categorie": "Cleaning",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "productIcon": "../assets/product.png"
+    },
+    {
+      "id": 1,
+      "name": "ZOMA BAFIX FOAM",
+      "categorie": "Cleaning",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "productIcon": "../assets/product.png"
+    }
+  ]
 }

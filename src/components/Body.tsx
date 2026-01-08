@@ -4,9 +4,9 @@ import productIcon from '../assets/product.png'
 import en from '../en.json';
 import ka from '../ka.json';
 
-// interface product{
-//     productIcon:string,
-// }
+interface product{
+    product:Object,
+}
 
 interface language{
     languageGeorgian:string
@@ -21,8 +21,10 @@ const Body = ({languageGeorgian}:language) => {
   return (
     <>
         <div className='test w-full grid-cols-2 bg-red-500'>
-            <Card productIcon={productIcon} />
-            <Card productIcon={productIcon}/>
+           
+            {productData.map((product) => (
+                 <Card product={product}/>
+            ))}
         </div>
     </>
   )

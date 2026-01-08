@@ -14,7 +14,7 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "productIcon": "../assets/product.png"
+      "icon": "src/assets/product.png"
     },
     {
       "id": 1,
@@ -23,7 +23,7 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "productIcon": "../assets/product.png"
+      "icon": "src/assets/product.png"
     }
   ]
 }

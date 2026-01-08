@@ -3,12 +3,23 @@ import playIcon from "../assets/play.png";
 import cartIcon from "../assets/cart.png";
 
 interface product{
-    productIcon:string,
+    id:number,
+    name: string,
+    categorie: string,
+    startingPrice: number,
+    endPrice: number,
+    quantity: number,
+    icon: string
+}
+interface cardProps{
+    product:product,
 }
 
 
-const Card = ({productIcon} : product) => {
-  return (
+const Card = ({product} : cardProps) => {
+    console.log(product);
+
+    return (
     <>
       <div>
         <div className="flex justify-between items-center">
@@ -19,9 +30,9 @@ const Card = ({productIcon} : product) => {
             <img src={cartIcon} alt="playIcon" />
           </button>
         </div>
-        <img src={productIcon} alt="" />
-        <div>
-            
+        <img src={product.icon} alt="" />
+        <div className="bg-blue text-yellow-50">
+            {product.quantity}
         </div>
       </div>
     </>

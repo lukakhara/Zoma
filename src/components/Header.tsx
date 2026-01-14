@@ -1,4 +1,3 @@
-import React from "react";
 import georgiaFlagIcon from "../assets/georgiaFlagIcon.png";
 import englandFlagIcon from "../assets/englandFlagIcon.png";
 import search from "../assets/search.png";
@@ -26,7 +25,7 @@ const Header = ({ languageGeorgian,setLanguageGeorgian }: HeaderProps) => {
 
   return (
     <>
-      <header className="bg-blue-50 rounded-b-2xl md:rounded-none  px-[29px] pb-5 md:py-[35px] md:px-30">
+      <header className="bg-blue-50 rounded-b-2xl md:rounded-none  px-7.25 pb-5 md:py-8.75 md:px-30">
         <div className="flex items-center justify-between  md:hidden py-2.5">
           <h1 className="text-white font-bold">{`${currentHour}:${currentMinute}`}</h1>
           <div className="flex gap-2">
@@ -52,20 +51,20 @@ const Header = ({ languageGeorgian,setLanguageGeorgian }: HeaderProps) => {
               <img className="" src={search} alt="seach icon" />
             </button>
 
-            <button className="hidden headerButton md:block">
+            <button className="hidden headerButton md:grid">
               <img
                 src={cartIcon}
                 alt="seach icon"
               />
             </button>
-            <button className="hidden headerButton md:block">
+            <button className="hidden headerButton md:grid">
               <img
                 src={userIcon}
                 alt="seach icon"
               />
             </button>
 
-            <button className="border-1 border-gray-50  rounded-full size-9 grid place-items-center cursor-pointer hover:opacity-90"
+            <button className="border border-gray-50  rounded-full size-9 grid place-items-center cursor-pointer hover:opacity-90"
             onClick={() => setLanguageGeorgian(!languageGeorgian)}>
 
               <img

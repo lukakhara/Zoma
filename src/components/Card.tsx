@@ -39,7 +39,7 @@ const Card = ({ product,languageGeorgian }: cardProps) => {
            {/* prices */}
             <div className="flex items-center  gap-2">
                 <div className="bg-[#FDE800] text-xl text-gray-300 font-semibold px-2 rounded-sm">{product.endPrice} ₾</div>
-                <div className="text-[#C3C3C3] text-xl">{product.startingPrice}</div>
+                <div className="text-[#C3C3C3] text-xl line-through">{product.startingPrice}</div>
             </div>
             
             <div className="flex gap-2">

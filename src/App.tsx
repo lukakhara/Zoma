@@ -1,10 +1,7 @@
 import './App.css'
-import Header from './components/Header.tsx';
-import Category from './components/Category.tsx';
 import { useState } from 'react';
-import Body from './components/Body.tsx';
-import Footer from './components/Footer.tsx'
-
+import Home from './components/Home.tsx'
+import ProductPage from './components/ProductPage.tsx'
 
 
 function App() {
@@ -13,10 +10,9 @@ function App() {
   return (
     <>
     <div className='min-h-screen h-full w-full bg-gray-200'> 
-           <Header languageGeorgian={languageGeorgian} setLanguageGeorgian={setLanguageGeorgian} />
-          <Category languageGeorgian={languageGeorgian}/>
-          <Body languageGeorgian={languageGeorgian}/>
-          <Footer languageGeorgian={languageGeorgian}/>
+      <Home languageGeorgian={languageGeorgian} setLanguageGeorgian={setLanguageGeorgian}/>
+         {/* <ProductPage languageGeorgian={languageGeorgian} setLanguageGeorgian={setLanguageGeorgian}/>   */}
+         
     </div>
     
     </>

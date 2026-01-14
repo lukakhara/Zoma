@@ -9,6 +9,10 @@
   --color-gray-300:#474747;
 }
 
+body{
+  overflow-x: hidden
+}
+
 @layer base {
   .test {
     @apply border-2 border-red-600;

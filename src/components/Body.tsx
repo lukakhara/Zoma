@@ -8,7 +8,7 @@ import ka from '../ka.json';
 // }
 
 interface language{
-    languageGeorgian:string
+    languageGeorgian:boolean;
 }
 
 const Body = ({languageGeorgian}:language) => {
@@ -17,9 +17,9 @@ const Body = ({languageGeorgian}:language) => {
 
   return (
     <>
-        <div className='grid  w-full grid-cols-2 border-2 gap-2 mx-2 '>
+        <div className='grid  w-full grid-cols-2 border-2 gap-2 px-2.5 m-auto md:grid-cols-3 lg:grid-colsh-4 xl:grid-cols-5 2xl:grid-cols-6 xl:px-20'>
             {productData.map((product) => (
-                 <Card product={product}/>
+                 <Card product={product} languageGeorgian={languageGeorgian}/>
             ))}
         </div>
     </>

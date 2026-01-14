@@ -13,8 +13,8 @@ import logoDesktop from "../assets/logoDesktop.png";
 
 
 interface HeaderProps {
-  languageGeorgian: Boolean;
-  setLanguageGeorgian: (lang: Boolean) => void;
+  languageGeorgian: boolean;
+  setLanguageGeorgian: (languageGeorgian: boolean) => void;
 }
 
 const Header = ({ languageGeorgian,setLanguageGeorgian }: HeaderProps) => {
@@ -70,7 +70,7 @@ const Header = ({ languageGeorgian,setLanguageGeorgian }: HeaderProps) => {
 
               <img
                 className=""
-                src={languageGeorgian ?  georgiaFlagIcon: englandFlagIcon}
+                src={languageGeorgian ?  englandFlagIcon :  georgiaFlagIcon}
                 alt="language change icon"
               />
             </button>

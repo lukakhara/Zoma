@@ -3,7 +3,7 @@ import en from "../en.json";
 import ka from "../ka.json";
 
 interface CategoryProps {
-  languageGeorgian: Boolean;
+  languageGeorgian: boolean;
 }
 
 const Category = ({ languageGeorgian }: CategoryProps) => {

@@ -3,6 +3,7 @@ import Header from './components/Header.tsx';
 import Category from './components/Category.tsx';
 import { useState } from 'react';
 import Body from './components/Body.tsx';
+import Footer from './components/Footer.tsx'
 
 
 
@@ -15,6 +16,7 @@ function App() {
            <Header languageGeorgian={languageGeorgian} setLanguageGeorgian={setLanguageGeorgian} />
           <Category languageGeorgian={languageGeorgian}/>
           <Body languageGeorgian={languageGeorgian}/>
+          <Footer languageGeorgian={languageGeorgian}/>
     </div>
     
     </>

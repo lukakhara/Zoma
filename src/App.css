@@ -1,25 +1,22 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-
-:root{
-    --color-blue-50:#2E4790;
-    --color-gray-50:#D2D2D2;
-    --color-playButton:#2E47903B;
-    --color-orange:#FF6565;
-    --color-gray-100: #686868;
-
-    
+:root {
+  --color-blue-50: #2e4790;
+  --color-gray-50: #d2d2d2;
+  --color-blue-100: #2e47903b;
+  --color-orange-100: #ff6565;
+  --color-gray-100: #686868;
+  --color-gray-300:#474747;
 }
 
 @layer base {
   .test {
-    @apply border-2 border-red-600
+    @apply border-2 border-red-600;
   }
-  .categorybutton{
-    @apply rounded-4xl px-2 bg-red-600
+  .categorybutton {
+    @apply rounded-4xl px-2 bg-red-600;
   }
-  .headerButton{
-    @apply rounded-full size-9 grid place-items-center bg-white cursor-pointer hover:opacity-90
+  .headerButton {
+    @apply rounded-full size-9 grid place-items-center bg-white cursor-pointer hover:opacity-90;
   }
- 
 }

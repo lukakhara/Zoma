@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-    <div className='min-h-screen h-full w-full'> 
+    <div className='min-h-screen h-full w-full bg-gray-200'> 
            <Header languageGeorgian={languageGeorgian} setLanguageGeorgian={setLanguageGeorgian} />
           <Category languageGeorgian={languageGeorgian}/>
           <Body languageGeorgian={languageGeorgian}/>

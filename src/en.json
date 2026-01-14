@@ -24,6 +24,42 @@
       "endPrice": 9.78,
       "quantity": 15,
       "icon": "src/assets/product.png"
+    },
+    {
+      "id": 3,
+      "name": "ZOMA BAFIX FOAM",
+      "categorie": "Cleaning",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png"
+    },
+    {
+      "id": 4,
+      "name": "ZOMA BAFIX FOAM",
+      "categorie": "Cleaning",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png"
+    },
+    {
+      "id": 5,
+      "name": "ZOMA BAFIX FOAM",
+      "categorie": "Cleaning",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png"
+    }
+    ,{
+      "id": 6,
+      "name": "ZOMA BAFIX FOAM",
+      "categorie": "Cleaning",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png"
     }
   ]
 }

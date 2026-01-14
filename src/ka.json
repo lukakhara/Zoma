@@ -17,7 +17,43 @@
       "icon": "src/assets/product.png"
     },
     {
-      "id": 1,
+      "id": 2,
+      "name": "ზომა - ქაფი",
+      "categorie": "დასუფთავება",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png"
+    },
+   {
+      "id": 3,
+      "name": "ზომა - ქაფი",
+      "categorie": "დასუფთავება",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png"
+    },
+    {
+      "id": 4,
+      "name": "ზომა - ქაფი",
+      "categorie": "დასუფთავება",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png"
+    },
+    {
+      "id": 5,
+      "name": "ზომა - ქაფი",
+      "categorie": "დასუფთავება",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png"
+    }
+    ,{
+      "id": 6,
       "name": "ზომა - ქაფი",
       "categorie": "დასუფთავება",
       "startingPrice": 9.78,

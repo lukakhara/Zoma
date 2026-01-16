@@ -36,7 +36,8 @@ const Footer = ({ languageGeorgian }: footerProps) => {
         </div>
       </footer>
 
-      <footer className="text-white  bg-blue-50 flex justify-around">
+      <footer className="text-white  bg-blue-50 md:flex justify-around
+      hidden ">
         {/* logo for footer */}
         <section className="flex flex-col justify-around">
           <img src={logo} alt="logo icon" />

@@ -14,16 +14,60 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png"
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
     },
     {
-      "id": 1,
+      "id": 2,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png"
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
     },
     {
       "id": 3,
@@ -32,7 +76,29 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png"
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
     },
     {
       "id": 4,
@@ -41,7 +107,29 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png"
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
     },
     {
       "id": 5,
@@ -50,16 +138,454 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png"
-    }
-    ,{
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
       "id": 6,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png"
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 7,
+      "name": "ZOMA BAFIX FOAM",
+      "categorie": "Cleaning",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 8,
+      "name": "ZOMA BAFIX FOAM",
+      "categorie": "Cleaning",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 9,
+      "name": "ZOMA BAFIX FOAM",
+      "categorie": "Cleaning",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 10,
+      "name": "ZOMA BAFIX FOAM",
+      "categorie": "Cleaning",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 11,
+      "name": "ZOMA BAFIX FOAM",
+      "categorie": "Cleaning",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 13,
+      "name": "ZOMA BAFIX FOAM",
+      "categorie": "Cleaning",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 14,
+      "name": "ZOMA BAFIX FOAM",
+      "categorie": "Cleaning",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 15,
+      "name": "ZOMA BAFIX FOAM",
+      "categorie": "Cleaning",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 16,
+      "name": "ZOMA BAFIX FOAM",
+      "categorie": "Cleaning",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 17,
+      "name": "ZOMA BAFIX FOAM",
+      "categorie": "Cleaning",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 18,
+      "name": "ZOMA BAFIX FOAM",
+      "categorie": "Cleaning",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      },
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 19,
+      "name": "ZOMA BAFIX FOAM",
+      "categorie": "Cleaning",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
     }
   ]
 }

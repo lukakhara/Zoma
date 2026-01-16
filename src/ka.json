@@ -14,7 +14,29 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png"
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
     },
     {
       "id": 2,
@@ -23,16 +45,60 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png"
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
     },
-   {
+    {
       "id": 3,
       "name": "ზომა - ქაფი",
       "categorie": "დასუფთავება",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png"
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
     },
     {
       "id": 4,
@@ -41,7 +107,29 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png"
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
     },
     {
       "id": 5,
@@ -50,16 +138,432 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png"
-    }
-    ,{
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
       "id": 6,
       "name": "ზომა - ქაფი",
       "categorie": "დასუფთავება",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png"
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 7,
+      "name": "ზომა - ქაფი",
+      "categorie": "დასუფთავება",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 8,
+      "name": "ზომა - ქაფი",
+      "categorie": "დასუფთავება",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 9,
+      "name": "ზომა - ქაფი",
+      "categorie": "დასუფთავება",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 10,
+      "name": "ზომა - ქაფი",
+      "categorie": "დასუფთავება",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 11,
+      "name": "ზომა - ქაფი",
+      "categorie": "დასუფთავება",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 12,
+      "name": "ზომა - ქაფი",
+      "categorie": "დასუფთავება",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 13,
+      "name": "ზომა - ქაფი",
+      "categorie": "დასუფთავება",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 14,
+      "name": "ზომა - ქაფი",
+      "categorie": "დასუფთავება",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 15,
+      "name": "ზომა - ქაფი",
+      "categorie": "დასუფთავება",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 16,
+      "name": "ზომა - ქაფი",
+      "categorie": "დასუფთავება",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 17,
+      "name": "ზომა - ქაფი",
+      "categorie": "დასუფთავება",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
+    },
+    {
+      "id": 18,
+      "name": "ზომა - ქაფი",
+      "categorie": "დასუფთავება",
+      "startingPrice": 9.78,
+      "endPrice": 9.78,
+      "quantity": 15,
+      "icon": "src/assets/product.png",
+      "capacities": {
+        "500ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "600ml": {
+          "price": 9.78,
+          "discount": 0,
+          "finalPrice": 9.78
+        },
+        "2.5l": {
+          "price": 38.78,
+          "discount": 0,
+          "finalPrice": 38.78
+        },
+        "5l": {
+          "price": 80.78,
+          "discount": 0,
+          "finalPrice": 81.78
+        }
+      }
     }
   ]
 }

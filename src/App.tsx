@@ -10,8 +10,8 @@ function App() {
   return (
     <>
     <div className='min-h-screen h-full w-full bg-gray-200'> 
-      <Home languageGeorgian={languageGeorgian} setLanguageGeorgian={setLanguageGeorgian}/>
-         {/* <ProductPage languageGeorgian={languageGeorgian} setLanguageGeorgian={setLanguageGeorgian}/>   */}
+      {/* <Home languageGeorgian={languageGeorgian} setLanguageGeorgian={setLanguageGeorgian}/> */}
+         <ProductPage languageGeorgian={languageGeorgian} setLanguageGeorgian={setLanguageGeorgian}/>  
          
     </div>
     

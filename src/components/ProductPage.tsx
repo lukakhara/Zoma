@@ -31,7 +31,7 @@ const ProductPage = ({
         />
         <main className="p-5">
           <h4>{product.categorie}</h4>
-          <h1>{product.categorie}</h1>
+          <h1>{product.name}</h1>
           <section className="flex justify-center">
             <button>
               <img src={play} alt="play icon" />
@@ -43,11 +43,11 @@ const ProductPage = ({
               ))}
             </ul>
           </section>
-          <h1>Cleaning agen designet to remove scale from bathroom surfaces</h1>
+          <h1>{product.description}</h1>
           <h3>Size:</h3>
           <ul className="flex gap-2">
-            {["500ML", "600ML", "2.5L", "5L"].map((item) => (
-              <li className="border rounded-md p-1">{item}</li>
+            {Object.keys(product.capacities).map((item) => (
+              <li className="border rounded-md p-1 uppercase">{item}</li>
             ))}
           </ul>
           <div>
@@ -58,14 +58,14 @@ const ProductPage = ({
             {/* prices section */}
             <div className="">
               <div className="flex gap-1">
-                <h2 className="text-[#C3C3C3] text-xl line-through">11.65$</h2>
+                <h2 className="text-[#C3C3C3] text-xl line-through">{product.startingPrice}</h2>
                 <h2 className="bg-orange-100 text-xl text-gray-300 font-semibold px-2 rounded-sm text-white">
                   -1.87$
                 </h2>
               </div>
 
               <h1 className="bg-[#FDE800] text-xl text-gray-300 font-semibold px-2 rounded-sm">
-                9.78l
+               {product.endPrice}
               </h1>
             </div>
             <div className="flex gap-2 items-center justify-between">
@@ -79,17 +79,21 @@ const ProductPage = ({
             </div>
             <section>
               <h1>Description</h1>
-              <p>
-                Zoma Bafix Foam is a ready-to-use, foaming cleaning agent
-                designed to remove scale from bathroom surfaces. It effectively
-                eliminates limescale and other types of dirt. Suitable for use
-                on undamaged porcelain, ceramic, and enamel sanitary surfaces.
-                Instructions for use: Spray onto the surface Wait for 5–10
-                minutes Scrub the surface Wipe and rinse thoroughly Do not
-                mix Zoma Bafix Foam with chlorine-containing products. Do not
-                use on acid-sensitive surfaces such as marble and others. Store
-                at temperatures between 5°C and 35°C. Volume: 600 ml
-              </p>
+              <p>{product.description}</p>
+              <ul className="list-disc">
+                {
+                  product.instructionsForUse?.map((item,index) => (
+                       <li key={index}>{item}</li>
+                  ))
+                }
+              </ul>
+               {
+                  product.doNotUse?.map((item,index) => (
+                       <p key={index}>{item}</p>
+                  ))
+                }
+              <p>{product.store}</p>
+              <p>{Object.keys(product.capacities)[0]}</p>
             </section>
           </div>
         </main>

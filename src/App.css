@@ -23,4 +23,7 @@ body{
   .headerButton {
     @apply rounded-full size-9 grid place-items-center bg-white cursor-pointer hover:opacity-90;
   }
+  .center{
+    @apply flex justify-center items-center
+  }
 }

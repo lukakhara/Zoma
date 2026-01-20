@@ -1,10 +1,10 @@
-import georgiaFlagIcon from "../assets/georgiaFlagIcon.png";
-import englandFlagIcon from "../assets/englandFlagIcon.png";
+import georgiaFlagIcon from "../assets/georgia-flag-icon.png";
+import englandFlagIcon from "../assets/england-flag-icon.png";
 import search from "../assets/search.png";
 import logo from "../assets/logo.png";
-import wifi from "../assets/Wifi.png";
-import battery from "../assets/Battery.png";
-import mobileSignal from "../assets/Mobile Signal(1).png";
+import wifi from "../assets/MobileIcons/Wifi.png";
+import battery from "../assets/MobileIcons/Battery.png";
+import mobileSignal from "../assets/MobileIcons/Mobile-Signal.png";
 import collapseIcon from "../assets/collapse.png";
 import userIcon from "../assets/user.png";
 import cartIcon from "../assets/cart.png";

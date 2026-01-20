@@ -13,7 +13,7 @@ const Body = ({languageGeorgian}:language) => {
 
   return (
     <>
-        <div className='grid  w-full grid-cols-2 border-2 gap-2 px-2.5 m-auto md:grid-cols-3 lg:grid-colsh-4 xl:grid-cols-5 2xl:grid-cols-6 xl:px-20'>
+        <div className='grid  w-full grid-cols-2 border-2 gap-2 px-2.5 m-auto md:grid-cols-3 lg:grid-colsh-4 xl:grid-cols-5 2xl:grid-cols-6 md:px-30'>
             {productData.map((product) => (
                  <Card product={product} languageGeorgian={languageGeorgian}/>
             ))}

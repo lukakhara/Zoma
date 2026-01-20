@@ -44,9 +44,9 @@ const Card = ({ product,languageGeorgian }: cardProps) => {
                 <div className="text-[#C3C3C3] text-xl line-through">{product.startingPrice}</div>
             </div>
             
-            <div className="flex gap-2">
-                <select className="bg-[#F2F2F2] p-2 rounded-xl text-blue-50" name="cars" id="cars">
-                    <option value="1">1</option>
+            <div className="flex gap-2 test">
+                <select className="bg-[#F2F2F2] px-3 test center  rounded-2xl text-blue-50 text-xl" name="cars" id="cars">
+                    <option  value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
@@ -56,7 +56,7 @@ const Card = ({ product,languageGeorgian }: cardProps) => {
                     <option value="8">8</option>
                     <option value="9">9</option>
                 </select>
-                <button className="cursor-pointer bg-blue-50 text-white px-8 py-1 rounded-xl"
+                <button className="cursor-pointer bg-blue-50 text-white px-8 py-1 rounded-3xl"
                       onClick={() => setProductId(product.id)}>
                   {languageGeorgian ? "ყიდვა" : 'Buy Now'}</button>
             </div>

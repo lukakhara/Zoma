@@ -16,12 +16,12 @@ function App() {
           languageGeorgian={languageGeorgian}
           setLanguageGeorgian={setLanguageGeorgian}
         />
-        {/* <Home
+        <Home
           languageGeorgian={languageGeorgian}
           setLanguageGeorgian={setLanguageGeorgian}
-        /> */}
+        />
         {/* <ProductPage languageGeorgian={languageGeorgian} />   */}
-        <Checkout  languageGeorgian={languageGeorgian} />
+        {/* <Checkout  languageGeorgian={languageGeorgian} /> */}
         <Footer languageGeorgian={languageGeorgian} />
       </div>
     </>

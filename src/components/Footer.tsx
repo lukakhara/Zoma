@@ -3,6 +3,14 @@ import cart from "../assets/footerCart.png";
 import house from "../assets/home.png";
 import user from "../assets/user.png";
 import logo from "../assets/logo.png";
+import phone from "../assets/Social/phone.png";
+import whatssap from "../assets/Social/whatsapp.png";
+import viber from "../assets/Social/viber.png";
+import message from "../assets/Social/message.png";
+import facebook from "../assets/Social/facebook.png";
+import instagram from "../assets/Social/instagram.png";
+import linkedin from "../assets/Social/linkedin.png";
+import tiktok from "../assets/Social/tiktokIcon.png";
 
 interface footerProps {
   languageGeorgian: boolean;
@@ -36,8 +44,10 @@ const Footer = ({ languageGeorgian }: footerProps) => {
         </div>
       </footer>
 
-      <footer className="text-white  bg-blue-50 md:flex justify-around
-      hidden ">
+      <footer
+        className="text-white  bg-blue-50 md:flex justify-around
+      hidden py-9"
+      >
         {/* logo for footer */}
         <section className="flex flex-col justify-around">
           <img src={logo} alt="logo icon" />
@@ -71,34 +81,50 @@ const Footer = ({ languageGeorgian }: footerProps) => {
         <section>
           {/* phone numbers */}
           <div className="flex">
-            <img className="rounded-full size-5.25 bg-white" src="" alt="mobile icon" />
+            <img
+              className="rounded-full size-5.25"
+              src={phone}
+              alt="mobile icon"
+            />
             <p>+995 55 55 55</p>
           </div>
           <div className="flex">
-            <img className="rounded-full size-5.25 bg-white" src="" alt="whatsapp icon" />
+            <img
+              className="rounded-full size-5.25 "
+              src={whatssap}
+              alt="whatsapp icon"
+            />
             <p>+995 55 55 55</p>
           </div>
           <div className="flex">
-            <img className="rounded-full size-5.25 bg-white" src="" alt="Viber icon" />
+            <img
+              className="rounded-full size-5.25 "
+              src={viber}
+              alt="Viber icon"
+            />
             <p>+995 55 55 55</p>
           </div>
           <div className="flex">
-            <img className="rounded-full size-5.25 bg-white" src="" alt="letter icon" />
+            <img
+              className="rounded-full size-5.25 bg-white"
+              src={message}
+              alt="letter icon"
+            />
             <p>zoma@info.ge</p>
           </div>
           {/* social network links */}
-          <div className="">
-            <button className="rounded-full size-5.25 bg-white">
-              <img src="" alt="facebook icon" />
+          <div className="flex gap-2">
+            <button className="rounded-full size-5.25 bg-white  center">
+              <img src={facebook} alt="facebook icon" />
             </button>
-            <button className="rounded-full size-5.25 bg-white">
-              <img src="" alt="facebook icon" />
+            <button className="rounded-full size-5.25 bg-white center">
+              <img src={instagram} alt="instagram icon" />
             </button>
-            <button className="rounded-full size-5.25 bg-white">
-              <img src="" alt="facebook icon" />
+            <button className="rounded-full size-5.25 bg-white center">
+               <img src={linkedin} alt="instagram icon" />
             </button>
-            <button className="rounded-full size-5.25 bg-white">
-              <img src="" alt="facebook icon" />
+            <button className="rounded-full size-5.25 bg-white center">
+              <img src={tiktok} alt="tiktok icon" />
             </button>
           </div>
         </section>

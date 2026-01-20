@@ -5,7 +5,7 @@ import cart from "../assets/cart.png";
 import en from "../en.json";
 import ka from "../ka.json";
 
-// when from home page is item clicked then this component must get id of that product that is clicked and use information about it.
+// when from home page  item is clicked then this component must get id of that product that is clicked and use information about it.
 
 interface ProductPageProps {
   languageGeorgian: boolean;
@@ -17,9 +17,11 @@ const ProductPage = ({
   setLanguageGeorgian,
 }: ProductPageProps) => {
   const data = languageGeorgian ? ka : en;
-  const product = data.products;
+  const products = data.products;
+  const productId = 1; // TEMPORARY
+  const product = products[productId];
   // NOW WE USE INDEX 0 TEMPORARELY!
-  console.log(product[0]);
+
   return (
     <>
       <div className="flex flex-col ">
@@ -28,15 +30,15 @@ const ProductPage = ({
           setLanguageGeorgian={setLanguageGeorgian}
         />
         <main className="p-5">
-          <h4>Cleaning</h4>
-          <h1>XOMA BAFIX FOAM</h1>
+          <h4>{product.categorie}</h4>
+          <h1>{product.categorie}</h1>
           <section className="flex justify-center">
             <button>
               <img src={play} alt="play icon" />
             </button>
-            <img src="" alt="" />
+            <img src={product.image[0]} alt="" />
             <ul className="flex gap-2">
-              {[1, 2, 3].map((item) => (
+              {product.image.map((item) => (
                 <li className="size-2 rounded-full bg-gray-100"></li>
               ))}
             </ul>

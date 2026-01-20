@@ -11,6 +11,7 @@
       "id": 1,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
+      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
@@ -40,12 +41,25 @@
           "discount": 0,
           "finalPrice": 81.78
         }
-      }
+      },
+      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "instructionsForUse": [
+        "Spray onto the surface",
+        "Wait for 5–10 minutes",
+        "Scrub the surface",
+        "Wipe and rinse thoroughly"
+      ],
+      "doNotUse": [
+        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
+        "Do not use on acid-sensitive surfaces such as marble and others."
+      ],
+      "store": "Store at temperatures between 5°C and 35°C."
     },
     {
       "id": 2,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
+      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
@@ -75,12 +89,25 @@
           "discount": 0,
           "finalPrice": 81.78
         }
-      }
+      },
+      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "instructionsForUse": [
+        "Spray onto the surface",
+        "Wait for 5–10 minutes",
+        "Scrub the surface",
+        "Wipe and rinse thoroughly"
+      ],
+      "doNotUse": [
+        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
+        "Do not use on acid-sensitive surfaces such as marble and others."
+      ],
+      "store": "Store at temperatures between 5°C and 35°C."
     },
     {
       "id": 3,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
+      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
@@ -110,12 +137,25 @@
           "discount": 0,
           "finalPrice": 81.78
         }
-      }
+      },
+      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "instructionsForUse": [
+        "Spray onto the surface",
+        "Wait for 5–10 minutes",
+        "Scrub the surface",
+        "Wipe and rinse thoroughly"
+      ],
+      "doNotUse": [
+        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
+        "Do not use on acid-sensitive surfaces such as marble and others."
+      ],
+      "store": "Store at temperatures between 5°C and 35°C."
     },
     {
-      "id": 4,
+      "id": 1,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
+      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
@@ -145,12 +185,25 @@
           "discount": 0,
           "finalPrice": 81.78
         }
-      }
+      },
+      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "instructionsForUse": [
+        "Spray onto the surface",
+        "Wait for 5–10 minutes",
+        "Scrub the surface",
+        "Wipe and rinse thoroughly"
+      ],
+      "doNotUse": [
+        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
+        "Do not use on acid-sensitive surfaces such as marble and others."
+      ],
+      "store": "Store at temperatures between 5°C and 35°C."
     },
     {
-      "id": 5,
+      "id": 2,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
+      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
@@ -180,12 +233,25 @@
           "discount": 0,
           "finalPrice": 81.78
         }
-      }
+      },
+      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "instructionsForUse": [
+        "Spray onto the surface",
+        "Wait for 5–10 minutes",
+        "Scrub the surface",
+        "Wipe and rinse thoroughly"
+      ],
+      "doNotUse": [
+        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
+        "Do not use on acid-sensitive surfaces such as marble and others."
+      ],
+      "store": "Store at temperatures between 5°C and 35°C."
     },
     {
-      "id": 6,
+      "id": 3,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
+      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
@@ -215,12 +281,25 @@
           "discount": 0,
           "finalPrice": 81.78
         }
-      }
+      },
+      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "instructionsForUse": [
+        "Spray onto the surface",
+        "Wait for 5–10 minutes",
+        "Scrub the surface",
+        "Wipe and rinse thoroughly"
+      ],
+      "doNotUse": [
+        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
+        "Do not use on acid-sensitive surfaces such as marble and others."
+      ],
+      "store": "Store at temperatures between 5°C and 35°C."
     },
     {
-      "id": 7,
+      "id": 1,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
+      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
@@ -250,12 +329,25 @@
           "discount": 0,
           "finalPrice": 81.78
         }
-      }
+      },
+      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "instructionsForUse": [
+        "Spray onto the surface",
+        "Wait for 5–10 minutes",
+        "Scrub the surface",
+        "Wipe and rinse thoroughly"
+      ],
+      "doNotUse": [
+        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
+        "Do not use on acid-sensitive surfaces such as marble and others."
+      ],
+      "store": "Store at temperatures between 5°C and 35°C."
     },
     {
-      "id": 8,
+      "id": 2,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
+      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
@@ -285,12 +377,25 @@
           "discount": 0,
           "finalPrice": 81.78
         }
-      }
+      },
+      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "instructionsForUse": [
+        "Spray onto the surface",
+        "Wait for 5–10 minutes",
+        "Scrub the surface",
+        "Wipe and rinse thoroughly"
+      ],
+      "doNotUse": [
+        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
+        "Do not use on acid-sensitive surfaces such as marble and others."
+      ],
+      "store": "Store at temperatures between 5°C and 35°C."
     },
     {
-      "id": 9,
+      "id": 3,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
+      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
@@ -320,12 +425,25 @@
           "discount": 0,
           "finalPrice": 81.78
         }
-      }
+      },
+      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "instructionsForUse": [
+        "Spray onto the surface",
+        "Wait for 5–10 minutes",
+        "Scrub the surface",
+        "Wipe and rinse thoroughly"
+      ],
+      "doNotUse": [
+        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
+        "Do not use on acid-sensitive surfaces such as marble and others."
+      ],
+      "store": "Store at temperatures between 5°C and 35°C."
     },
     {
-      "id": 10,
+      "id": 1,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
+      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
@@ -355,12 +473,25 @@
           "discount": 0,
           "finalPrice": 81.78
         }
-      }
+      },
+      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "instructionsForUse": [
+        "Spray onto the surface",
+        "Wait for 5–10 minutes",
+        "Scrub the surface",
+        "Wipe and rinse thoroughly"
+      ],
+      "doNotUse": [
+        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
+        "Do not use on acid-sensitive surfaces such as marble and others."
+      ],
+      "store": "Store at temperatures between 5°C and 35°C."
     },
     {
-      "id": 11,
+      "id": 2,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
+      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
@@ -390,12 +521,25 @@
           "discount": 0,
           "finalPrice": 81.78
         }
-      }
+      },
+      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "instructionsForUse": [
+        "Spray onto the surface",
+        "Wait for 5–10 minutes",
+        "Scrub the surface",
+        "Wipe and rinse thoroughly"
+      ],
+      "doNotUse": [
+        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
+        "Do not use on acid-sensitive surfaces such as marble and others."
+      ],
+      "store": "Store at temperatures between 5°C and 35°C."
     },
     {
-      "id": 13,
+      "id": 3,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
+      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
@@ -425,12 +569,25 @@
           "discount": 0,
           "finalPrice": 81.78
         }
-      }
+      },
+      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "instructionsForUse": [
+        "Spray onto the surface",
+        "Wait for 5–10 minutes",
+        "Scrub the surface",
+        "Wipe and rinse thoroughly"
+      ],
+      "doNotUse": [
+        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
+        "Do not use on acid-sensitive surfaces such as marble and others."
+      ],
+      "store": "Store at temperatures between 5°C and 35°C."
     },
     {
-      "id": 14,
+      "id": 1,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
+      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
@@ -460,12 +617,25 @@
           "discount": 0,
           "finalPrice": 81.78
         }
-      }
+      },
+      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "instructionsForUse": [
+        "Spray onto the surface",
+        "Wait for 5–10 minutes",
+        "Scrub the surface",
+        "Wipe and rinse thoroughly"
+      ],
+      "doNotUse": [
+        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
+        "Do not use on acid-sensitive surfaces such as marble and others."
+      ],
+      "store": "Store at temperatures between 5°C and 35°C."
     },
     {
-      "id": 15,
+      "id": 2,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
+      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
@@ -495,12 +665,25 @@
           "discount": 0,
           "finalPrice": 81.78
         }
-      }
+      },
+      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "instructionsForUse": [
+        "Spray onto the surface",
+        "Wait for 5–10 minutes",
+        "Scrub the surface",
+        "Wipe and rinse thoroughly"
+      ],
+      "doNotUse": [
+        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
+        "Do not use on acid-sensitive surfaces such as marble and others."
+      ],
+      "store": "Store at temperatures between 5°C and 35°C."
     },
     {
-      "id": 16,
+      "id": 3,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
+      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
@@ -530,12 +713,25 @@
           "discount": 0,
           "finalPrice": 81.78
         }
-      }
+      },
+      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "instructionsForUse": [
+        "Spray onto the surface",
+        "Wait for 5–10 minutes",
+        "Scrub the surface",
+        "Wipe and rinse thoroughly"
+      ],
+      "doNotUse": [
+        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
+        "Do not use on acid-sensitive surfaces such as marble and others."
+      ],
+      "store": "Store at temperatures between 5°C and 35°C."
     },
     {
-      "id": 17,
+      "id": 1,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
+      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
@@ -565,12 +761,25 @@
           "discount": 0,
           "finalPrice": 81.78
         }
-      }
+      },
+      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "instructionsForUse": [
+        "Spray onto the surface",
+        "Wait for 5–10 minutes",
+        "Scrub the surface",
+        "Wipe and rinse thoroughly"
+      ],
+      "doNotUse": [
+        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
+        "Do not use on acid-sensitive surfaces such as marble and others."
+      ],
+      "store": "Store at temperatures between 5°C and 35°C."
     },
     {
-      "id": 18,
+      "id": 2,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
+      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
@@ -600,12 +809,25 @@
           "discount": 0,
           "finalPrice": 81.78
         }
-      }
+      },
+      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "instructionsForUse": [
+        "Spray onto the surface",
+        "Wait for 5–10 minutes",
+        "Scrub the surface",
+        "Wipe and rinse thoroughly"
+      ],
+      "doNotUse": [
+        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
+        "Do not use on acid-sensitive surfaces such as marble and others."
+      ],
+      "store": "Store at temperatures between 5°C and 35°C."
     },
     {
-      "id": 19,
+      "id": 3,
       "name": "ZOMA BAFIX FOAM",
       "categorie": "Cleaning",
+      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
@@ -635,7 +857,19 @@
           "discount": 0,
           "finalPrice": 81.78
         }
-      }
+      },
+      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "instructionsForUse": [
+        "Spray onto the surface",
+        "Wait for 5–10 minutes",
+        "Scrub the surface",
+        "Wipe and rinse thoroughly"
+      ],
+      "doNotUse": [
+        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
+        "Do not use on acid-sensitive surfaces such as marble and others."
+      ],
+      "store": "Store at temperatures between 5°C and 35°C."
     }
   ]
 }

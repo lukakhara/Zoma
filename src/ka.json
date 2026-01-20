@@ -14,7 +14,11 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png",
+      "image": [
+        "src/assets/product.png",
+        "src/assets/product.png",
+        "src/assets/product.png"
+      ],
       "capacities": {
         "500ml": {
           "price": 9.78,
@@ -45,7 +49,11 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png",
+      "image": [
+        "src/assets/product.png",
+        "src/assets/product.png",
+        "src/assets/product.png"
+      ],
       "capacities": {
         "500ml": {
           "price": 9.78,
@@ -76,7 +84,11 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png",
+      "image": [
+        "src/assets/product.png",
+        "src/assets/product.png",
+        "src/assets/product.png"
+      ],
       "capacities": {
         "500ml": {
           "price": 9.78,
@@ -107,7 +119,11 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png",
+      "image": [
+        "src/assets/product.png",
+        "src/assets/product.png",
+        "src/assets/product.png"
+      ],
       "capacities": {
         "500ml": {
           "price": 9.78,
@@ -138,7 +154,11 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png",
+      "image": [
+        "src/assets/product.png",
+        "src/assets/product.png",
+        "src/assets/product.png"
+      ],
       "capacities": {
         "500ml": {
           "price": 9.78,
@@ -169,7 +189,11 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png",
+      "image": [
+        "src/assets/product.png",
+        "src/assets/product.png",
+        "src/assets/product.png"
+      ],
       "capacities": {
         "500ml": {
           "price": 9.78,
@@ -200,7 +224,11 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png",
+      "image": [
+        "src/assets/product.png",
+        "src/assets/product.png",
+        "src/assets/product.png"
+      ],
       "capacities": {
         "500ml": {
           "price": 9.78,
@@ -231,7 +259,11 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png",
+      "image": [
+        "src/assets/product.png",
+        "src/assets/product.png",
+        "src/assets/product.png"
+      ],
       "capacities": {
         "500ml": {
           "price": 9.78,
@@ -262,7 +294,11 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png",
+      "image": [
+        "src/assets/product.png",
+        "src/assets/product.png",
+        "src/assets/product.png"
+      ],
       "capacities": {
         "500ml": {
           "price": 9.78,
@@ -293,7 +329,11 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png",
+      "image": [
+        "src/assets/product.png",
+        "src/assets/product.png",
+        "src/assets/product.png"
+      ],
       "capacities": {
         "500ml": {
           "price": 9.78,
@@ -324,7 +364,11 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png",
+      "image": [
+        "src/assets/product.png",
+        "src/assets/product.png",
+        "src/assets/product.png"
+      ],
       "capacities": {
         "500ml": {
           "price": 9.78,
@@ -355,7 +399,11 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png",
+      "image": [
+        "src/assets/product.png",
+        "src/assets/product.png",
+        "src/assets/product.png"
+      ],
       "capacities": {
         "500ml": {
           "price": 9.78,
@@ -386,7 +434,11 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png",
+      "image": [
+        "src/assets/product.png",
+        "src/assets/product.png",
+        "src/assets/product.png"
+      ],
       "capacities": {
         "500ml": {
           "price": 9.78,
@@ -417,7 +469,11 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png",
+      "image": [
+        "src/assets/product.png",
+        "src/assets/product.png",
+        "src/assets/product.png"
+      ],
       "capacities": {
         "500ml": {
           "price": 9.78,
@@ -448,7 +504,11 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png",
+      "image": [
+        "src/assets/product.png",
+        "src/assets/product.png",
+        "src/assets/product.png"
+      ],
       "capacities": {
         "500ml": {
           "price": 9.78,
@@ -479,7 +539,11 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png",
+      "image": [
+        "src/assets/product.png",
+        "src/assets/product.png",
+        "src/assets/product.png"
+      ],
       "capacities": {
         "500ml": {
           "price": 9.78,
@@ -510,7 +574,11 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png",
+      "image": [
+        "src/assets/product.png",
+        "src/assets/product.png",
+        "src/assets/product.png"
+      ],
       "capacities": {
         "500ml": {
           "price": 9.78,
@@ -541,7 +609,11 @@
       "startingPrice": 9.78,
       "endPrice": 9.78,
       "quantity": 15,
-      "icon": "src/assets/product.png",
+      "image": [
+        "src/assets/product.png",
+        "src/assets/product.png",
+        "src/assets/product.png"
+      ],
       "capacities": {
         "500ml": {
           "price": 9.78,

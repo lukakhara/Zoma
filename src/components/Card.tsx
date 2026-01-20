@@ -10,7 +10,7 @@ interface product {
   startingPrice: number;
   endPrice: number;
   quantity: number;
-  icon: string;
+  image: string;
 }
 interface cardProps {
   product: product;
@@ -18,7 +18,7 @@ interface cardProps {
 }
 
 const Card = ({ product,languageGeorgian }: cardProps) => {
-  console.log(product);
+
 
   return (
     <>
@@ -31,7 +31,7 @@ const Card = ({ product,languageGeorgian }: cardProps) => {
             <img className="bg-none size-[20.48px]" src={cartIcon} alt="playIcon" />
           </button>
         </div>
-        <img src={product.icon} alt="" className="" />
+        <img src={product.image[0]} alt="" className="" />
         <div className="flex  flex-col gap-2">
             {/* name and category */}
           <div className="bg-blue text-[#DDDDDD] text-[10px]">{product.categorie}</div>

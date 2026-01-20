@@ -1,8 +1,11 @@
 import Header from "./Header.tsx";
 import Footer from "./Footer.tsx";
 import play from "../assets/play.png";
-import cart from '../assets/cart.png'
+import cart from "../assets/cart.png";
+import en from "../en.json";
+import ka from "../ka.json";
 
+// when from home page is item clicked then this component must get id of that product that is clicked and use information about it.
 
 interface ProductPageProps {
   languageGeorgian: boolean;
@@ -13,6 +16,10 @@ const ProductPage = ({
   languageGeorgian,
   setLanguageGeorgian,
 }: ProductPageProps) => {
+  const data = languageGeorgian ? ka : en;
+  const product = data.products;
+  // NOW WE USE INDEX 0 TEMPORARELY!
+  console.log(product[0]);
   return (
     <>
       <div className="flex flex-col ">
@@ -60,7 +67,9 @@ const ProductPage = ({
               </h1>
             </div>
             <div className="flex gap-2 items-center justify-between">
-              <button className="bg-blue-50 text-white text-center px-4 py-1">Buy Now</button>
+              <button className="bg-blue-50 text-white text-center px-4 py-1">
+                Buy Now
+              </button>
               <button className="flex gap-2 justify-center items-center px-2 bg-white text-blue-50">
                 <img src={cart} alt="cart icon" />
                 Add to cart

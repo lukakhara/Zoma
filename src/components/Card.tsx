@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import playIcon from "../assets/play.png";
 import cartIcon from "../assets/cart.png";
 import { FormControl, InputLabel, NativeSelect } from "@mui/material";
@@ -19,6 +19,8 @@ interface cardProps {
 
 const Card = ({ product,languageGeorgian }: cardProps) => {
 
+  const [productId,setProductId] = useState<number>(1);
+  console.log(productId);
 
   return (
     <>
@@ -54,7 +56,9 @@ const Card = ({ product,languageGeorgian }: cardProps) => {
                     <option value="8">8</option>
                     <option value="9">9</option>
                 </select>
-                <button className="cursor-pointer bg-blue-50 text-white px-8 py-1 rounded-xl">{languageGeorgian ? "ყიდვა" : 'Buy Now'}</button>
+                <button className="cursor-pointer bg-blue-50 text-white px-8 py-1 rounded-xl"
+                      onClick={() => setProductId(product.id)}>
+                  {languageGeorgian ? "ყიდვა" : 'Buy Now'}</button>
             </div>
         
         </div>

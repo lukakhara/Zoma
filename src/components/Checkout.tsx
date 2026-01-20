@@ -1,22 +1,17 @@
-import Header from "./Header.tsx";
-import Footer from "./Footer.tsx";
+
 import { useState } from "react";
 
 interface checkoutProps {
   languageGeorgian: boolean;
-  setLanguageGeorgian(languageGeorgian: boolean): void;
 }
 
-const Checkout = ({ languageGeorgian, setLanguageGeorgian }: checkoutProps) => {
+const Checkout = ({ languageGeorgian }: checkoutProps) => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<boolean>(false);
 
   return (
     <>
-      <Header
-        languageGeorgian={languageGeorgian}
-        setLanguageGeorgian={setLanguageGeorgian}
-      />
+     
       <main className="flex flex-col gap-4 test px-4">
         <h1>Checkout</h1>
 
@@ -49,7 +44,7 @@ const Checkout = ({ languageGeorgian, setLanguageGeorgian }: checkoutProps) => {
             <h1>Delivery details</h1>
             <button>
               Edit
-              <img src="" alt="" />
+              <img src="" alt="Edit button" />
             </button>
           </div>
           {/* body of section */}
@@ -148,8 +143,6 @@ const Checkout = ({ languageGeorgian, setLanguageGeorgian }: checkoutProps) => {
 
         <button className="text-center">Check Out</button>
       </main>
-
-      <Footer languageGeorgian={languageGeorgian} />
     </>
   );
 };

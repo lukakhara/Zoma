@@ -1,11 +1,7 @@
-import React from 'react'
 import Card from './Card.tsx'
 import en from '../en.json';
 import ka from '../ka.json';
 
-// interface product{
-//     product:Object,
-// }
 
 interface language{
     languageGeorgian:boolean;

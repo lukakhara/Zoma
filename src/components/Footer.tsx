@@ -71,19 +71,19 @@ const Footer = ({ languageGeorgian }: footerProps) => {
         <section>
           {/* phone numbers */}
           <div className="flex">
-            <img className="rounded-full size-5.25 bg-white" src="" alt="" />
+            <img className="rounded-full size-5.25 bg-white" src="" alt="mobile icon" />
             <p>+995 55 55 55</p>
           </div>
           <div className="flex">
-            <img className="rounded-full size-5.25 bg-white" src="" alt="" />
+            <img className="rounded-full size-5.25 bg-white" src="" alt="whatsapp icon" />
             <p>+995 55 55 55</p>
           </div>
           <div className="flex">
-            <img className="rounded-full size-5.25 bg-white" src="" alt="" />
+            <img className="rounded-full size-5.25 bg-white" src="" alt="Viber icon" />
             <p>+995 55 55 55</p>
           </div>
           <div className="flex">
-            <img className="rounded-full size-5.25 bg-white" src="" alt="" />
+            <img className="rounded-full size-5.25 bg-white" src="" alt="letter icon" />
             <p>zoma@info.ge</p>
           </div>
           {/* social network links */}

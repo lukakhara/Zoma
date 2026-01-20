@@ -1,5 +1,3 @@
-import Header from "./Header.tsx";
-import Footer from "./Footer.tsx";
 import play from "../assets/play.png";
 import cart from "../assets/cart.png";
 import en from "../en.json";
@@ -9,12 +7,10 @@ import ka from "../ka.json";
 
 interface ProductPageProps {
   languageGeorgian: boolean;
-  setLanguageGeorgian(languageGeorgian: boolean): void;
 }
 
 const ProductPage = ({
   languageGeorgian,
-  setLanguageGeorgian,
 }: ProductPageProps) => {
   const data = languageGeorgian ? ka : en;
   const products = data.products;
@@ -25,10 +21,7 @@ const ProductPage = ({
   return (
     <>
       <div className="flex flex-col ">
-        <Header
-          languageGeorgian={languageGeorgian}
-          setLanguageGeorgian={setLanguageGeorgian}
-        />
+       
         <main className="p-5">
           <h4>{product.categorie}</h4>
           <h1>{product.name}</h1>
@@ -36,7 +29,7 @@ const ProductPage = ({
             <button>
               <img src={play} alt="play icon" />
             </button>
-            <img src={product.image[0]} alt="" />
+            <img src={product.image[0]} alt="Product image" />
             <ul className="flex gap-2">
               {product.image.map((item) => (
                 <li className="size-2 rounded-full bg-gray-100"></li>
@@ -97,7 +90,6 @@ const ProductPage = ({
             </section>
           </div>
         </main>
-        <Footer languageGeorgian={languageGeorgian} />
       </div>
     </>
   );

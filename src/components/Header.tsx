@@ -69,7 +69,7 @@ const Header = ({ languageGeorgian,setLanguageGeorgian }: HeaderProps) => {
 
               <img
                 className=""
-                src={languageGeorgian ?  englandFlagIcon :  georgiaFlagIcon}
+                src={languageGeorgian ?  georgiaFlagIcon :   englandFlagIcon}
                 alt="language change icon"
               />
             </button>

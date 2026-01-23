@@ -9,8 +9,14 @@
   --color-gray-300:#474747;
 }
 
+@font-face {
+  font-family: "helvetocaReg";
+  src: url("public/helvetica-neue-5/HelveticaNeueRoman.otf");
+}
+
 body{
-  overflow-x: hidden
+  overflow-x: hidden;
+  font-family: "helvetocaReg"
 }
 
 @layer base {

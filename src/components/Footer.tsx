@@ -20,7 +20,9 @@ const Footer = ({ languageGeorgian }: footerProps) => {
   return (
     <>
       {/* MOBILE FOOTER */}
-      <footer className="fixed bottom-0 left-0 right-0 md:hidden bg-no-repeat text-[#FFFFFF]  z-50 
+      {/* <footer className="fixed bottom-0 left-0 right-0 md:hidden bg-no-repeat text-[#FFFFFF]  z-50 
+      w-full min-w-full"> */}
+        <footer className=" md:hidden bg-no-repeat text-[#FFFFFF]  z-50 
       w-full min-w-full">
 
         <div  className="min-w-full flex flex-col items-center relative pb-2 bg-no-repeat bg-cover bg-center bg-bottom w-full " 

@@ -5,23 +5,27 @@ import ProductPage from "./components/ProductPage.tsx";
 import Checkout from "./components/Checkout.tsx";
 import Header from "./components/Header.tsx";
 import Footer from "./components/Footer.tsx";
+import SignIn from "./components/SignIn.tsx";
+import Registration from "./components/Registration.tsx";
 
 function App() {
   const [languageGeorgian, setLanguageGeorgian] = useState(true);
 
   return (
     <>
-      <div className="min-h-screen h-full w-full bg-gray-200">
+      <div className="min-h-screen h-full w-full bg-gray-200 ">
         <Header
           languageGeorgian={languageGeorgian}
           setLanguageGeorgian={setLanguageGeorgian}
         />
-        <Home
+        {/* <Home
           languageGeorgian={languageGeorgian}
           setLanguageGeorgian={setLanguageGeorgian}
-        />
+        /> */}
         {/* <ProductPage languageGeorgian={languageGeorgian} />   */}
         {/* <Checkout  languageGeorgian={languageGeorgian} /> */}
+        {/* <SignIn/> */}
+            <Registration/>
         <Footer languageGeorgian={languageGeorgian} />
       </div>
     </>

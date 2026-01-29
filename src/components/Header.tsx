@@ -10,7 +10,6 @@ import userIcon from "../assets/user.png";
 import cartIcon from "../assets/cart.png";
 import logoDesktop from "../assets/logoDesktop.png";
 
-
 interface HeaderProps {
   languageGeorgian: boolean;
   setLanguageGeorgian: (languageGeorgian: boolean) => void;
@@ -43,7 +42,8 @@ const Header = ({ languageGeorgian,setLanguageGeorgian }: HeaderProps) => {
               <button className="text-[16px]">Products</button>
               <img src={collapseIcon} alt="collapse icon"  />
             </a>
-            <a href="">News</a>
+         <a href="">News</a>
+            
             <a href="">Contact</a>
           </div>
           <div className="flex gap-2 ">

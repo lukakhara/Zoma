@@ -57,12 +57,12 @@
     },
     {
       "id": 2,
-      "name": "ZOMA BAFIX FOAM",
+      "name": "ZOMA GLASS CLEANER",
       "categorie": "Cleaning",
-      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
-      "startingPrice": 9.78,
-      "endPrice": 9.78,
-      "quantity": 15,
+      "purpose": "streak-free glass and mirror cleaning solution",
+      "startingPrice": 7.5,
+      "endPrice": 12.5,
+      "quantity": 22,
       "image": [
         "src/assets/product.png",
         "src/assets/product.png",
@@ -70,95 +70,84 @@
       ],
       "capacities": {
         "500ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
+          "price": 7.5,
+          "discount": 10,
+          "finalPrice": 6.75
         },
-        "600ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
+        "750ml": {
+          "price": 10.5,
+          "discount": 5,
+          "finalPrice": 9.98
         },
-        "2.5l": {
-          "price": 38.78,
+        "1l": {
+          "price": 12.5,
           "discount": 0,
-          "finalPrice": 38.78
-        },
-        "5l": {
-          "price": 80.78,
-          "discount": 0,
-          "finalPrice": 81.78
+          "finalPrice": 12.5
         }
       },
-      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "description": "Zoma Glass Cleaner provides a streak-free shine on all glass surfaces, mirrors, and windows. Its advanced formula quickly removes fingerprints, smudges, and dirt without leaving residue.",
       "instructionsForUse": [
-        "Spray onto the surface",
-        "Wait for 5–10 minutes",
-        "Scrub the surface",
-        "Wipe and rinse thoroughly"
+        "Spray directly onto the glass surface",
+        "Wipe with a clean, dry cloth",
+        "Polish with circular motions for best results"
       ],
       "doNotUse": [
-        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
-        "Do not use on acid-sensitive surfaces such as marble and others."
+        "Do not use on hot surfaces.",
+        "Avoid contact with wooden frames and painted surfaces."
       ],
-      "store": "Store at temperatures between 5°C and 35°C."
+      "store": "Store in a cool, dry place away from direct sunlight."
     },
     {
       "id": 3,
-      "name": "ZOMA BAFIX FOAM",
+      "name": "ZOMA FLOOR CLEANER PRO",
       "categorie": "Cleaning",
-      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
-      "startingPrice": 9.78,
-      "endPrice": 9.78,
-      "quantity": 15,
+      "purpose": "multi-surface floor cleaning concentrate",
+      "startingPrice": 15.99,
+      "endPrice": 65.99,
+      "quantity": 18,
       "image": [
         "src/assets/product.png",
         "src/assets/product.png",
         "src/assets/product.png"
       ],
       "capacities": {
-        "500ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
+        "1l": {
+          "price": 15.99,
+          "discount": 15,
+          "finalPrice": 13.59
         },
-        "600ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
-        },
-        "2.5l": {
-          "price": 38.78,
-          "discount": 0,
-          "finalPrice": 38.78
+        "2l": {
+          "price": 28.99,
+          "discount": 10,
+          "finalPrice": 26.09
         },
         "5l": {
-          "price": 80.78,
+          "price": 65.99,
           "discount": 0,
-          "finalPrice": 81.78
+          "finalPrice": 65.99
         }
       },
-      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "description": "Zoma Floor Cleaner Pro is a powerful concentrate designed for all types of hard floors including tile, laminate, vinyl, and sealed wood. Leaves a fresh scent and protective coating.",
       "instructionsForUse": [
-        "Spray onto the surface",
-        "Wait for 5–10 minutes",
-        "Scrub the surface",
-        "Wipe and rinse thoroughly"
+        "Dilute 50ml per 5 liters of water",
+        "Mop the floor with the solution",
+        "No rinsing required",
+        "Allow to air dry"
       ],
       "doNotUse": [
-        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
-        "Do not use on acid-sensitive surfaces such as marble and others."
+        "Do not use on unsealed wood or natural stone without testing first.",
+        "Do not use undiluted on sensitive surfaces."
       ],
-      "store": "Store at temperatures between 5°C and 35°C."
+      "store": "Keep in original container. Store at room temperature."
     },
     {
-      "id": 1,
-      "name": "ZOMA BAFIX FOAM",
-      "categorie": "Cleaning",
-      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
-      "startingPrice": 9.78,
-      "endPrice": 9.78,
-      "quantity": 15,
+      "id": 4,
+      "name": "ZOMA DISH SOAP ULTRA",
+      "categorie": "Kitchen",
+      "purpose": "concentrated dishwashing liquid with grease-cutting power",
+      "startingPrice": 5.25,
+      "endPrice": 45.0,
+      "quantity": 35,
       "image": [
         "src/assets/product.png",
         "src/assets/product.png",
@@ -166,143 +155,118 @@
       ],
       "capacities": {
         "500ml": {
-          "price": 9.78,
+          "price": 5.25,
           "discount": 0,
-          "finalPrice": 9.78
+          "finalPrice": 5.25
         },
-        "600ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
-        },
-        "2.5l": {
-          "price": 38.78,
-          "discount": 0,
-          "finalPrice": 38.78
+        "1l": {
+          "price": 9.5,
+          "discount": 5,
+          "finalPrice": 9.03
         },
         "5l": {
-          "price": 80.78,
-          "discount": 0,
-          "finalPrice": 81.78
+          "price": 45.0,
+          "discount": 20,
+          "finalPrice": 36.0
         }
       },
-      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "description": "Zoma Dish Soap Ultra cuts through tough grease and dried-on food with ease. Gentle on hands with added moisturizers. Creates rich, long-lasting suds for effective cleaning.",
       "instructionsForUse": [
-        "Spray onto the surface",
-        "Wait for 5–10 minutes",
-        "Scrub the surface",
-        "Wipe and rinse thoroughly"
+        "Apply small amount to sponge or directly to dishes",
+        "Wash dishes in warm water",
+        "Rinse thoroughly",
+        "For tough grease, let soak for 5 minutes"
       ],
       "doNotUse": [
-        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
-        "Do not use on acid-sensitive surfaces such as marble and others."
+        "Not for use in automatic dishwashers.",
+        "Avoid contact with eyes."
       ],
-      "store": "Store at temperatures between 5°C and 35°C."
+      "store": "Store at room temperature. Keep out of reach of children."
     },
     {
-      "id": 2,
-      "name": "ZOMA BAFIX FOAM",
-      "categorie": "Cleaning",
-      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
-      "startingPrice": 9.78,
-      "endPrice": 9.78,
-      "quantity": 15,
+      "id": 5,
+      "name": "ZOMA KITCHEN DEGREASER",
+      "categorie": "Kitchen",
+      "purpose": "heavy-duty degreaser for kitchen surfaces",
+      "startingPrice": 11.75,
+      "endPrice": 52.0,
+      "quantity": 12,
       "image": [
         "src/assets/product.png",
         "src/assets/product.png",
         "src/assets/product.png"
       ],
       "capacities": {
-        "500ml": {
-          "price": 9.78,
+        "750ml": {
+          "price": 11.75,
           "discount": 0,
-          "finalPrice": 9.78
+          "finalPrice": 11.75
         },
-        "600ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
+        "1.5l": {
+          "price": 21.5,
+          "discount": 8,
+          "finalPrice": 19.78
         },
-        "2.5l": {
-          "price": 38.78,
-          "discount": 0,
-          "finalPrice": 38.78
-        },
-        "5l": {
-          "price": 80.78,
-          "discount": 0,
-          "finalPrice": 81.78
+        "4l": {
+          "price": 52.0,
+          "discount": 12,
+          "finalPrice": 45.76
         }
       },
-      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "description": "Zoma Kitchen Degreaser is specifically formulated to tackle burnt-on grease, oil splatters, and tough kitchen grime on stoves, ovens, range hoods, and countertops.",
       "instructionsForUse": [
-        "Spray onto the surface",
-        "Wait for 5–10 minutes",
-        "Scrub the surface",
-        "Wipe and rinse thoroughly"
+        "Spray generously on greasy surface",
+        "Let sit for 3-5 minutes",
+        "Wipe with damp cloth",
+        "Rinse surface with water"
       ],
       "doNotUse": [
-        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
-        "Do not use on acid-sensitive surfaces such as marble and others."
+        "Do not use on aluminum or copper surfaces.",
+        "Not suitable for painted or varnished surfaces."
       ],
-      "store": "Store at temperatures between 5°C and 35°C."
+      "store": "Store upright in cool, dry place."
     },
     {
-      "id": 3,
-      "name": "ZOMA BAFIX FOAM",
-      "categorie": "Cleaning",
-      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
-      "startingPrice": 9.78,
-      "endPrice": 9.78,
-      "quantity": 15,
+      "id": 6,
+      "name": "ZOMA TOILET BOWL CLEANER",
+      "categorie": "Bathroom",
+      "purpose": "powerful toilet cleaning gel with disinfectant",
+      "startingPrice": 6.99,
+      "endPrice": 6.99,
+      "quantity": 28,
       "image": [
         "src/assets/product.png",
         "src/assets/product.png",
         "src/assets/product.png"
       ],
       "capacities": {
-        "500ml": {
-          "price": 9.78,
+        "750ml": {
+          "price": 6.99,
           "discount": 0,
-          "finalPrice": 9.78
-        },
-        "600ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
-        },
-        "2.5l": {
-          "price": 38.78,
-          "discount": 0,
-          "finalPrice": 38.78
-        },
-        "5l": {
-          "price": 80.78,
-          "discount": 0,
-          "finalPrice": 81.78
+          "finalPrice": 6.99
         }
       },
-      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "description": "Zoma Toilet Bowl Cleaner is a thick gel formula that clings to the bowl surface, removing stains, limescale, and bacteria. Leaves toilets sparkling clean with a fresh scent.",
       "instructionsForUse": [
-        "Spray onto the surface",
-        "Wait for 5–10 minutes",
-        "Scrub the surface",
-        "Wipe and rinse thoroughly"
+        "Apply gel under the rim and around the bowl",
+        "Leave for 10-15 minutes",
+        "Brush thoroughly",
+        "Flush to rinse"
       ],
       "doNotUse": [
-        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
-        "Do not use on acid-sensitive surfaces such as marble and others."
+        "Do not mix with other cleaning products, especially bleach.",
+        "Do not use on colored grout or natural stone."
       ],
-      "store": "Store at temperatures between 5°C and 35°C."
+      "store": "Store in original bottle. Keep away from children and pets."
     },
     {
-      "id": 1,
-      "name": "ZOMA BAFIX FOAM",
-      "categorie": "Cleaning",
-      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
-      "startingPrice": 9.78,
-      "endPrice": 9.78,
-      "quantity": 15,
+      "id": 7,
+      "name": "ZOMA BATHROOM TILE CLEANER",
+      "categorie": "Bathroom",
+      "purpose": "removes soap scum and water stains from tiles",
+      "startingPrice": 8.5,
+      "endPrice": 32.0,
+      "quantity": 20,
       "image": [
         "src/assets/product.png",
         "src/assets/product.png",
@@ -310,239 +274,209 @@
       ],
       "capacities": {
         "500ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
+          "price": 8.5,
+          "discount": 5,
+          "finalPrice": 8.08
         },
-        "600ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
+        "1l": {
+          "price": 15.0,
+          "discount": 10,
+          "finalPrice": 13.5
         },
-        "2.5l": {
-          "price": 38.78,
-          "discount": 0,
-          "finalPrice": 38.78
-        },
-        "5l": {
-          "price": 80.78,
-          "discount": 0,
-          "finalPrice": 81.78
+        "3l": {
+          "price": 32.0,
+          "discount": 15,
+          "finalPrice": 27.2
         }
       },
-      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "description": "Zoma Bathroom Tile Cleaner effectively removes soap scum, hard water deposits, and mildew stains from bathroom tiles and grout. Safe for daily use.",
       "instructionsForUse": [
-        "Spray onto the surface",
-        "Wait for 5–10 minutes",
-        "Scrub the surface",
-        "Wipe and rinse thoroughly"
+        "Spray onto tiles and grout",
+        "Wait 2-3 minutes",
+        "Scrub with brush or sponge",
+        "Rinse well with water"
       ],
       "doNotUse": [
-        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
-        "Do not use on acid-sensitive surfaces such as marble and others."
+        "Avoid use on natural stone tiles without testing.",
+        "Do not use with bleach-based products."
       ],
-      "store": "Store at temperatures between 5°C and 35°C."
+      "store": "Store between 5°C and 30°C."
     },
     {
-      "id": 2,
-      "name": "ZOMA BAFIX FOAM",
-      "categorie": "Cleaning",
-      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
-      "startingPrice": 9.78,
-      "endPrice": 9.78,
-      "quantity": 15,
+      "id": 8,
+      "name": "ZOMA PAPER TOWELS PREMIUM",
+      "categorie": "Paper",
+      "purpose": "absorbent 3-ply paper towels for kitchen and cleaning",
+      "startingPrice": 12.99,
+      "endPrice": 35.99,
+      "quantity": 50,
       "image": [
         "src/assets/product.png",
         "src/assets/product.png",
         "src/assets/product.png"
       ],
       "capacities": {
-        "500ml": {
-          "price": 9.78,
+        "4 rolls": {
+          "price": 12.99,
           "discount": 0,
-          "finalPrice": 9.78
+          "finalPrice": 12.99
         },
-        "600ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
+        "8 rolls": {
+          "price": 23.99,
+          "discount": 8,
+          "finalPrice": 22.07
         },
-        "2.5l": {
-          "price": 38.78,
-          "discount": 0,
-          "finalPrice": 38.78
-        },
-        "5l": {
-          "price": 80.78,
-          "discount": 0,
-          "finalPrice": 81.78
+        "16 rolls": {
+          "price": 35.99,
+          "discount": 15,
+          "finalPrice": 30.59
         }
       },
-      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "description": "Zoma Premium Paper Towels are extra absorbent and strong, even when wet. Perfect for spills, cleaning surfaces, and drying dishes. Each roll contains 120 sheets.",
       "instructionsForUse": [
-        "Spray onto the surface",
-        "Wait for 5–10 minutes",
-        "Scrub the surface",
-        "Wipe and rinse thoroughly"
+        "Tear off desired number of sheets",
+        "Use for wiping, cleaning, or drying",
+        "Dispose in trash after use"
       ],
       "doNotUse": [
-        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
-        "Do not use on acid-sensitive surfaces such as marble and others."
+        "Do not flush down toilet.",
+        "Not suitable for use as facial tissue."
       ],
-      "store": "Store at temperatures between 5°C and 35°C."
+      "store": "Keep in dry place away from moisture."
     },
     {
-      "id": 3,
-      "name": "ZOMA BAFIX FOAM",
-      "categorie": "Cleaning",
-      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
-      "startingPrice": 9.78,
-      "endPrice": 9.78,
-      "quantity": 15,
+      "id": 9,
+      "name": "ZOMA TOILET PAPER SOFT",
+      "categorie": "Paper",
+      "purpose": "soft and strong 2-ply toilet tissue",
+      "startingPrice": 8.5,
+      "endPrice": 29.99,
+      "quantity": 75,
       "image": [
         "src/assets/product.png",
         "src/assets/product.png",
         "src/assets/product.png"
       ],
       "capacities": {
-        "500ml": {
-          "price": 9.78,
+        "4 rolls": {
+          "price": 8.5,
           "discount": 0,
-          "finalPrice": 9.78
+          "finalPrice": 8.5
         },
-        "600ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
+        "12 rolls": {
+          "price": 22.5,
+          "discount": 10,
+          "finalPrice": 20.25
         },
-        "2.5l": {
-          "price": 38.78,
-          "discount": 0,
-          "finalPrice": 38.78
-        },
-        "5l": {
-          "price": 80.78,
-          "discount": 0,
-          "finalPrice": 81.78
+        "24 rolls": {
+          "price": 29.99,
+          "discount": 18,
+          "finalPrice": 24.59
         }
       },
-      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "description": "Zoma Soft Toilet Paper combines softness with strength. Made from premium quality fibers, it's gentle on skin while being durable. Septic safe and biodegradable.",
       "instructionsForUse": [
-        "Spray onto the surface",
-        "Wait for 5–10 minutes",
-        "Scrub the surface",
-        "Wipe and rinse thoroughly"
+        "Use as needed",
+        "Dispose in toilet",
+        "Ensure proper ventilation in bathroom"
       ],
-      "doNotUse": [
-        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
-        "Do not use on acid-sensitive surfaces such as marble and others."
-      ],
-      "store": "Store at temperatures between 5°C and 35°C."
+      "doNotUse": ["Do not use for other cleaning purposes."],
+      "store": "Store in dry area. Protect from moisture."
     },
     {
-      "id": 1,
-      "name": "ZOMA BAFIX FOAM",
-      "categorie": "Cleaning",
-      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
-      "startingPrice": 9.78,
-      "endPrice": 9.78,
-      "quantity": 15,
+      "id": 10,
+      "name": "ZOMA MICROFIBER CLOTHS SET",
+      "categorie": "Textiles",
+      "purpose": "reusable microfiber cleaning cloths for all surfaces",
+      "startingPrice": 14.99,
+      "endPrice": 45.99,
+      "quantity": 40,
       "image": [
         "src/assets/product.png",
         "src/assets/product.png",
         "src/assets/product.png"
       ],
       "capacities": {
-        "500ml": {
-          "price": 9.78,
+        "5 pack": {
+          "price": 14.99,
           "discount": 0,
-          "finalPrice": 9.78
+          "finalPrice": 14.99
         },
-        "600ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
+        "10 pack": {
+          "price": 27.99,
+          "discount": 12,
+          "finalPrice": 24.63
         },
-        "2.5l": {
-          "price": 38.78,
-          "discount": 0,
-          "finalPrice": 38.78
-        },
-        "5l": {
-          "price": 80.78,
-          "discount": 0,
-          "finalPrice": 81.78
+        "20 pack": {
+          "price": 45.99,
+          "discount": 20,
+          "finalPrice": 36.79
         }
       },
-      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "description": "Zoma Microfiber Cloths are ultra-absorbent and lint-free, perfect for cleaning glass, surfaces, electronics, and vehicles. Machine washable and reusable up to 500 times.",
       "instructionsForUse": [
-        "Spray onto the surface",
-        "Wait for 5–10 minutes",
-        "Scrub the surface",
-        "Wipe and rinse thoroughly"
+        "Use dry for dusting",
+        "Use damp for cleaning surfaces",
+        "Machine wash after use",
+        "Air dry or tumble dry on low"
       ],
       "doNotUse": [
-        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
-        "Do not use on acid-sensitive surfaces such as marble and others."
+        "Do not use fabric softener when washing.",
+        "Do not bleach or iron."
       ],
-      "store": "Store at temperatures between 5°C and 35°C."
+      "store": "Store in clean, dry place when not in use."
     },
     {
-      "id": 2,
-      "name": "ZOMA BAFIX FOAM",
-      "categorie": "Cleaning",
-      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
-      "startingPrice": 9.78,
-      "endPrice": 9.78,
-      "quantity": 15,
+      "id": 11,
+      "name": "ZOMA COTTON CLEANING RAGS",
+      "categorie": "Textiles",
+      "purpose": "durable cotton rags for heavy-duty cleaning",
+      "startingPrice": 9.99,
+      "endPrice": 32.99,
+      "quantity": 60,
       "image": [
         "src/assets/product.png",
         "src/assets/product.png",
         "src/assets/product.png"
       ],
       "capacities": {
-        "500ml": {
-          "price": 9.78,
+        "1kg": {
+          "price": 9.99,
           "discount": 0,
-          "finalPrice": 9.78
+          "finalPrice": 9.99
         },
-        "600ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
+        "3kg": {
+          "price": 27.99,
+          "discount": 5,
+          "finalPrice": 26.59
         },
-        "2.5l": {
-          "price": 38.78,
-          "discount": 0,
-          "finalPrice": 38.78
-        },
-        "5l": {
-          "price": 80.78,
-          "discount": 0,
-          "finalPrice": 81.78
+        "5kg": {
+          "price": 32.99,
+          "discount": 15,
+          "finalPrice": 28.04
         }
       },
-      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "description": "Zoma Cotton Cleaning Rags are made from 100% recycled cotton. Highly absorbent and durable, ideal for workshops, garages, and industrial cleaning tasks.",
       "instructionsForUse": [
-        "Spray onto the surface",
-        "Wait for 5–10 minutes",
-        "Scrub the surface",
-        "Wipe and rinse thoroughly"
+        "Use for wiping, cleaning, or polishing",
+        "Machine wash when heavily soiled",
+        "Can be used multiple times",
+        "Dispose when worn out"
       ],
       "doNotUse": [
-        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
-        "Do not use on acid-sensitive surfaces such as marble and others."
+        "Not recommended for glass surfaces (may leave lint).",
+        "Avoid using with flammable liquids near open flames."
       ],
-      "store": "Store at temperatures between 5°C and 35°C."
+      "store": "Keep in ventilated area. Wash before first use."
     },
     {
-      "id": 3,
-      "name": "ZOMA BAFIX FOAM",
+      "id": 12,
+      "name": "ZOMA ALL-PURPOSE CLEANER",
       "categorie": "Cleaning",
-      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
-      "startingPrice": 9.78,
-      "endPrice": 9.78,
-      "quantity": 15,
+      "purpose": "versatile spray cleaner for multiple surfaces",
+      "startingPrice": 6.75,
+      "endPrice": 48.0,
+      "quantity": 45,
       "image": [
         "src/assets/product.png",
         "src/assets/product.png",
@@ -550,95 +484,85 @@
       ],
       "capacities": {
         "500ml": {
-          "price": 9.78,
+          "price": 6.75,
           "discount": 0,
-          "finalPrice": 9.78
+          "finalPrice": 6.75
         },
-        "600ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
-        },
-        "2.5l": {
-          "price": 38.78,
-          "discount": 0,
-          "finalPrice": 38.78
+        "1l": {
+          "price": 11.99,
+          "discount": 10,
+          "finalPrice": 10.79
         },
         "5l": {
-          "price": 80.78,
-          "discount": 0,
-          "finalPrice": 81.78
+          "price": 48.0,
+          "discount": 18,
+          "finalPrice": 39.36
         }
       },
-      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "description": "Zoma All-Purpose Cleaner is suitable for countertops, appliances, walls, and most washable surfaces. Cuts through grease and grime while leaving a pleasant fresh scent.",
       "instructionsForUse": [
-        "Spray onto the surface",
-        "Wait for 5–10 minutes",
-        "Scrub the surface",
-        "Wipe and rinse thoroughly"
+        "Spray onto surface",
+        "Wipe with clean cloth",
+        "For tough stains, let sit for 1-2 minutes",
+        "No rinsing needed"
       ],
       "doNotUse": [
-        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
-        "Do not use on acid-sensitive surfaces such as marble and others."
+        "Do not use on wood or leather.",
+        "Test on inconspicuous area first for delicate surfaces."
       ],
-      "store": "Store at temperatures between 5°C and 35°C."
+      "store": "Store at room temperature away from heat sources."
     },
     {
-      "id": 1,
-      "name": "ZOMA BAFIX FOAM",
+      "id": 13,
+      "name": "ZOMA DISINFECTANT SPRAY",
       "categorie": "Cleaning",
-      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
-      "startingPrice": 9.78,
-      "endPrice": 9.78,
-      "quantity": 15,
+      "purpose": "antibacterial spray that kills 99.9% of germs",
+      "startingPrice": 10.5,
+      "endPrice": 42.0,
+      "quantity": 30,
       "image": [
         "src/assets/product.png",
         "src/assets/product.png",
         "src/assets/product.png"
       ],
       "capacities": {
-        "500ml": {
-          "price": 9.78,
+        "400ml": {
+          "price": 10.5,
           "discount": 0,
-          "finalPrice": 9.78
+          "finalPrice": 10.5
         },
-        "600ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
+        "750ml": {
+          "price": 18.0,
+          "discount": 8,
+          "finalPrice": 16.56
         },
         "2.5l": {
-          "price": 38.78,
-          "discount": 0,
-          "finalPrice": 38.78
-        },
-        "5l": {
-          "price": 80.78,
-          "discount": 0,
-          "finalPrice": 81.78
+          "price": 42.0,
+          "discount": 15,
+          "finalPrice": 35.7
         }
       },
-      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "description": "Zoma Disinfectant Spray eliminates 99.9% of bacteria and viruses on hard surfaces. Ideal for kitchens, bathrooms, door handles, and high-touch areas.",
       "instructionsForUse": [
-        "Spray onto the surface",
-        "Wait for 5–10 minutes",
-        "Scrub the surface",
-        "Wipe and rinse thoroughly"
+        "Spray surface until thoroughly wet",
+        "Let stand for 10 minutes",
+        "Wipe with clean cloth",
+        "Allow to air dry for maximum effectiveness"
       ],
       "doNotUse": [
-        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
-        "Do not use on acid-sensitive surfaces such as marble and others."
+        "Do not use on food contact surfaces without rinsing.",
+        "Not for use on skin or fabrics."
       ],
-      "store": "Store at temperatures between 5°C and 35°C."
+      "store": "Store in cool place. Keep container closed when not in use."
     },
     {
-      "id": 2,
-      "name": "ZOMA BAFIX FOAM",
-      "categorie": "Cleaning",
-      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
-      "startingPrice": 9.78,
-      "endPrice": 9.78,
-      "quantity": 15,
+      "id": 14,
+      "name": "ZOMA OVEN CLEANER",
+      "categorie": "Kitchen",
+      "purpose": "heavy-duty cleaner for ovens and grills",
+      "startingPrice": 13.25,
+      "endPrice": 13.25,
+      "quantity": 16,
       "image": [
         "src/assets/product.png",
         "src/assets/product.png",
@@ -646,143 +570,116 @@
       ],
       "capacities": {
         "500ml": {
-          "price": 9.78,
+          "price": 13.25,
           "discount": 0,
-          "finalPrice": 9.78
-        },
-        "600ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
-        },
-        "2.5l": {
-          "price": 38.78,
-          "discount": 0,
-          "finalPrice": 38.78
-        },
-        "5l": {
-          "price": 80.78,
-          "discount": 0,
-          "finalPrice": 81.78
+          "finalPrice": 13.25
         }
       },
-      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "description": "Zoma Oven Cleaner cuts through baked-on grease and carbon deposits in ovens, grills, and BBQ equipment. Works on cold or warm surfaces.",
       "instructionsForUse": [
-        "Spray onto the surface",
-        "Wait for 5–10 minutes",
-        "Scrub the surface",
-        "Wipe and rinse thoroughly"
+        "Remove racks from oven",
+        "Spray evenly on interior surfaces",
+        "Close oven and leave for 30 minutes",
+        "Wipe clean with damp cloth",
+        "Rinse thoroughly before use"
       ],
       "doNotUse": [
-        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
-        "Do not use on acid-sensitive surfaces such as marble and others."
+        "Do not use on self-cleaning oven interiors.",
+        "Keep away from heating elements.",
+        "Do not use on aluminum."
       ],
-      "store": "Store at temperatures between 5°C and 35°C."
+      "store": "Store upright. Keep away from heat and flames."
     },
     {
-      "id": 3,
-      "name": "ZOMA BAFIX FOAM",
+      "id": 15,
+      "name": "ZOMA FURNITURE POLISH",
       "categorie": "Cleaning",
-      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
-      "startingPrice": 9.78,
-      "endPrice": 9.78,
-      "quantity": 15,
+      "purpose": "wood furniture polish and protector",
+      "startingPrice": 8.99,
+      "endPrice": 24.99,
+      "quantity": 25,
       "image": [
         "src/assets/product.png",
         "src/assets/product.png",
         "src/assets/product.png"
       ],
       "capacities": {
+        "300ml": {
+          "price": 8.99,
+          "discount": 0,
+          "finalPrice": 8.99
+        },
         "500ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
+          "price": 14.5,
+          "discount": 5,
+          "finalPrice": 13.78
         },
-        "600ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
-        },
-        "2.5l": {
-          "price": 38.78,
-          "discount": 0,
-          "finalPrice": 38.78
-        },
-        "5l": {
-          "price": 80.78,
-          "discount": 0,
-          "finalPrice": 81.78
+        "1l": {
+          "price": 24.99,
+          "discount": 12,
+          "finalPrice": 21.99
         }
       },
-      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "description": "Zoma Furniture Polish cleans, shines, and protects wood furniture. Contains natural oils that nourish wood and create a protective barrier against dust and fingerprints.",
       "instructionsForUse": [
-        "Spray onto the surface",
-        "Wait for 5–10 minutes",
-        "Scrub the surface",
-        "Wipe and rinse thoroughly"
+        "Shake well before use",
+        "Spray onto soft cloth",
+        "Apply to furniture in circular motions",
+        "Buff to a shine with clean cloth"
       ],
       "doNotUse": [
-        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
-        "Do not use on acid-sensitive surfaces such as marble and others."
+        "Do not spray directly onto furniture.",
+        "Not suitable for unfinished or waxed wood."
       ],
-      "store": "Store at temperatures between 5°C and 35°C."
+      "store": "Store in upright position at room temperature."
     },
     {
-      "id": 1,
-      "name": "ZOMA BAFIX FOAM",
-      "categorie": "Cleaning",
-      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
-      "startingPrice": 9.78,
-      "endPrice": 9.78,
-      "quantity": 15,
+      "id": 16,
+      "name": "ZOMA NAPKINS PREMIUM",
+      "categorie": "Paper",
+      "purpose": "soft 3-ply paper napkins for dining",
+      "startingPrice": 4.99,
+      "endPrice": 18.99,
+      "quantity": 90,
       "image": [
         "src/assets/product.png",
         "src/assets/product.png",
         "src/assets/product.png"
       ],
       "capacities": {
-        "500ml": {
-          "price": 9.78,
+        "100 pack": {
+          "price": 4.99,
           "discount": 0,
-          "finalPrice": 9.78
+          "finalPrice": 4.99
         },
-        "600ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
+        "250 pack": {
+          "price": 11.5,
+          "discount": 8,
+          "finalPrice": 10.58
         },
-        "2.5l": {
-          "price": 38.78,
-          "discount": 0,
-          "finalPrice": 38.78
-        },
-        "5l": {
-          "price": 80.78,
-          "discount": 0,
-          "finalPrice": 81.78
+        "500 pack": {
+          "price": 18.99,
+          "discount": 15,
+          "finalPrice": 16.14
         }
       },
-      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "description": "Zoma Premium Napkins are soft, absorbent, and elegant. Perfect for everyday meals, parties, and special occasions. Available in white color.",
       "instructionsForUse": [
-        "Spray onto the surface",
-        "Wait for 5–10 minutes",
-        "Scrub the surface",
-        "Wipe and rinse thoroughly"
+        "Use as needed during meals",
+        "Dispose after use",
+        "Keep in dry place before use"
       ],
-      "doNotUse": [
-        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
-        "Do not use on acid-sensitive surfaces such as marble and others."
-      ],
-      "store": "Store at temperatures between 5°C and 35°C."
+      "doNotUse": ["Single use only - do not wash and reuse."],
+      "store": "Store in original packaging. Protect from moisture."
     },
     {
-      "id": 2,
-      "name": "ZOMA BAFIX FOAM",
-      "categorie": "Cleaning",
-      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
-      "startingPrice": 9.78,
-      "endPrice": 9.78,
-      "quantity": 15,
+      "id": 17,
+      "name": "ZOMA STAINLESS STEEL CLEANER",
+      "categorie": "Kitchen",
+      "purpose": "polish and protect stainless steel appliances",
+      "startingPrice": 11.99,
+      "endPrice": 11.99,
+      "quantity": 22,
       "image": [
         "src/assets/product.png",
         "src/assets/product.png",
@@ -790,86 +687,57 @@
       ],
       "capacities": {
         "500ml": {
-          "price": 9.78,
+          "price": 11.99,
           "discount": 0,
-          "finalPrice": 9.78
-        },
-        "600ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
-        },
-        "2.5l": {
-          "price": 38.78,
-          "discount": 0,
-          "finalPrice": 38.78
-        },
-        "5l": {
-          "price": 80.78,
-          "discount": 0,
-          "finalPrice": 81.78
+          "finalPrice": 11.99
         }
       },
-      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "description": "Zoma Stainless Steel Cleaner removes fingerprints, water spots, and smudges from refrigerators, dishwashers, sinks, and other stainless steel surfaces. Leaves a protective, streak-free shine.",
       "instructionsForUse": [
-        "Spray onto the surface",
-        "Wait for 5–10 minutes",
-        "Scrub the surface",
-        "Wipe and rinse thoroughly"
+        "Spray onto stainless steel surface",
+        "Wipe in direction of grain with soft cloth",
+        "Buff to shine with dry cloth",
+        "For best results, use regularly"
       ],
       "doNotUse": [
-        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
-        "Do not use on acid-sensitive surfaces such as marble and others."
+        "Do not use on hot surfaces.",
+        "Not suitable for chrome or painted surfaces."
       ],
-      "store": "Store at temperatures between 5°C and 35°C."
+      "store": "Keep in original container. Store at room temperature."
     },
     {
-      "id": 3,
-      "name": "ZOMA BAFIX FOAM",
-      "categorie": "Cleaning",
-      "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
-      "startingPrice": 9.78,
-      "endPrice": 9.78,
-      "quantity": 15,
+      "id": 18,
+      "name": "ZOMA DRAIN UNBLOCKER",
+      "categorie": "Bathroom",
+      "purpose": "powerful gel to clear blocked drains",
+      "startingPrice": 9.99,
+      "endPrice": 9.99,
+      "quantity": 14,
       "image": [
         "src/assets/product.png",
         "src/assets/product.png",
         "src/assets/product.png"
       ],
       "capacities": {
-        "500ml": {
-          "price": 9.78,
+        "1l": {
+          "price": 9.99,
           "discount": 0,
-          "finalPrice": 9.78
-        },
-        "600ml": {
-          "price": 9.78,
-          "discount": 0,
-          "finalPrice": 9.78
-        },
-        "2.5l": {
-          "price": 38.78,
-          "discount": 0,
-          "finalPrice": 38.78
-        },
-        "5l": {
-          "price": 80.78,
-          "discount": 0,
-          "finalPrice": 81.78
+          "finalPrice": 9.99
         }
       },
-      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "description": "Zoma Drain Unblocker is a thick gel formula that clings to pipes, dissolving hair, soap, grease, and other blockages. Safe for all pipes including PVC and metal.",
       "instructionsForUse": [
-        "Spray onto the surface",
-        "Wait for 5–10 minutes",
-        "Scrub the surface",
-        "Wipe and rinse thoroughly"
+        "Pour 250ml slowly into blocked drain",
+        "Leave for 15-30 minutes (or overnight for tough clogs)",
+        "Flush with hot water",
+        "Repeat if necessary"
       ],
       "doNotUse": [
-        "Do not mix Zoma Bafix Foam with chlorine-containing products.",
-        "Do not use on acid-sensitive surfaces such as marble and others."
+        "Do not use if drain is completely blocked.",
+        "Do not mix with other drain cleaners or chemicals.",
+        "Not suitable for use with plunger simultaneously."
       ],
-      "store": "Store at temperatures between 5°C and 35°C."
+      "store": "Store upright in cool place. Keep tightly closed."
     }
   ]
 }

@@ -1,7 +1,5 @@
-import React from "react";
-import Category from "./Category.tsx";
-import Body from "./Body.tsx";
-
+import Category from "../components/Category";
+import Body from "../components/Body";
 
 interface HomeProps {
   languageGeorgian: boolean;

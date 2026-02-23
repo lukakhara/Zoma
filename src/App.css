@@ -34,3 +34,63 @@ body{
     @apply flex justify-center items-center
   }
 }
+
+/* Hide the real checkbox */
+.terms-toggle input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Outer ring */
+.radio-visual {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #aaa;
+  position: relative;
+  margin-top: 2px;
+  transition: border-color 0s;
+}
+
+/* Inner dot */
+.radio-visual::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #1a73e8;
+  transform: scale(0);
+  transition: transform 0 ease;
+}
+
+/* Checked state */
+.terms-toggle input:checked ~ .radio-visual {
+  border-color: #1a73e8;
+}
+
+.terms-toggle input:checked ~ .radio-visual::after {
+  transform: scale(1);
+}
+
+/* Focus */
+.terms-toggle input:focus-visible ~ .radio-visual {
+  outline: 2px solid #1a73e8;
+  outline-offset: 3px;
+}
+
+/* Wrapper */
+.terms-toggle {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}

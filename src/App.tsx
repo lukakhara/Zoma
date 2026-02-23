@@ -1,5 +1,4 @@
 import "./App.css";
-import { useState } from "react";
 import Home from "./pages/Home";
 import ProductPage from "./pages/ProductPage";
 import Checkout from "./pages/Checkout";
@@ -16,30 +15,32 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DeliveryAddress from "./pages/DeliveryAddress";
 import PasswordChange from "./pages/PasswordChange";
 import NotFound from "./pages/NotFound";
+import { useState } from "react";
+
+import { LanguageProvider } from "./context/LanguageContext";
 
 function App() {
-  const [languageGeorgian, setLanguageGeorgian] = useState(true);
-
+  
   return (
+    <LanguageProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />} >
             <Route
               element={
                 <Home
-                  languageGeorgian={languageGeorgian}
-                  setLanguageGeorgian={setLanguageGeorgian}
+                
                 />
               }
               index
             />
             <Route
               path="product"
-              element={<ProductPage languageGeorgian={languageGeorgian} />}
+              element={<ProductPage  />}
             />
             <Route
               path="checkout"
-              element={<Checkout languageGeorgian={languageGeorgian} />}
+              element={<Checkout />}
             />
             <Route path="contact" element={<Contact />} />
             <Route path="delivery-address" element={<DeliveryAddress />} />
@@ -55,6 +56,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      </LanguageProvider>
   );
 }
 

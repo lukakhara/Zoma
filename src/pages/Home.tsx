@@ -1,12 +1,10 @@
 import Category from "../components/Category";
 import Body from "../components/Body";
 
-interface HomeProps {
-  languageGeorgian: boolean;
-  setLanguageGeorgian: (languageGeorgian: boolean) => void;
-}
+import { useLanguage } from "../context/LanguageContext";
 
-const Home = ({ languageGeorgian, setLanguageGeorgian }: HomeProps) => {
+const Home = () => {
+  const { languageGeorgian, setLanguageGeorgian } = useLanguage();
   return (
     <>
       <div>

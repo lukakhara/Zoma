@@ -17,7 +17,7 @@ interface Product {
 }
 
 const Body = ({ languageGeorgian }: Language) => {
-  const data = languageGeorgian ? ka : en;
+  const data = languageGeorgian ?  en: ka;
   const productData = data.products;
 
   return (

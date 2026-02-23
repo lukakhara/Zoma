@@ -10,12 +10,13 @@ function Layout() {
 
   return (
     <>
-      <div className="min-h-screen h-full w-full bg-gray-200 ">
+      <div className="min-h-screen flex flex-col h-full w-full bg-gray-200 ">
         <Header
-          languageGeorgian={languageGeorgian}
-          setLanguageGeorgian={setLanguageGeorgian}
         />
-        <Outlet/>
+        <main className="flex-1">
+            <Outlet/>
+        </main>
+      
         
         <Footer languageGeorgian={languageGeorgian} />
       </div>

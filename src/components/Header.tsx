@@ -57,7 +57,8 @@ const Header = () => {
             <Link to="/checkout" className="hidden headerButton md:grid">
               <img src={cartIcon} alt="seach icon" />
             </Link>
-            <Link className="hidden headerButton md:grid" to="/Profile">
+            <Link className="hidden headerButton md:grid" 
+            to="/user/profile">
               <img src={userIcon} alt="seach icon" />
             </Link>
 

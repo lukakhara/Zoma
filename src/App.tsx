@@ -9,54 +9,56 @@ import Contact from "./pages/Contact";
 import News from "./pages/News";
 import MyOrders from "./pages/MyOrders";
 import Profile from "./pages/Profile";
-import UserMenu from "./pages/UserMenu";
+import ProfileSideNavbar from "./pages/ProfileSideNavbar";
 import PasswordRecovery from "./pages/PasswordRecovery";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import DeliveryAddress from "./pages/DeliveryAddress";
 import PasswordChange from "./pages/PasswordChange";
 import NotFound from "./pages/NotFound";
-import { useState } from "react";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 import { LanguageProvider } from "./context/LanguageContext";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
-  
   return (
     <LanguageProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Layout />} >
-            <Route
-              element={
-                <Home
-                
-                />
-              }
-              index
-            />
-            <Route
-              path="product"
-              element={<ProductPage  />}
-            />
-            <Route
-              path="checkout"
-              element={<Checkout />}
-            />
+          <Route path="/" element={<Layout />}>
+            {/* public routes */}
+            <Route element={<Home />} index />
+            <Route path="product" element={<ProductPage />} />
             <Route path="contact" element={<Contact />} />
-            <Route path="delivery-address" element={<DeliveryAddress />} />
-            <Route path="orders" element={<MyOrders />} />
             <Route path="news" element={<News />} />
-            <Route path="password-change" element={<PasswordChange />} />
-            <Route path="password-recovery" element={<PasswordRecovery />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="sing-in" element={<SignIn />} />
+
+            {/* pages that accessible when NOT logged in */}
+            <Route path="sign-in" element={<SignIn />} />
             <Route path="registration" element={<Registration />} />
-            <Route path="user-menu" element={<UserMenu />} />
+            <Route path="password-recovery" element={<PasswordRecovery />} />
+
+            {/* Protected routes routes that are avalibe when user is logged in */}
+            <Route element={<ProtectedRoute />}>
+              <Route path="checkout" element={<Checkout />} />
+
+              <Route path="user" element={<Profile/>}>
+                <Route index element={<Navigate to="profile" replace />} />
+                <Route path="profile" element={<UserProfile />} />   {/* ADD THIS */}
+                <Route path="orders" element={<MyOrders />} />
+                <Route path="delivery-address" element={<DeliveryAddress />} />
+                <Route path="password-change" element={<PasswordChange />} />
+                <Route path="user-menu" element={<ProfileSideNavbar />} />
+              </Route>
+            </Route>
+
+            <Route />
+
+            {/* 404 Route */}
             <Route path="*" element={<NotFound />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
-      </LanguageProvider>
+    </LanguageProvider>
   );
 }
 

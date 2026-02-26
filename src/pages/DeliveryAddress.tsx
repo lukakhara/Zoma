@@ -37,19 +37,11 @@ export default function DeliveryAddress() {
 
       {/* ── DESKTOP ── */}
       <div className="hidden md:block">
-        <h1 className="text-xl font-bold text-gray-900 mb-6">Name, Surname</h1>
-
-        <div className="flex gap-6 items-start justify-center">
-          <aside className="w-52 flex-shrink-0 flex flex-col gap-3">
-            <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
-              {menuItems.map((item) => (
-                <div key={item} className={`px-5 py-3 text-sm ${item === "Delivery Address" ? "font-bold text-gray-900" : "text-gray-600"}`}>
-                  {item}
-                </div>
-              ))}
-            </div>
-            <button className="w-full py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium">Log Out</button>
-          </aside>
+       
+          
+            
+          
+     
 
           <div className="flex-1 max-w-md flex flex-col gap-4">
             {[
@@ -77,7 +69,7 @@ export default function DeliveryAddress() {
             </button>
           </div>
         </div>
-      </div>
+     
 
     </div>
   );

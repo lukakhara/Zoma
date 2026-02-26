@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {Link} from "react-router-dom"; 
 
 const Registration = () => {
   const [firstName, setFirstName] = useState("");
@@ -140,9 +141,9 @@ const Registration = () => {
             </button>
             <p>
               Already registered?
-              <button className="text-blue-500 hover:text-blue-700">
+              <Link to="/sign-in" className="text-blue-500 hover:text-blue-700">
                 Log in
-              </button>
+              </Link>
             </p>
           </div>
         </form>

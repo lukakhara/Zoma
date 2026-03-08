@@ -56,7 +56,7 @@ export default function SignIn() {
           <div className="flex flex-col gap-1">
             <span className="text-sm text-gray-700">E-mail*</span>
             <input
-              readOnly
+              
               placeholder="E-mail"
               className="w-full px-4 py-3 rounded-2xl bg-white shadow-sm text-sm placeholder-gray-400 outline-none"
             />
@@ -69,9 +69,9 @@ export default function SignIn() {
               <span className="text-sm text-gray-400 cursor-pointer">
                 Forgot Your Password?
               </span>
-            </div>
+          </div>
             <input
-              readOnly
+             
               type="password"
               placeholder="E-mail"
               className="w-full px-4 py-3 rounded-2xl bg-white shadow-sm text-sm placeholder-gray-400 outline-none"

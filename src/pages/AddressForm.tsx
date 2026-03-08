@@ -16,7 +16,7 @@ function AddressForm({ title }: { title: string }) {
             {f.label}{f.required && "*"}
           </span>
           <input
-            readOnly
+           
             placeholder={f.placeholder}
             className="w-full px-4 py-3 rounded-2xl bg-white shadow-sm text-sm placeholder-gray-400 outline-none"
           />

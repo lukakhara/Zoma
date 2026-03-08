@@ -1,5 +1,3 @@
-const menuItems = ["Profile", "My Orders", "Change Password", "Delivery Address"];
-
 export default function DeliveryAddress() {
   return (
     <div className="min-h-screen  p-6 md:p-8">
@@ -16,7 +14,7 @@ export default function DeliveryAddress() {
           ].map((f) => (
             <div key={f.label} className="flex flex-col gap-1">
               <span className="text-sm text-gray-700">{f.label}{f.required && "*"}</span>
-              <input readOnly placeholder={f.placeholder} className="w-full px-4 py-3 rounded-2xl bg-white shadow-sm text-sm placeholder-gray-400 outline-none" />
+              <input  placeholder={f.placeholder} className="w-full px-4 py-3 rounded-2xl bg-white shadow-sm text-sm placeholder-gray-400 outline-none" />
             </div>
           ))}
           <button className="w-full py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium">Save</button>
@@ -37,13 +35,8 @@ export default function DeliveryAddress() {
 
       {/* ── DESKTOP ── */}
       <div className="hidden md:block">
-       
-          
-            
-          
-     
 
-          <div className="flex-1 max-w-md flex flex-col gap-4">
+          <div className="flex-1 max-w-md flex flex-col gap-4 ">
             {[
               { label: "City", placeholder: "City", required: false },
               { label: "Full Address", placeholder: "Full Address", required: true },
@@ -51,7 +44,7 @@ export default function DeliveryAddress() {
             ].map((f) => (
               <div key={f.label} className="flex flex-col gap-1">
                 <span className="text-sm text-gray-700">{f.label}{f.required && "*"}</span>
-                <input readOnly placeholder={f.placeholder} className="w-full px-4 py-3 rounded-2xl bg-white shadow-sm text-sm placeholder-gray-400 outline-none" />
+                <input  placeholder={f.placeholder} className="w-full px-4 py-3 rounded-2xl bg-white shadow-sm text-sm placeholder-gray-400 outline-none" />
               </div>
             ))}
             <button className="w-full py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium">Save</button>

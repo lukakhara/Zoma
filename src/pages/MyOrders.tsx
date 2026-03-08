@@ -1,10 +1,10 @@
 export default function MyOrders() {
   return (
-    <div className="min-h-screen  p-4 md:p-8">
-      <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+    <div className="min-h-screen  p-4 md:p-8 ">
+      <div className="bg-white rounded-2xl shadow-sm overflow-hidden ">
 
         {/* ── DESKTOP TABLE (md and above) ── */}
-        <div className="hidden md:block">
+        <div className="hidden md:block ">
           {/* Top header row */}
           <div className="grid grid-cols-5 border-b border-gray-200">
             {["Order Number", "Date", "Quantity", "Price", "Status"].map((h) => (
@@ -37,7 +37,7 @@ export default function MyOrders() {
           </div>
 
           {/* Product row */}
-          <div className="grid grid-cols-5 items-center">
+          <div className="grid grid-cols-5 items-center ">
             <div className="px-6 py-5 flex justify-center">
               <div className="w-20 h-20 rounded-xl bg-gray-200" />
             </div>

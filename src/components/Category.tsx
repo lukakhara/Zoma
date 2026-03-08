@@ -6,7 +6,7 @@ import { useLanguage } from "../context/LanguageContext";
 
 
 const Category = () => {
-  const languageGeorgian = useLanguage();
+  const {languageGeorgian} = useLanguage();
   const data = languageGeorgian ? en : ka;
 
   const [activeButton, setactiveButton] = useState(0);

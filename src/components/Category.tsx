@@ -1,12 +1,12 @@
 import { useState } from "react";
 import en from "../en.json";
 import ka from "../ka.json";
+import { useLanguage } from "../context/LanguageContext";
 
-interface CategoryProps {
-  languageGeorgian: boolean;
-}
 
-const Category = ({ languageGeorgian }: CategoryProps) => {
+
+const Category = () => {
+  const languageGeorgian = useLanguage();
   const data = languageGeorgian ? en : ka;
 
   const [activeButton, setactiveButton] = useState(0);

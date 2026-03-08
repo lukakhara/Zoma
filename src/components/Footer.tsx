@@ -11,12 +11,12 @@ import facebook from "../assets/Social/facebook.png";
 import instagram from "../assets/Social/instagram.png";
 import linkedin from "../assets/Social/linkedin.png";
 import tiktok from "../assets/Social/tiktokIcon.png";
+import { useLanguage } from "../context/LanguageContext";
 
-interface footerProps {
-  languageGeorgian: boolean;
-}
 
-const Footer = ({ languageGeorgian }: footerProps) => {
+
+const Footer = () => {
+    const languageGeorgian = useLanguage();
   return (
     <>
       {/* MOBILE FOOTER */}

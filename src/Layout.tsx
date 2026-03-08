@@ -6,7 +6,6 @@ import { Outlet } from "react-router-dom";
 
 
 function Layout() {
-  const [languageGeorgian, setLanguageGeorgian] = useState(true);
 
   return (
     <>
@@ -18,7 +17,7 @@ function Layout() {
         </main>
       
         
-        <Footer languageGeorgian={languageGeorgian} />
+        <Footer />
       </div>
     </>
   );

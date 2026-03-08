@@ -1,10 +1,8 @@
 import Card from "./Card";
 import en from "../en.json";
 import ka from "../ka.json";
+import { useLanguage } from "../context/LanguageContext";
 
-interface Language {
-  languageGeorgian: boolean;
-}
 
 interface Product {
   id: number;
@@ -16,8 +14,9 @@ interface Product {
   image: string;
 }
 
-const Body = ({ languageGeorgian }: Language) => {
-  const data = languageGeorgian ?  en: ka;
+const Body = () => {
+  const languageGeorgian = useLanguage();
+  const data = languageGeorgian ? en : ka;
   const productData = data.products;
 
   return (

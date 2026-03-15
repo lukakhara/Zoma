@@ -24,7 +24,7 @@ function NewsCard({ date, title, excerpt } : {date:string, title:string, excerpt
 
 export default function News() {
   return (
-    <div className="min-h-screen  p-6 md:p-8">
+    <div className="min-h-screen  py-6 md:py-8">
       <h1 className="text-2xl font-bold text-gray-900 mb-5">News</h1>
 
       {/* Mobile: 1 col | Desktop: 3 cols */}

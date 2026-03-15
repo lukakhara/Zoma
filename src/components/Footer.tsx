@@ -67,28 +67,31 @@ const Footer = () => {
             className="max-w-[108.14px] max-h-[51px] h-auto"
             alt="logo icon"
           />
-          <p className="text-xl">Created by Integrals</p>
+          <p className="text-xl">{languageGeorgian ? "შექმნილია Integrals-ის მიერ" : "Created by Integrals"}</p>
         </section>
         {/* physical office address and working time */}
         <section className="flex gap-4 flex-col justify-around">
           <div className="flex gap-16.5 items-start">
             <p>
-              Head Office, Street Name #13 <br />
-              Tbilisi,Georgia
+              {languageGeorgian ? "მთავარი ოფისი, ქუჩა #13" :  'Head Office, Street Name #13 '}
+             <br />
+              {languageGeorgian ? "თბილისი, საქართველო" : "Tbilisi, Georgia"}
+            </p>
+            <p>10:00-18:00</p>
+          </div>
+          <div className="flex gap-16.5 items-start">
+              <p>
+              {languageGeorgian ? "მთავარი ოფისი, ქუჩა #13" :  'Head Office, Street Name #13 '}
+             <br />
+              {languageGeorgian ? "თბილისი, საქართველო" : "Tbilisi, Georgia"}
             </p>
             <p>10:00-18:00</p>
           </div>
           <div className="flex gap-16.5 items-start">
             <p>
-              Head Office, Street Name #13 <br />
-              Tbilisi,Georgia
-            </p>
-            <p>10:00-18:00</p>
-          </div>
-          <div className="flex gap-16.5 items-start">
-            <p>
-              Head Office, Street Name #13 <br />
-              Tbilisi,Georgia
+              {languageGeorgian ? "მთავარი ოფისი, ქუჩა #13" :  'Head Office, Street Name #13 '}
+             <br />
+              {languageGeorgian ? "თბილისი, საქართველო" : "Tbilisi, Georgia"}
             </p>
             <p>10:00-18:00</p>
           </div>

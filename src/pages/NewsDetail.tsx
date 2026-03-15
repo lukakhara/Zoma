@@ -1,6 +1,6 @@
 export default function NewsDetail() {
   return (
-    <div className="min-h-screen bg-gray-100 p-6 md:p-8">
+    <div className="min-h-screen bg-gray-100 py-6 md:py-8">
       <div className="max-w-lg mx-auto md:mx-0">
 
         {/* Title & date */}

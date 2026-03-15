@@ -252,7 +252,7 @@ const Checkout = () => {
   ]);
 
   return (
-    <div className="min-h-screen  p-4 md:p-8">
+    <div className="min-h-screen  py-4 md:py-8">
       <h1 className="text-2xl font-bold text-gray-900 mb-4">Checkout</h1>
 
       {/* ── MOBILE ── */}

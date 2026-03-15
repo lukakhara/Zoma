@@ -1,6 +1,6 @@
 export default function TransactionSuccessful() {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center py-6">
       <div className="flex flex-col items-center gap-3">
 
         {/* Green shopping bag icon with checkmark */}

@@ -1,6 +1,6 @@
 export default function MyOrders() {
   return (
-    <div className="min-h-screen  p-4 md:p-8 ">
+    <div className="min-h-screen  py-4 md:py-8 ">
       <div className="bg-white rounded-2xl shadow-sm overflow-hidden ">
 
         {/* ── DESKTOP TABLE (md and above) ── */}

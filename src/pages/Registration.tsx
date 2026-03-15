@@ -19,14 +19,14 @@ const Registration = () => {
 
   return (
     <>
-      <div className="px-4 mt-14 mb-37 xl:px-30 flex-1 shrink-0  justify-center flex flex-col gap-4">
+      <div className="mt-14 mb-37  flex-1 shrink-0  justify-center flex flex-col gap-4">
         <h1 className="text-[26px] text-[#1A1A1A]    w-full">Registration</h1>
         <form
           onSubmit={handleSubmit}
-          className="border grid xl:gap-14 gap-4   grid-cols-1 gap-9.75 xl:gap-x-5 xl:gap-y-4  md:grid-cols-2 lg:grid-cols-3 align-items-center
+          className="grid xl:gap-14 gap-4   grid-cols-1 gap-9.75 xl:gap-x-5 xl:gap-y-4  md:grid-cols-2 lg:grid-cols-3 align-items-center
         "
         >
-          <div className="test">
+          <div className="">
             <label htmlFor="firstName" className="text-[#797979] text-sm">
               First Name*
             </label>
@@ -41,7 +41,7 @@ const Registration = () => {
             />
           </div>
 
-          <div className="test">
+          <div className="">
             <label htmlFor="lastName" className="text-[#797979] text-sm">
               Last Name*
             </label>
@@ -127,7 +127,7 @@ const Registration = () => {
             />
           </div>
 
-          <div className=" gap-5  grid place-items-center xl:col-start-2C xl:col-end-3 test">
+          <div className=" gap-5  grid place-items-center xl:col-start-2C xl:col-end-3 ">
             <label className="terms-toggle">
               <input type="checkbox" id="terms" />
               <span className="radio-visual"></span>

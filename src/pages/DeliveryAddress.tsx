@@ -1,6 +1,6 @@
 export default function DeliveryAddress() {
   return (
-    <div className="min-h-screen  p-6 md:p-8">
+    <div className="min-h-screen  py-6 md:py-8">
 
       {/* ── MOBILE ── */}
       <div className="md:hidden">

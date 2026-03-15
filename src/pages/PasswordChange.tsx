@@ -1,6 +1,6 @@
 export default function PasswordChange() {
   return (
-    <div className="min-h-screen  p-6 md:p-10">
+    <div className="min-h-screen  py-6 md:py-10">
 
       {/* Title — top left on both */}
       <h1 className="text-2xl font-bold text-gray-900 mb-1">Change Password</h1>

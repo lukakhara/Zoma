@@ -115,15 +115,15 @@ const ProductPage = () => {
   const product = products[productId];
 
   return (
-    <div className="min-h-screen  p-4 md:p-8">
+    <div className="min-h-screen  py-4 md:py-8">
 
       {/* ── DESKTOP layout ── */}
       <div className="hidden md:flex gap-8 items-start">
 
         {/* Left: main image + thumbnails */}
-        <div className="flex flex-col gap-3 w-[420px] flex-shrink-0">
+        <div className="flex flex-col gap-3 w-105 shrink-0">
           {/* Main image card */}
-          <div className="relative bg-white rounded-2xl p-6 shadow-sm flex items-center justify-center min-h-[300px]">
+          <div className="relative bg-white rounded-2xl p-6 shadow-sm flex items-center justify-center min-h-75">
             <button className="absolute top-4 left-4 w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
               <img src={play} alt="play" className="w-4 h-4" />
             </button>

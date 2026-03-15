@@ -46,7 +46,7 @@ import {Link} from "react-router-dom";
 
 export default function SignIn() {
   return (
-    <div className="min-h-screen p-6 md:p-8">
+    <div className="min-h-screen py-6 md:py-8">
       <h1 className="text-2xl font-bold text-gray-900">Sign in</h1>
 
       {/* Desktop: centered | Mobile: full width below title */}

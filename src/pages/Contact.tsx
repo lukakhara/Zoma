@@ -72,7 +72,7 @@ function OfficeCard({ city }: { city: string }) {
 
 export default function Contact() {
   return (
-    <div className="min-h-screen  p-6 md:p-8">
+    <div className="min-h-screen  py-6 md:py-8">
       <h1 className="text-2xl font-bold text-gray-900 mb-5">Contact</h1>
 
       {/* Mobile: stacked | Desktop: 2 columns */}

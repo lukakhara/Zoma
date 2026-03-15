@@ -3,6 +3,7 @@ import playIcon from "../assets/play.png";
 import cartIcon from "../assets/cart.png";
 import { useLanguage } from "../context/LanguageContext";
 import {type Product } from "../types";
+import { Link } from "react-router";
 
 
 const Card = ({ product }: { product: Product }) => {
@@ -44,9 +45,10 @@ const Card = ({ product }: { product: Product }) => {
                     <option value="8">8</option>
                     <option value="9">9</option>
                 </select>
-                   <button className="cursor-pointer bg-blue-50 text-white px-8 py-1 rounded-3xl"
-                      onClick={() => setProductId(product.id)}>
-                  {languageGeorgian ? "Buy Now" : 'ყიდვა'}</button>
+                {/* Need to add product id to the link */}
+                   <Link className="cursor-pointer bg-blue-50 text-white px-8 py-1 rounded-3xl"
+                      to={`/product/`}>
+                  {languageGeorgian ? "Buy Now" : 'ყიდვა'}</Link>
             </div>
         
         </div>

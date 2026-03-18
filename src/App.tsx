@@ -19,46 +19,53 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 import { LanguageProvider } from "./context/LanguageContext";
 import UserProfile from "./pages/UserProfile";
+import { AuthProvider } from "./context/AuthProvider";
 
 function App() {
   return (
-    <LanguageProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            {/* public routes */}
-            <Route element={<Home />} index />
-            <Route path="product" element={<ProductPage />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="news" element={<News />} />
+    <AuthProvider>
+      <LanguageProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              {/* public routes */}
+              <Route element={<Home />} index />
+              <Route path="product" element={<ProductPage />} />
+              <Route path="contact" element={<Contact />} />
+              <Route path="news" element={<News />} />
 
-            {/* pages that accessible when NOT logged in */}
-            <Route path="sign-in" element={<SignIn />} />
-            <Route path="registration" element={<Registration />} />
-            <Route path="password-recovery" element={<PasswordRecovery />} />
+              {/* pages that accessible when NOT logged in */}
+              <Route path="sign-in" element={<SignIn />} />
+              <Route path="registration" element={<Registration />} />
+              <Route path="password-recovery" element={<PasswordRecovery />} />
 
-            {/* Protected routes routes that are avalibe when user is logged in */}
-            <Route element={<ProtectedRoute />}>
-              <Route path="checkout" element={<Checkout />} />
+              {/* Protected routes routes that are avalibe when user is logged in */}
+              <Route element={<ProtectedRoute />}>
+                <Route path="checkout" element={<Checkout />} />
 
-              <Route path="user" element={<Profile/>}>
-                <Route index element={<Navigate to="profile" replace />} />
-                <Route path="profile" element={<UserProfile />} />   {/* ADD THIS */}
-                <Route path="orders" element={<MyOrders />} />
-                <Route path="delivery-address" element={<DeliveryAddress />} />
-                <Route path="password-change" element={<PasswordChange />} />
-                <Route path="user-menu" element={<ProfileSideNavbar />} />
+                <Route path="user" element={<Profile />}>
+                  <Route index element={<Navigate to="profile" replace />} />
+                  <Route path="profile" element={<UserProfile />} />{" "}
+                  {/* ADD THIS */}
+                  <Route path="orders" element={<MyOrders />} />
+                  <Route
+                    path="delivery-address"
+                    element={<DeliveryAddress />}
+                  />
+                  <Route path="password-change" element={<PasswordChange />} />
+                  <Route path="user-menu" element={<ProfileSideNavbar />} />
+                </Route>
               </Route>
+
+              <Route />
+
+              {/* 404 Route */}
+              <Route path="*" element={<NotFound />}></Route>
             </Route>
-
-            <Route />
-
-            {/* 404 Route */}
-            <Route path="*" element={<NotFound />}></Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </LanguageProvider>
+          </Routes>
+        </BrowserRouter>
+      </LanguageProvider>
+    </AuthProvider>
   );
 }
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import {Link} from "react-router-dom"; 
+import { Link, Navigate } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
 
 const Registration = () => {
   const [firstName, setFirstName] = useState("");
@@ -8,13 +9,18 @@ const Registration = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
+  const { register } = useAuth();
 
-  function handleSubmit() {
-    password.trim();
-    repeatPassword.trim();
-    if (password !== repeatPassword) {
-      return window.alert("passwords arent same");
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (password.trim() !== repeatPassword.trim()) {
+      setPasswordError(true);
+      return;
     }
+    setPasswordError(false);
+    await register(firstName, lastName, phone, email, password);
+
   }
 
   return (

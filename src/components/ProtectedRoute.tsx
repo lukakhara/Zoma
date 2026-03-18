@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import {Navigate,Outlet} from "react-router-dom";
 import ProfileSideNavbar from '../pages/ProfileSideNavbar';
+import { useAuth } from '../context/AuthProvider';
 
 const ProtectedRoute = () => {
-    const [isAuthenticated,setisAuthenticated] = useState(false);
+  const {isAuthenticated} = useAuth();
+ 
 
   // If not authenticated, redirect to sign-in page
 

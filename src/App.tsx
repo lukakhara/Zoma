@@ -53,7 +53,6 @@ function App() {
                     element={<DeliveryAddress />}
                   />
                   <Route path="password-change" element={<PasswordChange />} />
-                  <Route path="user-menu" element={<ProfileSideNavbar />} />
                 </Route>
               </Route>
 

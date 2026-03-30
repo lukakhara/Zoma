@@ -88,7 +88,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // Check if user is already logged in on mount
   useEffect(() => {
-    checkAuth();
+    setUser({
+      id: "1",
+      fistname: "John ",
+      lastname: "Doe",
+      phone: "123-456-7890",
+      email: "john@example.com",
+      password: "password",
+    });
+    setIsLoading(false);
   }, []);
 
   const checkAuth = async () => {
@@ -180,7 +188,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (!response.ok) throw new Error("Registration failed");
 
       const user = await response.json();
-      localStorage.setItem("token", user.id); // ✅ Use id as fake token
+      localStorage.setItem("token", user.id); 
       setUser({
         id: user.id,
         fistname: user.fistname,
@@ -189,7 +197,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         password: user.password,
         email: user.email,
       });
-
     } catch (error) {
       console.error("Registration error:", error);
       throw error;

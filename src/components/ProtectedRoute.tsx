@@ -4,17 +4,16 @@ import ProfileSideNavbar from '../pages/ProfileSideNavbar';
 import { useAuth } from '../context/AuthProvider';
 
 const ProtectedRoute = () => {
-  const {isAuthenticated} = useAuth();
+ const { isAuthenticated, isLoading } = useAuth();
  
 
   // If not authenticated, redirect to sign-in page
-
+  if (isLoading) return <div>Loading...</div>;
   if (!isAuthenticated) {
     return <Navigate to="/sign-in"  replace />;
   }
 
   // If authenticated, render the child routes
-  <ProfileSideNavbar/>
   return <Outlet />;
 };
 

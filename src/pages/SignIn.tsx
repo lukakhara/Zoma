@@ -74,7 +74,7 @@ const signIn = async () => {
       <div className="md:flex md:justify-center md:items-center md:mt-16">
         <div className="w-full md:max-w-sm mt-6  ">
           <form
-            className="test flex flex-col gap-4 "
+            className=" flex flex-col gap-4 "
             onSubmit={(e) => {
               e.preventDefault();
               signIn();

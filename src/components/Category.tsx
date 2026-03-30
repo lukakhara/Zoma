@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import en from "../en.json";
 import ka from "../ka.json";
 import { useLanguage } from "../context/LanguageContext";
@@ -10,7 +10,9 @@ interface CategoryProps {
 
 const Category = ({filter,setFilter}: CategoryProps) => {
   const { languageGeorgian } = useLanguage();
-  const data = languageGeorgian ? en : ka;
+  const data = languageGeorgian ? ka : en;
+ 
+
 
   return (
     <>

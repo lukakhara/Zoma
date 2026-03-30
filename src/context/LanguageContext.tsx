@@ -11,7 +11,7 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [languageGeorgian, setLanguageGeorgian] = useState(true);
+  const [languageGeorgian, setLanguageGeorgian] = useState(false);
 
   const toggleLanguage = () => {
     setLanguageGeorgian(prev => !prev);

@@ -19,7 +19,6 @@ const Header = () => {
   const currentData = new Date();
   const currentHour = currentData.getHours();
   const currentMinute = currentData.getMinutes();
-  console.log(languageGeorgian);
 
   return (
     <>
@@ -41,25 +40,27 @@ const Header = () => {
               className="flex items-baseline justify-center gap-2 p text-[16px]"
               to="/"
             >
-              {languageGeorgian ? 'Products' : 'პროდუქტები'} 
+              {languageGeorgian ? "პროდუქტები" : "Products"}
               <img src={collapseIcon} alt="collapse icon" />
             </Link>
 
-            <Link to="/news">{languageGeorgian ? 'News' : 'ახალი ამბები'} </Link>
+            <Link to="/news">
+              {languageGeorgian ? "ახალი ამბები" : " News"}{" "}
+            </Link>
 
-            <Link to="/contact">{languageGeorgian ? 'Contact' : 'კონტაქტი'} </Link>
+            <Link to="/contact">
+              {languageGeorgian ? "კონტაქტი" : "Contact"}{" "}
+            </Link>
           </div>
           <div className="flex gap-2 ">
             <button className="headerButton">
               <img className="" src={search} alt="seach icon" />
             </button>
 
-            
             <Link to="/checkout" className="hidden headerButton md:grid">
               <img src={cartIcon} alt="seach icon" />
             </Link>
-            <Link className="hidden headerButton md:grid" 
-            to="/user/profile">
+            <Link className="hidden headerButton md:grid" to="/user/profile">
               <img src={userIcon} alt="seach icon" />
             </Link>
 
@@ -69,7 +70,7 @@ const Header = () => {
             >
               <img
                 className=""
-                src={languageGeorgian ? georgiaFlagIcon : englandFlagIcon}
+                src={languageGeorgian ? englandFlagIcon : georgiaFlagIcon}
                 alt="language change icon"
               />
             </button>

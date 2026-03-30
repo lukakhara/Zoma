@@ -10,7 +10,7 @@ const Body = ({ filter }:{filter:string}) => {
 
   const { languageGeorgian } = useLanguage();
 
-  const data = languageGeorgian ? en : ka;
+  const data = languageGeorgian ? ka : en;
   const products = data.products;
   const filteredData = products.filter((product) => product.categorie === filter);
   const productData = filteredData as Product[];

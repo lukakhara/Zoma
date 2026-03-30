@@ -3,13 +3,14 @@ import en from "../en.json";
 import ka from "../ka.json";
 import { useLanguage } from "../context/LanguageContext";
 
+interface CategoryProps {
+  filter: string;
+  setFilter: (category:string) => void;
+}
 
-
-const Category = () => {
-  const {languageGeorgian} = useLanguage();
+const Category = ({filter,setFilter}: CategoryProps) => {
+  const { languageGeorgian } = useLanguage();
   const data = languageGeorgian ? en : ka;
-
-  const [activeButton, setactiveButton] = useState(0);
 
   return (
     <>
@@ -18,9 +19,10 @@ const Category = () => {
           {Object.values(data.categories).map((category, index) => (
             <li key={index}>
               <button
-                className={`${index === activeButton ? "bg-blue-50 text-white" : "bg-gray-50 text-gray-100"} 
+                // ${index === activeButton ? "bg-blue-50 text-white" : "bg-gray-50 text-gray-100"}
+                className={` ${filter === category ? "bg-blue-50 text-white" : "bg-gray-50 text-gray-100"}
                 rounded-4xl px-4 py-2 cursor-pointer hover:opacity-90 `}
-                onClick={() => setactiveButton(index)}
+                onClick={() => setFilter(category)}
               >
                 {category}
               </button>

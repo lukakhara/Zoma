@@ -9,18 +9,17 @@ import collapseIcon from "../assets/collapse.png";
 import userIcon from "../assets/user.png";
 import cartIcon from "../assets/cart.png";
 import logoDesktop from "../assets/logoDesktop.png";
+import { Link } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 
-interface HeaderProps {
-  languageGeorgian: boolean;
-  setLanguageGeorgian: (languageGeorgian: boolean) => void;
-}
 
-const Header = ({ languageGeorgian,setLanguageGeorgian }: HeaderProps) => {
+
+const Header = () => {
+  const { languageGeorgian, setLanguageGeorgian } = useLanguage();
   const currentData = new Date();
   const currentHour = currentData.getHours();
   const currentMinute = currentData.getMinutes();
-
-
+  console.log(languageGeorgian);
 
   return (
     <>
@@ -38,38 +37,39 @@ const Header = ({ languageGeorgian,setLanguageGeorgian }: HeaderProps) => {
           <img className="md:hidden" src={logo} alt="logo" />
           <img className="hidden md:block" src={logoDesktop} alt="logo" />
           <div className=" hidden md:flex gap-2 text-white md:gap-9">
-            <a className="flex items-baseline justify-center gap-2" href="">
-              <button className="text-[16px]">Products</button>
-              <img src={collapseIcon} alt="collapse icon"  />
-            </a>
-         <a href="">News</a>
-            
-            <a href="">Contact</a>
+            <Link
+              className="flex items-baseline justify-center gap-2 p text-[16px]"
+              to="/"
+            >
+              {languageGeorgian ? 'Products' : 'პროდუქტები'} 
+              <img src={collapseIcon} alt="collapse icon" />
+            </Link>
+
+            <Link to="/news">{languageGeorgian ? 'News' : 'ახალი ამბები'} </Link>
+
+            <Link to="/contact">{languageGeorgian ? 'Contact' : 'კონტაქტი'} </Link>
           </div>
           <div className="flex gap-2 ">
             <button className="headerButton">
               <img className="" src={search} alt="seach icon" />
             </button>
 
-            <button className="hidden headerButton md:grid">
-              <img
-                src={cartIcon}
-                alt="seach icon"
-              />
-            </button>
-            <button className="hidden headerButton md:grid">
-              <img
-                src={userIcon}
-                alt="seach icon"
-              />
-            </button>
+            
+            <Link to="/checkout" className="hidden headerButton md:grid">
+              <img src={cartIcon} alt="seach icon" />
+            </Link>
+            <Link className="hidden headerButton md:grid" 
+            to="/user/profile">
+              <img src={userIcon} alt="seach icon" />
+            </Link>
 
-            <button className="border border-gray-50  rounded-full size-9 grid place-items-center cursor-pointer hover:opacity-90"
-            onClick={() => setLanguageGeorgian(!languageGeorgian)}>
-
+            <button
+              className="border border-gray-50  rounded-full size-9 grid place-items-center cursor-pointer hover:opacity-90"
+              onClick={() => setLanguageGeorgian(!languageGeorgian)}
+            >
               <img
                 className=""
-                src={languageGeorgian ?  georgiaFlagIcon :   englandFlagIcon}
+                src={languageGeorgian ? georgiaFlagIcon : englandFlagIcon}
                 alt="language change icon"
               />
             </button>

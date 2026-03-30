@@ -6,18 +6,18 @@ import { Outlet } from "react-router-dom";
 
 
 function Layout() {
-  const [languageGeorgian, setLanguageGeorgian] = useState(true);
 
   return (
     <>
-      <div className="min-h-screen h-full w-full bg-gray-200 ">
+      <div className="min-h-screen flex flex-col h-full w-full bg-gray-200 ">
         <Header
-          languageGeorgian={languageGeorgian}
-          setLanguageGeorgian={setLanguageGeorgian}
         />
-        <Outlet/>
+        <main className="flex-1  px-7.25 md:px-30">
+            <Outlet/>
+        </main>
+      
         
-        <Footer languageGeorgian={languageGeorgian} />
+        <Footer />
       </div>
     </>
   );

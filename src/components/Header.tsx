@@ -16,6 +16,7 @@ import { useLanguage } from "../context/LanguageContext";
 
 const Header = () => {
   const { languageGeorgian, setLanguageGeorgian } = useLanguage();
+  
   const currentData = new Date();
   const currentHour = currentData.getHours();
   const currentMinute = currentData.getMinutes();

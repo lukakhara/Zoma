@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 
 
 function Layout() {
+  const [filter, setFilter] = useState('Cleaning');
 
   return (
     <>
@@ -13,7 +14,7 @@ function Layout() {
         <Header
         />
         <main className="flex-1  px-7.25 md:px-30">
-            <Outlet/>
+            <Outlet context= {{ filter, setFilter }} />
         </main>
       
         

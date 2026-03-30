@@ -1,33 +1,36 @@
-import  { useState } from "react";
+import { useState } from "react";
 import playIcon from "../assets/play.png";
 import cartIcon from "../assets/cart.png";
 import { useLanguage } from "../context/LanguageContext";
-import {type Product } from "../types";
+import { type Product } from "../types";
 import { Link } from "react-router";
-
 
 const Card = ({ product }: { product: Product }) => {
   const languageGeorgian = useLanguage();
 
-  const [productId,setProductId] = useState<number>(1);
+  const [productId, setProductId] = useState<number>(1);
 
   return (
     <>
-      <div className=" rounded-xl p-2 bg-white">
-        <div className="flex justify-between items-center">
-          <button className="cursor-pointer size-[23.76px] center">
-            <img src={playIcon} className="" alt="playIcon" />
-          </button>
-          <button className="cursor-pointer size-[27.62px] center bg-blue-100 rounded-full p-2">
-            <img
-              className="bg-none size-[14.83px]"
-              src={cartIcon}
-              alt="playIcon"
-            />
-          </button>
+      <div className=" rounded-xl p-2 bg-white flex flex-col justify-between">
+        <div className="">
+          <div className="flex justify-between items-center ">
+            <button className="cursor-pointer size-[23.76px] center">
+              <img src={playIcon} className="" alt="playIcon" />
+            </button>
+            <button className="cursor-pointer size-[27.62px] center bg-blue-100 rounded-full p-2">
+              <img
+                className="bg-none size-[14.83px]"
+                src={cartIcon}
+                alt="playIcon"
+              />
+            </button>
+          </div>
+
+          <img src={product.image[0]} alt="Product image" className="" />
         </div>
-        <img src={product.image[0]} alt="Product image" className="" />
-        <div className="flex  flex-col gap-2">
+
+        <div className="flex  flex-col   test justify-between flex-1  ">
           {/* name and category */}
           <div className="bg-blue text-[#DDDDDD] text-[10px]">
             {product.categorie}
@@ -43,11 +46,11 @@ const Card = ({ product }: { product: Product }) => {
             </div>
           </div>
 
-          <div className="flex gap-2 ">
+          <div className="flex items-center gap-2  ">
             <select
-              className="bg-[#F2F2F2] px-3  center  rounded-2xl text-blue-50 text-xl"
-              name="cars"
-              id="cars"
+              className="bg-[#F2F2F2] py-2 px-3  center  rounded-3xl text-blue-50 text-xl"
+              name="amounth"
+              id="amounth"
             >
               <option value="1">1</option>
               <option value="2">2</option>
@@ -61,7 +64,7 @@ const Card = ({ product }: { product: Product }) => {
             </select>
             {/* Need to add product id to the link */}
             <Link
-              className="cursor-pointer bg-blue-50 text-white px-8 py-1 rounded-3xl"
+              className="cursor-pointer bg-blue-50 text-white flex-1 text-center py-2 rounded-3xl"
               to={`/product/`}
             >
               {languageGeorgian ? "Buy Now" : "ყიდვა"}

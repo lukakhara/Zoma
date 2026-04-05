@@ -1,0 +1,489 @@
+[
+  {
+    "id": 1,
+    "categorie": "cleaning",
+    "startingPrice": 9.78,
+    "endPrice": 9.78,
+    "quantity": 15,
+    "image": [
+      "src/assets/product.png",
+      "src/assets/product.png",
+      "src/assets/product.png"
+    ],
+    "capacities": {
+      "500ml": {
+        "price": 9.78,
+        "discount": 0,
+        "finalPrice": 9.78
+      },
+      "600ml": {
+        "price": 9.78,
+        "discount": 0,
+        "finalPrice": 9.78
+      },
+      "2.5l": {
+        "price": 38.78,
+        "discount": 0,
+        "finalPrice": 38.78
+      },
+      "5l": {
+        "price": 80.78,
+        "discount": 0,
+        "finalPrice": 81.78
+      }
+    }
+  },
+  {
+    "id": 2,
+    "categorie": "cleaning",
+    "startingPrice": 7.5,
+    "endPrice": 12.5,
+    "quantity": 22,
+    "image": [
+      "src/assets/product.png",
+      "src/assets/product.png",
+      "src/assets/product.png"
+    ],
+    "capacities": {
+      "500ml": {
+        "price": 7.5,
+        "discount": 10,
+        "finalPrice": 6.75
+      },
+      "750ml": {
+        "price": 10.5,
+        "discount": 5,
+        "finalPrice": 9.98
+      },
+      "1l": {
+        "price": 12.5,
+        "discount": 0,
+        "finalPrice": 12.5
+      }
+    }
+  },
+  {
+    "id": 3,
+    "categorie": "cleaning",
+    "startingPrice": 15.99,
+    "endPrice": 65.99,
+    "quantity": 18,
+    "image": [
+      "src/assets/product.png",
+      "src/assets/product.png",
+      "src/assets/product.png"
+    ],
+    "capacities": {
+      "1l": {
+        "price": 15.99,
+        "discount": 15,
+        "finalPrice": 13.59
+      },
+      "2l": {
+        "price": 28.99,
+        "discount": 10,
+        "finalPrice": 26.09
+      },
+      "5l": {
+        "price": 65.99,
+        "discount": 0,
+        "finalPrice": 65.99
+      }
+    }
+  },
+  {
+    "id": 4,
+    "categorie": "kitchen",
+    "startingPrice": 5.25,
+    "endPrice": 45,
+    "quantity": 35,
+    "image": [
+      "src/assets/product.png",
+      "src/assets/product.png",
+      "src/assets/product.png"
+    ],
+    "capacities": {
+      "500ml": {
+        "price": 5.25,
+        "discount": 0,
+        "finalPrice": 5.25
+      },
+      "1l": {
+        "price": 9.5,
+        "discount": 5,
+        "finalPrice": 9.03
+      },
+      "5l": {
+        "price": 45,
+        "discount": 20,
+        "finalPrice": 36
+      }
+    }
+  },
+  {
+    "id": 5,
+    "categorie": "kitchen",
+    "startingPrice": 11.75,
+    "endPrice": 52,
+    "quantity": 12,
+    "image": [
+      "src/assets/product.png",
+      "src/assets/product.png",
+      "src/assets/product.png"
+    ],
+    "capacities": {
+      "750ml": {
+        "price": 11.75,
+        "discount": 0,
+        "finalPrice": 11.75
+      },
+      "1.5l": {
+        "price": 21.5,
+        "discount": 8,
+        "finalPrice": 19.78
+      },
+      "4l": {
+        "price": 52,
+        "discount": 12,
+        "finalPrice": 45.76
+      }
+    }
+  },
+  {
+    "id": 6,
+    "categorie": "bathroom",
+    "startingPrice": 6.99,
+    "endPrice": 6.99,
+    "quantity": 28,
+    "image": [
+      "src/assets/product.png",
+      "src/assets/product.png",
+      "src/assets/product.png"
+    ],
+    "capacities": {
+      "750ml": {
+        "price": 6.99,
+        "discount": 0,
+        "finalPrice": 6.99
+      }
+    }
+  },
+  {
+    "id": 7,
+    "categorie": "bathroom",
+    "startingPrice": 8.5,
+    "endPrice": 32,
+    "quantity": 20,
+    "image": [
+      "src/assets/product.png",
+      "src/assets/product.png",
+      "src/assets/product.png"
+    ],
+    "capacities": {
+      "500ml": {
+        "price": 8.5,
+        "discount": 5,
+        "finalPrice": 8.08
+      },
+      "1l": {
+        "price": 15,
+        "discount": 10,
+        "finalPrice": 13.5
+      },
+      "3l": {
+        "price": 32,
+        "discount": 15,
+        "finalPrice": 27.2
+      }
+    }
+  },
+  {
+    "id": 8,
+    "categorie": "paper",
+    "startingPrice": 12.99,
+    "endPrice": 35.99,
+    "quantity": 50,
+    "image": [
+      "src/assets/product.png",
+      "src/assets/product.png",
+      "src/assets/product.png"
+    ],
+    "capacities": {
+      "4 rolls": {
+        "price": 12.99,
+        "discount": 0,
+        "finalPrice": 12.99
+      },
+      "8 rolls": {
+        "price": 23.99,
+        "discount": 8,
+        "finalPrice": 22.07
+      },
+      "16 rolls": {
+        "price": 35.99,
+        "discount": 15,
+        "finalPrice": 30.59
+      }
+    }
+  },
+  {
+    "id": 9,
+    "categorie": "paper",
+    "startingPrice": 8.5,
+    "endPrice": 29.99,
+    "quantity": 75,
+    "image": [
+      "src/assets/product.png",
+      "src/assets/product.png",
+      "src/assets/product.png"
+    ],
+    "capacities": {
+      "4 rolls": {
+        "price": 8.5,
+        "discount": 0,
+        "finalPrice": 8.5
+      },
+      "12 rolls": {
+        "price": 22.5,
+        "discount": 10,
+        "finalPrice": 20.25
+      },
+      "24 rolls": {
+        "price": 29.99,
+        "discount": 18,
+        "finalPrice": 24.59
+      }
+    }
+  },
+  {
+    "id": 10,
+    "categorie": "textiles",
+    "startingPrice": 14.99,
+    "endPrice": 45.99,
+    "quantity": 40,
+    "image": [
+      "src/assets/product.png",
+      "src/assets/product.png",
+      "src/assets/product.png"
+    ],
+    "capacities": {
+      "5 pack": {
+        "price": 14.99,
+        "discount": 0,
+        "finalPrice": 14.99
+      },
+      "10 pack": {
+        "price": 27.99,
+        "discount": 12,
+        "finalPrice": 24.63
+      },
+      "20 pack": {
+        "price": 45.99,
+        "discount": 20,
+        "finalPrice": 36.79
+      }
+    }
+  },
+  {
+    "id": 11,
+    "categorie": "textiles",
+    "startingPrice": 9.99,
+    "endPrice": 32.99,
+    "quantity": 60,
+    "image": [
+      "src/assets/product.png",
+      "src/assets/product.png",
+      "src/assets/product.png"
+    ],
+    "capacities": {
+      "1kg": {
+        "price": 9.99,
+        "discount": 0,
+        "finalPrice": 9.99
+      },
+      "3kg": {
+        "price": 27.99,
+        "discount": 5,
+        "finalPrice": 26.59
+      },
+      "5kg": {
+        "price": 32.99,
+        "discount": 15,
+        "finalPrice": 28.04
+      }
+    }
+  },
+  {
+    "id": 12,
+    "categorie": "cleaning",
+    "startingPrice": 6.75,
+    "endPrice": 48,
+    "quantity": 45,
+    "image": [
+      "src/assets/product.png",
+      "src/assets/product.png",
+      "src/assets/product.png"
+    ],
+    "capacities": {
+      "500ml": {
+        "price": 6.75,
+        "discount": 0,
+        "finalPrice": 6.75
+      },
+      "1l": {
+        "price": 11.99,
+        "discount": 10,
+        "finalPrice": 10.79
+      },
+      "5l": {
+        "price": 48,
+        "discount": 18,
+        "finalPrice": 39.36
+      }
+    }
+  },
+  {
+    "id": 13,
+    "categorie": "cleaning",
+    "startingPrice": 10.5,
+    "endPrice": 42,
+    "quantity": 30,
+    "image": [
+      "src/assets/product.png",
+      "src/assets/product.png",
+      "src/assets/product.png"
+    ],
+    "capacities": {
+      "400ml": {
+        "price": 10.5,
+        "discount": 0,
+        "finalPrice": 10.5
+      },
+      "750ml": {
+        "price": 18,
+        "discount": 8,
+        "finalPrice": 16.56
+      },
+      "2.5l": {
+        "price": 42,
+        "discount": 15,
+        "finalPrice": 35.7
+      }
+    }
+  },
+  {
+    "id": 14,
+    "categorie": "kitchen",
+    "startingPrice": 13.25,
+    "endPrice": 13.25,
+    "quantity": 16,
+    "image": [
+      "src/assets/product.png",
+      "src/assets/product.png",
+      "src/assets/product.png"
+    ],
+    "capacities": {
+      "500ml": {
+        "price": 13.25,
+        "discount": 0,
+        "finalPrice": 13.25
+      }
+    }
+  },
+  {
+    "id": 15,
+    "categorie": "cleaning",
+    "startingPrice": 8.99,
+    "endPrice": 24.99,
+    "quantity": 25,
+    "image": [
+      "src/assets/product.png",
+      "src/assets/product.png",
+      "src/assets/product.png"
+    ],
+    "capacities": {
+      "300ml": {
+        "price": 8.99,
+        "discount": 0,
+        "finalPrice": 8.99
+      },
+      "500ml": {
+        "price": 14.5,
+        "discount": 5,
+        "finalPrice": 13.78
+      },
+      "1l": {
+        "price": 24.99,
+        "discount": 12,
+        "finalPrice": 21.99
+      }
+    }
+  },
+  {
+    "id": 16,
+    "categorie": "paper",
+    "startingPrice": 4.99,
+    "endPrice": 18.99,
+    "quantity": 90,
+    "image": [
+      "src/assets/product.png",
+      "src/assets/product.png",
+      "src/assets/product.png"
+    ],
+    "capacities": {
+      "100 pack": {
+        "price": 4.99,
+        "discount": 0,
+        "finalPrice": 4.99
+      },
+      "250 pack": {
+        "price": 11.5,
+        "discount": 8,
+        "finalPrice": 10.58
+      },
+      "500 pack": {
+        "price": 18.99,
+        "discount": 15,
+        "finalPrice": 16.14
+      }
+    }
+  },
+  {
+    "id": 17,
+    "categorie": "kitchen",
+    "startingPrice": 11.99,
+    "endPrice": 11.99,
+    "quantity": 22,
+    "image": [
+      "src/assets/product.png",
+      "src/assets/product.png",
+      "src/assets/product.png"
+    ],
+    "capacities": {
+      "500ml": {
+        "price": 11.99,
+        "discount": 0,
+        "finalPrice": 11.99
+      }
+    }
+  },
+  {
+    "id": 18,
+    "categorie": "bathroom",
+    "startingPrice": 9.99,
+    "endPrice": 9.99,
+    "quantity": 14,
+    "image": [
+      "src/assets/product.png",
+      "src/assets/product.png",
+      "src/assets/product.png"
+    ],
+    "capacities": {
+      "1l": {
+        "price": 9.99,
+        "discount": 0,
+        "finalPrice": 9.99
+      }
+    }
+  }
+]

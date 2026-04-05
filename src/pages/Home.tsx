@@ -9,25 +9,33 @@ const Home = () => {
   const { languageGeorgian } = useLanguage();
   const data = languageGeorgian ? ka : en;
 
-  const [filterIndex, setFilterIndex] = useState<number>(0);
+const [filter, setFilter] = useState<string>('');
 
-  // derived — no state needed, no useEffect needed
-  const filter = Object.values(data.categories)[filterIndex];
+// derived — no state needed, no useEffect needed
+const filter1 = Object.values(data.categories);
 
-  
-  const handleFilter = (category: string) => {
-    const index = Object.values(data.categories).indexOf(category);
-    setFilterIndex(index);
-  };
-  
-  
+console.log(`home filter ---------------------------------------` + filter1);
+console.log('filter +++++++++++++++++++++++++++++++' + filter);
 
   return (
     <div>
-      <Category setFilter={handleFilter} filter={filter} />
+      <Category setFilter={setFilter} filter={filter} />
       <Body filter={filter} />
     </div>
   );
 };
 
 export default Home;
+
+
+
+// const [filterIndex, setFilterIndex] = useState<number>(0);
+
+  // // derived — no state needed, no useEffect needed
+  // const filter = Object.values(data.categories)[filterIndex];
+
+  
+  // const handleFilter = (category: string) => {
+  //   const index = Object.values(data.categories).indexOf(category);
+  //   setFilterIndex(index);
+  // };

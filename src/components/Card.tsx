@@ -30,7 +30,7 @@ const Card = ({ product }: { product: Product }) => {
           <img src={product.image[0]} alt="Product image" className="" />
         </div>
 
-        <div className="flex  flex-col   test justify-between flex-1  ">
+        <div className="flex  flex-col justify-between flex-1  ">
           {/* name and category */}
           <div className="bg-blue text-[#DDDDDD] text-[10px]">
             {product.categorie}

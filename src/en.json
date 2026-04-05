@@ -10,7 +10,7 @@
     {
       "id": 1,
       "name": "ZOMA BAFIX FOAM",
-      "categorie": "Cleaning",
+      "category": "Cleaning",
       "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "startingPrice": 9.78,
       "endPrice": 9.78,
@@ -58,7 +58,7 @@
     {
       "id": 2,
       "name": "ZOMA GLASS CLEANER",
-      "categorie": "Cleaning",
+      "category": "Cleaning",
       "purpose": "streak-free glass and mirror cleaning solution",
       "startingPrice": 7.5,
       "endPrice": 12.5,
@@ -100,7 +100,7 @@
     {
       "id": 3,
       "name": "ZOMA FLOOR CLEANER PRO",
-      "categorie": "Cleaning",
+      "category": "Cleaning",
       "purpose": "multi-surface floor cleaning concentrate",
       "startingPrice": 15.99,
       "endPrice": 65.99,
@@ -143,7 +143,7 @@
     {
       "id": 4,
       "name": "ZOMA DISH SOAP ULTRA",
-      "categorie": "Kitchen",
+      "category": "Kitchen",
       "purpose": "concentrated dishwashing liquid with grease-cutting power",
       "startingPrice": 5.25,
       "endPrice": 45.0,
@@ -186,7 +186,7 @@
     {
       "id": 5,
       "name": "ZOMA KITCHEN DEGREASER",
-      "categorie": "Kitchen",
+      "category": "Kitchen",
       "purpose": "heavy-duty degreaser for kitchen surfaces",
       "startingPrice": 11.75,
       "endPrice": 52.0,
@@ -229,7 +229,7 @@
     {
       "id": 6,
       "name": "ZOMA TOILET BOWL CLEANER",
-      "categorie": "Bathroom",
+      "category": "Bathroom",
       "purpose": "powerful toilet cleaning gel with disinfectant",
       "startingPrice": 6.99,
       "endPrice": 6.99,
@@ -262,7 +262,7 @@
     {
       "id": 7,
       "name": "ZOMA BATHROOM TILE CLEANER",
-      "categorie": "Bathroom",
+      "category": "Bathroom",
       "purpose": "removes soap scum and water stains from tiles",
       "startingPrice": 8.5,
       "endPrice": 32.0,
@@ -305,7 +305,7 @@
     {
       "id": 8,
       "name": "ZOMA PAPER TOWELS PREMIUM",
-      "categorie": "Paper",
+      "category": "Paper",
       "purpose": "absorbent 3-ply paper towels for kitchen and cleaning",
       "startingPrice": 12.99,
       "endPrice": 35.99,
@@ -347,7 +347,7 @@
     {
       "id": 9,
       "name": "ZOMA TOILET PAPER SOFT",
-      "categorie": "Paper",
+      "category": "Paper",
       "purpose": "soft and strong 2-ply toilet tissue",
       "startingPrice": 8.5,
       "endPrice": 29.99,
@@ -386,7 +386,7 @@
     {
       "id": 10,
       "name": "ZOMA MICROFIBER CLOTHS SET",
-      "categorie": "Textiles",
+      "category": "Textiles",
       "purpose": "reusable microfiber cleaning cloths for all surfaces",
       "startingPrice": 14.99,
       "endPrice": 45.99,
@@ -429,7 +429,7 @@
     {
       "id": 11,
       "name": "ZOMA COTTON CLEANING RAGS",
-      "categorie": "Textiles",
+      "category": "Textiles",
       "purpose": "durable cotton rags for heavy-duty cleaning",
       "startingPrice": 9.99,
       "endPrice": 32.99,
@@ -472,7 +472,7 @@
     {
       "id": 12,
       "name": "ZOMA ALL-PURPOSE CLEANER",
-      "categorie": "Cleaning",
+      "category": "Cleaning",
       "purpose": "versatile spray cleaner for multiple surfaces",
       "startingPrice": 6.75,
       "endPrice": 48.0,
@@ -515,7 +515,7 @@
     {
       "id": 13,
       "name": "ZOMA DISINFECTANT SPRAY",
-      "categorie": "Cleaning",
+      "category": "Cleaning",
       "purpose": "antibacterial spray that kills 99.9% of germs",
       "startingPrice": 10.5,
       "endPrice": 42.0,
@@ -558,7 +558,7 @@
     {
       "id": 14,
       "name": "ZOMA OVEN CLEANER",
-      "categorie": "Kitchen",
+      "category": "Kitchen",
       "purpose": "heavy-duty cleaner for ovens and grills",
       "startingPrice": 13.25,
       "endPrice": 13.25,
@@ -593,7 +593,7 @@
     {
       "id": 15,
       "name": "ZOMA FURNITURE POLISH",
-      "categorie": "Cleaning",
+      "category": "Cleaning",
       "purpose": "wood furniture polish and protector",
       "startingPrice": 8.99,
       "endPrice": 24.99,
@@ -636,7 +636,7 @@
     {
       "id": 16,
       "name": "ZOMA NAPKINS PREMIUM",
-      "categorie": "Paper",
+      "category": "Paper",
       "purpose": "soft 3-ply paper napkins for dining",
       "startingPrice": 4.99,
       "endPrice": 18.99,
@@ -675,7 +675,7 @@
     {
       "id": 17,
       "name": "ZOMA STAINLESS STEEL CLEANER",
-      "categorie": "Kitchen",
+      "category": "Kitchen",
       "purpose": "polish and protect stainless steel appliances",
       "startingPrice": 11.99,
       "endPrice": 11.99,
@@ -708,7 +708,7 @@
     {
       "id": 18,
       "name": "ZOMA DRAIN UNBLOCKER",
-      "categorie": "Bathroom",
+      "category": "Bathroom",
       "purpose": "powerful gel to clear blocked drains",
       "startingPrice": 9.99,
       "endPrice": 9.99,

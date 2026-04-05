@@ -1,14 +1,17 @@
 import Card from "./Card";
 import en from "../en.json";
 import ka from "../ka.json";
-import { useLanguage } from "../context/LanguageContext";
 import {type Product } from "../types";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "../context/LanguageContext";
 
 
 const Body = ({ filter }:{filter:string}) => {
-
+  const { t } = useTranslation();
+  console.log(t("products",{returnObjects : true}));
   const { languageGeorgian } = useLanguage();
+  
 
   const data = languageGeorgian ? ka : en;
   const products = data.products;

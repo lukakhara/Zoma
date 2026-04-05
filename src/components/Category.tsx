@@ -2,17 +2,20 @@ import { useEffect, useState } from "react";
 import en from "../en.json";
 import ka from "../ka.json";
 import { useLanguage } from "../context/LanguageContext";
+import { useTranslation } from "react-i18next"; 
 
 interface CategoryProps {
   filter: string;
   setFilter: (category:string) => void;
 }
 
+
+
 const Category = ({filter,setFilter}: CategoryProps) => {
+    const { t } = useTranslation();
   const { languageGeorgian } = useLanguage();
   const data = languageGeorgian ? ka : en;
  
-
 
   return (
     <>
@@ -30,7 +33,9 @@ const Category = ({filter,setFilter}: CategoryProps) => {
               </button>
             </li>
           ))}
+       
         </ul>
+       
       </section>
     </>
   );

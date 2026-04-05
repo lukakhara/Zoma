@@ -14,8 +14,6 @@ const [filter, setFilter] = useState<string>('');
 // derived — no state needed, no useEffect needed
 const filter1 = Object.values(data.categories);
 
-console.log(`home filter ---------------------------------------` + filter1);
-console.log('filter +++++++++++++++++++++++++++++++' + filter);
 
   return (
     <div>

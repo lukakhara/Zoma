@@ -11,12 +11,16 @@ import cartIcon from "../assets/cart.png";
 import logoDesktop from "../assets/logoDesktop.png";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
 
 
 
 const Header = () => {
-  const { languageGeorgian, setLanguageGeorgian } = useLanguage();
-  
+  // const { languageGeorgian, setLanguageGeorgian } = useLanguage();
+  const { i18n } = useTranslation();
+  const languageGeorgian = i18n.language === "ka";
+
   const currentData = new Date();
   const currentHour = currentData.getHours();
   const currentMinute = currentData.getMinutes();
@@ -67,7 +71,9 @@ const Header = () => {
 
             <button
               className="border border-gray-50  rounded-full size-9 grid place-items-center cursor-pointer hover:opacity-90"
-              onClick={() => setLanguageGeorgian(!languageGeorgian)}
+              onClick={() =>
+                i18next.changeLanguage(i18next.language === "ka" ? "en" : "ka")
+              }
             >
               <img
                 className=""

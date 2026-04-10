@@ -13,7 +13,6 @@ i18n
   .init({
     lng: "ka",
     fallbackLng: "ka",
-    debug: true,
     interpolation: {
       escapeValue: false,
     },

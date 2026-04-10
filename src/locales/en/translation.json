@@ -1,10 +1,10 @@
 {
   "categories": {
-    "cleaning": "Cleaning",
-    "kitchen": "Kitchen",
-    "bathroom": "Bathroom",
-    "paper": "Paper",
-    "textiles": "Rags"
+    "cleaning": "cleaning",
+    "kitchen": "kitchen",
+    "bathroom": "bathroom",
+    "paper": "paper",
+    "textiles": "rags"
   },
   "products": {
     "1": {

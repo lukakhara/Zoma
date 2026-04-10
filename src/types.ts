@@ -7,7 +7,7 @@ export interface Capacity {
 export interface Product {
   id: number;
   name?: string;
-  categorie: string;
+  category: string;
   purpose?: string;
   startingPrice?: number;
   endPrice: number;

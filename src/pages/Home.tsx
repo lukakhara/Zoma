@@ -11,9 +11,7 @@ const Home = () => {
 
 const [filter, setFilter] = useState<string>('');
 
-// derived — no state needed, no useEffect needed
-const filter1 = Object.values(data.categories);
-
+console.log(filter);
 
   return (
     <div>

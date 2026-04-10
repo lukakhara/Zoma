@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "categorie": "cleaning",
+    "category": "cleaning",
     "startingPrice": 9.78,
     "endPrice": 9.78,
     "quantity": 15,
@@ -35,7 +35,7 @@
   },
   {
     "id": 2,
-    "categorie": "cleaning",
+    "category": "cleaning",
     "startingPrice": 7.5,
     "endPrice": 12.5,
     "quantity": 22,
@@ -64,7 +64,7 @@
   },
   {
     "id": 3,
-    "categorie": "cleaning",
+    "category": "cleaning",
     "startingPrice": 15.99,
     "endPrice": 65.99,
     "quantity": 18,
@@ -93,7 +93,7 @@
   },
   {
     "id": 4,
-    "categorie": "kitchen",
+    "category": "kitchen",
     "startingPrice": 5.25,
     "endPrice": 45,
     "quantity": 35,
@@ -122,7 +122,7 @@
   },
   {
     "id": 5,
-    "categorie": "kitchen",
+    "category": "kitchen",
     "startingPrice": 11.75,
     "endPrice": 52,
     "quantity": 12,
@@ -151,7 +151,7 @@
   },
   {
     "id": 6,
-    "categorie": "bathroom",
+    "category": "bathroom",
     "startingPrice": 6.99,
     "endPrice": 6.99,
     "quantity": 28,
@@ -170,7 +170,7 @@
   },
   {
     "id": 7,
-    "categorie": "bathroom",
+    "category": "bathroom",
     "startingPrice": 8.5,
     "endPrice": 32,
     "quantity": 20,
@@ -199,7 +199,7 @@
   },
   {
     "id": 8,
-    "categorie": "paper",
+    "category": "paper",
     "startingPrice": 12.99,
     "endPrice": 35.99,
     "quantity": 50,
@@ -228,7 +228,7 @@
   },
   {
     "id": 9,
-    "categorie": "paper",
+    "category": "paper",
     "startingPrice": 8.5,
     "endPrice": 29.99,
     "quantity": 75,
@@ -257,7 +257,7 @@
   },
   {
     "id": 10,
-    "categorie": "textiles",
+    "category": "textiles",
     "startingPrice": 14.99,
     "endPrice": 45.99,
     "quantity": 40,
@@ -286,7 +286,7 @@
   },
   {
     "id": 11,
-    "categorie": "textiles",
+    "category": "textiles",
     "startingPrice": 9.99,
     "endPrice": 32.99,
     "quantity": 60,
@@ -315,7 +315,7 @@
   },
   {
     "id": 12,
-    "categorie": "cleaning",
+    "category": "cleaning",
     "startingPrice": 6.75,
     "endPrice": 48,
     "quantity": 45,
@@ -344,7 +344,7 @@
   },
   {
     "id": 13,
-    "categorie": "cleaning",
+    "category": "cleaning",
     "startingPrice": 10.5,
     "endPrice": 42,
     "quantity": 30,
@@ -373,7 +373,7 @@
   },
   {
     "id": 14,
-    "categorie": "kitchen",
+    "category": "kitchen",
     "startingPrice": 13.25,
     "endPrice": 13.25,
     "quantity": 16,
@@ -392,7 +392,7 @@
   },
   {
     "id": 15,
-    "categorie": "cleaning",
+    "category": "cleaning",
     "startingPrice": 8.99,
     "endPrice": 24.99,
     "quantity": 25,
@@ -421,7 +421,7 @@
   },
   {
     "id": 16,
-    "categorie": "paper",
+    "category": "paper",
     "startingPrice": 4.99,
     "endPrice": 18.99,
     "quantity": 90,
@@ -450,7 +450,7 @@
   },
   {
     "id": 17,
-    "categorie": "kitchen",
+    "category": "kitchen",
     "startingPrice": 11.99,
     "endPrice": 11.99,
     "quantity": 22,
@@ -469,7 +469,7 @@
   },
   {
     "id": 18,
-    "categorie": "bathroom",
+    "category": "bathroom",
     "startingPrice": 9.99,
     "endPrice": 9.99,
     "quantity": 14,

@@ -226,11 +226,10 @@
 // export default Checkout;
 
 
-
 import { useState } from "react";
 import garbageIcon from "../assets/garbage.png";
 import editIcon from "../assets/pencil.png";
-import { useLanguage } from "../context/LanguageContext";
+
 
 interface Product {
   id: number;
@@ -243,7 +242,7 @@ interface Product {
 }
 
 const Checkout = () => {
-  const { languageGeorgian } = useLanguage();
+
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<boolean>(false);
 
   const [cart, setCart] = useState<Product[]>([
@@ -272,7 +271,7 @@ const Checkout = () => {
                         {item.quantity} <span className="text-gray-400">▾</span>
                       </button>
                       <button className="w-8 h-8 flex items-center justify-center rounded-lg bg-red-100">
-                        <img src={garbageIcon} alt="remove" className="w-4 h-4" />
+                        <img src={garbageIcon} alt="remove" className="w-4 h-4 cursor-pointer" />
                       </button>
                     </div>
                   </div>
@@ -369,7 +368,7 @@ const Checkout = () => {
 
             <button
               onClick={() => setSelectedPaymentMethod(true)}
-              className="w-full py-3 rounded-2xl bg-[#FDE800] text-gray-900 font-bold text-sm"
+              className="w-full py-3 rounded-2xl bg-[#FDE800] text-gray-900 font-bold text-sm cursor-pointer"
             >
               Buy Now
             </button>
@@ -390,8 +389,9 @@ const Checkout = () => {
                 <button className="border border-gray-300 rounded-lg px-3 py-1 text-sm flex items-center gap-1">
                   {item.quantity} <span className="text-gray-400">▾</span>
                 </button>
-                <button className="w-8 h-8 flex items-center justify-center rounded-lg bg-red-100">
-                  <img src={garbageIcon} alt="remove" className="w-4 h-4" />
+                <button className="w-8 h-8 flex items-center justify-center rounded-lg bg-red-100 cursor-pointer
+                hover:opacity-90">
+                  <img src={garbageIcon} alt="remove" className="w-4 h-4 " />
                 </button>
                 <div className="flex flex-col items-end gap-1 min-w-[90px]">
                   <div className="flex items-center gap-1">
@@ -468,7 +468,7 @@ const Checkout = () => {
 
               <button
                 onClick={() => setSelectedPaymentMethod(true)}
-                className="w-full py-3 rounded-2xl bg-[#FDE800] text-gray-900 font-bold text-sm"
+                className="w-full py-3 rounded-2xl bg-[#FDE800] text-gray-900 font-bold text-sm cursor-pointer hover:opacity-90 transition-opacity"
               >
                 Buy Now
               </button>

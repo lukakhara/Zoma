@@ -1,14 +1,18 @@
 import { useState } from "react";
 import playIcon from "../assets/play.png";
 import cartIcon from "../assets/cart.png";
-import { useLanguage } from "../context/LanguageContext";
 import { type Product } from "../types";
 import { Link } from "react-router";
+import { useCartContext } from "../context/CartContext";
+import { useTranslation } from "react-i18next";
 
 const Card = ({ product }: { product: Product }) => {
-  const languageGeorgian = useLanguage();
+ const { i18n } = useTranslation();
+  const languageGeorgian = i18n.language === "ka";
 
-  const [productId, setProductId] = useState<number>(1);
+  const { addToCart } = useCartContext();
+
+ 
 
   return (
     <>
@@ -18,7 +22,11 @@ const Card = ({ product }: { product: Product }) => {
             <button className="cursor-pointer size-[23.76px] center">
               <img src={playIcon} className="" alt="playIcon" />
             </button>
-            <button className="cursor-pointer size-[27.62px] center bg-blue-100 rounded-full p-2">
+            <button
+              className="cursor-pointer size-[27.62px] center bg-blue-100 rounded-full p-2
+                    "
+              onClick={() => addToCart}
+            >
               <img
                 className="bg-none size-[14.83px]"
                 src={cartIcon}
@@ -33,7 +41,7 @@ const Card = ({ product }: { product: Product }) => {
         <div className="flex  flex-col justify-between flex-1  ">
           {/* name and category */}
           <div className="bg-blue text-[#DDDDDD] text-[10px]">
-            {product.categorie}
+            {product.category}
           </div>
           <div className="text-[#1A1A1A] text-sm">{product.name}</div>
           {/* prices */}

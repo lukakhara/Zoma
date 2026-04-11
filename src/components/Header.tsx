@@ -10,9 +10,9 @@ import userIcon from "../assets/user.png";
 import cartIcon from "../assets/cart.png";
 import logoDesktop from "../assets/logoDesktop.png";
 import { Link } from "react-router-dom";
-import { useLanguage } from "../context/LanguageContext";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
+import { useCartContext } from "../context/CartContext";
 
 
 
@@ -20,6 +20,8 @@ const Header = () => {
   // const { languageGeorgian, setLanguageGeorgian } = useLanguage();
   const { i18n } = useTranslation();
   const languageGeorgian = i18n.language === "ka";
+
+  const {cartItems} = useCartContext();
 
   const currentData = new Date();
   const currentHour = currentData.getHours();
@@ -62,8 +64,21 @@ const Header = () => {
               <img className="" src={search} alt="seach icon" />
             </button>
 
-            <Link to="/checkout" className="hidden headerButton md:grid">
-              <img src={cartIcon} alt="seach icon" />
+            <Link
+              to="/checkout"
+              className="hidden headerButton md:grid relative size-9  pt-[11.77px]"
+            >
+              <img
+                src={cartIcon}
+                alt="seach icon"
+                className="size-[15.03px] "
+              />
+              <span
+                className="absolute top-2.5 right-1 rounded-full text-[7.85px]
+                text-[#FFFFFF] bg-[#FF4C4C] size-[8.97px]  text-center center"
+              >
+                {cartItems.length}
+              </span>
             </Link>
             <Link className="hidden headerButton md:grid" to="/user/profile">
               <img src={userIcon} alt="seach icon" />

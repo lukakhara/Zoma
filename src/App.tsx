@@ -16,15 +16,14 @@ import DeliveryAddress from "./pages/DeliveryAddress";
 import PasswordChange from "./pages/PasswordChange";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
-
-import { LanguageProvider } from "./context/LanguageContext";
 import UserProfile from "./pages/UserProfile";
 import { AuthProvider } from "./context/AuthProvider";
+import CartContextProdiver from "./context/CartContext";
 
 function App() {
   return (
-    <AuthProvider>
-      <LanguageProvider>
+    <CartContextProdiver>
+      <AuthProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Layout />}>
@@ -63,8 +62,8 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
-      </LanguageProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </CartContextProdiver>
   );
 }
 

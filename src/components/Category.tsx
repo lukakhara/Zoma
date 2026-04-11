@@ -13,8 +13,7 @@ const Category = ({ filter, setFilter }: CategoryProps) => {
     string
   >;
 
-  console.log(`categories ` + categories);
-  console.log(filter);
+
 
   return (
     <>

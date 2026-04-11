@@ -1,17 +1,14 @@
 import Category from "../components/Category";
 import Body from "../components/Body";
 import { useState } from "react";
-import { useLanguage } from "../context/LanguageContext";
-import en from "../en.json";
-import ka from "../ka.json";
+
 
 const Home = () => {
-  const { languageGeorgian } = useLanguage();
-  const data = languageGeorgian ? ka : en;
+
+
 
 const [filter, setFilter] = useState<string>('');
 
-console.log(filter);
 
   return (
     <div>

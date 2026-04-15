@@ -9,6 +9,7 @@
   "products": {
     "1": {
       "name": "ZOMA BAFIX FOAM",
+      "category": "cleaning",
       "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
       "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
       "instructionsForUse": [
@@ -25,6 +26,7 @@
     },
     "2": {
       "name": "ZOMA GLASS CLEANER",
+      "category": "cleaning",
       "purpose": "streak-free glass and mirror cleaning solution",
       "description": "Zoma Glass Cleaner provides a streak-free shine on all glass surfaces, mirrors, and windows. Its advanced formula quickly removes fingerprints, smudges, and dirt without leaving residue.",
       "instructionsForUse": [
@@ -40,6 +42,7 @@
     },
     "3": {
       "name": "ZOMA FLOOR CLEANER PRO",
+      "category": "cleaning",
       "purpose": "multi-surface floor cleaning concentrate",
       "description": "Zoma Floor Cleaner Pro is a powerful concentrate designed for all types of hard floors including tile, laminate, vinyl, and sealed wood. Leaves a fresh scent and protective coating.",
       "instructionsForUse": [
@@ -56,6 +59,7 @@
     },
     "4": {
       "name": "ZOMA DISH SOAP ULTRA",
+      "category": "kitchen",
       "purpose": "concentrated dishwashing liquid with grease-cutting power",
       "description": "Zoma Dish Soap Ultra cuts through tough grease and dried-on food with ease. Gentle on hands with added moisturizers. Creates rich, long-lasting suds for effective cleaning.",
       "instructionsForUse": [
@@ -72,6 +76,7 @@
     },
     "5": {
       "name": "ZOMA KITCHEN DEGREASER",
+      "category": "kitchen",
       "purpose": "heavy-duty degreaser for kitchen surfaces",
       "description": "Zoma Kitchen Degreaser is specifically formulated to tackle burnt-on grease, oil splatters, and tough kitchen grime on stoves, ovens, range hoods, and countertops.",
       "instructionsForUse": [
@@ -88,6 +93,7 @@
     },
     "6": {
       "name": "ZOMA TOILET BOWL CLEANER",
+      "category": "bathroom",
       "purpose": "powerful toilet cleaning gel with disinfectant",
       "description": "Zoma Toilet Bowl Cleaner is a thick gel formula that clings to the bowl surface, removing stains, limescale, and bacteria. Leaves toilets sparkling clean with a fresh scent.",
       "instructionsForUse": [
@@ -104,6 +110,7 @@
     },
     "7": {
       "name": "ZOMA BATHROOM TILE CLEANER",
+      "category": "bathroom",
       "purpose": "removes soap scum and water stains from tiles",
       "description": "Zoma Bathroom Tile Cleaner effectively removes soap scum, hard water deposits, and mildew stains from bathroom tiles and grout. Safe for daily use.",
       "instructionsForUse": [
@@ -120,6 +127,7 @@
     },
     "8": {
       "name": "ZOMA PAPER TOWELS PREMIUM",
+      "category": "paper",
       "purpose": "absorbent 3-ply paper towels for kitchen and cleaning",
       "description": "Zoma Premium Paper Towels are extra absorbent and strong, even when wet. Perfect for spills, cleaning surfaces, and drying dishes. Each roll contains 120 sheets.",
       "instructionsForUse": [
@@ -135,6 +143,7 @@
     },
     "9": {
       "name": "ZOMA TOILET PAPER SOFT",
+      "category": "paper",
       "purpose": "soft and strong 2-ply toilet tissue",
       "description": "Zoma Soft Toilet Paper combines softness with strength. Made from premium quality fibers, it's gentle on skin while being durable. Septic safe and biodegradable.",
       "instructionsForUse": [
@@ -147,6 +156,7 @@
     },
     "10": {
       "name": "ZOMA MICROFIBER CLOTHS SET",
+      "category": "textiles",
       "purpose": "reusable microfiber cleaning cloths for all surfaces",
       "description": "Zoma Microfiber Cloths are ultra-absorbent and lint-free, perfect for cleaning glass, surfaces, electronics, and vehicles. Machine washable and reusable up to 500 times.",
       "instructionsForUse": [
@@ -163,6 +173,7 @@
     },
     "11": {
       "name": "ZOMA COTTON CLEANING RAGS",
+      "category": "textiles",
       "purpose": "durable cotton rags for heavy-duty cleaning",
       "description": "Zoma Cotton Cleaning Rags are made from 100% recycled cotton. Highly absorbent and durable, ideal for workshops, garages, and industrial cleaning tasks.",
       "instructionsForUse": [
@@ -179,6 +190,7 @@
     },
     "12": {
       "name": "ZOMA ALL-PURPOSE CLEANER",
+      "category": "cleaning",
       "purpose": "versatile spray cleaner for multiple surfaces",
       "description": "Zoma All-Purpose Cleaner is suitable for countertops, appliances, walls, and most washable surfaces. Cuts through grease and grime while leaving a pleasant fresh scent.",
       "instructionsForUse": [
@@ -195,6 +207,7 @@
     },
     "13": {
       "name": "ZOMA DISINFECTANT SPRAY",
+      "category": "cleaning",
       "purpose": "antibacterial spray that kills 99.9% of germs",
       "description": "Zoma Disinfectant Spray eliminates 99.9% of bacteria and viruses on hard surfaces. Ideal for kitchens, bathrooms, door handles, and high-touch areas.",
       "instructionsForUse": [
@@ -211,6 +224,7 @@
     },
     "14": {
       "name": "ZOMA OVEN CLEANER",
+      "category": "kitchen",
       "purpose": "heavy-duty cleaner for ovens and grills",
       "description": "Zoma Oven Cleaner cuts through baked-on grease and carbon deposits in ovens, grills, and BBQ equipment. Works on cold or warm surfaces.",
       "instructionsForUse": [
@@ -229,6 +243,7 @@
     },
     "15": {
       "name": "ZOMA FURNITURE POLISH",
+      "category": "cleaning",
       "purpose": "wood furniture polish and protector",
       "description": "Zoma Furniture Polish cleans, shines, and protects wood furniture. Contains natural oils that nourish wood and create a protective barrier against dust and fingerprints.",
       "instructionsForUse": [
@@ -245,6 +260,7 @@
     },
     "16": {
       "name": "ZOMA NAPKINS PREMIUM",
+      "category": "paper",
       "purpose": "soft 3-ply paper napkins for dining",
       "description": "Zoma Premium Napkins are soft, absorbent, and elegant. Perfect for everyday meals, parties, and special occasions. Available in white color.",
       "instructionsForUse": [
@@ -257,6 +273,7 @@
     },
     "17": {
       "name": "ZOMA STAINLESS STEEL CLEANER",
+      "category": "kitchen",
       "purpose": "polish and protect stainless steel appliances",
       "description": "Zoma Stainless Steel Cleaner removes fingerprints, water spots, and smudges from refrigerators, dishwashers, sinks, and other stainless steel surfaces. Leaves a protective, streak-free shine.",
       "instructionsForUse": [
@@ -273,6 +290,7 @@
     },
     "18": {
       "name": "ZOMA DRAIN UNBLOCKER",
+      "category": "bathroom",
       "purpose": "powerful gel to clear blocked drains",
       "description": "Zoma Drain Unblocker is a thick gel formula that clings to pipes, dissolving hair, soap, grease, and other blockages. Safe for all pipes including PVC and metal.",
       "instructionsForUse": [

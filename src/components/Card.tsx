@@ -72,7 +72,7 @@ const Card = ({ product }: { product: Product }) => {
             {/* Need to add product id to the link */}
             <Link
               className="cursor-pointer bg-blue-50 text-white flex-1 text-center py-2 rounded-3xl"
-              to={`/product/`}
+              to={`${/product/}${product.id}`}
             >
               {languageGeorgian ? "Buy Now" : "ყიდვა"}
             </Link>

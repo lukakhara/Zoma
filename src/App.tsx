@@ -29,7 +29,7 @@ function App() {
             <Route path="/" element={<Layout />}>
               {/* public routes */}
               <Route element={<Home />} index />
-              <Route path="product" element={<ProductPage />} />
+              <Route path="/product/:id" element={<ProductPage />} />
               <Route path="contact" element={<Contact />} />
               <Route path="news" element={<News />} />
 

@@ -7,28 +7,28 @@ import {type Product } from "../types"
 import productsData from "../locales/products.json";
 import i18next from "i18next";
 import image from "/assets/product.png";
+import { useParams } from "react-router";
+import { useState } from "react";
+
 
 const ProductPage = () => {
   const {t} = useTranslation();
   const productDataFromTranslation = t("products",{returnObjects:true}) as Product[];
- 
-  const myProductId = 1;
-  const tranlsationSelectedData = productDataFromTranslation[myProductId];
-  console.log("first", tranlsationSelectedData);
+  const { id } = useParams<{ id: string }>();
 
-  
+  const myProductId = Number(id);
+ 
+  const tranlsationSelectedData = productDataFromTranslation[myProductId];
+
+  const [activeImage, setActiveImage] = useState<number>(0); 
 
    const productsDataArray = productsData.filter(
      (product) => product.id === myProductId,
    );
 
   const myNeededProduct = productsDataArray[0];
-
-  console.log(" second ",myNeededProduct);
+  console.log(myNeededProduct);
   const product = { ...tranlsationSelectedData, ...myNeededProduct };
-  console.log("merged", product);
-
-  console.log(product.image[0]);
 
   const languageGeorgian = i18next.language === "ka";
 
@@ -54,7 +54,8 @@ const ProductPage = () => {
               {product.image.map((_, i) => (
                 <span
                   key={i}
-                  className={`w-2 h-2 rounded-full ${i === 0 ? "bg-[#2f4a9c]" : "bg-gray-300"}`}
+                  className={`w-2 h-2 rounded-full  ${i === activeImage ? "bg-[#2f4a9c]" : "bg-gray-300 cursor-pointer hover:opacity-65 "}`}
+                  onClick={() => setActiveImage(i)}
                 />
               ))}
             </div>

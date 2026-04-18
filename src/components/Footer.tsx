@@ -11,12 +11,16 @@ import facebook from "../assets/Social/facebook.png";
 import instagram from "../assets/Social/instagram.png";
 import linkedin from "../assets/Social/linkedin.png";
 import tiktok from "../assets/Social/tiktokIcon.png";
-import { useLanguage } from "../context/LanguageContext";
+import { useTranslation } from "react-i18next";
 
 
 
 const Footer = () => {
-    const languageGeorgian = useLanguage();
+   const { i18n } = useTranslation();
+   const languageGeorgian = i18n.language === "ka";
+
+    // const languageGeorgian = useLanguage();
+
   return (
     <>
       {/* MOBILE FOOTER */}

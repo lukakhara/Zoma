@@ -9,22 +9,21 @@ import Contact from "./pages/Contact";
 import News from "./pages/News";
 import MyOrders from "./pages/MyOrders";
 import Profile from "./pages/Profile";
-import ProfileSideNavbar from "./pages/ProfileSideNavbar";
+// import ProfileSideNavbar from "./pages/ProfileSideNavbar";w
 import PasswordRecovery from "./pages/PasswordRecovery";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import DeliveryAddress from "./pages/DeliveryAddress";
 import PasswordChange from "./pages/PasswordChange";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
-
-import { LanguageProvider } from "./context/LanguageContext";
 import UserProfile from "./pages/UserProfile";
 import { AuthProvider } from "./context/AuthProvider";
+import CartContextProdiver from "./context/CartContext";
 
 function App() {
   return (
-    <AuthProvider>
-      <LanguageProvider>
+    <CartContextProdiver>
+      <AuthProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Layout />}>
@@ -63,8 +62,8 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
-      </LanguageProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </CartContextProdiver>
   );
 }
 

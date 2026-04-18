@@ -1,7 +1,7 @@
 // import { useState } from "react";
 // import garbageIcon from "../assets/garbage.png";
 // import editIcon from "../assets/pencil.png";
-// import { useLanguage } from "../context/LanguageContext";
+// import { } from "../context/LanguageContext";
 
 
 // interface Product {
@@ -227,8 +227,8 @@
 
 
 import { useState } from "react";
-import garbageIcon from "../assets/garbage.png";
-import editIcon from "../assets/pencil.png";
+import garbageIcon from "/assets/garbage.png";
+import editIcon from "/assets/pencil.png";
 
 
 interface Product {
@@ -246,8 +246,8 @@ const Checkout = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<boolean>(false);
 
   const [cart, setCart] = useState<Product[]>([
-    { id: 1, name: "ZOMA BAFIX FOAM", image: "src/assets/product.png", quantity: 1, price: 11.65, discount: 1.87, finalPrice: 9.78 },
-    { id: 2, name: "ZOMA BAFIX FOAM (600 ml)", image: "src/assets/product.png", quantity: 1, price: 11.65, discount: 1.87, finalPrice: 9.78 },
+    { id: 1, name: "ZOMA BAFIX FOAM", image: "/assets/product.png", quantity: 1, price: 11.65, discount: 1.87, finalPrice: 9.78 },
+    { id: 2, name: "ZOMA BAFIX FOAM (600 ml)", image: "/assets/product.png", quantity: 1, price: 11.65, discount: 1.87, finalPrice: 9.78 },
   ]);
 
   return (

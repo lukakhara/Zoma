@@ -1,16 +1,16 @@
-import footerShape from "../assets/footershape.png";
-import cart from "../assets/footerCart.png";
-import house from "../assets/home.png";
-import user from "../assets/Vector(9).png";
-import logo from "../assets/logo.png";
-import phone from "../assets/Social/phone.png";
-import whatssap from "../assets/Social/whatsapp.png";
-import viber from "../assets/Social/viber.png";
-import message from "../assets/Social/message.png";
-import facebook from "../assets/Social/facebook.png";
-import instagram from "../assets/Social/instagram.png";
-import linkedin from "../assets/Social/linkedin.png";
-import tiktok from "../assets/Social/tiktokIcon.png";
+import footerShape from "/assets/footershape.png";
+import cart from "/assets/footerCart.png";
+import house from "/assets/home.png";
+import user from "/assets/Vector(9).png";
+import logo from "/assets/logo.png";
+import phone from "/assets/Social/phone.png";
+import whatssap from "/assets/Social/whatsapp.png";
+import viber from "/assets/Social/viber.png";
+import message from "/assets/Social/message.png";
+import facebook from "/assets/Social/facebook.png";
+import instagram from "/assets/Social/instagram.png";
+import linkedin from "/assets/Social/linkedin.png";
+import tiktok from "/assets/Social/tiktokIcon.png";
 import { useTranslation } from "react-i18next";
 
 

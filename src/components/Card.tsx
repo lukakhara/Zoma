@@ -1,6 +1,5 @@
-import { useState } from "react";
-import playIcon from "../assets/play.png";
-import cartIcon from "../assets/cart.png";
+import playIcon from "/assets/play.png";
+import cartIcon from "/assets/cart.png";
 import { type Product } from "../types";
 import { Link } from "react-router";
 import { useCartContext } from "../context/CartContext";

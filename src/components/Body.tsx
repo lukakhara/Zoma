@@ -6,14 +6,16 @@ import { useTranslation } from "react-i18next";
 const Body = ({ filter }: { filter: string }) => {
   const { t } = useTranslation();
   const productsName = t("products", { returnObjects: true }) as Record<
-    string,
-    { name: string }
+    string,   
+    { name: string ,category: string }
   >;
 
   const products = (productsData as Product[]).map((product) => ({
     ...product,
     name: productsName[product.id]?.name ?? product.name,
+    category: productsName[product.id]?.category ?? product.category,
   }));
+
 
   const filteredProducts =
     filter === ""

@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import {type Product } from "../types"
 import productsData from "../locales/products.json";
 import i18next from "i18next";
-import image from "/assets/product.png";
 import { useParams } from "react-router";
 import { useState } from "react";
 
@@ -15,22 +14,24 @@ const ProductPage = () => {
   const {t} = useTranslation();
   const productDataFromTranslation = t("products",{returnObjects:true}) as Product[];
   const { id } = useParams<{ id: string }>();
+  // State to track which product image is currently active (for the main display)
+  const [activeImage, setActiveImage] = useState<number>(0);
+  const [volume, setVolume] = useState<string | null>('');
+  // Check if the current language is Georgian
+  const languageGeorgian = i18next.language === "ka";
 
+  // Convert the ID from the URL to a number and find the corresponding product data from both the translation and the static JSON, then merge them together
   const myProductId = Number(id);
- 
   const tranlsationSelectedData = productDataFromTranslation[myProductId];
-
-  const [activeImage, setActiveImage] = useState<number>(0); 
-
+  // Get the product data from products.json based on the ID from the URL
    const productsDataArray = productsData.filter(
      (product) => product.id === myProductId,
    );
-
   const myNeededProduct = productsDataArray[0];
-  console.log(myNeededProduct);
+  // Merge the translated data and the static data into a single product object
   const product = { ...tranlsationSelectedData, ...myNeededProduct };
 
-  const languageGeorgian = i18next.language === "ka";
+  
 
   return (
     <div className="min-h-screen  py-4 md:py-8">
@@ -45,7 +46,7 @@ const ProductPage = () => {
             </button>
             {/* here is needed data from difrend json file */}
             <img
-              src={`${image}`}
+              src={`${product.image[activeImage]}`}
               alt="Product"
               className="max-h-60 object-contain "
             />
@@ -81,25 +82,33 @@ const ProductPage = () => {
         {/* Right: details */}
         <div className="flex-1 flex flex-col gap-4">
           <div>
-            <p className="text-sm text-[#2f4a9c] font-medium">
+            <p className="text-sm  text-blue-50 font-medium font-helvetocaMedium leading-4">
               {product.category}
             </p>
-            <h1 className="text-2xl font-bold text-gray-900">{product.name}</h1>
-            <p className="text-sm font-semibold text-gray-800 mt-2">
+            <h1 className="text-2xl font-helvetocaRegular font-normal text-gray-900">
+              {product.name}
+            </h1>
+            <p className="text-[18px]   text-[#000000]  leading-[19.48px] mt-2 font-helvetocaMedium font-medium ">
               {product.description}
             </p>
           </div>
 
           {/* Sizes */}
           <div>
-            <p className="text-sm text-gray-500 mb-2">
+            <p className="text-[16px] font-medium font-helvetocaMedium text-[#B8B8B8] mb-2 leading-[19.48px]">
               {languageGeorgian ? "ზომა:" : "Size:"}
             </p>
             <div className="flex gap-2 flex-wrap">
               {Object.keys(product.capacities).map((size, i) => (
                 <button
                   key={size}
-                  className={`px-3 py-1.5 rounded-lg border text-sm uppercase font-medium ${i === 1 ? "border-[#2f4a9c] text-[#2f4a9c] font-bold" : "border-gray-300 text-gray-600"}`}
+                  className={`px-3 py-1.5 font-helvetocaMedium leading-[19.48px]  rounded-lg   border  font-medium  text-[16px] uppercase  
+                    ${
+                      volume === size
+                        ? "border-blue-50 text-blue-50  border-2 "
+                        : "border-[#B2B2B2] text-[#B2B2B2] cursor-pointer"
+                    }`}
+                  onClick={() => setVolume(size)}
                 >
                   {size}
                 </button>
@@ -109,8 +118,11 @@ const ProductPage = () => {
 
           {/* Quantity */}
           <div className="flex items-center gap-2">
-            <p className="text-sm text-gray-500">Quantity:</p>
-            <button className="border border-gray-300 rounded-lg px-3 py-1 text-sm flex items-center gap-1">
+            <p className="text-[16px] font-medium font-helvetocaMedium text-[#B8B8B8] mb-2 leading-[19.48px]">
+              {" "}
+              {languageGeorgian ? "რაოდენობა:" : "Quantity:"}:
+            </p>
+            <button className="border border-gray-300 rounded-lg px-3 py-1 text-sm flex items-center gap-1 font-normal ">
               1 <span className="text-gray-400">▾</span>
             </button>
           </div>

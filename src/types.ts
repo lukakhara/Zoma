@@ -1,4 +1,5 @@
 export interface Capacity {
+  label: string;
   price: number;
   discount: number;
   finalPrice: number;
@@ -13,7 +14,7 @@ export interface Product {
   endPrice: number;
   quantity: number;
   image: string[];
-  capacities?: Partial<Record<string, Capacity>>;
+  capacities?: Capacity[];
   description?: string;
   instructionsForUse?: string[];
   doNotUse?: string[];

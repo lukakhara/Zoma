@@ -24,7 +24,7 @@ const Card = ({ product }: { product: Product }) => {
             <button
               className="cursor-pointer size-[27.62px] center bg-blue-100 rounded-full p-2
                     "
-              onClick={() => addToCart}
+              onClick={() => addToCart(product) }
             >
               <img
                 className="bg-none size-[14.83px]"

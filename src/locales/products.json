@@ -9,28 +9,12 @@
       "/assets/product2.png",
       "/assets/product.png"
     ],
-    "capacities": {
-      "500 ml": {
-        "price": 9.78,
-        "discount": 0,
-        "finalPrice": 9.78
-      },
-      "600 ml": {
-        "price": 9.78,
-        "discount": 0,
-        "finalPrice": 9.78
-      },
-      "2.5 l": {
-        "price": 38.78,
-        "discount": 0,
-        "finalPrice": 38.78
-      },
-      "5 l": {
-        "price": 80.78,
-        "discount": 0,
-        "finalPrice": 81.78
-      }
-    }
+    "capacities": [
+      { "label": "500 ml", "price": 9.78, "discount": 0, "finalPrice": 9.78 },
+      { "label": "600 ml", "price": 9.78, "discount": 0, "finalPrice": 9.78 },
+      { "label": "2.5 l", "price": 38.78, "discount": 0, "finalPrice": 38.78 },
+      { "label": "5 l", "price": 80.78, "discount": 0, "finalPrice": 81.78 }
+    ]
   },
   {
     "id": 2,
@@ -42,23 +26,11 @@
       "/assets/product2.png",
       "/assets/product.png"
     ],
-    "capacities": {
-      "500 ml": {
-        "price": 7.5,
-        "discount": 10,
-        "finalPrice": 6.75
-      },
-      "750 ml": {
-        "price": 10.5,
-        "discount": 5,
-        "finalPrice": 9.98
-      },
-      "1 l": {
-        "price": 12.5,
-        "discount": 0,
-        "finalPrice": 12.5
-      }
-    }
+    "capacities": [
+      { "label": "500 ml", "price": 7.5, "discount": 10, "finalPrice": 6.75 },
+      { "label": "750 ml", "price": 10.5, "discount": 5, "finalPrice": 9.98 },
+      { "label": "1 l", "price": 12.5, "discount": 0, "finalPrice": 12.5 }
+    ]
   },
   {
     "id": 3,
@@ -70,23 +42,11 @@
       "/assets/product2.png",
       "/assets/product.png"
     ],
-    "capacities": {
-      "1 l": {
-        "price": 15.99,
-        "discount": 15,
-        "finalPrice": 13.59
-      },
-      "2 l": {
-        "price": 28.99,
-        "discount": 10,
-        "finalPrice": 26.09
-      },
-      "5 l": {
-        "price": 65.99,
-        "discount": 0,
-        "finalPrice": 65.99
-      }
-    }
+    "capacities": [
+      { "label": "1 l", "price": 15.99, "discount": 15, "finalPrice": 13.59 },
+      { "label": "2 l", "price": 28.99, "discount": 10, "finalPrice": 26.09 },
+      { "label": "5 l", "price": 65.99, "discount": 0, "finalPrice": 65.99 }
+    ]
   },
   {
     "id": 4,
@@ -98,23 +58,11 @@
       "/assets/product2.png",
       "/assets/product.png"
     ],
-    "capacities": {
-      "500 ml": {
-        "price": 5.25,
-        "discount": 0,
-        "finalPrice": 5.25
-      },
-      "1 l": {
-        "price": 9.5,
-        "discount": 5,
-        "finalPrice": 9.03
-      },
-      "5 l": {
-        "price": 45,
-        "discount": 20,
-        "finalPrice": 36
-      }
-    }
+    "capacities": [
+      { "label": "500 ml", "price": 5.25, "discount": 0, "finalPrice": 5.25 },
+      { "label": "1 l", "price": 9.5, "discount": 5, "finalPrice": 9.03 },
+      { "label": "5 l", "price": 45, "discount": 20, "finalPrice": 36 }
+    ]
   },
   {
     "id": 5,
@@ -126,23 +74,11 @@
       "/assets/product2.png",
       "/assets/product.png"
     ],
-    "capacities": {
-      "750 ml": {
-        "price": 11.75,
-        "discount": 0,
-        "finalPrice": 11.75
-      },
-      "1.5 l": {
-        "price": 21.5,
-        "discount": 8,
-        "finalPrice": 19.78
-      },
-      "4 l": {
-        "price": 52,
-        "discount": 12,
-        "finalPrice": 45.76
-      }
-    }
+    "capacities": [
+      { "label": "750 ml", "price": 11.75, "discount": 0, "finalPrice": 11.75 },
+      { "label": "1.5 l", "price": 21.5, "discount": 8, "finalPrice": 19.78 },
+      { "label": "4 l", "price": 52, "discount": 12, "finalPrice": 45.76 }
+    ]
   },
   {
     "id": 6,
@@ -154,17 +90,12 @@
       "/assets/product2.png",
       "/assets/product.png"
     ],
-    "capacities": {
-      "750 ml": {
-        "price": 6.99,
-        "discount": 0,
-        "finalPrice": 6.99
-      }
-    }
+    "capacities": [
+      { "label": "750 ml", "price": 6.99, "discount": 0, "finalPrice": 6.99 }
+    ]
   },
   {
     "id": 7,
-
     "startingPrice": 8.5,
     "endPrice": 32,
     "quantity": 20,
@@ -173,27 +104,14 @@
       "/assets/product2.png",
       "/assets/product.png"
     ],
-    "capacities": {
-      "500 ml": {
-        "price": 8.5,
-        "discount": 5,
-        "finalPrice": 8.08
-      },
-      "1 l": {
-        "price": 15,
-        "discount": 10,
-        "finalPrice": 13.5
-      },
-      "3 l": {
-        "price": 32,
-        "discount": 15,
-        "finalPrice": 27.2
-      }
-    }
+    "capacities": [
+      { "label": "500 ml", "price": 8.5, "discount": 5, "finalPrice": 8.08 },
+      { "label": "1 l", "price": 15, "discount": 10, "finalPrice": 13.5 },
+      { "label": "3 l", "price": 32, "discount": 15, "finalPrice": 27.2 }
+    ]
   },
   {
     "id": 8,
-
     "startingPrice": 12.99,
     "endPrice": 35.99,
     "quantity": 50,
@@ -202,27 +120,29 @@
       "/assets/product2.png",
       "/assets/product.png"
     ],
-    "capacities": {
-      "4 rolls": {
+    "capacities": [
+      {
+        "label": "4 rolls",
         "price": 12.99,
         "discount": 0,
         "finalPrice": 12.99
       },
-      "8 rolls": {
+      {
+        "label": "8 rolls",
         "price": 23.99,
         "discount": 8,
         "finalPrice": 22.07
       },
-      "16 rolls": {
+      {
+        "label": "16 rolls",
         "price": 35.99,
         "discount": 15,
         "finalPrice": 30.59
       }
-    }
+    ]
   },
   {
     "id": 9,
-
     "startingPrice": 8.5,
     "endPrice": 29.99,
     "quantity": 75,
@@ -231,27 +151,24 @@
       "/assets/product2.png",
       "/assets/product.png"
     ],
-    "capacities": {
-      "4 rolls": {
-        "price": 8.5,
-        "discount": 0,
-        "finalPrice": 8.5
-      },
-      "12 rolls": {
+    "capacities": [
+      { "label": "4 rolls", "price": 8.5, "discount": 0, "finalPrice": 8.5 },
+      {
+        "label": "12 rolls",
         "price": 22.5,
         "discount": 10,
         "finalPrice": 20.25
       },
-      "24 rolls": {
+      {
+        "label": "24 rolls",
         "price": 29.99,
         "discount": 18,
         "finalPrice": 24.59
       }
-    }
+    ]
   },
   {
     "id": 10,
-
     "startingPrice": 14.99,
     "endPrice": 45.99,
     "quantity": 40,
@@ -260,27 +177,24 @@
       "/assets/product2.png",
       "/assets/product.png"
     ],
-    "capacities": {
-      "5 pack": {
-        "price": 14.99,
-        "discount": 0,
-        "finalPrice": 14.99
-      },
-      "10 pack": {
+    "capacities": [
+      { "label": "5 pack", "price": 14.99, "discount": 0, "finalPrice": 14.99 },
+      {
+        "label": "10 pack",
         "price": 27.99,
         "discount": 12,
         "finalPrice": 24.63
       },
-      "20 pack": {
+      {
+        "label": "20 pack",
         "price": 45.99,
         "discount": 20,
         "finalPrice": 36.79
       }
-    }
+    ]
   },
   {
     "id": 11,
-
     "startingPrice": 9.99,
     "endPrice": 32.99,
     "quantity": 60,
@@ -289,27 +203,14 @@
       "/assets/product2.png",
       "/assets/product.png"
     ],
-    "capacities": {
-      "1 kg": {
-        "price": 9.99,
-        "discount": 0,
-        "finalPrice": 9.99
-      },
-      "3 kg": {
-        "price": 27.99,
-        "discount": 5,
-        "finalPrice": 26.59
-      },
-      "5 kg": {
-        "price": 32.99,
-        "discount": 15,
-        "finalPrice": 28.04
-      }
-    }
+    "capacities": [
+      { "label": "1 kg", "price": 9.99, "discount": 0, "finalPrice": 9.99 },
+      { "label": "3 kg", "price": 27.99, "discount": 5, "finalPrice": 26.59 },
+      { "label": "5 kg", "price": 32.99, "discount": 15, "finalPrice": 28.04 }
+    ]
   },
   {
     "id": 12,
-
     "startingPrice": 6.75,
     "endPrice": 48,
     "quantity": 45,
@@ -318,27 +219,14 @@
       "/assets/product2.png",
       "/assets/product.png"
     ],
-    "capacities": {
-      "500 ml": {
-        "price": 6.75,
-        "discount": 0,
-        "finalPrice": 6.75
-      },
-      "1 l": {
-        "price": 11.99,
-        "discount": 10,
-        "finalPrice": 10.79
-      },
-      "5 l": {
-        "price": 48,
-        "discount": 18,
-        "finalPrice": 39.36
-      }
-    }
+    "capacities": [
+      { "label": "500 ml", "price": 6.75, "discount": 0, "finalPrice": 6.75 },
+      { "label": "1 l", "price": 11.99, "discount": 10, "finalPrice": 10.79 },
+      { "label": "5 l", "price": 48, "discount": 18, "finalPrice": 39.36 }
+    ]
   },
   {
     "id": 13,
-
     "startingPrice": 10.5,
     "endPrice": 42,
     "quantity": 30,
@@ -347,27 +235,14 @@
       "/assets/product2.png",
       "/assets/product.png"
     ],
-    "capacities": {
-      "400ml": {
-        "price": 10.5,
-        "discount": 0,
-        "finalPrice": 10.5
-      },
-      "750 ml": {
-        "price": 18,
-        "discount": 8,
-        "finalPrice": 16.56
-      },
-      "2.5 l": {
-        "price": 42,
-        "discount": 15,
-        "finalPrice": 35.7
-      }
-    }
+    "capacities": [
+      { "label": "400ml", "price": 10.5, "discount": 0, "finalPrice": 10.5 },
+      { "label": "750 ml", "price": 18, "discount": 8, "finalPrice": 16.56 },
+      { "label": "2.5 l", "price": 42, "discount": 15, "finalPrice": 35.7 }
+    ]
   },
   {
     "id": 14,
-
     "startingPrice": 13.25,
     "endPrice": 13.25,
     "quantity": 16,
@@ -376,17 +251,12 @@
       "/assets/product2.png",
       "/assets/product.png"
     ],
-    "capacities": {
-      "500 ml": {
-        "price": 13.25,
-        "discount": 0,
-        "finalPrice": 13.25
-      }
-    }
+    "capacities": [
+      { "label": "500 ml", "price": 13.25, "discount": 0, "finalPrice": 13.25 }
+    ]
   },
   {
     "id": 15,
-
     "startingPrice": 8.99,
     "endPrice": 24.99,
     "quantity": 25,
@@ -395,27 +265,14 @@
       "/assets/product2.png",
       "/assets/product.png"
     ],
-    "capacities": {
-      "300ml": {
-        "price": 8.99,
-        "discount": 0,
-        "finalPrice": 8.99
-      },
-      "500 ml": {
-        "price": 14.5,
-        "discount": 5,
-        "finalPrice": 13.78
-      },
-      "1 l": {
-        "price": 24.99,
-        "discount": 12,
-        "finalPrice": 21.99
-      }
-    }
+    "capacities": [
+      { "label": "300ml", "price": 8.99, "discount": 0, "finalPrice": 8.99 },
+      { "label": "500 ml", "price": 14.5, "discount": 5, "finalPrice": 13.78 },
+      { "label": "1 l", "price": 24.99, "discount": 12, "finalPrice": 21.99 }
+    ]
   },
   {
     "id": 16,
-
     "startingPrice": 4.99,
     "endPrice": 18.99,
     "quantity": 90,
@@ -424,27 +281,24 @@
       "/assets/product2.png",
       "/assets/product.png"
     ],
-    "capacities": {
-      "100 pack": {
-        "price": 4.99,
-        "discount": 0,
-        "finalPrice": 4.99
-      },
-      "250 pack": {
+    "capacities": [
+      { "label": "100 pack", "price": 4.99, "discount": 0, "finalPrice": 4.99 },
+      {
+        "label": "250 pack",
         "price": 11.5,
         "discount": 8,
         "finalPrice": 10.58
       },
-      "500 pack": {
+      {
+        "label": "500 pack",
         "price": 18.99,
         "discount": 15,
         "finalPrice": 16.14
       }
-    }
+    ]
   },
   {
     "id": 17,
-
     "startingPrice": 11.99,
     "endPrice": 11.99,
     "quantity": 22,
@@ -453,17 +307,12 @@
       "/assets/product2.png",
       "/assets/product.png"
     ],
-    "capacities": {
-      "500 ml": {
-        "price": 11.99,
-        "discount": 0,
-        "finalPrice": 11.99
-      }
-    }
+    "capacities": [
+      { "label": "500 ml", "price": 11.99, "discount": 0, "finalPrice": 11.99 }
+    ]
   },
   {
     "id": 18,
-
     "startingPrice": 9.99,
     "endPrice": 9.99,
     "quantity": 14,
@@ -472,12 +321,8 @@
       "/assets/product2.png",
       "/assets/product.png"
     ],
-    "capacities": {
-      "1 l": {
-        "price": 9.99,
-        "discount": 0,
-        "finalPrice": 9.99
-      }
-    }
+    "capacities": [
+      { "label": "1 l", "price": 9.99, "discount": 0, "finalPrice": 9.99 }
+    ]
   }
 ]

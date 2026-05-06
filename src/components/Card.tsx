@@ -6,12 +6,10 @@ import { useCartContext } from "../context/CartContext";
 import { useTranslation } from "react-i18next";
 
 const Card = ({ product }: { product: Product }) => {
- const { i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const languageGeorgian = i18n.language === "ka";
 
   const { addToCart } = useCartContext();
-
- 
 
   return (
     <>
@@ -24,7 +22,7 @@ const Card = ({ product }: { product: Product }) => {
             <button
               className="cursor-pointer size-[27.62px] center bg-blue-100 rounded-full p-2
                     "
-              onClick={() => addToCart(product) }
+              onClick={() => addToCart(product)}
             >
               <img
                 className="bg-none size-[14.83px]"
@@ -46,10 +44,10 @@ const Card = ({ product }: { product: Product }) => {
           {/* prices */}
           <div className="flex items-center  gap-2">
             <div className="bg-[#FDE800] text-xl text-gray-300 font-semibold px-2 rounded-sm">
-              {product.endPrice} ₾
+              {product.capacities[0].finalPrice} ₾
             </div>
             <div className="text-[#C3C3C3] text-xl line-through">
-              {product.startingPrice}
+              {product.capacities[0].price} ₾
             </div>
           </div>
 
@@ -59,15 +57,14 @@ const Card = ({ product }: { product: Product }) => {
               name="amounth"
               id="amounth"
             >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
+              {Array.from(
+                { length: product.capacities[0].quantity },
+                (_, i) => (
+                  <option key={i + 1} value={i + 1}>
+                    {i + 1}
+                  </option>
+                ),
+              )}
             </select>
             {/* Need to add product id to the link */}
             <Link

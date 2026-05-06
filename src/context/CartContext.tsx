@@ -5,22 +5,30 @@ interface CartContextType {
   cartItems: Product[];
   addToCart: (item: Product) => void;
   removeFromCart: (item: Product) => void;
+  totalPrice: number;
+  totalDiscount: number;
+  totalPriceToPay: number;
 }
 
 const cartContext = createContext<CartContextType | null>(null);
 
 const CartContextProdiver = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<Product[]>([]);
+  
 
+  const totalPrice = cartItems.reduce((total, item) => {
+    const selectedCapacity = item.capacities[item.selectedCapacityIndex ?? 0];
+    return total + selectedCapacity.discount;
+  }, 0);
+  const totalPriceToPay = 
+  cartItems.reduce((total, item) => {
+    const selectedCapacity = item.capacities[item.selectedCapacityIndex ?? 0];
+    return total + selectedCapacity.finalPrice;
+  }, 0);
+  const totalDiscount = totalPrice - totalPriceToPay; 
+
+  //need to add check for same products 
   function addToCart(item: Product) {
-    const existingItem = cartItems.find((i) => i.id === item.id);
-    if (existingItem) {
-      return setCartItems((prevItems) =>
-        prevItems.map((i) =>
-          i.id === item.id ? { ...i, quantity: (i.quantity || 1) + 1 } : i
-        )
-      );
-    }
     setCartItems((prevItems) => [...prevItems, item]);
   }
 
@@ -29,7 +37,7 @@ const CartContextProdiver = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <cartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <cartContext.Provider value={{ cartItems, addToCart, removeFromCart,totalPrice,totalDiscount,totalPriceToPay }}>
       {children}
     </cartContext.Provider>
   );

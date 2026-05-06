@@ -1,20 +1,18 @@
 export interface Capacity {
   label: string;
   price: number;
+  quantity:number,
   discount: number;
   finalPrice: number;
 }
-
 export interface Product {
   id: number;
   name?: string;
   category?: string;
   purpose?: string;
-  startingPrice?: number;
-  endPrice: number;
-  quantity: number;
   image: string[];
-  capacities?: Capacity[];
+  capacities: Capacity[];
+  selectedCapacityIndex?: number;
   description?: string;
   instructionsForUse?: string[];
   doNotUse?: string[];

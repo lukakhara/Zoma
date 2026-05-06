@@ -56,6 +56,11 @@ body{
   }
 }
 
+.parent * {
+  color: blue;
+  border: 1px solid red;
+}
+
 /* Hide the real checkbox */
 .terms-toggle input[type="checkbox"] {
   position: absolute;

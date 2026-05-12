@@ -1,11 +1,11 @@
 import playIcon from "/assets/play.png";
 import cartIcon from "/assets/cart.png";
-import { type Product } from "../types";
+import { type CartItems, type Product } from "../types";
 import { Link } from "react-router";
 import { useCartContext } from "../context/CartContext";
 import { useTranslation } from "react-i18next";
 
-const Card = ({ product }: { product: Product }) => {
+const Card = ({ cartItem }: { cartItem: CartItems }) => {
   const { i18n } = useTranslation();
   const languageGeorgian = i18n.language === "ka";
 
@@ -22,7 +22,7 @@ const Card = ({ product }: { product: Product }) => {
             <button
               className="cursor-pointer size-[27.62px] center bg-blue-100 rounded-full p-2
                     "
-              onClick={() => addToCart(product)}
+              onClick={() => addToCart(cartItem) }
             >
               <img
                 className="bg-none size-[14.83px]"
@@ -32,23 +32,23 @@ const Card = ({ product }: { product: Product }) => {
             </button>
           </div>
 
-          <img src={product.image[0]} alt="Product image" className="" />
+          <img src={cartItem.image[0]} alt="Product image" className="" />
         </div>
 
         <div className="flex  flex-col justify-between flex-1  ">
           {/* name and category */}
           <div className="bg-blue text-[#DDDDDD] text-[10px]">
-            {product.category}
+            {cartItem.category}
           </div>
-          <div className="text-[#1A1A1A] text-sm">{product.name}</div>
+          <div className="text-[#1A1A1A] text-sm">{cartItem.name}</div>
           {/* prices */}
           <div className="flex items-center  gap-2">
-            <div className="bg-[#FDE800] text-xl text-gray-300 font-semibold px-2 rounded-sm">
-              {product.capacities[0].finalPrice} ₾
-            </div>
-            <div className="text-[#C3C3C3] text-xl line-through">
-              {product.capacities[0].price} ₾
-            </div>
+            <p className="bg-[#FDE800] text-xl text-gray-300 font-semibold px-2 rounded-sm">
+              {cartItem.capacities[cartItem.selectedCapacityIndex].finalPrice} ₾
+            </p>
+            <p className="text-[#C3C3C3] text-xl line-through">
+              {cartItem.capacities[cartItem.selectedCapacityIndex].price} ₾
+            </p>
           </div>
 
           <div className="flex items-center gap-2  ">
@@ -56,9 +56,10 @@ const Card = ({ product }: { product: Product }) => {
               className="bg-[#F2F2F2] py-2 px-3  center  rounded-3xl text-blue-50 text-xl"
               name="amounth"
               id="amounth"
+              
             >
               {Array.from(
-                { length: product.capacities[0].quantity },
+                { length: cartItem.capacities[cartItem.selectedCapacityIndex].quantity },
                 (_, i) => (
                   <option key={i + 1} value={i + 1}>
                     {i + 1}
@@ -69,7 +70,7 @@ const Card = ({ product }: { product: Product }) => {
             {/* Need to add product id to the link */}
             <Link
               className="cursor-pointer bg-blue-50 text-white flex-1 text-center py-2 rounded-3xl"
-              to={`${/product/}${product.id}`}
+              to={`${/product/}${cartItem.id}`}
             >
               {languageGeorgian ? "Buy Now" : "ყიდვა"}
             </Link>

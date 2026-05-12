@@ -1,10 +1,11 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
-import { type Product } from "../types";
+import { type CartItems } from "../types";
 
 interface CartContextType {
-  cartItems: Product[];
-  addToCart: (item: Product) => void;
-  removeFromCart: (item: Product) => void;
+  cartItems: CartItems[];
+  addToCart: (item: CartItems) => void;
+  removeFromCart: (item: CartItems) => void;
+  updateQuantity:(itemId:number,quantity:number) => void;
   totalPrice: number;
   totalDiscount: number;
   totalPriceToPay: number;
@@ -13,31 +14,47 @@ interface CartContextType {
 const cartContext = createContext<CartContextType | null>(null);
 
 const CartContextProdiver = ({ children }: { children: ReactNode }) => {
-  const [cartItems, setCartItems] = useState<Product[]>([]);
-  
+  const [cartItems, setCartItems] = useState<CartItems[]>([]);
 
   const totalPrice = cartItems.reduce((total, item) => {
-    const selectedCapacity = item.capacities[item.selectedCapacityIndex ?? 0];
-    return total + selectedCapacity.discount;
+    const selectedCapacity = item.capacities[item.selectedCapacityIndex];
+    return total + selectedCapacity.price * item.quantity;
   }, 0);
-  const totalPriceToPay = 
-  cartItems.reduce((total, item) => {
-    const selectedCapacity = item.capacities[item.selectedCapacityIndex ?? 0];
-    return total + selectedCapacity.finalPrice;
-  }, 0);
-  const totalDiscount = totalPrice - totalPriceToPay; 
 
-  //need to add check for same products 
-  function addToCart(item: Product) {
+  const totalPriceToPay = cartItems.reduce((total, item) => {
+    const selectedCapacity = item.capacities[item.selectedCapacityIndex];
+    return total + selectedCapacity.finalPrice * item.quantity;
+  }, 0);
+
+  const totalDiscount = totalPrice - totalPriceToPay;
+
+  //need to add checking for same products
+  function addToCart(item: CartItems) {
     setCartItems((prevItems) => [...prevItems, item]);
   }
 
-  const removeFromCart = (item: Product) => {
+  function removeFromCart(item: CartItems) {
     setCartItems((prevItems) => prevItems.filter((i) => i.id !== item.id));
   };
 
+  function updateQuantity(itemId:number,quantity:number){
+    setCartItems(prev => 
+      prev.map(item => item.id === itemId ? {...item, quantity}: item) )
+  }
+
+
   return (
-    <cartContext.Provider value={{ cartItems, addToCart, removeFromCart,totalPrice,totalDiscount,totalPriceToPay }}>
+    <cartContext.Provider
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        totalPrice,
+        totalDiscount,
+        totalPriceToPay,
+      }}
+    >
       {children}
     </cartContext.Provider>
   );

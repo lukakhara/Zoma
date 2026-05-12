@@ -1,6 +1,6 @@
 import Card from "./Card";
 import productsData from "../locales/products.json";
-import { type Product } from "../types";
+import { type CartItems} from "../types";
 import { useTranslation } from "react-i18next";
 
 const Body = ({ filter }: { filter: string }) => {
@@ -10,12 +10,11 @@ const Body = ({ filter }: { filter: string }) => {
     { name: string ,category: string }
   >;
 
-  //  SELECTED CAPACITY THAT NEED TO BECOME STATE VALUE THAT MUST BE CHANGED IN OTHER COMPONENT PRODUCT DETAILS!
-  const selectedCapacity = 0;
 
-  const products = (productsData as Product[]).map((product) => ({
+  const products = (productsData as CartItems[]).map((product) => ({
     ...product,
-    selectedCapacityIndex: selectedCapacity,
+    quantity: 1,
+    selectedCapacityIndex: 0,
     name: productsName[product.id]?.name ?? product.name,
     category: productsName[product.id]?.category ?? product.category,
   }));
@@ -26,12 +25,12 @@ const Body = ({ filter }: { filter: string }) => {
       ? products
       : products.filter((product) => product.category === filter);
 
-  
+    console.log('filteredProducts:', filteredProducts[0]);  
 
   return (
     <div className="grid  w-full grid-cols-2 gap-6 px-2.5 md:pb-22 m-auto md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  ">
-      {filteredProducts.map((product) => (
-        <Card key={product.id} product={product} />
+      {filteredProducts.map((cartItem) => (
+        <Card key={cartItem.id} cartItem={cartItem} />
       ))}
     </div>
   );

@@ -7,18 +7,24 @@ import applePay from "/assets/Payment/apple-pay.png";
 import googlePay from "/assets/Payment/google-pay.png";
 import { useCartContext } from "../context/CartContext";
 
-
 const Checkout = () => {
-  const [selectedPaymentMethod, setSelectedPaymentMethod] =
-    useState<boolean>(false);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<boolean>(false);
 
-  const { cartItems,totalDiscount,totalPrice,totalPriceToPay, removeFromCart } = useCartContext();
 
-  console.log('total price',totalPrice);
-  console.log('total discount',totalDiscount);
-  console.log('total price to pay',totalPriceToPay);
+  const {
+    cartItems,
+    totalDiscount,
+    totalPrice,
+    totalPriceToPay,
+    removeFromCart,
+    updateQuantity
+  } = useCartContext();
 
-  console.log('cart items',cartItems);
+  console.log("total price", totalPrice);
+  console.log("total discount", totalDiscount);
+  console.log("total price to pay", totalPriceToPay);
+
+  console.log("cart items", cartItems);
 
   // const [cart, setCart] = useState<Product[]>([
   //   {
@@ -40,6 +46,8 @@ const Checkout = () => {
   //     finalPrice: 9.78,
   //   },
   // ]);
+
+  console.log('cartItems:', cartItems);
 
   return (
     <div className="min-h-screen  py-4 md:py-8">
@@ -63,7 +71,8 @@ const Checkout = () => {
 
                 <div className="flex flex-col gap-2  flex-1">
                   <p className="text-sm font-semibold text-[#2f4a9c]">
-                    {item.name} {item.capacities && `(${item.capacities[0].label})`}
+                    {item.name}{" "}
+                    {item.capacities && `(${item.capacities[0].label})`}
                   </p>
                   <div className="flex items-center gap-2">
                     <button className="border border-gray-300 rounded-lg px-3 py-1 text-sm flex items-center gap-1">
@@ -82,35 +91,26 @@ const Checkout = () => {
                   </div>
                 </div>
                 <div className="flex flex-col items-end gap-1 flex-1">
-                  <div className="flex items-center gap-1">
-                    <div>
-                      {item.capacities &&
-                          <div key={item.capacities[0].label}>
-                            <div className="flex items-center gap-1">
-                              <span className="text-gray-400 line-through text-xs">
-                                {item.capacities[0]?.finalPrice}₾
-                              </span>
-                              <span className="bg-orange-500 text-white text-xs font-semibold px-1.5 py-0.5 rounded">
-                                -{item.capacities[0]?.discount}₾
-                              </span>
-                            </div>
-                            <span className="bg-[#FDE800] text-gray-900 font-bold text-sm px-2 py-0.5 rounded-lg">
-                              {item.capacities[0]?.finalPrice}₾
-                            </span>
-                          </div>
-                        }
+                  {item.capacities && (
+                    <div
+                      key={item.capacities[item.selectedCapacityIndex].label}
+                      className="flex gap-[3px.84px] flex-col "
+                    >
+                      <div className="flex items-center gap-[2.5px]">
+                        <span className="unactiveStartingPrice rounded-[2.11px] px-[3.87px] py-[0.7px]">
+                          {item.capacities[item.selectedCapacityIndex].price}₾
+                        </span>
+                        <div className="bg-red-100 ">
+                          <span className="redDiscount ">
+                            -{item.capacities[item.selectedCapacityIndex].discount} ₾
+                          </span>
+                        </div>
+                      </div>
+                      <span className="goldPrice ">
+                        {item.capacities[item.selectedCapacityIndex].finalPrice}₾
+                      </span>
                     </div>
-
-                    <span className="text-gray-400 line-through text-xs">
-                      {/* {item.finalPrice}₾ */}
-                    </span>
-                    <span className="bg-orange-500 text-white text-xs font-semibold px-1.5 py-0.5 rounded">
-                      {/* -{item.discount}₾ */}
-                    </span>
-                  </div>
-                  <span className="bg-[#FDE800] text-gray-900 font-bold text-sm px-2 py-0.5 rounded-lg">
-                    {/* {item.capacities}₾ */}
-                  </span>
+                  )}
                 </div>
               </li>
             ))}
@@ -248,7 +248,7 @@ const Checkout = () => {
                   Total price to pay
                 </span>
                 <span className="text-xl font-bold text-[#2f4a9c]">
-                 {totalPriceToPay.toFixed(2)} ₾
+                  {totalPriceToPay.toFixed(2)} ₾
                 </span>
               </div>
             </div>
@@ -284,15 +284,30 @@ const Checkout = () => {
                   <div className="flex justify-between gap-4    items-start border-green-300!">
                     <p className="flex-1 text-sm font-helvetocaRegular text-blue-50 text-center flex-wrap">
                       {item.name}
-                      {item.capacities && `(${item.capacities[0].label})`}
+                      {item.capacities && `(${item.capacities[item.selectedCapacityIndex].label})`}
                     </p>
                     <div className="flex items-center gap-2">
-                      <button className="border border-gray-300 rounded-lg px-3 py-1 text-sm flex items-center gap-1">
-                        {item.quantity} <span className="text-gray-400">▾</span>
-                      </button>
+                      <select
+                        className="bg-[#F2F2F2] py-2 px-3  center  rounded-3xl text-blue-50 text-xl"
+                        name="amount"
+                        id="amount"
+                        value={item.quantity}
+                        onChange={(e) =>
+                         updateQuantity(item.id,Number(e.target.value))
+                        }
+                      >
+                        {Array.from(
+                          { length: item.capacities[item.selectedCapacityIndex].quantity },
+                          (_, i) => (
+                            <option key={i + 1} value={i + 1}>
+                              {i + 1}
+                            </option>
+                          ),
+                        )}
+                      </select>
                       <button
-                        className="w-8 h-8 flex items-center justify-center  bg-red-100 cursor-pointer
-                hover:opacity-90 rounded-full"
+                        className="w-8 h-8 flex items-center justify-center  bg-[#902E2E3B] cursor-pointer
+                hover:opacity-90 rounded-[131.45px] "
                         onClick={() => removeFromCart(item)}
                       >
                         <img
@@ -308,17 +323,29 @@ const Checkout = () => {
                 <div className="flex flex-col items-end gap-1 min-w-[90px]">
                   <div className="flex items-center gap-1">
                     {item.capacities && (
-                      <div key={item.capacities[0].label}>
+                      <div key={item.capacities[item.selectedCapacityIndex].label}>
                         <div className="flex items-center gap-1">
-                          <span className="text-gray-400 line-through text-xs">
-                            {item.capacities[0]?.finalPrice}₾
+                          <span className="unactiveStartingPrice ">
+                            {(
+                              item.capacities[item.selectedCapacityIndex]?.price * item.quantity
+                            ).toFixed(2)}
+                            ₾
                           </span>
-                          <span className="bg-orange-500 text-white text-xs font-semibold px-1.5 py-0.5 rounded">
-                            -{item.capacities[0]?.discount}₾
-                          </span>
+                          <div className="bg-red-100 rounded-[2.11px] px-[3.87px] py-[0.7px]">
+                            <span className="redDiscount ">
+                              {(
+                                (item.capacities[item.selectedCapacityIndex].price -
+                                  item.capacities[item.selectedCapacityIndex].finalPrice) *
+                                item.quantity
+                              ).toFixed(2)}
+                            </span>
+                          </div>
                         </div>
-                        <span className="bg-[#FDE800] text-gray-900 font-bold text-sm px-2 py-0.5 rounded-lg">
-                          {item.capacities[0]?.finalPrice}₾
+                        <span className="goldPrice">
+                          {(
+                            item.capacities[item.selectedCapacityIndex]?.finalPrice * item.quantity
+                          ).toFixed(2)}
+                          ₾
                         </span>
                       </div>
                     )}
@@ -333,12 +360,11 @@ const Checkout = () => {
         <div className="w-72 flex flex-col gap-4">
           {selectedPaymentMethod ? (
             <>
-              <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-2">
+              <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-2 test">
                 <h2 className="text-lg font-bold text-[#2f4a9c]">Summary:</h2>
                 {[
                   ["Total price:", `${totalPrice.toFixed(2)} ₾`],
                   ["Total discount:", `${totalDiscount.toFixed(2)} ₾`],
-           
                 ].map(([l, v]) => (
                   <div
                     key={l}

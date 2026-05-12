@@ -12,11 +12,15 @@ export interface Product {
   purpose?: string;
   image: string[];
   capacities: Capacity[];
-  selectedCapacityIndex?: number;
   description?: string;
   instructionsForUse?: string[];
   doNotUse?: string[];
   store?: string;
+}
+
+export interface CartItems extends Product{
+  quantity:number;
+  selectedCapacityIndex:number;
 }
 
 export interface CardProps {

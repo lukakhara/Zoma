@@ -22,6 +22,7 @@
   --color-gray-50: #d2d2d2;
   --color-blue-100: #2e47903b;
   --color-orange-100: #ff6565;
+  --color-red-100:#FF4C4C;
   --color-gray-100: #686868;
   --color-gray-300:#474747;
   --color-yellow-100:#FDE800;
@@ -52,9 +53,21 @@ body{
     bg-white cursor-pointer hover:opacity-90;
   }
   .center{
-    @apply flex justify-center items-center
+    @apply flex justify-center items-center;
   }
+  .goldPrice{
+  @apply bg-yellow-100 text-[19.56px] text-gray-300 font-helvetocaMedium
+  px-[8px] py-[6.71px] rounded-[1.87px];
+  }
+  .redDiscount{
+    @apply  text-[#FFFFFF] line-through text-sm font-helvetocaMedium size-[9.85px] leading-[11.72px] ;
+  }
+  .unactiveStartingPrice{
+    @apply text-[#C3C3C3] line-through text-[11.25px] font-helvetocaMedium ;
+  }
+
 }
+
 
 .parent * {
   color: blue;
@@ -120,3 +133,4 @@ body{
   cursor: pointer;
   user-select: none;
 }
+

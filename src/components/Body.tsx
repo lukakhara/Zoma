@@ -1,6 +1,6 @@
 import Card from "./Card";
 import productsData from "../locales/products.json";
-import { type CartItems} from "../types";
+import { type CartItem} from "../types";
 import { useTranslation } from "react-i18next";
 
 const Body = ({ filter }: { filter: string }) => {
@@ -11,7 +11,7 @@ const Body = ({ filter }: { filter: string }) => {
   >;
 
 
-  const products = (productsData as CartItems[]).map((product) => ({
+  const products = (productsData as CartItem[]).map((product) => ({
     ...product,
     quantity: 1,
     selectedCapacityIndex: 0,

@@ -18,7 +18,7 @@ export interface Product {
   store?: string;
 }
 
-export interface CartItems extends Product{
+export interface CartItem extends Product{
   quantity:number;
   selectedCapacityIndex:number;
 }

@@ -1,11 +1,11 @@
 import playIcon from "/assets/play.png";
 import cartIcon from "/assets/cart.png";
-import { type CartItems, type Product } from "../types";
+import { type CartItem } from "../types";
 import { Link } from "react-router";
 import { useCartContext } from "../context/CartContext";
 import { useTranslation } from "react-i18next";
 
-const Card = ({ cartItem }: { cartItem: CartItems }) => {
+const Card = ({ cartItem }: { cartItem: CartItem }) => {
   const { i18n } = useTranslation();
   const languageGeorgian = i18n.language === "ka";
 

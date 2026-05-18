@@ -4,12 +4,15 @@ import { type CartItem } from "../types";
 import { Link } from "react-router";
 import { useCartContext } from "../context/CartContext";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 const Card = ({ cartItem }: { cartItem: CartItem }) => {
   const { i18n } = useTranslation();
   const languageGeorgian = i18n.language === "ka";
 
   const { addToCart } = useCartContext();
+  
+  const [quantity,setQuantity] = useState(1);
 
   return (
     <>
@@ -22,7 +25,7 @@ const Card = ({ cartItem }: { cartItem: CartItem }) => {
             <button
               className="cursor-pointer size-[27.62px] center bg-blue-100 rounded-full p-2
                     "
-              onClick={() => addToCart(cartItem) }
+              onClick={() => addToCart(cartItem,quantity) }
             >
               <img
                 className="bg-none size-[14.83px]"
@@ -53,10 +56,13 @@ const Card = ({ cartItem }: { cartItem: CartItem }) => {
 
           <div className="flex items-center gap-2  ">
             <select
-              className="bg-[#F2F2F2] py-2 px-3  center  rounded-3xl text-blue-50 text-xl"
+              className="bg-[#F2F2F2] py-2 px-3  center  rounded-3xl text-blue-50 text-xl test"
               name="amounth"
               id="amounth"
-              
+              value={quantity}
+               onChange={(e) =>
+                         setQuantity(Number(e.target.value))
+                        }
             >
               {Array.from(
                 { length: cartItem.capacities[cartItem.selectedCapacityIndex].quantity },

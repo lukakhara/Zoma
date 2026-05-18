@@ -20,11 +20,6 @@ const Checkout = () => {
     updateQuantity
   } = useCartContext();
 
-  console.log("total price", totalPrice);
-  console.log("total discount", totalDiscount);
-  console.log("total price to pay", totalPriceToPay);
-
-  console.log("cart items", cartItems);
 
   // const [cart, setCart] = useState<Product[]>([
   //   {
@@ -47,7 +42,7 @@ const Checkout = () => {
   //   },
   // ]);
 
-  console.log('cartItems:', cartItems);
+
 
   return (
     <div className="min-h-screen  py-4 md:py-8">
@@ -291,9 +286,9 @@ const Checkout = () => {
                         className="bg-[#F2F2F2] py-2 px-3  center  rounded-3xl text-blue-50 text-xl"
                         name="amount"
                         id="amount"
-                        value={item.quantity}
+                        value={item.amount}
                         onChange={(e) =>
-                         updateQuantity(item.id,Number(e.target.value))
+                         updateQuantity(item.id,Number(e.target.value),item.selectedCapacityIndex)
                         }
                       >
                         {Array.from(
@@ -327,7 +322,7 @@ const Checkout = () => {
                         <div className="flex items-center gap-1">
                           <span className="unactiveStartingPrice ">
                             {(
-                              item.capacities[item.selectedCapacityIndex]?.price * item.quantity
+                              item.capacities[item.selectedCapacityIndex]?.price * item.amount
                             ).toFixed(2)}
                             ₾
                           </span>
@@ -336,14 +331,14 @@ const Checkout = () => {
                               {(
                                 (item.capacities[item.selectedCapacityIndex].price -
                                   item.capacities[item.selectedCapacityIndex].finalPrice) *
-                                item.quantity
+                                item.amount
                               ).toFixed(2)}
                             </span>
                           </div>
                         </div>
                         <span className="goldPrice">
                           {(
-                            item.capacities[item.selectedCapacityIndex]?.finalPrice * item.quantity
+                            item.capacities[item.selectedCapacityIndex]?.finalPrice * item.amount
                           ).toFixed(2)}
                           ₾
                         </span>

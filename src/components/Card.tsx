@@ -56,7 +56,7 @@ const Card = ({ cartItem }: { cartItem: CartItem }) => {
 
           <div className="flex items-center gap-2  ">
             <select
-              className="bg-[#F2F2F2] py-2 px-3  center  rounded-3xl text-blue-50 text-xl test"
+              className="bg-[#F2F2F2] py-2 px-3  center  rounded-3xl text-blue-50 text-xl "
               name="amounth"
               id="amounth"
               value={quantity}

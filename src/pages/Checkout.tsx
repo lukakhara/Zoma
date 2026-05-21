@@ -401,7 +401,7 @@ const Checkout = () => {
 
         {/* Right: summary + payment or delivery */}
         <div className="w-72 flex flex-col gap-4">
-          <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-2 test">
+          <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-2 ">
             <h2 className="text-lg font-bold text-[#2f4a9c]">Summary:</h2>
             {/* {[
                   ["Total price:", `${totalPrice.toFixed(2)} ₾`],

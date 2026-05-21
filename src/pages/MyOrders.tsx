@@ -1,4 +1,13 @@
+import { useState } from "react";
+import { useCartContext } from "../context/CartContext";
+import type { CartItem } from "../types";
+
 export default function MyOrders() {
+  const {cartItems} = useCartContext();
+  const [orderedItems,setOrderedItems] = useState<CartItem | null>();
+  
+  console.log(cartItems)
+
   return (
     <div className="min-h-screen  py-4 md:py-8 ">
       <div className="bg-white rounded-2xl shadow-sm overflow-hidden ">

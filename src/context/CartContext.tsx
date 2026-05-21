@@ -110,7 +110,7 @@ const CartContextProdiver = ({ children }: { children: ReactNode }) => {
   function addToCart(item: CartItem, addingItemsSum: number) {
     const quantity = item.capacities[item.selectedCapacityIndex].quantity;
     const existing = cartItems.find((i) => i.id === item.id && i.selectedCapacityIndex === item.selectedCapacityIndex);
-    console.log(existing);
+ 
 
     if (existing) {
       const newAmount = Math.min(existing.amount + addingItemsSum, quantity);
@@ -142,7 +142,7 @@ const CartContextProdiver = ({ children }: { children: ReactNode }) => {
     );
   }
 
-  console.log('------------------------------------------------',cartItems);
+
 
   return (
     <cartContext.Provider

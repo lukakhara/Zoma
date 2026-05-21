@@ -5,7 +5,6 @@ import cart from "/assets/cart.png";
 import { useTranslation } from "react-i18next";
 import { type CartItem } from "../types";
 import productsData from "../locales/products.json";
-import i18next from "i18next";
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { useCartContext } from "../context/CartContext";
@@ -53,11 +52,6 @@ const ProductPage = () => {
     setProduct((prev) => ({ ...prev, amount }));
   }
 
-  console.log(
-    "selectedCapacityIndex",
-    product.capacities[product.selectedCapacityIndex],
-  );
-  console.log("amount", product.amount);
 
   useEffect(() => {
     setProduct(mergeProduct);

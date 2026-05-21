@@ -5,9 +5,10 @@ import tbc from "/assets/Payment/tbc.png";
 import bog from "/assets/Payment/image-6.png";
 import applePay from "/assets/Payment/apple-pay.png";
 import googlePay from "/assets/Payment/google-pay.png";
+import warningIcon from "/assets/warning.png";
 import { useCartContext } from "../context/CartContext";
 import TransactionResult from "./TransactionResult";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
@@ -26,7 +27,27 @@ const Checkout = () => {
   const [agreedToTerms, setAgreedToTerms] = useState<boolean>(false);
   const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
   const [transactionStatus, setTransactionStatus] = useState<string | null>(null);
-  console.log(transactionStatus);
+  const [errors,setErrors] = useState({terms:'',payment:''});
+
+ const handleCheckout = () => {
+  const newErrors = { terms: "", payment: "" };
+
+  if (!agreedToTerms) {
+    newErrors.terms = "You must agree to terms & conditions";
+  }
+  if (!paymentMethod) {
+    newErrors.payment = "Please select a payment method";
+  }
+
+  setErrors(newErrors);
+
+  // only proceed if no errors
+  if (!newErrors.terms && !newErrors.payment) {
+    navigate("/transaction-result", { state: { success: true } });
+  }
+};
+
+
 
   // const [cart, setCart] = useState<Product[]>([
   //   {
@@ -49,10 +70,6 @@ const Checkout = () => {
   //   },
   // ]);
 
-  console.log("agreedToTerms", agreedToTerms);
-  console.log("paymentMethod", paymentMethod);
-
-  
   return (
     <div className="min-h-screen  py-4 md:py-8">
       <h1 className="text-2xl font-bold text-gray-900 mb-4">Checkout</h1>
@@ -446,7 +463,9 @@ const Checkout = () => {
                     name="payment_method"
                     className="accent-[#2f4a9c]"
                     value="tbc"
-                    onChange={(e) => setPaymentMethod(e.target.value)}
+                    onChange={(e) => {setPaymentMethod(e.target.value);
+                       setErrors((prev) => ({ ...prev, payment: "" }));
+                    }}
                   />
                   <img className="size-8.5" src={tbc} alt="TBC Bank" />
                   <span className="text-[16px]  text-[#797979]">TBC Bank</span>
@@ -457,7 +476,9 @@ const Checkout = () => {
                     name="payment_method"
                     className="accent-[#2f4a9c]"
                     value="bog"
-                    onChange={(e) => setPaymentMethod(e.target.value)}
+                    onChange={(e) => {setPaymentMethod(e.target.value);
+                      setErrors((prev) => ({ ...prev, payment: "" }));
+                    }}
                   />
                   <img className="" src={bog} alt="Bank of Georgia" />
                   <span className="text-[16px]  text-[#797979]">
@@ -470,7 +491,9 @@ const Checkout = () => {
                     name="payment_method"
                     className="accent-[#2f4a9c]"
                     value="apple_pay"
-                    onChange={(e) => setPaymentMethod(e.target.value)}
+                    onChange={(e) => {setPaymentMethod(e.target.value)
+                       setErrors((prev) => ({ ...prev, payment: "" }));
+                    }}
                   />
 
                   <img
@@ -485,13 +508,32 @@ const Checkout = () => {
                     name="payment_method"
                     className="accent-[#2f4a9c]"
                     value="google_pay"
-                    onChange={(e) => setPaymentMethod(e.target.value)}
+                    onChange={(e) => {setPaymentMethod(e.target.value)
+                     setErrors((prev) => ({ ...prev, payment: "" }));}
+                    }
                   />
                   <div className="w-[62px] h-[34px] border center border-gray-300 rounded-md center">
                     <img src={googlePay} alt="Google Pay" />
                   </div>
                 </label>
+                {errors.payment && (
+                  <div className="flex  items-center">
+                    <img src={warningIcon} alt="" />
+                    <p className="text-red-500 text-sm mt-1">
+                     {errors.payment}
+                    </p>
+                  </div>
+                )}
               </div>
+
+              {errors.terms && (
+                <div className="flex  items-center">
+                  <img src={warningIcon} alt="" />
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.terms}
+                  </p>
+                </div>
+              )}
 
               <label className="terms-toggle ">
                 <input
@@ -499,22 +541,29 @@ const Checkout = () => {
                   id="terms"
                   className=""
                   checked={agreedToTerms}
-                  onChange={(e) => setAgreedToTerms(e.target.checked)}
+                  onChange={(e) => {setAgreedToTerms(e.target.checked)
+                     setErrors((prev) => ({ ...prev, terms: "" }));
+                  }}
+                  
                 />
                 <span className="radio-visual bg-[#FFFFFF]! "></span>
+
                 <p>I agreee to terms &amp; conditions</p>
               </label>
               <button
                 className="w-full py-3 rounded-2xl bg-[#FDE800] text-blue-50 font-helvetocaMedium text-[16px] cursor-pointer hover:opacity-90 transition-opacity"
-                onClick={() => {
-                  if (agreedToTerms && paymentMethod) {
-                    setTransactionStatus("success");
-                    navigate("/transaction-result", { state: { success: true } });
-                  } else {
-                    setTransactionStatus("failed");
-                    navigate("/transaction-result", { state: { success: false } });
-                  }
-                }}
+                onClick={() => handleCheckout()
+                  // if (agreedToTerms && paymentMethod) {
+                  //   setTransactionStatus("success");
+                  //   navigate("/transaction-result", {
+                  //     state: { success: true },
+                  //   });
+                  // }
+                  // else {
+                  //   setTransactionStatus("failed");
+                  //   navigate("/transaction-result", { state: { success: false } });
+                  // }
+                }
               >
                 Check Out
               </button>

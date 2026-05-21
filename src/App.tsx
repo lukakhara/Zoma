@@ -19,6 +19,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import UserProfile from "./pages/UserProfile";
 import { AuthProvider } from "./context/AuthProvider";
 import CartContextProdiver from "./context/CartContext";
+import TransactionResult from "./pages/TransactionResult";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
               <Route path="/product/:id" element={<ProductPage />} />
               <Route path="contact" element={<Contact />} />
               <Route path="news" element={<News />} />
+               <Route path="checkout" element={<Checkout />} />
 
               {/* pages that accessible when NOT logged in */}
               <Route path="sign-in" element={<SignIn />} />
@@ -40,7 +42,7 @@ function App() {
 
               {/* Protected routes routes that are avalibe when user is logged in */}
               <Route element={<ProtectedRoute />}>
-                <Route path="checkout" element={<Checkout />} />
+                <Route path="transaction-result" element={<TransactionResult />} />
 
                 <Route path="user" element={<Profile />}>
                   <Route index element={<Navigate to="profile" replace />} />

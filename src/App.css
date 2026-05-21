@@ -52,7 +52,7 @@ body{
     @apply rounded-full size-9 grid place-items-center 
     bg-white cursor-pointer hover:opacity-90;
   }
-  .center{
+  .centeredFlex{
     @apply flex justify-center items-center;
   }
   .goldPrice{
@@ -60,12 +60,14 @@ body{
   px-[8px] py-[6.71px] rounded-[1.87px];
   }
   .redDiscount{
-    @apply  text-[#FFFFFF] line-through text-sm font-helvetocaMedium size-[9.85px] leading-[11.72px] ;
+    @apply  text-white line-through text-sm font-helvetocaMedium size-[9.85px] leading-[11.72px] ;
   }
   .unactiveStartingPrice{
     @apply text-[#C3C3C3] line-through text-[11.25px] font-helvetocaMedium ;
   }
-
+  .blueButton{
+    @apply bg-blue-50 text-white font-helvetocaMedium text-[18px] 
+  }
 }
 
 

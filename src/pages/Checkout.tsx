@@ -6,6 +6,8 @@ import bog from "/assets/Payment/image-6.png";
 import applePay from "/assets/Payment/apple-pay.png";
 import googlePay from "/assets/Payment/google-pay.png";
 import { useCartContext } from "../context/CartContext";
+import TransactionResult from "./TransactionResult";
+import {useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
@@ -19,6 +21,12 @@ const Checkout = () => {
     removeFromCart,
     updateQuantity,
   } = useCartContext();
+
+  const navigate = useNavigate();
+  const [agreedToTerms, setAgreedToTerms] = useState<boolean>(false);
+  const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
+  const [transactionStatus, setTransactionStatus] = useState<string | null>(null);
+  console.log(transactionStatus);
 
   // const [cart, setCart] = useState<Product[]>([
   //   {
@@ -41,6 +49,10 @@ const Checkout = () => {
   //   },
   // ]);
 
+  console.log("agreedToTerms", agreedToTerms);
+  console.log("paymentMethod", paymentMethod);
+
+  
   return (
     <div className="min-h-screen  py-4 md:py-8">
       <h1 className="text-2xl font-bold text-gray-900 mb-4">Checkout</h1>
@@ -389,11 +401,9 @@ const Checkout = () => {
 
         {/* Right: summary + payment or delivery */}
         <div className="w-72 flex flex-col gap-4">
-          {selectedPaymentMethod ? (
-            <>
-              <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-2 test">
-                <h2 className="text-lg font-bold text-[#2f4a9c]">Summary:</h2>
-                {/* {[
+          <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-2 test">
+            <h2 className="text-lg font-bold text-[#2f4a9c]">Summary:</h2>
+            {/* {[
                   ["Total price:", `${totalPrice.toFixed(2)} ₾`],
                   ["Total discount:", `${totalDiscount.toFixed(2)} ₾`],
                 ].map(([l, v]) => (
@@ -405,26 +415,25 @@ const Checkout = () => {
                     <span>{v}</span>
                   </div>
                 ))} */}
-                {/* -------------------- */}
-                <div className="flex justify-between text-sm text-gray-700">
-                  <span>Total price:</span>
-                  <span>{totalPrice.toFixed(2)} ₾</span>
-                </div>
-                <div className="flex justify-between text-sm text-gray-700">
-                  <span>Total discount:</span>
-                  <span>{totalDiscount.toFixed(2)} ₾</span>
-                </div>
-                {/* ------------ */}
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-700">
-                    Total price to pay
-                  </span>
-                  <span className="text-xl font-bold text-[#2f4a9c]">
-                    {totalPriceToPay.toFixed(2)} ₾
-                  </span>
-                </div>
-              </div>
-
+            {/* -------------------- */}
+            <div className="flex justify-between text-sm text-gray-700">
+              <span>Total price:</span>
+              <span>{totalPrice.toFixed(2)} ₾</span>
+            </div>
+            <div className="flex justify-between text-sm text-gray-700">
+              <span>Total discount:</span>
+              <span>{totalDiscount.toFixed(2)} ₾</span>
+            </div>
+            {/* ------------ */}
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-gray-700">Total price to pay</span>
+              <span className="text-xl font-bold text-[#2f4a9c]">
+                {totalPriceToPay.toFixed(2)} ₾
+              </span>
+            </div>
+          </div>
+          {selectedPaymentMethod ? (
+            <>
               <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-3">
                 <h2 className="text-lg font-bold text-[#2f4a9c]">
                   Payment Method:
@@ -436,6 +445,8 @@ const Checkout = () => {
                     type="radio"
                     name="payment_method"
                     className="accent-[#2f4a9c]"
+                    value="tbc"
+                    onChange={(e) => setPaymentMethod(e.target.value)}
                   />
                   <img className="size-8.5" src={tbc} alt="TBC Bank" />
                   <span className="text-[16px]  text-[#797979]">TBC Bank</span>
@@ -445,6 +456,8 @@ const Checkout = () => {
                     type="radio"
                     name="payment_method"
                     className="accent-[#2f4a9c]"
+                    value="bog"
+                    onChange={(e) => setPaymentMethod(e.target.value)}
                   />
                   <img className="" src={bog} alt="Bank of Georgia" />
                   <span className="text-[16px]  text-[#797979]">
@@ -456,6 +469,8 @@ const Checkout = () => {
                     type="radio"
                     name="payment_method"
                     className="accent-[#2f4a9c]"
+                    value="apple_pay"
+                    onChange={(e) => setPaymentMethod(e.target.value)}
                   />
 
                   <img
@@ -469,6 +484,8 @@ const Checkout = () => {
                     type="radio"
                     name="payment_method"
                     className="accent-[#2f4a9c]"
+                    value="google_pay"
+                    onChange={(e) => setPaymentMethod(e.target.value)}
                   />
                   <div className="w-[62px] h-[34px] border center border-gray-300 rounded-md center">
                     <img src={googlePay} alt="Google Pay" />
@@ -477,57 +494,38 @@ const Checkout = () => {
               </div>
 
               <label className="terms-toggle ">
-                <input type="checkbox" id="terms" className="" />
+                <input
+                  type="checkbox"
+                  id="terms"
+                  className=""
+                  checked={agreedToTerms}
+                  onChange={(e) => setAgreedToTerms(e.target.checked)}
+                />
                 <span className="radio-visual bg-[#FFFFFF]! "></span>
                 <p>I agreee to terms &amp; conditions</p>
               </label>
-              <button className="w-full py-3 rounded-2xl bg-[#FDE800] text-blue-50 font-helvetocaMedium text-[16px] cursor-pointer hover:opacity-90 transition-opacity">
+              <button
+                className="w-full py-3 rounded-2xl bg-[#FDE800] text-blue-50 font-helvetocaMedium text-[16px] cursor-pointer hover:opacity-90 transition-opacity"
+                onClick={() => {
+                  if (agreedToTerms && paymentMethod) {
+                    setTransactionStatus("success");
+                    navigate("/transaction-result", { state: { success: true } });
+                  } else {
+                    setTransactionStatus("failed");
+                    navigate("/transaction-result", { state: { success: false } });
+                  }
+                }}
+              >
                 Check Out
               </button>
             </>
           ) : (
-            <>
-              <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-2">
-                <h2 className="text-lg font-bold text-[#2f4a9c]">Summary:</h2>
-                {/* {[
-                  ["Total price:", `${totalPrice.toFixed(2)} ₾`],
-                  ["Total discount:", `${totalDiscount.toFixed(2)} ₾`],
-                ].map(([l, v]) => (
-                  <div
-                    key={l}
-                    className="flex justify-between text-sm text-gray-700"
-                  >
-                    <span>{l}</span>
-                    <span>{v}</span>
-                  </div>
-                ))} */}
-                {/* ------------------------------ */}
-                <div className="flex justify-between text-sm text-gray-700">
-                  <span>Total price:</span>
-                  <span>{totalPrice.toFixed(2)} ₾</span>
-                </div>
-                <div className="flex justify-between text-sm text-gray-700">
-                  <span>Total discount:</span>
-                  <span>{totalDiscount.toFixed(2)} ₾</span>
-                </div>  
-                {/* --------------------------------- */}
-                <div className="flex justify-between items-center pt-1">
-                  <span className="text-sm text-gray-700">
-                    Total price to pay
-                  </span>
-                  <span className="text-xl font-bold text-[#2f4a9c]">
-                    {totalPriceToPay.toFixed(2)} ₾
-                  </span>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setSelectedPaymentMethod(true)}
-                className="w-full py-3 rounded-2xl bg-[#FDE800] text-gray-900 font-bold text-sm cursor-pointer hover:opacity-90 transition-opacity"
-              >
-                Buy Now
-              </button>
-            </>
+            <button
+              onClick={() => setSelectedPaymentMethod(true)}
+              className="w-full py-3 rounded-2xl bg-[#FDE800] text-gray-900 font-bold text-sm cursor-pointer hover:opacity-90 transition-opacity"
+            >
+              Buy Now
+            </button>
           )}
         </div>
       </div>

@@ -150,7 +150,7 @@ const ProductPage = () => {
             </p>
             <button className=" rounded-lg px-3 py-1 text-sm flex items-center gap-1 font-normal ">
               <select
-                className="bg-[#F2F2F2] py-2 px-3  center  rounded-3xl text-blue-50 text-xl"
+                className="bg-[#F2F2F2] py-2 px-3  centeredFlex  rounded-3xl text-blue-50 text-xl"
                 name="amount"
                 id="amount"
                 onChange={(e) => updateQuantity(Number(e.target.value))}
@@ -194,7 +194,7 @@ const ProductPage = () => {
               {languageGeorgian ? "იყიდეთ ახლა" : "Buy Now"}
             </button>
             <button
-              className="flex-1 py-3 rounded-2xl border border-gray-300 bg-white text-gray-800 text-sm font-medium flex items-center justify-center gap-2
+              className="flex-1 py-3 rounded-2xl border border-gray-300 bg-white text-gray-800 text-sm font-medium centeredFlex gap-2
               cursor-pointer"
               onClick={() => addToCart(product, product.amount)}
             >
@@ -244,8 +244,8 @@ const ProductPage = () => {
         </div>
 
         {/* Main image */}
-        <div className="relative bg-white rounded-2xl p-6 shadow-sm flex items-center justify-center min-h-[220px]">
-          <button className="absolute top-4 left-4 w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+        <div className="relative bg-white rounded-2xl p-6 shadow-sm centeredFlex min-h-[220px]">
+          <button className="absolute top-4 left-4 w-8 h-8 rounded-full bg-gray-200 centeredFlex">
             <img src={play} alt="play" className="w-4 h-4" />
           </button>
           <img
@@ -291,7 +291,7 @@ const ProductPage = () => {
               {languageGeorgian ? "რაოდენობა:" : "Quantity:"}
             </p>
             <select
-              className="bg-[#F2F2F2] py-2 px-3  center  rounded-3xl text-blue-50 text-xl"
+              className="bg-[#F2F2F2] py-2 px-3  centeredFlex  rounded-3xl text-blue-50 text-xl"
               name="amount"
               id="amount"
               onChange={(e) => updateQuantity(Number(e.target.value))}
@@ -330,7 +330,7 @@ const ProductPage = () => {
             {languageGeorgian ? "იყიდეთ ახლა" : "Buy Now"}
           </button>
           <button
-            className="flex-1 py-3 rounded-2xl border border-gray-300 bg-white text-gray-800 text-sm font-medium flex items-center justify-center gap-2 cursor-pointer"
+            className="flex-1 py-3 rounded-2xl border border-gray-300 bg-white text-gray-800 text-sm font-medium centeredFlex gap-2 cursor-pointer"
             onClick={() => {
               addToCart(product, product.amount);
             }}

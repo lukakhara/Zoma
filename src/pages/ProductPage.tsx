@@ -1,353 +1,107 @@
 // MY CODE
 
-// import play from "../assets/play.png";
-// import cart from "../assets/cart.png";
-// import { useTranslation } from "react-i18next";
-// import {type Product } from "../types"
-// import productsData from "../locales/products.json";
-
-// const ProductPage = () => {
-//   const {t} = useTranslation();
-//   const productDataFromTranslation = t("products",{returnObjects:true}) as Product[];
-//   // console.log("MY PRODUCTS DATA", product1);
-//   const myProductId = 1;
-//   const tranlsationSelectedData = productDataFromTranslation[myProductId];
-//   console.log("first", tranlsationSelectedData);
-
-//   // const productsJsonData = productsData as Product[];
-//   // console.log("productsJsonData", productsJsonData);
-
-//   // const myNeededProduct = productsData.map((product) => {console.log(product.id)});
-//    const productsDataArray = productsData.filter(
-//      (product) => product.id === myProductId,
-//    );
-
-//   // console.log("---------------", myNeededProductFiltered[0]);
-//   const myNeededProduct = productsDataArray[0];
-
-//   console.log(" second ",myNeededProduct);
-//   const product = { ...tranlsationSelectedData, ...myNeededProduct };
-//   console.log("merged", product);
-
-//   console.log(product.id);
-
-//   // const languageGeorgian = true; // TEMPORARY
-//   // const data = languageGeorgian ? ka : en;
-//   // const products = data.products;
-//   // const productId = 1;
-//   // const product = products[productId];
-
-//   return (
-//     <div className="min-h-screen  py-4 md:py-8">
-//       {/* ── DESKTOP layout ── */}
-//       <div className="hidden md:flex gap-8 items-start">
-//         {/* Left: main image + thumbnails */}
-//         <div className="flex flex-col gap-3 w-105 shrink-0">
-//           {/* Main image card */}
-//           <div className="relative bg-white rounded-2xl p-6 shadow-sm flex items-center justify-center min-h-75">
-//             <button className="absolute top-4 left-4 w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
-//               <img src={play} alt="play" className="w-4 h-4" />
-//             </button>
-//             {/* here is needed data from difrend json file */}
-//             <img
-//               src={''}
-//               alt="Product"
-//               className="max-h-60 object-contain"
-//             />
-//             {/* Dots */}
-//             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-//               {product.image.map((_, i) => (
-//                 <span
-//                   key={i}
-//                   className={`w-2 h-2 rounded-full ${i === 0 ? "bg-[#2f4a9c]" : "bg-gray-300"}`}
-//                 />
-//               ))}
-//             </div>
-//           </div>
-
-//           {/* Thumbnails */}
-//           <div className="flex gap-3">
-//             {product.image.map((img, i) => (
-//               <div
-//                 key={i}
-//                 className="bg-white rounded-xl p-2 shadow-sm w-24 h-24 flex items-center justify-center"
-//               >
-//                 <img
-//                   src={img}
-//                   alt={`thumb-${i}`}
-//                   className="max-h-full object-contain"
-//                 />
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-
-//         {/* Right: details */}
-//         <div className="flex-1 flex flex-col gap-4">
-//           <div>
-//             <p className="text-sm text-[#2f4a9c] font-medium">{product.category}</p>
-//             <h1 className="text-2xl font-bold text-gray-900">
-//               {product.name}
-//             </h1>
-//             <p className="text-sm font-semibold text-gray-800 mt-2">
-//               {product.description}
-//             </p>
-//           </div>
-
-//           {/* Sizes */}
-//           <div>
-//             <p className="text-sm text-gray-500 mb-2">Size:</p>
-//             <div className="flex gap-2 flex-wrap">
-//               {Object.keys(product).map((size, i) => (
-//                 <button
-//                   key={size}
-//                   className={`px-3 py-1.5 rounded-lg border text-sm uppercase font-medium ${i === 1 ? "border-[#2f4a9c] text-[#2f4a9c] font-bold" : "border-gray-300 text-gray-600"}`}
-//                 >
-//                   {size}
-//                 </button>
-//               ))}
-//             </div>
-//           </div>
-
-//           {/* Quantity */}
-//           <div className="flex items-center gap-2">
-//             <p className="text-sm text-gray-500">Quantity:</p>
-//             <button className="border border-gray-300 rounded-lg px-3 py-1 text-sm flex items-center gap-1">
-//               1 <span className="text-gray-400">▾</span>
-//             </button>
-//           </div>
-
-//           {/* Pricing */}
-//           <div className="flex items-center gap-2">
-//             <span className="text-gray-400 line-through text-sm">
-//               {product.startingPrice}
-//             </span>
-//             <span className="bg-orange-500 text-white text-xs font-semibold px-2 py-0.5 rounded">
-//               -1.87 ₾
-//             </span>
-//             <span className="bg-[#FDE800] text-gray-900 font-bold text-xl px-3 py-0.5 rounded-lg">
-//               {product.endPrice} ₾
-//             </span>
-//           </div>
-
-//           {/* Buttons */}
-//           <div className="flex gap-3">
-//             <button className="flex-1 py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium">
-//               Buy Now
-//             </button>
-//             <button className="flex-1 py-3 rounded-2xl border border-gray-300 bg-white text-gray-800 text-sm font-medium flex items-center justify-center gap-2">
-//               <img src={cart} alt="cart" className="w-4 h-4" />
-//               Add to cart
-//             </button>
-//           </div>
-
-//           {/* Description */}
-//           <div className="mt-2">
-//             <h2 className="text-sm font-bold text-gray-900 mb-1">
-//               Description
-//             </h2>
-//             <p className="text-sm text-gray-600 leading-relaxed">
-//               {product.description}
-//             </p>
-//             <ul className="mt-2 space-y-0.5">
-//               {product.instructionsForUse?.map((item, i) => (
-//                 <li key={i} className="text-sm text-gray-600 flex gap-2">
-//                   <span>•</span>
-//                   {item}
-//                 </li>
-//               ))}
-//             </ul>
-//             {product.doNotUse?.map((item, i) => (
-//               <p key={i} className="text-sm text-gray-600 mt-0.5">
-//                 {item}
-//               </p>
-//             ))}
-//             <p className="text-sm text-gray-600 mt-0.5">{product.store}</p>
-//             <p className="text-sm text-gray-600">
-//               Volume: {Object.keys(product.capacities)[0]}
-//             </p>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* ── MOBILE layout ── */}
-//       <div className="md:hidden flex flex-col gap-4">
-//         {/* Category + name */}
-//         <div>
-//           <p className="text-sm text-[#2f4a9c] font-medium">
-//             {product.category}
-//           </p>
-//           <h1 className="text-2xl font-bold text-gray-900">{product.name}</h1>
-//         </div>
-
-//         {/* Main image */}
-//         <div className="relative bg-white rounded-2xl p-6 shadow-sm flex items-center justify-center min-h-[220px]">
-//           <button className="absolute top-4 left-4 w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
-//             <img src={play} alt="play" className="w-4 h-4" />
-//           </button>
-//           <img
-//             src={product.image[0]}
-//             alt="Product"
-//             className="max-h-48 object-contain"
-//           />
-//           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-//             {product.image.map((_, i) => (
-//               <span
-//                 key={i}
-//                 className={`w-2 h-2 rounded-full ${i === 0 ? "bg-[#2f4a9c]" : "bg-gray-300"}`}
-//               />
-//             ))}
-//           </div>
-//         </div>
-
-//         <p className="text-sm font-semibold text-gray-800">
-//           {product.description}
-//         </p>
-
-//         {/* Sizes */}
-//         <div>
-//           <p className="text-sm text-gray-500 mb-2">Size:</p>
-//           <div className="flex gap-2 flex-wrap">
-//             {Object.keys(product.capacities).map((size, i) => (
-//               <button
-//                 key={size}
-//                 className={`px-3 py-1.5 rounded-lg border text-sm uppercase font-medium ${i === 1 ? "border-[#2f4a9c] text-[#2f4a9c] font-bold" : "border-gray-300 text-gray-600"}`}
-//               >
-//                 {size}
-//               </button>
-//             ))}
-//           </div>
-//         </div>
-
-//         {/* Quantity + pricing */}
-//         <div className="flex items-center justify-between">
-//           <div className="flex items-center gap-2">
-//             <p className="text-sm text-gray-500">Quantity:</p>
-//             <button className="border border-gray-300 rounded-lg px-3 py-1 text-sm flex items-center gap-1">
-//               1 <span className="text-gray-400">▾</span>
-//             </button>
-//           </div>
-//           <div className="flex items-center gap-2">
-//             <span className="text-gray-400 line-through text-sm">
-//               {product.startingPrice}
-//             </span>
-//             <span className="bg-orange-500 text-white text-xs font-semibold px-2 py-0.5 rounded">
-//               -1.87 ₾
-//             </span>
-//           </div>
-//         </div>
-
-//         <span className="bg-[#FDE800] text-gray-900 font-bold text-xl px-3 py-1 rounded-lg w-fit">
-//           {product.endPrice} ₾
-//         </span>
-
-//         {/* Buttons */}
-//         <div className="flex gap-3">
-//           <button className="flex-1 py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium">
-//             Buy Now
-//           </button>
-//           <button className="flex-1 py-3 rounded-2xl border border-gray-300 bg-white text-gray-800 text-sm font-medium flex items-center justify-center gap-2">
-//             <img src={cart} alt="cart" className="w-4 h-4" />
-//             Add to cart
-//           </button>
-//         </div>
-
-//         {/* Description */}
-//         <div>
-//           <h2 className="text-sm font-bold text-gray-900 mb-1">Description</h2>
-//           <p className="text-sm text-gray-600 leading-relaxed">
-//             {product.description}
-//           </p>
-//           <ul className="mt-2 space-y-0.5">
-//             {product.instructionsForUse?.map((item, i) => (
-//               <li key={i} className="text-sm text-gray-600 flex gap-2">
-//                 <span>•</span>
-//                 {item}
-//               </li>
-//             ))}
-//           </ul>
-//           {product.doNotUse?.map((item, i) => (
-//             <p key={i} className="text-sm text-gray-600 mt-0.5">
-//               {item}
-//             </p>
-//           ))}
-//           <p className="text-sm text-gray-600 mt-0.5">{product.store}</p>
-//           <p className="text-sm text-gray-600">
-//             Volume: {Object.keys(product.capacities)[0]}
-//           </p>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ProductPage;
-
-// AI GENERATED CODE
-
-import play from "../assets/play.png";
-import cart from "../assets/cart.png";
+import play from "/assets/play.png";
+import cart from "/assets/cart.png";
 import { useTranslation } from "react-i18next";
-import { type Product } from "../types";
+import { type CartItem } from "../types";
 import productsData from "../locales/products.json";
+import i18next from "i18next";
+import { useParams } from "react-router";
+import { useState, useEffect } from "react";
+import { useCartContext } from "../context/CartContext";
 
 const ProductPage = () => {
   const { t, i18n } = useTranslation();
-  const language = i18n.language;
-  const langaugeGeorgian = language === "ka"; // TEMPORARY
-
-  const currentProductId = 1;
-
-  // Translated text data (name, description, category, etc.) from i18n
-  const allTranslatedProducts = t("products", {
+  const productDataFromTranslation = t("products", {
     returnObjects: true,
-  }) as Product[];
-  const currentTranslatedProduct = allTranslatedProducts[currentProductId];
+  }) as CartItem[];
+  const { id } = useParams<{ id: string }>();
+  const { addToCart, cartItems, setCartItems } = useCartContext();
 
-  // Static data (images, prices, capacities, etc.) from products.json
-  const currentStaticProduct = (productsData as Product[]).filter(
-    (staticProduct) => staticProduct.id === currentProductId,
-  )[0];
+  // State to track which product image is currently active (for the main display)
+  const [activeImage, setActiveImage] = useState<number>(0);
 
-  // Final merged product with all properties from both sources
-  const mergedProduct = {
-    ...currentTranslatedProduct,
-    ...currentStaticProduct,
+  // Check if the current language is Georgian
+  const languageGeorgian = i18n.language === "ka";
+
+  // Convert the ID from the URL to a number and find the corresponding product data from both the translation and the static JSON, then merge them together
+  const myProductId = Number(id);
+  const tranlsationSelectedData = productDataFromTranslation[myProductId];
+  // Get the product data from products.json based on the ID from the URL
+  const productsDataArray = productsData.filter(
+    (product) => product.id === myProductId,
+  );
+  const myNeededProduct = productsDataArray[0];
+
+  // Merge the translated data and the static data into a single product object
+  const mergeProduct = {
+    ...tranlsationSelectedData,
+    ...myNeededProduct,
+    selectedCapacityIndex: 0,
+    amount: 1,
   };
 
+  const [product, setProduct] = useState<CartItem>(mergeProduct);
+
+  const capacity = product.capacities[product.selectedCapacityIndex];
+
+  const selectCapacity = (index: number) => {
+    setProduct((prev) => ({ ...prev, selectedCapacityIndex: index }));
+  };
+
+  function updateQuantity(amount: number) {
+    setProduct((prev) => ({ ...prev, amount }));
+  }
+
+  console.log(
+    "selectedCapacityIndex",
+    product.capacities[product.selectedCapacityIndex],
+  );
+  console.log("amount", product.amount);
+
+  useEffect(() => {
+    setProduct(mergeProduct);
+  }, [id, i18n.language]);
+
   return (
-    <div className="min-h-screen py-4 md:py-8">
+    <div className="min-h-screen  py-4 md:py-8">
       {/* ── DESKTOP layout ── */}
       <div className="hidden md:flex gap-8 items-start">
+        {/* Left: main image + thumbnails */}
         <div className="flex flex-col gap-3 w-105 shrink-0">
+          {/* Main image card */}
           <div className="relative bg-white rounded-2xl p-6 shadow-sm flex items-center justify-center min-h-75">
             <button className="absolute top-4 left-4 w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
               <img src={play} alt="play" className="w-4 h-4" />
             </button>
+            {/* here is needed data from difrend json file */}
             <img
-              src={mergedProduct.image[0]}
+              src={`${product.image[activeImage]}`}
               alt="Product"
-              className="max-h-60 object-contain"
+              className="max-h-60 object-contain "
             />
+            {/* Dots */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              {mergedProduct.image.map((_, imageIndex) => (
+              {product.image.map((_, i) => (
                 <span
-                  key={imageIndex}
-                  className={`w-2 h-2 rounded-full ${imageIndex === 0 ? "bg-[#2f4a9c]" : "bg-gray-300"}`}
+                  key={i}
+                  className={`w-2 h-2 rounded-full  ${i === activeImage ? "bg-[#2f4a9c]" : "bg-gray-300 cursor-pointer hover:opacity-65 "}`}
+                  onClick={() => setActiveImage(i)}
                 />
               ))}
             </div>
           </div>
 
+          {/* Thumbnails */}
           <div className="flex gap-3">
-            {mergedProduct.image.map((thumbnailSrc, thumbnailIndex) => (
+            {product.image.map((img, i) => (
               <div
-                key={thumbnailIndex}
+                key={i}
                 className="bg-white rounded-xl p-2 shadow-sm w-24 h-24 flex items-center justify-center"
               >
                 <img
-                  src={thumbnailSrc}
-                  alt={`thumbnail-${thumbnailIndex}`}
+                  src={img}
+                  alt={`thumb-${i}`}
                   className="max-h-full object-contain"
                 />
               </div>
@@ -355,94 +109,125 @@ const ProductPage = () => {
           </div>
         </div>
 
+        {/* Right: details */}
         <div className="flex-1 flex flex-col gap-4">
           <div>
-            <p className="text-sm text-[#2f4a9c] font-medium">
-              {mergedProduct.category}
+            <p className="text-sm  text-blue-50 font-medium font-helvetocaMedium leading-4">
+              {product.category}
             </p>
-            <h1 className="text-2xl font-bold text-gray-900">
-              {mergedProduct.name}
+            <h1 className="text-2xl font-helvetocaRegular font-normal text-gray-900">
+              {product.name}
             </h1>
-            <p className="text-sm font-semibold text-gray-800 mt-2">
-              {mergedProduct.description}
+            <p className="text-[18px]   text-[#000000]  leading-[19.48px] mt-2 font-helvetocaMedium font-medium ">
+              {product.description}
             </p>
           </div>
 
+          {/* Sizes */}
           <div>
-            <p className="text-sm text-gray-500 mb-2">{langaugeGeorgian ? "ზომა:" : "Size:"}</p>
-            <div className="flex gap-2 flex-wrap">
-              {Object.keys(mergedProduct.capacities).map(
-                (capacitySize, capacityIndex) => (
-                  <button
-                    key={capacitySize}
-                    className={`px-3 py-1.5 rounded-lg border text-sm uppercase font-medium ${capacityIndex === 1 ? "border-[#2f4a9c] text-[#2f4a9c] font-bold" : "border-gray-300 text-gray-600"}`}
-                  >
-                    {capacitySize}
-                  </button>
-                ),
-              )}
+            <p className="text-[16px] font-medium font-helvetocaMedium text-[#B8B8B8] mb-2 leading-[19.48px]">
+              {languageGeorgian ? "ზომა:" : "Size:"}
+            </p>
+            <div className="flex gap-2 flex-wrap ">
+              {product.capacities.map((i, index) => (
+                <button
+                  key={index}
+                  className={` px-3 py-1.5 font-helvetocaMedium leading-[19.48px]  rounded-lg  text-[16px] uppercase 
+                      ${product.selectedCapacityIndex === index ? "border-blue-50 text-blue-50 border-2 font-hevletocaBold" : "border-[#B2B2B2] text-[#B2B2B2] border cursor-pointer"}
+                          `}
+                  onClick={() => selectCapacity(index)}
+                >
+                  {i.label}
+                </button>
+              ))}
             </div>
           </div>
 
+          {/* Quantity */}
           <div className="flex items-center gap-2">
-            <p className="text-sm text-gray-500">{langaugeGeorgian ? "რაოდენობა:" : "Quantity:"}</p>
-            <button className="border border-gray-300 rounded-lg px-3 py-1 text-sm flex items-center gap-1">
-              1 <span className="text-gray-400">▾</span>
+            <p className="text-[16px] font-medium font-helvetocaMedium text-[#B8B8B8] mb-2 leading-[19.48px]">
+              {languageGeorgian ? "რაოდენობა:" : "Quantity:"}
+            </p>
+            <button className=" rounded-lg px-3 py-1 text-sm flex items-center gap-1 font-normal ">
+              <select
+                className="bg-[#F2F2F2] py-2 px-3  centeredFlex  rounded-3xl text-blue-50 text-xl"
+                name="amount"
+                id="amount"
+                onChange={(e) => updateQuantity(Number(e.target.value))}
+              >
+                {Array.from({ length: capacity.quantity }, (_, i) => (
+                  <option key={i + 1} value={i + 1}>
+                    {i + 1}
+                  </option>
+                ))}
+              </select>
             </button>
           </div>
 
+          {/* Pricing */}
           <div className="flex items-center gap-2">
-            <span className="text-gray-400 line-through text-sm">
-              {mergedProduct.startingPrice}
+            <span
+              className=" text-sm 
+              unactiveStartingPrice"
+            >
+              {(capacity.price * product.amount).toFixed(2)} ₾
             </span>
-            <span className="bg-orange-500 text-white text-xs font-semibold px-2 py-0.5 rounded">
-              -1.87 ₾
-            </span>
-            <span className="bg-[#FDE800] text-gray-900 font-bold text-xl px-3 py-0.5 rounded-lg">
-              {mergedProduct.endPrice} ₾
+            <div className="">
+              <span className="bg-red-100 text-white text-xs font-semibold px-2 py-0.5 rounded">
+                -
+                {(
+                  (capacity.price - capacity.finalPrice) *
+                  product.amount
+                ).toFixed(2)}
+                ₾
+              </span>
+            </div>
+
+            <span className="  px-3 py-0.5 rounded-lg goldPrice">
+              {(capacity.finalPrice * product.amount).toFixed(2)} ₾
             </span>
           </div>
 
+          {/* Buttons */}
           <div className="flex gap-3">
-            <button className="flex-1 py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium">
-              {langaugeGeorgian ? "იყიდეთ ახლა" : "Buy Now"}
+            <button className="flex-1 py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium cursor-pointer">
+              {languageGeorgian ? "იყიდეთ ახლა" : "Buy Now"}
             </button>
-            <button className="flex-1 py-3 rounded-2xl border border-gray-300 bg-white text-gray-800 text-sm font-medium flex items-center justify-center gap-2">
+            <button
+              className="flex-1 py-3 rounded-2xl border border-gray-300 bg-white text-gray-800 text-sm font-medium centeredFlex gap-2
+              cursor-pointer"
+              onClick={() => addToCart(product, product.amount)}
+            >
               <img src={cart} alt="cart" className="w-4 h-4" />
-              {langaugeGeorgian ? "კალათაში დამატება " : "Add to cart"}
+              {languageGeorgian ? "დამატება კალათაში" : "Add to cart"}
             </button>
           </div>
 
+          {/* Description */}
           <div className="mt-2">
             <h2 className="text-sm font-bold text-gray-900 mb-1">
-              {langaugeGeorgian ? "აღწერა" : "Description"}
+              Description
             </h2>
             <p className="text-sm text-gray-600 leading-relaxed">
-              {mergedProduct.description}
+              {product.description}
             </p>
             <ul className="mt-2 space-y-0.5">
-              {mergedProduct.instructionsForUse?.map(
-                (instructionItem, instructionIndex) => (
-                  <li
-                    key={instructionIndex}
-                    className="text-sm text-gray-600 flex gap-2"
-                  >
-                    <span>•</span>
-                    {instructionItem}
-                  </li>
-                ),
-              )}
+              {product.instructionsForUse?.map((item, i) => (
+                <li key={i} className="text-sm text-gray-600 flex gap-2">
+                  <span>•</span>
+                  {item}
+                </li>
+              ))}
             </ul>
-            {mergedProduct.doNotUse?.map((warningItem, warningIndex) => (
-              <p key={warningIndex} className="text-sm text-gray-600 mt-0.5">
-                {warningItem}
+            {product.doNotUse?.map((item, i) => (
+              <p key={i} className="text-sm text-gray-600 mt-0.5">
+                {item}
               </p>
             ))}
-            <p className="text-sm text-gray-600 mt-0.5">
-              {mergedProduct.store}
-            </p>
+            <p className="text-sm text-gray-600 mt-0.5">{product.store}</p>
             <p className="text-sm text-gray-600">
-              {langaugeGeorgian ? "მოცულობა:" : "Volume:"} {Object.keys(mergedProduct.capacities)[0]}
+              {languageGeorgian ? "მოცულობა" : "volume"}:
+              {capacity.label.toLocaleLowerCase()}
             </p>
           </div>
         </div>
@@ -450,111 +235,136 @@ const ProductPage = () => {
 
       {/* ── MOBILE layout ── */}
       <div className="md:hidden flex flex-col gap-4">
+        {/* Category + name */}
         <div>
           <p className="text-sm text-[#2f4a9c] font-medium">
-            {mergedProduct.category}
+            {product.category}
           </p>
-          <h1 className="text-2xl font-bold text-gray-900">
-            {mergedProduct.name}
-          </h1>
+          <h1 className="text-2xl font-bold text-gray-900">{product.name}</h1>
         </div>
 
-        <div className="relative bg-white rounded-2xl p-6 shadow-sm flex items-center justify-center min-h-[220px]">
-          <button className="absolute top-4 left-4 w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+        {/* Main image */}
+        <div className="relative bg-white rounded-2xl p-6 shadow-sm centeredFlex min-h-[220px]">
+          <button className="absolute top-4 left-4 w-8 h-8 rounded-full bg-gray-200 centeredFlex">
             <img src={play} alt="play" className="w-4 h-4" />
           </button>
           <img
-            src={mergedProduct.image[0]}
+            src={product.image[0]}
             alt="Product"
             className="max-h-48 object-contain"
           />
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-            {mergedProduct.image.map((_, imageIndex) => (
+            {product.image.map((_, i) => (
               <span
-                key={imageIndex}
-                className={`w-2 h-2 rounded-full ${imageIndex === 0 ? "bg-[#2f4a9c]" : "bg-gray-300"}`}
+                key={i}
+                className={`w-2 h-2 rounded-full ${i === 0 ? "bg-[#2f4a9c]" : "bg-gray-300"}`}
               />
             ))}
           </div>
         </div>
 
         <p className="text-sm font-semibold text-gray-800">
-          {mergedProduct.description}
+          {product.description}
         </p>
 
+        {/* Sizes */}
         <div>
           <p className="text-sm text-gray-500 mb-2">Size:</p>
           <div className="flex gap-2 flex-wrap">
-            {Object.keys(mergedProduct.capacities).map(
-              (capacitySize, capacityIndex) => (
-                <button
-                  key={capacitySize}
-                  className={`px-3 py-1.5 rounded-lg border text-sm uppercase font-medium ${capacityIndex === 1 ? "border-[#2f4a9c] text-[#2f4a9c] font-bold" : "border-gray-300 text-gray-600"}`}
-                >
-                  {capacitySize}
-                </button>
-              ),
-            )}
+            {product.capacities.map((cap, i) => (
+              <button
+                key={i}
+                // onClick={() => (cap.label)}
+                className={`px-3 py-1.5 rounded-lg border text-sm uppercase font-medium 
+        ${product.selectedCapacityIndex === i ? "border-[#2f4a9c] text-[#2f4a9c] font-bold" : "border-gray-300 text-gray-600"}`}
+              >
+                {cap.label}
+              </button>
+            ))}
           </div>
         </div>
 
+        {/* Quantity + pricing */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <p className="text-sm text-gray-500">Quantity:</p>
-            <button className="border border-gray-300 rounded-lg px-3 py-1 text-sm flex items-center gap-1">
-              1 <span className="text-gray-400">▾</span>
-            </button>
+            <p className="text-sm text-gray-500">
+              {languageGeorgian ? "რაოდენობა:" : "Quantity:"}
+            </p>
+            <select
+              className="bg-[#F2F2F2] py-2 px-3  centeredFlex  rounded-3xl text-blue-50 text-xl"
+              name="amount"
+              id="amount"
+              onChange={(e) => updateQuantity(Number(e.target.value))}
+            >
+              {Array.from({ length: capacity.quantity }, (_, i) => (
+                <option key={i + 1} value={i + 1}>
+                  {i + 1}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-gray-400 line-through text-sm">
-              {mergedProduct.startingPrice}
+              {(capacity.price * product.amount).toFixed(2)} ₾
             </span>
-            <span className="bg-orange-500 text-white text-xs font-semibold px-2 py-0.5 rounded">
-              -1.87 ₾
-            </span>
+            <div>
+              <span className="bg-red-100 text-white text-xs font-semibold px-2 py-0.5 rounded redDiscount">
+                -
+                {(
+                  (capacity.price - capacity.finalPrice) *
+                  product.amount
+                ).toFixed(2)}
+                ₾
+              </span>
+            </div>
           </div>
         </div>
 
         <span className="bg-[#FDE800] text-gray-900 font-bold text-xl px-3 py-1 rounded-lg w-fit">
-          {mergedProduct.endPrice} ₾
+          {(capacity.finalPrice * product.amount).toFixed(2)} ₾
         </span>
 
+        {/* Buttons */}
         <div className="flex gap-3">
-          <button className="flex-1 py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium">
-            Buy Now
+          <button className="flex-1 py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium  cursor-pointer">
+            {languageGeorgian ? "იყიდეთ ახლა" : "Buy Now"}
           </button>
-          <button className="flex-1 py-3 rounded-2xl border border-gray-300 bg-white text-gray-800 text-sm font-medium flex items-center justify-center gap-2">
+          <button
+            className="flex-1 py-3 rounded-2xl border border-gray-300 bg-white text-gray-800 text-sm font-medium centeredFlex gap-2 cursor-pointer"
+            onClick={() => {
+              addToCart(product, product.amount);
+            }}
+          >
             <img src={cart} alt="cart" className="w-4 h-4" />
-            Add to cart
+            {languageGeorgian ? "დამატება კალათაში" : "Add to cart"}
           </button>
         </div>
 
+        {/* Description */}
         <div>
-          <h2 className="text-sm font-bold text-gray-900 mb-1">Description</h2>
+          <h2 className="text-sm font-bold text-gray-900 mb-1">
+            {languageGeorgian ? "აღწერა" : "Description"}
+          </h2>
           <p className="text-sm text-gray-600 leading-relaxed">
-            {mergedProduct.description}
+            {product.description}
           </p>
           <ul className="mt-2 space-y-0.5">
-            {mergedProduct.instructionsForUse?.map(
-              (instructionItem, instructionIndex) => (
-                <li
-                  key={instructionIndex}
-                  className="text-sm text-gray-600 flex gap-2"
-                >
-                  <span>•</span>
-                  {instructionItem}
-                </li>
-              ),
-            )}
+            {product.instructionsForUse?.map((item, i) => (
+              <li key={i} className="text-sm text-gray-600 flex gap-2">
+                <span>•</span>
+                {item}
+              </li>
+            ))}
           </ul>
-          {mergedProduct.doNotUse?.map((warningItem, warningIndex) => (
-            <p key={warningIndex} className="text-sm text-gray-600 mt-0.5">
-              {warningItem}
+          {product.doNotUse?.map((item, i) => (
+            <p key={i} className="text-sm text-gray-600 mt-0.5">
+              {item}
             </p>
           ))}
-          <p className="text-sm text-gray-600 mt-0.5">{mergedProduct.store}</p>
+          <p className="text-sm text-gray-600 mt-0.5">{product.store}</p>
           <p className="text-sm text-gray-600">
-            Volume: {Object.keys(mergedProduct.capacities)[0]}
+            {languageGeorgian ? "მოცულობა: " : "Volume: "}
+            {capacity.label.toLocaleLowerCase()}
           </p>
         </div>
       </div>

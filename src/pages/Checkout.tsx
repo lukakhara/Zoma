@@ -1,287 +1,126 @@
-// import { useState } from "react";
-// import garbageIcon from "../assets/garbage.png";
-// import editIcon from "../assets/pencil.png";
-// import { useLanguage } from "../context/LanguageContext";
-
-
-// interface Product {
-//   id: number;
-//   name: string;
-//   image: string;
-//   quantity: number;
-//   price: number;
-//   discount: number;
-//   finalPrice: number;
-// }
-
-// const Checkout = () => {
-//   const { languageGeorgian } = useLanguage();
-//   const [selectedPaymentMethod, setSelectedPaymentMethod] =
-//     useState<boolean>(false);
-
-//   const [cart, setCart] = useState<Product[]>([
-//     {
-//       id: 1,
-//       name: "ZOMA BAFIX FOAM",
-//       image: "src/assets/product.png",
-//       quantity: 1,
-//       price: 11.65,
-//       discount: 1.87,
-//       finalPrice: 9.78,
-//     },
-//     {
-//       id: 2,
-//       name: "ZOMA BAFIX FOAM",
-//       image: "src/assets/product.png",
-//       quantity: 1,
-//       price: 11.65,
-//       discount: 1.87,
-//       finalPrice: 9.78,
-//     },
-//   ]);
-
- 
-
-//   return (
-//     <>
-//       <main className="flex flex-col gap-4  px-4 ">
-//         <h1>Checkout</h1>
-
-//         {/* selected items */}
-//         <section className="bg-white rounded-md p-4">
-//           <ul className="flex flex-col gap-2">
-//             {cart.map((item, index) => (
-//               <li
-//                 key={index}
-//                 className="flex items-center justify-center gap-6 "
-//               >
-//                 <img
-//                   src={item.image}
-//                   width={54}
-//                   height={107}
-//                   alt="product image"
-//                 />
-//                 {/* leftside */}
-//                 <div className={`${index+1 === item.id ? 'border-b-2' : ''
-//                   } p-2 border-gray-200 flex`}>
-//                   <div className="flex flex-col ">
-//                     <h1>{item.name}</h1>
-//                     <div className="flex  justify-center gap-4">
-//                       <button>{item.quantity}</button>
-//                       <button className="cursor-pointer">
-//                         <img src={garbageIcon} alt="remove " />
-//                       </button>
-//                     </div>
-//                   </div>
-//                   <div className="flex flex-col ">
-//                     <div className="flex gap-2">
-//                       <p>{item.price}₾</p>
-//                       <p className="bg-orange-100 text-white center">
-//                         {item.discount}₾
-//                       </p>
-//                     </div>
-//                     <h1 className="bg-yellow-100 center">{item.finalPrice}₾</h1>
-//                   </div>
-//                 </div>
-//               </li>
-//             ))}
-//           </ul>
-//         </section>
-
-//         {selectedPaymentMethod ? (
-//           <>
-//             {/*  summary section */}
-//             <section className="bg-white p-3 z-111">
-//               <h1>Summary:</h1>
-//               <div>
-//                 {/* property / value */}
-//                 <p>Total price:</p>
-//                 <p>19.56₾</p>
-//               </div>
-//               <div>
-//                 {/* property / value */}
-//                 <p>Total discount:</p>
-//                 <p>3.74₾</p>
-//               </div>
-//               <div>
-//                 {/* property / value */}
-//                 <p>Total price to pay:</p>
-//                 <h1>21.02₾</h1>
-//               </div>
-//             </section>
-//             {/*  payment section */}
-//             <section className="bg-white">
-//               <h1>Payment Method:</h1>
-//               <div className="flex flex-col">
-//                 <div>
-//                   <input
-//                     type="radio"
-//                     id="tbc-bank"
-//                     name="payment_method"
-//                     value="TBC Bank"
-//                   />
-//                   <label htmlFor="tbc-bank">TBC Bank</label>
-//                 </div>
-
-//                 <div>
-//                   <input
-//                     type="radio"
-//                     id="bank-of-georgia"
-//                     name="payment_method"
-//                     value="Bank of Georgia"
-//                   />
-//                   <label htmlFor="bank-of-georgia">Bank of Georgia</label>
-//                 </div>
-//                 <div>
-//                   <input
-//                     type="radio"
-//                     id="apple-pay"
-//                     name="payment_method"
-//                     value="APPLE PAY"
-//                   />
-//                   <label htmlFor="apple-pay">APPLE PAY</label>
-//                 </div>
-
-//                 <div>
-//                   <input
-//                     type="radio"
-//                     id="google-pay"
-//                     name="payment_method"
-//                     value="GOOGLE PAY"
-//                   />
-//                   <label htmlFor="google-pay">GOOGLE PAY</label>
-//                 </div>
-//               </div>
-//             </section>
-//             <input type="radio" />
-//             <label htmlFor="">I agree to terms & conditions</label>
-//             <button className="text-center bg-yellow-100 cursor-pointer">
-//               Checkout
-//             </button>
-//           </>
-//         ) : (
-//           <>
-//             {/* delivery details section */}
-//             <section className="bg-white p-3 flex flex-col gap-4 ">
-//               {/* header of section */}
-//               <div className="flex justify-between">
-//                 <h1 className="text-2xl">Delivery details</h1>
-//                 <button className="flex items-center gap-2 cursor-pointer">
-//                   Edit
-//                   <img src={editIcon} className="size-3.25" alt="Edit button" />
-//                 </button>
-//               </div>
-//               <div className="flex flex-col gap-2">
-//                 {/* address */}
-//                 <div className="flex justify-between items-center">
-//                   {/* property / value */}
-//                   <p>Delivery address:</p>
-//                   <p>Tbilisi,Rustaveli 1, 01212</p>
-//                 </div>
-//                 {/* mobile phone number */}
-//                 <div className="flex justify-between">
-//                   {/* property / value */}
-//                   <p>Mobile:</p>
-//                   <p>555 555 555</p>
-//                 </div>
-//               </div>
-//             </section>
-//             {/*  summary section */}
-//             <section className="bg-white p-3">
-//               <h1 className="text-2xl">Summary:</h1>
-//               <div className="flex flex-col gap-2">
-//                 <div className="flex  justify-between">
-//                   {/* property / value */}
-//                   <p>Total price:</p>
-//                   <p>19.56₾</p>
-//                 </div>
-//                 <div className="flex  justify-between">
-//                   {/* property / value */}
-//                   <p>Total discount:</p>
-//                   <p>3.74₾</p>
-//                 </div>
-//                 <div className="flex  justify-between">
-//                   {/* property / value */}
-//                   <p>Delivery:</p>
-//                   <p>5.20₾</p>
-//                 </div>
-//                 <div className="flex  justify-between">
-//                   {/* property / value */}
-//                   <p>Total price to pay:</p>
-//                   <h1 className="text-2xl">21.02₾</h1>
-//                 </div>
-//               </div>
-//             </section>
-//             <button className="text-center bg-yellow-100 cursor-pointer z-111"
-//             onClick={() => setSelectedPaymentMethod(!selectedPaymentMethod)} >
-//               Buy Now
-//             </button>
-//           </>
-//         )}
-//       </main>
-//     </>
-//   );
-// };
-
-// export default Checkout;
-
-
 import { useState } from "react";
-import garbageIcon from "../assets/garbage.png";
-import editIcon from "../assets/pencil.png";
-
-
-interface Product {
-  id: number;
-  name: string;
-  image: string;
-  quantity: number;
-  price: number;
-  discount: number;
-  finalPrice: number;
-}
+import garbageIcon from "/assets/garbage.png";
+import editIcon from "/assets/pencil.png";
+import tbc from "/assets/Payment/tbc.png";
+import bog from "/assets/Payment/image-6.png";
+import applePay from "/assets/Payment/apple-pay.png";
+import googlePay from "/assets/Payment/google-pay.png";
+import { useCartContext } from "../context/CartContext";
+import TransactionResult from "./TransactionResult";
+import {useNavigate } from "react-router-dom";
 
 const Checkout = () => {
+  const [selectedPaymentMethod, setSelectedPaymentMethod] =
+    useState<boolean>(false);
 
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<boolean>(false);
+  const {
+    cartItems,
+    totalDiscount,
+    totalPrice,
+    totalPriceToPay,
+    removeFromCart,
+    updateQuantity,
+  } = useCartContext();
 
-  const [cart, setCart] = useState<Product[]>([
-    { id: 1, name: "ZOMA BAFIX FOAM", image: "src/assets/product.png", quantity: 1, price: 11.65, discount: 1.87, finalPrice: 9.78 },
-    { id: 2, name: "ZOMA BAFIX FOAM (600 ml)", image: "src/assets/product.png", quantity: 1, price: 11.65, discount: 1.87, finalPrice: 9.78 },
-  ]);
+  const navigate = useNavigate();
+  const [agreedToTerms, setAgreedToTerms] = useState<boolean>(false);
+  const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
+  const [transactionStatus, setTransactionStatus] = useState<string | null>(null);
+  console.log(transactionStatus);
 
+  // const [cart, setCart] = useState<Product[]>([
+  //   {
+  //     id: 1,
+  //     name: "ZOMA BAFIX FOAM",
+  //     image: "/assets/product.png",
+  //     quantity: 1,
+  //     price: 11.65,
+  //     discount: 1.87,
+  //     finalPrice: 9.78,
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "ZOMA BAFIX FOAM (600 ml)",
+  //     image: "/assets/product.png",
+  //     quantity: 1,
+  //     price: 11.65,
+  //     discount: 1.87,
+  //     finalPrice: 9.78,
+  //   },
+  // ]);
+
+  console.log("agreedToTerms", agreedToTerms);
+  console.log("paymentMethod", paymentMethod);
+
+  
   return (
     <div className="min-h-screen  py-4 md:py-8">
       <h1 className="text-2xl font-bold text-gray-900 mb-4">Checkout</h1>
 
       {/* ── MOBILE ── */}
       <div className="md:hidden flex flex-col gap-4">
-
         {/* Cart items */}
-        <div className="bg-white rounded-2xl p-4 shadow-sm">
+        <div className="bg-white rounded-2xl p-4 shadow-sm  flex flex-col gap-4">
           <ul className="flex flex-col divide-y divide-gray-100">
-            {cart.map((item, index) => (
-              <li key={index} className="flex items-center gap-3 py-4 first:pt-0 last:pb-0">
-                <img src={item.image} alt="product" className="w-14 object-contain" />
-                <div className="flex flex-1 justify-between items-center">
-                  <div className="flex flex-col gap-2">
-                    <p className="text-sm font-semibold text-[#2f4a9c]">{item.name}</p>
-                    <div className="flex items-center gap-2">
-                      <button className="border border-gray-300 rounded-lg px-3 py-1 text-sm flex items-center gap-1">
-                        {item.quantity} <span className="text-gray-400">▾</span>
-                      </button>
-                      <button className="w-8 h-8 flex items-center justify-center rounded-lg bg-red-100">
-                        <img src={garbageIcon} alt="remove" className="w-4 h-4 cursor-pointer" />
-                      </button>
-                    </div>
+            {cartItems.map((item, index) => (
+              <li
+                key={index}
+                className="flex items-center justify-around gap-3 py-4 first:pt-0 last:pb-0"
+              >
+                <img
+                  src={item.image[0]}
+                  alt="product"
+                  className="w-[54px] h-[107px] flex-1"
+                />
+
+                <div className="flex flex-col gap-2  flex-1">
+                  <p className="text-sm font-semibold text-[#2f4a9c]">
+                    {item.name}{" "}
+                    {item.capacities && `(${item.capacities[0].label})`}
+                  </p>
+                  <div className="flex items-center gap-2">
+                    <button className="border border-gray-300 rounded-lg px-3 py-1 text-sm flex items-center gap-1">
+                      {/* {item.quantity} <span className="text-gray-400">▾</span> */}
+                    </button>
+                    <button
+                      className="w-8 h-8 flex items-center justify-center rounded-lg bg-red-100"
+                      onClick={() => removeFromCart(item)}
+                    >
+                      <img
+                        src={garbageIcon}
+                        alt="remove"
+                        className="w-4 h-4 cursor-pointer"
+                      />
+                    </button>
                   </div>
-                  <div className="flex flex-col items-end gap-1">
-                    <div className="flex items-center gap-1">
-                      <span className="text-gray-400 line-through text-xs">{item.price}₾</span>
-                      <span className="bg-orange-500 text-white text-xs font-semibold px-1.5 py-0.5 rounded">-{item.discount}₾</span>
+                </div>
+                <div className="flex flex-col items-end gap-1 flex-1">
+                  {item.capacities && (
+                    <div
+                      key={item.capacities[item.selectedCapacityIndex].label}
+                      className="flex gap-[3px.84px] flex-col "
+                    >
+                      <div className="flex items-center gap-[2.5px]">
+                        <span className="unactiveStartingPrice rounded-[2.11px] px-[3.87px] py-[0.7px]">
+                          {item.capacities[item.selectedCapacityIndex].price}₾
+                        </span>
+                        <div className="bg-red-100 ">
+                          <span className="redDiscount ">
+                            -
+                            {
+                              item.capacities[item.selectedCapacityIndex]
+                                .discount
+                            }{" "}
+                            ₾
+                          </span>
+                        </div>
+                      </div>
+                      <span className="goldPrice ">
+                        {item.capacities[item.selectedCapacityIndex].finalPrice}
+                        ₾
+                      </span>
                     </div>
-                    <span className="bg-[#FDE800] text-gray-900 font-bold text-sm px-2 py-0.5 rounded-lg">{item.finalPrice}₾</span>
-                  </div>
+                  )}
                 </div>
               </li>
             ))}
@@ -293,44 +132,94 @@ const Checkout = () => {
             {/* Summary */}
             <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-2">
               <h2 className="text-lg font-bold text-[#2f4a9c]">Summary:</h2>
-              {[["Total price:", "19.56 ₾"], ["Total discount:", "3.74 ₾"]].map(([l, v]) => (
-                <div key={l} className="flex justify-between text-sm text-gray-700">
-                  <span>{l}</span><span>{v}</span>
+              {/* {[
+                ["Total price:", `${totalPrice.toFixed(2)} ₾`],
+                ["Total discount:", `${totalDiscount.toFixed(2)} ₾`],
+              ].map(([l, v]) => (
+                <div
+                  key={l}
+                  className="flex justify-between text-sm text-gray-700"
+                >
+                  <span>{l}</span>
+                  <span>{v}</span>
                 </div>
-              ))}
+              ))} */}
+              <div className="flex justify-between text-sm text-gray-700">
+                <span>Total price:</span>
+                <span>{totalPrice.toFixed(2)} ₾</span>
+              </div>
+              <div className="flex justify-between text-sm text-gray-700">
+                <span>Total discount:</span>
+                <span>{totalDiscount.toFixed(2)} ₾</span>
+              </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-700">Total price to pay</span>
-                <span className="text-xl font-bold text-[#2f4a9c]">21.02 ₾</span>
+                <span className="text-sm text-gray-700">
+                  Total price to pay
+                </span>
+                <span className="text-xl font-bold text-[#2f4a9c]">
+                  {totalPriceToPay.toFixed(2)} ₾
+                </span>
               </div>
             </div>
 
             {/* Payment */}
             <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-3">
-              <h2 className="text-lg font-bold text-[#2f4a9c]">Payment Method:</h2>
+              <h2 className="text-lg font-bold text-[#2f4a9c]">
+                Payment Method:
+              </h2>
               <p className="text-sm text-gray-500">Choose payment method</p>
-              {[
-                { id: "tbc", label: "TBC Bank", emoji: "🏦" },
-                { id: "bog", label: "Bank of Georgia", emoji: "🏧" },
-                { id: "apple", label: "Apple Pay", badge: "Apple Pay" },
-                { id: "google", label: "Google Pay", badge: "Google Pay" },
-              ].map((m) => (
-                <label key={m.id} className="flex items-center gap-3 cursor-pointer">
-                  <input type="radio" name="payment_method" value={m.id} className="accent-[#2f4a9c]" />
-                  {m.badge ? (
-                    <span className="border border-gray-300 rounded-md px-3 py-1 text-xs font-semibold">{m.badge}</span>
-                  ) : (
-                    <span className="text-sm text-gray-700">{m.emoji} {m.label}</span>
-                  )}
-                </label>
-              ))}
+
+              <label className="flex items-center gap-3 cursor-pointer ">
+                <input
+                  type="radio"
+                  name="payment_method"
+                  className="accent-[#2f4a9c]"
+                />
+                <img className="size-8.5" src={tbc} alt="TBC Bank" />
+                <span className="text-[16px]  text-[#797979]">TBC Bank</span>
+              </label>
+              <label className="flex items-center gap-3 cursor-pointer ">
+                <input
+                  type="radio"
+                  name="payment_method"
+                  className="accent-[#2f4a9c]"
+                />
+                <img className="" src={bog} alt="Bank of Georgia" />
+                <span className="text-[16px]  text-[#797979]">
+                  Bank of Georgia
+                </span>
+              </label>
+              <label className="flex items-center gap-3 cursor-pointer ">
+                <input
+                  type="radio"
+                  name="payment_method"
+                  className="accent-[#2f4a9c]"
+                />
+
+                <img
+                  className="w-[63px] h-[42px]  border center border-gray-300 rounded-md "
+                  src={applePay}
+                  alt="Apple Pay"
+                />
+              </label>
+              <label className="flex items-center gap-3 cursor-pointer ">
+                <input
+                  type="radio"
+                  name="payment_method"
+                  className="accent-[#2f4a9c]"
+                />
+                <div className="w-[62px] h-[34px] border center border-gray-300 rounded-md center">
+                  <img src={googlePay} alt="Google Pay" />
+                </div>
+              </label>
             </div>
 
-            <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-              <input type="checkbox" className="accent-[#2f4a9c]" />
-              I agreee to terms &amp; conditions
+            <label className="terms-toggle ">
+              <input type="checkbox" id="terms" className="" />
+              <span className="radio-visual bg-[#FFFFFF]! "></span>
+              <p>I agreee to terms &amp; conditions</p>
             </label>
-
-            <button className="w-full py-3 rounded-2xl bg-[#FDE800] text-gray-900 font-bold text-sm">
+            <button className="w-full py-3 rounded-2xl bg-[#FDE800] text-blue-50 font-helvetocaMedium text-[16px] cursor-pointer hover:opacity-90 transition-opacity">
               Check Out
             </button>
           </>
@@ -339,30 +228,56 @@ const Checkout = () => {
             {/* Delivery details */}
             <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-3">
               <div className="flex justify-between items-center">
-                <h2 className="text-lg font-bold text-[#2f4a9c]">Delivery details:</h2>
+                <h2 className="text-lg font-bold text-[#2f4a9c]">
+                  Delivery details:
+                </h2>
                 <button className="flex items-center gap-1 text-sm text-gray-500">
                   Edit <img src={editIcon} alt="edit" className="w-3 h-3" />
                 </button>
               </div>
               <div className="flex justify-between text-sm text-gray-700">
-                <span>Delivery address:</span><span>Tbilisi, Rustaveli 1, 01212</span>
+                <span>Delivery address:</span>
+                <span>Tbilisi, Rustaveli 1, 01212</span>
               </div>
               <div className="flex justify-between text-sm text-gray-700">
-                <span>Mobile:</span><span>555 555 555</span>
+                <span>Mobile:</span>
+                <span>555 555 555</span>
               </div>
             </div>
 
             {/* Summary */}
             <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-2">
               <h2 className="text-lg font-bold text-[#2f4a9c]">Summary:</h2>
-              {[["Total price:", "19.56 ₾"], ["Total discount:", "3.74 ₾"], ["Delivery:", "5.20 ₾"]].map(([l, v]) => (
-                <div key={l} className="flex justify-between text-sm text-gray-700">
-                  <span>{l}</span><span>{v}</span>
+              {/* {[
+                ["Total price:", "19.56 ₾"],
+                ["Total discount:", "3.74 ₾"],
+                ["Delivery:", "5.20 ₾"],
+              ].map(([l, v]) => (
+                <div
+                  key={l}
+                  className="flex justify-between text-sm text-gray-700"
+                >
+                  <span>{l}</span>
+                  <span>{v}</span>
                 </div>
-              ))}
+              ))} */}
+              {/* --------------- */}
+              <div className="flex justify-between text-sm text-gray-700">
+                <span>Total price:</span>
+                <span>{totalPrice.toFixed(2)} ₾</span>
+              </div>
+              <div className="flex justify-between text-sm text-gray-700">
+                <span>Total discount:</span>
+                <span>{totalDiscount.toFixed(2)} ₾</span>
+              </div>
+              {/* ------------- */}
               <div className="flex justify-between items-center pt-1">
-                <span className="text-sm text-gray-700">Total price to pay</span>
-                <span className="text-xl font-bold text-[#2f4a9c]">21.02 ₾</span>
+                <span className="text-sm text-gray-700">
+                  Total price to pay
+                </span>
+                <span className="text-xl font-bold text-[#2f4a9c]">
+                  {totalPriceToPay.toFixed(2)} ₾
+                </span>
               </div>
             </div>
 
@@ -378,27 +293,106 @@ const Checkout = () => {
 
       {/* ── DESKTOP ── */}
       <div className="hidden md:flex gap-6 items-start">
-
         {/* Left: cart items */}
         <div className="flex-1 bg-white rounded-2xl p-4 shadow-sm">
           <ul className="flex flex-col divide-y divide-gray-100">
-            {cart.map((item, index) => (
-              <li key={index} className="flex items-center gap-4 py-4 first:pt-0 last:pb-0">
-                <img src={item.image} alt="product" className="w-12 object-contain" />
-                <p className="flex-1 text-sm font-semibold text-[#2f4a9c]">{item.name}</p>
-                <button className="border border-gray-300 rounded-lg px-3 py-1 text-sm flex items-center gap-1">
-                  {item.quantity} <span className="text-gray-400">▾</span>
-                </button>
-                <button className="w-8 h-8 flex items-center justify-center rounded-lg bg-red-100 cursor-pointer
-                hover:opacity-90">
-                  <img src={garbageIcon} alt="remove" className="w-4 h-4 " />
-                </button>
+            {cartItems.map((item, index) => (
+              <li
+                key={index}
+                className="flex items-center justify-between gap-4 py-4 first:pt-0 last:pb-0 "
+              >
+                {/* image and item quantity name delete button */}
+                <div className="flex   gap-8 flex-1 ">
+                  <img
+                    src={item.image[0]}
+                    alt="product"
+                    className="w-[54px] h-[107px]  object-cover"
+                  />
+                  {/* item name quanitity delete button */}
+                  <div className="flex justify-between gap-4    items-start border-green-300!">
+                    <p className="flex-1 text-sm font-helvetocaRegular text-blue-50 text-center flex-wrap">
+                      {item.name}
+                      {item.capacities &&
+                        `(${item.capacities[item.selectedCapacityIndex].label})`}
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <select
+                        className="bg-[#F2F2F2] py-2 px-3  center  rounded-3xl text-blue-50 text-xl"
+                        name="amount"
+                        id="amount"
+                        value={item.amount}
+                        onChange={(e) =>
+                          updateQuantity(
+                            item.id,
+                            Number(e.target.value),
+                            item.selectedCapacityIndex,
+                          )
+                        }
+                      >
+                        {Array.from(
+                          {
+                            length:
+                              item.capacities[item.selectedCapacityIndex]
+                                .quantity,
+                          },
+                          (_, i) => (
+                            <option key={i + 1} value={i + 1}>
+                              {i + 1}
+                            </option>
+                          ),
+                        )}
+                      </select>
+                      <button
+                        className="w-8 h-8 flex items-center justify-center  bg-[#902E2E3B] cursor-pointer
+                hover:opacity-90 rounded-[131.45px] "
+                        onClick={() => removeFromCart(item)}
+                      >
+                        <img
+                          src={garbageIcon}
+                          alt="remove"
+                          className="w-4 h-4 "
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="flex flex-col items-end gap-1 min-w-[90px]">
                   <div className="flex items-center gap-1">
-                    <span className="text-gray-400 line-through text-xs">{item.price}₾</span>
-                    <span className="bg-orange-500 text-white text-xs font-semibold px-1.5 py-0.5 rounded">-{item.discount}₾</span>
+                    {item.capacities && (
+                      <div
+                        key={item.capacities[item.selectedCapacityIndex].label}
+                      >
+                        <div className="flex items-center gap-1">
+                          <span className="unactiveStartingPrice ">
+                            {(
+                              item.capacities[item.selectedCapacityIndex]
+                                ?.price * item.amount
+                            ).toFixed(2)}
+                            ₾
+                          </span>
+                          <div className="bg-red-100 rounded-[2.11px] px-[3.87px] py-[0.7px]">
+                            <span className="redDiscount ">
+                              {(
+                                (item.capacities[item.selectedCapacityIndex]
+                                  .price -
+                                  item.capacities[item.selectedCapacityIndex]
+                                    .finalPrice) *
+                                item.amount
+                              ).toFixed(2)}
+                            </span>
+                          </div>
+                        </div>
+                        <span className="goldPrice">
+                          {(
+                            item.capacities[item.selectedCapacityIndex]
+                              ?.finalPrice * item.amount
+                          ).toFixed(2)}
+                          ₾
+                        </span>
+                      </div>
+                    )}
                   </div>
-                  <span className="bg-[#FDE800] text-gray-900 font-bold text-sm px-2 py-0.5 rounded-lg">{item.finalPrice}₾</span>
                 </div>
               </li>
             ))}
@@ -407,72 +401,131 @@ const Checkout = () => {
 
         {/* Right: summary + payment or delivery */}
         <div className="w-72 flex flex-col gap-4">
+          <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-2 test">
+            <h2 className="text-lg font-bold text-[#2f4a9c]">Summary:</h2>
+            {/* {[
+                  ["Total price:", `${totalPrice.toFixed(2)} ₾`],
+                  ["Total discount:", `${totalDiscount.toFixed(2)} ₾`],
+                ].map(([l, v]) => (
+                  <div
+                    key={l}
+                    className="flex justify-between text-sm text-gray-700"
+                  >
+                    <span>{l}</span>
+                    <span>{v}</span>
+                  </div>
+                ))} */}
+            {/* -------------------- */}
+            <div className="flex justify-between text-sm text-gray-700">
+              <span>Total price:</span>
+              <span>{totalPrice.toFixed(2)} ₾</span>
+            </div>
+            <div className="flex justify-between text-sm text-gray-700">
+              <span>Total discount:</span>
+              <span>{totalDiscount.toFixed(2)} ₾</span>
+            </div>
+            {/* ------------ */}
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-gray-700">Total price to pay</span>
+              <span className="text-xl font-bold text-[#2f4a9c]">
+                {totalPriceToPay.toFixed(2)} ₾
+              </span>
+            </div>
+          </div>
           {selectedPaymentMethod ? (
             <>
-              <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-2">
-                <h2 className="text-lg font-bold text-[#2f4a9c]">Summary:</h2>
-                {[["Total price:", "19.56 ₾"], ["Total discount:", "3.74 ₾"]].map(([l, v]) => (
-                  <div key={l} className="flex justify-between text-sm text-gray-700">
-                    <span>{l}</span><span>{v}</span>
-                  </div>
-                ))}
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-700">Total price to pay</span>
-                  <span className="text-xl font-bold text-[#2f4a9c]">21.02 ₾</span>
-                </div>
-              </div>
-
               <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-3">
-                <h2 className="text-lg font-bold text-[#2f4a9c]">Payment Method:</h2>
+                <h2 className="text-lg font-bold text-[#2f4a9c]">
+                  Payment Method:
+                </h2>
                 <p className="text-sm text-gray-500">Choose payment method</p>
-                {[
-                  { id: "tbc", label: "TBC Bank", emoji: "🏦" },
-                  { id: "bog", label: "Bank of Georgia", emoji: "🏧" },
-                  { id: "apple", badge: "Apple Pay" },
-                  { id: "google", badge: "Google Pay" },
-                ].map((m) => (
-                  <label key={m.id} className="flex items-center gap-3 cursor-pointer">
-                    <input type="radio" name="payment_method" value={m.id} className="accent-[#2f4a9c]" />
-                    {m.badge ? (
-                      <span className="border border-gray-300 rounded-md px-3 py-1 text-xs font-semibold">{m.badge}</span>
-                    ) : (
-                      <span className="text-sm text-gray-700">{m.emoji} {m.label}</span>
-                    )}
-                  </label>
-                ))}
+
+                <label className="flex items-center gap-3 cursor-pointer ">
+                  <input
+                    type="radio"
+                    name="payment_method"
+                    className="accent-[#2f4a9c]"
+                    value="tbc"
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                  />
+                  <img className="size-8.5" src={tbc} alt="TBC Bank" />
+                  <span className="text-[16px]  text-[#797979]">TBC Bank</span>
+                </label>
+                <label className="flex items-center gap-3 cursor-pointer ">
+                  <input
+                    type="radio"
+                    name="payment_method"
+                    className="accent-[#2f4a9c]"
+                    value="bog"
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                  />
+                  <img className="" src={bog} alt="Bank of Georgia" />
+                  <span className="text-[16px]  text-[#797979]">
+                    Bank of Georgia
+                  </span>
+                </label>
+                <label className="flex items-center gap-3 cursor-pointer ">
+                  <input
+                    type="radio"
+                    name="payment_method"
+                    className="accent-[#2f4a9c]"
+                    value="apple_pay"
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                  />
+
+                  <img
+                    className="w-[63px] h-[42px]  border center border-gray-300 rounded-md "
+                    src={applePay}
+                    alt="Apple Pay"
+                  />
+                </label>
+                <label className="flex items-center gap-3 cursor-pointer ">
+                  <input
+                    type="radio"
+                    name="payment_method"
+                    className="accent-[#2f4a9c]"
+                    value="google_pay"
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                  />
+                  <div className="w-[62px] h-[34px] border center border-gray-300 rounded-md center">
+                    <img src={googlePay} alt="Google Pay" />
+                  </div>
+                </label>
               </div>
 
-              <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-                <input type="checkbox" className="accent-[#2f4a9c]" />
-                I agreee to terms &amp; conditions
+              <label className="terms-toggle ">
+                <input
+                  type="checkbox"
+                  id="terms"
+                  className=""
+                  checked={agreedToTerms}
+                  onChange={(e) => setAgreedToTerms(e.target.checked)}
+                />
+                <span className="radio-visual bg-[#FFFFFF]! "></span>
+                <p>I agreee to terms &amp; conditions</p>
               </label>
-
-              <button className="w-full py-3 rounded-2xl bg-[#FDE800] text-gray-900 font-bold text-sm">
+              <button
+                className="w-full py-3 rounded-2xl bg-[#FDE800] text-blue-50 font-helvetocaMedium text-[16px] cursor-pointer hover:opacity-90 transition-opacity"
+                onClick={() => {
+                  if (agreedToTerms && paymentMethod) {
+                    setTransactionStatus("success");
+                    navigate("/transaction-result", { state: { success: true } });
+                  } else {
+                    setTransactionStatus("failed");
+                    navigate("/transaction-result", { state: { success: false } });
+                  }
+                }}
+              >
                 Check Out
               </button>
             </>
           ) : (
-            <>
-              <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-2">
-                <h2 className="text-lg font-bold text-[#2f4a9c]">Summary:</h2>
-                {[["Total price:", "19.56 ₾"], ["Total discount:", "3.74 ₾"], ["Delivery:", "5.20 ₾"]].map(([l, v]) => (
-                  <div key={l} className="flex justify-between text-sm text-gray-700">
-                    <span>{l}</span><span>{v}</span>
-                  </div>
-                ))}
-                <div className="flex justify-between items-center pt-1">
-                  <span className="text-sm text-gray-700">Total price to pay</span>
-                  <span className="text-xl font-bold text-[#2f4a9c]">21.02 ₾</span>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setSelectedPaymentMethod(true)}
-                className="w-full py-3 rounded-2xl bg-[#FDE800] text-gray-900 font-bold text-sm cursor-pointer hover:opacity-90 transition-opacity"
-              >
-                Buy Now
-              </button>
-            </>
+            <button
+              onClick={() => setSelectedPaymentMethod(true)}
+              className="w-full py-3 rounded-2xl bg-[#FDE800] text-gray-900 font-bold text-sm cursor-pointer hover:opacity-90 transition-opacity"
+            >
+              Buy Now
+            </button>
           )}
         </div>
       </div>

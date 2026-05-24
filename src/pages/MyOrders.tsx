@@ -4,9 +4,11 @@ import type { CartItem } from "../types";
 
 export default function MyOrders() {
   const {cartItems} = useCartContext();
-  const [orderedItems,setOrderedItems] = useState<CartItem | null>();
+  // const [orderedItems,setOrderedItems] = useState<CartItem | null>();
   
-  console.log(cartItems)
+  const savedCart = localStorage.getItem("cart");
+  const orderedItems =  savedCart ? JSON.parse(savedCart) : [];
+  console.log(orderedItems);
 
   return (
     <div className="min-h-screen  py-4 md:py-8 ">
@@ -22,9 +24,10 @@ export default function MyOrders() {
               </div>
             ))}
           </div>
+            
 
           {/* Order summary row */}
-          <div className="grid grid-cols-5 border-b border-gray-200">
+          <div className="grid grid-cols-5 border-b border-gray-200 bg-emerald-300">
             <div className="px-6 py-4 text-sm text-gray-700 text-center">#123456</div>
             <div className="px-6 py-4 text-sm text-gray-700 text-center">12 September 2025</div>
             <div className="px-6 py-4 text-sm text-gray-700 text-center">2 products</div>
@@ -46,20 +49,23 @@ export default function MyOrders() {
           </div>
 
           {/* Product row */}
-          <div className="grid grid-cols-5 items-center ">
+          {orderedItems.map((item:CartItem,index:number) => (
+              <div key={index} className="grid grid-cols-5 items-center ">
             <div className="px-6 py-5 flex justify-center">
-              <div className="w-20 h-20 rounded-xl bg-gray-200" />
+             <img src={item.image[0]} alt="" />
             </div>
             <div className="px-6 py-5 text-sm text-gray-700 leading-relaxed">
-              Cleaning agent designed to remove scale from bathroom surfaces.
+              {item.description}
             </div>
-            <div className="px-6 py-5 text-sm text-gray-700 text-center">2</div>
+            <div className="px-6 py-5 text-sm text-gray-700 text-center">{item.amount}</div>
             <div className="px-6 py-5 text-sm text-center">
-              <div className="line-through text-gray-400">299.00 ₾</div>
+              <div className="line-through text-gray-400">299 ₾</div>
               <div className="text-gray-700">199.00 ₾</div>
             </div>
             <div className="px-6 py-5 text-sm text-gray-700 text-center">199.00 ₾</div>
           </div>
+          ))}
+          
         </div>
 
         {/* ── MOBILE LIST (below md) ── */}

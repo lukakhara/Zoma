@@ -26,28 +26,27 @@ const Checkout = () => {
   const navigate = useNavigate();
   const [agreedToTerms, setAgreedToTerms] = useState<boolean>(false);
   const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
-  const [transactionStatus, setTransactionStatus] = useState<string | null>(null);
-  const [errors,setErrors] = useState({terms:'',payment:''});
+  const [errors, setErrors] = useState({ terms: "", payment: "" });
 
- const handleCheckout = () => {
-  const newErrors = { terms: "", payment: "" };
+  const handleCheckout = () => {
+    const newErrors = { terms: "", payment: "" };
 
-  if (!agreedToTerms) {
-    newErrors.terms = "You must agree to terms & conditions";
-  }
-  if (!paymentMethod) {
-    newErrors.payment = "Please select a payment method";
-  }
+    if (!agreedToTerms) {
+      newErrors.terms = "You must agree to terms & conditions";
+    }
+    if (!paymentMethod) {
+      newErrors.payment = "Please select a payment method";
+    }
 
-  setErrors(newErrors);
+    setErrors(newErrors);
 
-  // only proceed if no errors
-  if (!newErrors.terms && !newErrors.payment) {
-    navigate("/transaction-result", { state: { success: true } });
-  }
-};
-
-
+    // only proceed if no errors
+    if (!newErrors.terms && !newErrors.payment) {
+      navigate("/transaction-result", { state: { success: true } });
+      localStorage.setItem("cart", JSON.stringify(cartItems));
+    }
+  };
+  console.log("cartItems111111111111111",cartItems);
 
   // const [cart, setCart] = useState<Product[]>([
   //   {
@@ -417,22 +416,10 @@ const Checkout = () => {
         </div>
 
         {/* Right: summary + payment or delivery */}
-        <div className="w-72 flex flex-col gap-4">
-          <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-2 ">
+        <div className="w-72 flex flex-col gap-4 test border-amber-400">
+          <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-2 test border-pink-500">
             <h2 className="text-lg font-bold text-[#2f4a9c]">Summary:</h2>
-            {/* {[
-                  ["Total price:", `${totalPrice.toFixed(2)} ₾`],
-                  ["Total discount:", `${totalDiscount.toFixed(2)} ₾`],
-                ].map(([l, v]) => (
-                  <div
-                    key={l}
-                    className="flex justify-between text-sm text-gray-700"
-                  >
-                    <span>{l}</span>
-                    <span>{v}</span>
-                  </div>
-                ))} */}
-            {/* -------------------- */}
+
             <div className="flex justify-between text-sm text-gray-700">
               <span>Total price:</span>
               <span>{totalPrice.toFixed(2)} ₾</span>
@@ -448,134 +435,132 @@ const Checkout = () => {
                 {totalPriceToPay.toFixed(2)} ₾
               </span>
             </div>
-          </div>
-          {selectedPaymentMethod ? (
-            <>
-              <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-3">
-                <h2 className="text-lg font-bold text-[#2f4a9c]">
-                  Payment Method:
-                </h2>
-                <p className="text-sm text-gray-500">Choose payment method</p>
+            {selectedPaymentMethod ? (
+              <div>
+                <>
+                  <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-3 test border-black">
+                    <h2 className="text-lg font-bold text-[#2f4a9c]">
+                      Payment Method:
+                    </h2>
+                    <p className="text-sm text-gray-500">
+                      Choose payment method
+                    </p>
 
-                <label className="flex items-center gap-3 cursor-pointer ">
-                  <input
-                    type="radio"
-                    name="payment_method"
-                    className="accent-[#2f4a9c]"
-                    value="tbc"
-                    onChange={(e) => {setPaymentMethod(e.target.value);
-                       setErrors((prev) => ({ ...prev, payment: "" }));
-                    }}
-                  />
-                  <img className="size-8.5" src={tbc} alt="TBC Bank" />
-                  <span className="text-[16px]  text-[#797979]">TBC Bank</span>
-                </label>
-                <label className="flex items-center gap-3 cursor-pointer ">
-                  <input
-                    type="radio"
-                    name="payment_method"
-                    className="accent-[#2f4a9c]"
-                    value="bog"
-                    onChange={(e) => {setPaymentMethod(e.target.value);
-                      setErrors((prev) => ({ ...prev, payment: "" }));
-                    }}
-                  />
-                  <img className="" src={bog} alt="Bank of Georgia" />
-                  <span className="text-[16px]  text-[#797979]">
-                    Bank of Georgia
-                  </span>
-                </label>
-                <label className="flex items-center gap-3 cursor-pointer ">
-                  <input
-                    type="radio"
-                    name="payment_method"
-                    className="accent-[#2f4a9c]"
-                    value="apple_pay"
-                    onChange={(e) => {setPaymentMethod(e.target.value)
-                       setErrors((prev) => ({ ...prev, payment: "" }));
-                    }}
-                  />
+                    <label className="flex items-center gap-3 cursor-pointer ">
+                      <input
+                        type="radio"
+                        name="payment_method"
+                        className="accent-[#2f4a9c]"
+                        value="tbc"
+                        onChange={(e) => {
+                          setPaymentMethod(e.target.value);
+                          setErrors((prev) => ({ ...prev, payment: "" }));
+                        }}
+                      />
+                      <img className="size-8.5" src={tbc} alt="TBC Bank" />
+                      <span className="text-[16px]  text-[#797979]">
+                        TBC Bank
+                      </span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer ">
+                      <input
+                        type="radio"
+                        name="payment_method"
+                        className="accent-[#2f4a9c]"
+                        value="bog"
+                        onChange={(e) => {
+                          setPaymentMethod(e.target.value);
+                          setErrors((prev) => ({ ...prev, payment: "" }));
+                        }}
+                      />
+                      <img className="" src={bog} alt="Bank of Georgia" />
+                      <span className="text-[16px]  text-[#797979]">
+                        Bank of Georgia
+                      </span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer ">
+                      <input
+                        type="radio"
+                        name="payment_method"
+                        className="accent-[#2f4a9c]"
+                        value="apple_pay"
+                        onChange={(e) => {
+                          setPaymentMethod(e.target.value);
+                          setErrors((prev) => ({ ...prev, payment: "" }));
+                        }}
+                      />
 
-                  <img
-                    className="w-[63px] h-[42px]  border center border-gray-300 rounded-md "
-                    src={applePay}
-                    alt="Apple Pay"
-                  />
-                </label>
-                <label className="flex items-center gap-3 cursor-pointer ">
-                  <input
-                    type="radio"
-                    name="payment_method"
-                    className="accent-[#2f4a9c]"
-                    value="google_pay"
-                    onChange={(e) => {setPaymentMethod(e.target.value)
-                     setErrors((prev) => ({ ...prev, payment: "" }));}
-                    }
-                  />
-                  <div className="w-[62px] h-[34px] border center border-gray-300 rounded-md center">
-                    <img src={googlePay} alt="Google Pay" />
+                      <img
+                        className="w-[63px] h-[42px]  border center border-gray-300 rounded-md "
+                        src={applePay}
+                        alt="Apple Pay"
+                      />
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer ">
+                      <input
+                        type="radio"
+                        name="payment_method"
+                        className="accent-[#2f4a9c]"
+                        value="google_pay"
+                        onChange={(e) => {
+                          setPaymentMethod(e.target.value);
+                          setErrors((prev) => ({ ...prev, payment: "" }));
+                        }}
+                      />
+                      <div className="w-[62px] h-[34px] border center border-gray-300 rounded-md center">
+                        <img src={googlePay} alt="Google Pay" />
+                      </div>
+                    </label>
+                    {errors.payment && (
+                      <div className="flex  items-center">
+                        <img src={warningIcon} alt="" />
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.payment}
+                        </p>
+                      </div>
+                    )}
                   </div>
-                </label>
-                {errors.payment && (
+                </>
+
+                {errors.terms && (
                   <div className="flex  items-center">
                     <img src={warningIcon} alt="" />
-                    <p className="text-red-500 text-sm mt-1">
-                     {errors.payment}
-                    </p>
+                    <p className="text-red-500 text-sm mt-1">{errors.terms}</p>
                   </div>
                 )}
+
+                <label className="terms-toggle ">
+                  <input
+                    type="checkbox"
+                    id="terms"
+                    className=""
+                    checked={agreedToTerms}
+                    onChange={(e) => {
+                      setAgreedToTerms(e.target.checked);
+                      setErrors((prev) => ({ ...prev, terms: "" }));
+                    }}
+                  />
+                  <span className="radio-visual bg-[#FFFFFF]! "></span>
+
+                  <p>I agreee to terms &amp; conditions</p>
+                </label>
+                <button
+                  className="w-full py-3 rounded-2xl bg-[#FDE800] text-blue-50 font-helvetocaMedium text-[16px] cursor-pointer hover:opacity-90 transition-opacity"
+                  onClick={() => handleCheckout()}
+                >
+                  Check Out
+                </button>
               </div>
-
-              {errors.terms && (
-                <div className="flex  items-center">
-                  <img src={warningIcon} alt="" />
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.terms}
-                  </p>
-                </div>
-              )}
-
-              <label className="terms-toggle ">
-                <input
-                  type="checkbox"
-                  id="terms"
-                  className=""
-                  checked={agreedToTerms}
-                  onChange={(e) => {setAgreedToTerms(e.target.checked)
-                     setErrors((prev) => ({ ...prev, terms: "" }));
-                  }}
-                  
-                />
-                <span className="radio-visual bg-[#FFFFFF]! "></span>
-
-                <p>I agreee to terms &amp; conditions</p>
-              </label>
+            ) : (
               <button
-                className="w-full py-3 rounded-2xl bg-[#FDE800] text-blue-50 font-helvetocaMedium text-[16px] cursor-pointer hover:opacity-90 transition-opacity"
-                onClick={() => handleCheckout()
-                  // if (agreedToTerms && paymentMethod) {
-                  //   setTransactionStatus("success");
-                  //   navigate("/transaction-result", {
-                  //     state: { success: true },
-                  //   });
-                  // }
-                  // else {
-                  //   setTransactionStatus("failed");
-                  //   navigate("/transaction-result", { state: { success: false } });
-                  // }
-                }
+                onClick={() => setSelectedPaymentMethod(true)}
+                disabled={cartItems.length === 0 ? true : false}
+                className="w-full py-3 rounded-2xl bg-[#FDE800] text-gray-900 font-bold text-sm cursor-pointer hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Check Out
+                Buy Now
               </button>
-            </>
-          ) : (
-            <button
-              onClick={() => setSelectedPaymentMethod(true)}
-              className="w-full py-3 rounded-2xl bg-[#FDE800] text-gray-900 font-bold text-sm cursor-pointer hover:opacity-90 transition-opacity"
-            >
-              Buy Now
-            </button>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </div>

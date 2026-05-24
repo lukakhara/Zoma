@@ -13,6 +13,7 @@ const Card = ({ cartItem }: { cartItem: CartItem }) => {
   const { addToCart } = useCartContext();
   
   const [quantity,setQuantity] = useState(1);
+  console.log(cartItem);
 
   return (
     <>

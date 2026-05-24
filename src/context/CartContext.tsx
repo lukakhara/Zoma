@@ -17,6 +17,7 @@ const cartContext = createContext<CartContextType | null>(null);
 const CartContextProdiver = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([
   {
+    
     name: "ზომა - ქაფი",
     category: "დასუფთავება",
     description: "Zoma Bafix Foam არის მზა, ქაფიანი საწმენდი საშუალება, რომელიც შექმნილია აბაზანის ზედაპირებიდან ნადების მოსაშორებლად. ის ეფექტურად აშორებს კირს და სხვა სახის ჭუჭყს. გამოდგება დაუზიანებელი ფაიფურის, კერამიკის და მინანქრის სანიტარული ზედაპირებისთვის.",
@@ -59,7 +60,7 @@ const CartContextProdiver = ({ children }: { children: ReactNode }) => {
       "არ გამოიყენოთ მჟავას მიმართ მგრძნობიარე ზედაპირებზე, როგორიცაა მარმარილო და სხვა."
     ],
     id: 1,
-    image: ["/assets/product.png", "/assets/product2.png", "/assets/product.png"],
+    image: ["/assets/product2.png", "/assets/product2.png", "/assets/product.png"],
     instructionsForUse: [
       "შეისხურეთ ზედაპირზე",
       "დაელოდეთ 5–10 წუთი",

@@ -1,36 +1,48 @@
 import { useState } from "react";
-import { useCartContext } from "../context/CartContext";
-import type { CartItem } from "../types";
+import { useCartProducts } from "../context/UseCartProducts";
+import { type CardProps } from "../types";
 
 export default function MyOrders() {
-  const {cartItems} = useCartContext();
-  // const [orderedItems,setOrderedItems] = useState<CartItem | null>();
-  
-  
+  const cartItems = useCartProducts();
+  const [orderedItems, setOrderedItems] = useState(cartItems);
 
+  const totalPriceToPay = orderedItems.reduce((total, item) => {
+    return total + item.finalPrice * item.quantity;
+  }, 0);
 
   return (
     <div className="min-h-screen  py-4 md:py-8 ">
       <div className="bg-white rounded-2xl shadow-sm overflow-hidden ">
-
         {/* ── DESKTOP TABLE (md and above) ── */}
         <div className="hidden md:block ">
           {/* Top header row */}
-          <div className="grid grid-cols-5 border-b border-gray-200">
-            {["Order Number", "Date", "Quantity", "Price", "Status"].map((h) => (
-              <div key={h} className="px-6 py-4 text-sm font-semibold text-gray-800 text-center">
-                {h}
-              </div>
-            ))}
+          <div className="grid grid-cols-5 border-b border-[#C3C3C3] ">
+            {["Order Number", "Date", "Quantity", "Price", "Status"].map(
+              (h) => (
+                <div
+                  key={h}
+                  className="border-r border-[#EEEEEE] px-6 py-4 text-sm font-semibold text-gray-800 text-center"
+                >
+                  {h}
+                </div>
+              ),
+            )}
           </div>
-            
 
           {/* Order summary row */}
-          <div className="grid grid-cols-5 border-b border-gray-200 bg-emerald-300">
-            <div className="px-6 py-4 text-sm text-gray-700 text-center">#123456</div>
-            <div className="px-6 py-4 text-sm text-gray-700 text-center">12 September 2025</div>
-            <div className="px-6 py-4 text-sm text-gray-700 text-center">2 products</div>
-            <div className="px-6 py-4 text-sm text-gray-700 text-center">199.00 ₾</div>
+          <div className="grid grid-cols-5 border-b border-[#C3C3C3]   ">
+            <div className="px-6 py-4 text-sm text-gray-700 text-center border-r border-[#EEEEEE]">
+              #123456
+            </div>
+            <div className="px-6 py-4 text-sm text-gray-700 text-center border-r border-[#EEEEEE]">
+              12 September 2025
+            </div>
+            <div className="px-6 py-4 text-sm text-gray-700 text-center border-r border-[#EEEEEE]">
+              {orderedItems.length} products
+            </div>
+            <div className="px-6 py-4 text-sm text-gray-700 text-center border-r border-[#EEEEEE]">
+              {totalPriceToPay.toFixed(2)} ₾
+            </div>
             <div className="px-6 py-4 text-center">
               <span className="bg-yellow-300 text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-lg">
                 Is Being Delivered
@@ -39,32 +51,38 @@ export default function MyOrders() {
           </div>
 
           {/* Product detail header row */}
-          <div className="grid grid-cols-5 border-b border-gray-200 bg-gray-50">
+          <div className="grid grid-cols-5 ">
             {["Image", "Product", "Quantity", "Price", "Total"].map((h) => (
-              <div key={h} className="px-6 py-3 text-sm font-semibold text-gray-800 text-center">
+              <div
+                key={h}
+                className="px-6 py-3 text-sm font-semibold text-gray-800 text-center border-r border-[#EEEEEE]"
+              >
                 {h}
               </div>
             ))}
           </div>
 
           {/* Product row */}
-          {orderedItems.map((item:CartItem,index:number) => (
-              <div key={index} className="grid grid-cols-5 items-center ">
-            <div className="px-6 py-5 flex justify-center">
-             <img src={item.image[0]} alt="" />
+          {orderedItems.map((item, index) => (
+            <div key={index} className="grid grid-cols-5 items-center ">
+              <div className="px-6 py-5 flex justify-center border-r border-[#EEEEEE]">
+                <img src={item.image} alt="" />
+              </div>
+              <div className="px-6 py-5 text-sm text-gray-700 leading-relaxed border-r border-[#EEEEEE] h-full flex flex items-center justify-center">
+                {"item description"}
+              </div>
+              <div className="px-6 py-5 text-sm text-gray-700 text-center border-r border-[#EEEEEE] h-full flex items-center justify-center">
+                {item.quantity}
+              </div>
+              <div className="px-6 py-5 text-sm text-center border-r border-[#EEEEEE] h-full flex flex-col items-center justify-center">
+                <div className="line-through text-gray-400 ">{item.price}₾</div>
+                <div className="text-gray-700">{item.finalPrice}</div>
+              </div>
+              <div className="px-6 py-5 text-sm text-gray-700 text-center">
+                {item.quantity * item.finalPrice}
+              </div>
             </div>
-            <div className="px-6 py-5 text-sm text-gray-700 leading-relaxed">
-              {item.description}
-            </div>
-            <div className="px-6 py-5 text-sm text-gray-700 text-center">{item.amount}</div>
-            <div className="px-6 py-5 text-sm text-center">
-              <div className="line-through text-gray-400">299 ₾</div>
-              <div className="text-gray-700">199.00 ₾</div>
-            </div>
-            <div className="px-6 py-5 text-sm text-gray-700 text-center">199.00 ₾</div>
-          </div>
           ))}
-          
         </div>
 
         {/* ── MOBILE LIST (below md) ── */}
@@ -72,12 +90,17 @@ export default function MyOrders() {
           {/* Each row is label + value */}
           {[
             { label: "Order Number", value: "#123456" },
-            { label: "Date",         value: "12 September 2025" },
-            { label: "Quantity",     value: "2 products" },
-            { label: "Price",        value: "199.00 ₾" },
+            { label: "Date", value: "12 September 2025" },
+            { label: "Quantity", value: "2 products" },
+            { label: "Price", value: "199.00 ₾" },
           ].map((row) => (
-            <div key={row.label} className="flex justify-between items-center px-5 py-3.5 border-b border-gray-100">
-              <span className="text-sm font-semibold text-gray-800">{row.label}</span>
+            <div
+              key={row.label}
+              className="flex justify-between items-center px-5 py-3.5 border-b border-gray-100"
+            >
+              <span className="text-sm font-semibold text-gray-800">
+                {row.label}
+              </span>
               <span className="text-sm text-gray-700">{row.value}</span>
             </div>
           ))}
@@ -106,7 +129,9 @@ export default function MyOrders() {
 
           {/* Quantity */}
           <div className="flex justify-between items-center px-5 py-3.5 border-b border-gray-100">
-            <span className="text-sm font-semibold text-gray-800">Quantity</span>
+            <span className="text-sm font-semibold text-gray-800">
+              Quantity
+            </span>
             <span className="text-sm text-gray-700">2</span>
           </div>
 
@@ -125,7 +150,6 @@ export default function MyOrders() {
             <span className="text-sm text-gray-700">199.00 ₾</span>
           </div>
         </div>
-
       </div>
     </div>
   );

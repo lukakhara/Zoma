@@ -13,6 +13,7 @@ export interface FullCartItem {
   discount: number;
   finalPrice: number;
   amount: number;
+  quantity:number;
 }
 
 export function useCartProducts(): FullCartItem[] {
@@ -29,19 +30,22 @@ export function useCartProducts(): FullCartItem[] {
       const staticData = productsJson.find((p) => String(p.id) === String(cartItem.id));
       const i18nData = staticData ? translations[staticData.parentId] : undefined;
 
+      console.log("staticData",staticData)
+            console.log("i18nData",i18nData)
       // guard: skip if product no longer exists
       if (!staticData || !i18nData) return null;
 
 
       return {
         id: cartItem.id,
-        amount: cartItem.quantity,
+        amount: staticData.amount,
         name: i18nData.name,
         label: staticData.label,
         price: staticData.price,
         image: staticData.images[0], // assuming you want the first image
         discount: staticData.discount,
         finalPrice: staticData.finalPrice,
+        quantity:cartItem.quantity
       };
     })
     .filter((item): item is FullCartItem => item !== null);

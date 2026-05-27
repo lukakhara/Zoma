@@ -15,7 +15,7 @@ const Checkout = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<boolean>(false);
 
-  const { removeFromCart, updateQuantity } = useCartContext();
+  const { removeFromCart, updateQuantity, clearCart } = useCartContext();
 
   const navigate = useNavigate();
   const [agreedToTerms, setAgreedToTerms] = useState<boolean>(false);
@@ -37,20 +37,23 @@ const Checkout = () => {
     // only proceed if no errors
     if (!newErrors.terms && !newErrors.payment) {
       navigate("/transaction-result", { state: { success: true } });
+      clearCart();
     }
   };
 
   const totalPrice = cartItems.reduce((total, item) => {
-    return total + item.price * item.amount;
+    return total + item.price * item.quantity;
   }, 0);
 
   const totalPriceToPay = cartItems.reduce((total, item) => {
-    return total + item.finalPrice * item.amount;
+    return total + item.finalPrice * item.quantity;
   }, 0);
 
   const totalDiscount = totalPrice - totalPriceToPay;
 
-  const { cartItems: rawItems } = useCartContext(); // raw context items
+  console.log(cartItems);
+
+  // const { cartItems: rawItems } = useCartContext(); // raw context items
   // merged items
 
   // console.log("raw cart:", rawItems); // what's actually in the cart
@@ -328,12 +331,12 @@ const Checkout = () => {
                     <p className="flex-1 text-sm font-helvetocaRegular text-blue-50 text-center flex-wrap">
                       {item.name} ({item.label})
                     </p>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 ">
                       <select
                         className="bg-[#F2F2F2] py-2 px-3  center  rounded-3xl text-blue-50 text-xl"
                         name="amount"
                         id="amount"
-                        value={item.amount}
+                        value={item.quantity}
                         onChange={(e) =>
                           updateQuantity(item.id, Number(e.target.value))
                         }
@@ -369,19 +372,19 @@ const Checkout = () => {
                     <div key={item.label}>
                       <div className="flex items-center gap-1">
                         <span className="unactiveStartingPrice ">
-                          {(item.price * item.amount).toFixed(2)}₾
+                          {(item.price * item.quantity).toFixed(2)}₾
                         </span>
                         <div className="bg-red-100 rounded-[2.11px] px-[3.87px] py-[0.7px]">
                           <span className="redDiscount ">
                             {(
                               (item.price - item.finalPrice) *
-                              item.amount
+                              item.quantity
                             ).toFixed(2)}
                           </span>
                         </div>
                       </div>
                       <span className="goldPrice">
-                        {(item.finalPrice * item.amount).toFixed(2)}₾
+                        {(item.finalPrice * item.quantity).toFixed(2)}₾
                       </span>
                     </div>
                   </div>

@@ -1,12 +1,13 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 import { type CartItem } from "../types";
-import productJson from '../locales/products.json'
+import productsJson from "../locales/products.json";
 
 interface CartContextType {
   cartItems: CartItem[];
   addToCart: (id: string) => void;
   removeFromCart: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
+  clearCart: () => void;
 }
 
 const cartContext = createContext<CartContextType | null>(null);
@@ -14,20 +15,22 @@ const cartContext = createContext<CartContextType | null>(null);
 const CartContextProdiver = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const getStock = (id:number) => {
-    productJson.find(p => p.parentId ===  String(id))?.amount ?? 0;
-  } 
-  
+  const getStock = (id: string) =>
+    productsJson.find((p) => p.id === id)?.amount ?? 0;
 
   const addToCart = (id: string) => {
     setCartItems((prev) => {
       const exists = prev.find((item) => item.id === id);
+      const stock = getStock(id);
 
       if (exists) {
         return prev.map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
+          item.id === id
+            ? { ...item, quantity: Math.min(item.quantity + 1, stock) }
+            : item,
         );
       }
+      if (stock === 0) return prev;
       return [...prev, { id, quantity: 1 }];
     });
   };
@@ -38,10 +41,17 @@ const CartContextProdiver = ({ children }: { children: ReactNode }) => {
 
   const updateQuantity = (id: string, quantity: number) => {
     if (quantity <= 0) return removeFromCart(id);
+    const stock = getStock(id);
     setCartItems((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, quantity } : item)),
+      prev.map((item) =>
+        item.id === id
+          ? { ...item, quantity: Math.min(quantity, stock) }
+          : item,
+      ),
     );
   };
+
+  const clearCart = () => setCartItems([]);
 
   return (
     <cartContext.Provider
@@ -50,6 +60,7 @@ const CartContextProdiver = ({ children }: { children: ReactNode }) => {
         addToCart,
         removeFromCart,
         updateQuantity,
+        clearCart,
       }}
     >
       {children}

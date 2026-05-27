@@ -34,7 +34,7 @@ export default function SignIn() {
   };
 
   return (
-    <div className="min-h-screen py-6 md:py-8">
+    <div className="min-h-screen py-6 md:py-14">
       <h1 className="text-2xl font-bold text-gray-900">Sign in</h1>
 
       <div className="md:flex md:justify-center md:items-center md:mt-16">

@@ -70,7 +70,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
        const response = await fetch(
       `/api/users?email=${encodeURIComponent(email)}`
-    );
+    );  
       if (!response.ok) throw new Error("Server error");
 
       const users = await response.json();

@@ -32,7 +32,7 @@ const ProfileSideNavbar = () => {
           </NavLink>
         </div>
         <button
-          className="w-full py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium"
+          className="w-full py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium cursor-pointer hover:opacity-90"
           onClick={handleLogout}
         >
           Log Out

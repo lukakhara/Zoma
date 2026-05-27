@@ -1,6 +1,5 @@
-import Card from "./Card";
+import Card from "./Card.tsx";
 import productsData from "../locales/products.json";
-import { type CartItem} from "../types";
 import { useTranslation } from "react-i18next";
 
 const Body = ({ filter }: { filter: string }) => {
@@ -11,12 +10,14 @@ const Body = ({ filter }: { filter: string }) => {
   >;
 
 
-  const products = (productsData as CartItem[]).map((product) => ({
-    ...product,
+
+const products = productsData
+  .filter((p, index, arr) => arr.findIndex((x) => x.parentId === p.parentId) === index)
+  .map((p) => ({
+    ...p,
     quantity: 1,
-    selectedCapacityIndex: 0,
-    name: productsName[product.id]?.name ?? product.name,
-    category: productsName[product.id]?.category ?? product.category,
+    name: productsName[p.parentId]?.name,
+    category: productsName[p.parentId]?.category,
   }));
 
 
@@ -29,7 +30,7 @@ const Body = ({ filter }: { filter: string }) => {
   return (
     <div className="grid  w-full grid-cols-2 gap-6 px-2.5 md:pb-22 m-auto md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  ">
       {filteredProducts.map((product) => (
-        <Card key={product.id} cartItem={product} />
+        <Card key={product.id} product={product} />
       ))}
     </div>
   );

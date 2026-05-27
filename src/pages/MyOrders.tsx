@@ -6,9 +6,8 @@ export default function MyOrders() {
   const {cartItems} = useCartContext();
   // const [orderedItems,setOrderedItems] = useState<CartItem | null>();
   
-  const savedCart = localStorage.getItem("cart");
-  const orderedItems =  savedCart ? JSON.parse(savedCart) : [];
-  console.log(orderedItems);
+  
+
 
   return (
     <div className="min-h-screen  py-4 md:py-8 ">

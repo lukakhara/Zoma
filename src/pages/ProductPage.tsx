@@ -3,7 +3,7 @@
 import play from "/assets/play.png";
 import cart from "/assets/cart.png";
 import { useTranslation } from "react-i18next";
-import { type CartItem } from "../types";
+import {type Product } from "../types";
 import productsData from "../locales/products.json";
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
@@ -11,51 +11,33 @@ import { useCartContext } from "../context/CartContext";
 
 const ProductPage = () => {
   const { t, i18n } = useTranslation();
-  const productDataFromTranslation = t("products", {
-    returnObjects: true,
-  }) as CartItem[];
+  const productDataFromTranslation = t("products", {returnObjects: true,}) as Product[];
   const { id } = useParams<{ id: string }>();
-  const { addToCart, cartItems, setCartItems } = useCartContext();
-
-  // State to track which product image is currently active (for the main display)
+  const { addToCart } = useCartContext();
   const [activeImage, setActiveImage] = useState<number>(0);
-
-  // Check if the current language is Georgian
   const languageGeorgian = i18n.language === "ka";
+  
+  // const myProductId = 1;
 
-  // Convert the ID from the URL to a number and find the corresponding product data from both the translation and the static JSON, then merge them together
-  const myProductId = Number(id);
-  const tranlsationSelectedData = productDataFromTranslation[myProductId];
-  // Get the product data from products.json based on the ID from the URL
-  const productsDataArray = productsData.filter(
-    (product) => product.id === myProductId,
+  const [selectCapacityIndex,setSelectCapacityIndex] = useState(0);
+
+  const product = productDataFromTranslation[Number(id)]
+  
+  
+  const capacities = productsData.filter(
+    (product) => Number(product.parentId) === Number(id),
   );
-  const myNeededProduct = productsDataArray[0];
 
-  // Merge the translated data and the static data into a single product object
-  const mergeProduct = {
-    ...tranlsationSelectedData,
-    ...myNeededProduct,
-    selectedCapacityIndex: 0,
-    amount: 1,
-  };
+  const selectedId = capacities[selectCapacityIndex].id;
 
-  const [product, setProduct] = useState<CartItem>(mergeProduct);
-
-  const capacity = product.capacities[product.selectedCapacityIndex];
-
-  const selectCapacity = (index: number) => {
-    setProduct((prev) => ({ ...prev, selectedCapacityIndex: index }));
-  };
-
-  function updateQuantity(amount: number) {
-    setProduct((prev) => ({ ...prev, amount }));
-  }
-
-
+  const [quantity,setQuantity] = useState(1);
+  
   useEffect(() => {
-    setProduct(mergeProduct);
-  }, [id, i18n.language]);
+    setQuantity(1);
+     setActiveImage(0); 
+  },[selectCapacityIndex])
+
+
 
   return (
     <div className="min-h-screen  py-4 md:py-8">
@@ -70,13 +52,13 @@ const ProductPage = () => {
             </button>
             {/* here is needed data from difrend json file */}
             <img
-              src={`${product.image[activeImage]}`}
+              src={capacities[selectCapacityIndex].images[activeImage]}
               alt="Product"
-              className="max-h-60 object-contain "
+              className="max-h-60 object-contain"
             />
             {/* Dots */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              {product.image.map((_, i) => (
+              {capacities[selectCapacityIndex].images.map((_, i) => (
                 <span
                   key={i}
                   className={`w-2 h-2 rounded-full  ${i === activeImage ? "bg-[#2f4a9c]" : "bg-gray-300 cursor-pointer hover:opacity-65 "}`}
@@ -88,7 +70,7 @@ const ProductPage = () => {
 
           {/* Thumbnails */}
           <div className="flex gap-3">
-            {product.image.map((img, i) => (
+            {capacities[selectCapacityIndex].images.map((img, i) => (
               <div
                 key={i}
                 className="bg-white rounded-xl p-2 shadow-sm w-24 h-24 flex items-center justify-center"
@@ -123,13 +105,13 @@ const ProductPage = () => {
               {languageGeorgian ? "ზომა:" : "Size:"}
             </p>
             <div className="flex gap-2 flex-wrap ">
-              {product.capacities.map((i, index) => (
+              {capacities.map((i, index) => (
                 <button
                   key={index}
                   className={` px-3 py-1.5 font-helvetocaMedium leading-[19.48px]  rounded-lg  text-[16px] uppercase 
-                      ${product.selectedCapacityIndex === index ? "border-blue-50 text-blue-50 border-2 font-hevletocaBold" : "border-[#B2B2B2] text-[#B2B2B2] border cursor-pointer"}
+                      ${index === selectCapacityIndex ? "border-blue-50 text-blue-50 border-2 font-hevletocaBold" : "border-[#B2B2B2] text-[#B2B2B2] border cursor-pointer"}
                           `}
-                  onClick={() => selectCapacity(index)}
+                  onClick={() => setSelectCapacityIndex(index)}
                 >
                   {i.label}
                 </button>
@@ -147,9 +129,10 @@ const ProductPage = () => {
                 className="bg-[#F2F2F2] py-2 px-3  centeredFlex  rounded-3xl text-blue-50 text-xl"
                 name="amount"
                 id="amount"
-                onChange={(e) => updateQuantity(Number(e.target.value))}
+                value={quantity}
+                onChange={(e) => setQuantity(Number(e.target.value))}
               >
-                {Array.from({ length: capacity.quantity }, (_, i) => (
+                {Array.from({ length: capacities[selectCapacityIndex].amount }, (_, i) => (
                   <option key={i + 1} value={i + 1}>
                     {i + 1}
                   </option>
@@ -164,21 +147,21 @@ const ProductPage = () => {
               className=" text-sm 
               unactiveStartingPrice"
             >
-              {(capacity.price * product.amount).toFixed(2)} ₾
+              {(capacities[selectCapacityIndex].price).toFixed(2)} ₾
             </span>
             <div className="">
               <span className="bg-red-100 text-white text-xs font-semibold px-2 py-0.5 rounded">
                 -
                 {(
-                  (capacity.price - capacity.finalPrice) *
-                  product.amount
+                  (capacities[selectCapacityIndex].price - capacities[selectCapacityIndex].finalPrice) *
+                  quantity
                 ).toFixed(2)}
                 ₾
               </span>
             </div>
 
             <span className="  px-3 py-0.5 rounded-lg goldPrice">
-              {(capacity.finalPrice * product.amount).toFixed(2)} ₾
+              {(capacities[selectCapacityIndex].finalPrice * quantity).toFixed(2)} ₾
             </span>
           </div>
 
@@ -190,7 +173,7 @@ const ProductPage = () => {
             <button
               className="flex-1 py-3 rounded-2xl border border-gray-300 bg-white text-gray-800 text-sm font-medium centeredFlex gap-2
               cursor-pointer"
-              onClick={() => addToCart(product, product.amount)}
+              onClick={() => addToCart(String(selectedId))}
             >
               <img src={cart} alt="cart" className="w-4 h-4" />
               {languageGeorgian ? "დამატება კალათაში" : "Add to cart"}
@@ -221,7 +204,7 @@ const ProductPage = () => {
             <p className="text-sm text-gray-600 mt-0.5">{product.store}</p>
             <p className="text-sm text-gray-600">
               {languageGeorgian ? "მოცულობა" : "volume"}:
-              {capacity.label.toLocaleLowerCase()}
+              {capacities[selectCapacityIndex].label.toLocaleLowerCase()}
             </p>
           </div>
         </div>
@@ -243,15 +226,16 @@ const ProductPage = () => {
             <img src={play} alt="play" className="w-4 h-4" />
           </button>
           <img
-            src={product.image[0]}
+             src={capacities[selectCapacityIndex].images[activeImage]}
             alt="Product"
             className="max-h-48 object-contain"
           />
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-            {product.image.map((_, i) => (
+            {capacities[selectCapacityIndex].images.map((_, i) => (
               <span
                 key={i}
-                className={`w-2 h-2 rounded-full ${i === 0 ? "bg-[#2f4a9c]" : "bg-gray-300"}`}
+                className={`w-2 h-2 rounded-full ${i === activeImage ? "bg-[#2f4a9c]" : "bg-gray-300"}`}
+                onClick={() => setActiveImage(i)}
               />
             ))}
           </div>
@@ -264,7 +248,7 @@ const ProductPage = () => {
         {/* Sizes */}
         <div>
           <p className="text-sm text-gray-500 mb-2">Size:</p>
-          <div className="flex gap-2 flex-wrap">
+          {/* <div className="flex gap-2 flex-wrap">
             {product.capacities.map((cap, i) => (
               <button
                 key={i}
@@ -275,7 +259,7 @@ const ProductPage = () => {
                 {cap.label}
               </button>
             ))}
-          </div>
+          </div> */}
         </div>
 
         {/* Quantity + pricing */}
@@ -288,9 +272,10 @@ const ProductPage = () => {
               className="bg-[#F2F2F2] py-2 px-3  centeredFlex  rounded-3xl text-blue-50 text-xl"
               name="amount"
               id="amount"
-              onChange={(e) => updateQuantity(Number(e.target.value))}
+              value={quantity}
+              onChange={(e) => setQuantity(Number(e.target.value))}
             >
-              {Array.from({ length: capacity.quantity }, (_, i) => (
+              {Array.from({ length: capacities[selectCapacityIndex].amount }, (_, i) => (
                 <option key={i + 1} value={i + 1}>
                   {i + 1}
                 </option>
@@ -299,14 +284,14 @@ const ProductPage = () => {
           </div>
           <div className="flex items-center gap-2">
             <span className="text-gray-400 line-through text-sm">
-              {(capacity.price * product.amount).toFixed(2)} ₾
+              {(capacities[selectCapacityIndex].price * quantity).toFixed(2)} ₾
             </span>
             <div>
               <span className="bg-red-100 text-white text-xs font-semibold px-2 py-0.5 rounded redDiscount">
                 -
                 {(
-                  (capacity.price - capacity.finalPrice) *
-                  product.amount
+                  (capacities[selectCapacityIndex].price - capacities[selectCapacityIndex].finalPrice) *
+                  quantity
                 ).toFixed(2)}
                 ₾
               </span>
@@ -315,7 +300,7 @@ const ProductPage = () => {
         </div>
 
         <span className="bg-[#FDE800] text-gray-900 font-bold text-xl px-3 py-1 rounded-lg w-fit">
-          {(capacity.finalPrice * product.amount).toFixed(2)} ₾
+          {(capacities[selectCapacityIndex].finalPrice * capacities[selectCapacityIndex].amount).toFixed(2)} ₾
         </span>
 
         {/* Buttons */}
@@ -326,7 +311,7 @@ const ProductPage = () => {
           <button
             className="flex-1 py-3 rounded-2xl border border-gray-300 bg-white text-gray-800 text-sm font-medium centeredFlex gap-2 cursor-pointer"
             onClick={() => {
-              addToCart(product, product.amount);
+              addToCart(String(selectedId));
             }}
           >
             <img src={cart} alt="cart" className="w-4 h-4" />
@@ -358,7 +343,7 @@ const ProductPage = () => {
           <p className="text-sm text-gray-600 mt-0.5">{product.store}</p>
           <p className="text-sm text-gray-600">
             {languageGeorgian ? "მოცულობა: " : "Volume: "}
-            {capacity.label.toLocaleLowerCase()}
+            {capacities[selectCapacityIndex].label.toLocaleLowerCase()}
           </p>
         </div>
       </div>

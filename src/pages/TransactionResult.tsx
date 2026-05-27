@@ -7,7 +7,7 @@ const TransactionResult = () => {
   
   const orderId = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000000)}`;
   // e.g. "ORD-1716290000000-382"
-  console.log(orderId);
+
   const visibleOrderId = orderId.slice(-6);
 
   return (

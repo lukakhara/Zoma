@@ -53,21 +53,21 @@ export default function SignIn() {
 
   const navigate = useNavigate();
 
-const signIn = async () => {
-  if (email.trim() !== "" && password.trim() !== "") {
-    try {
-      await login(email, password);
-      navigate("/", { replace: true });
-    } catch (error) {
-      setError("Invalid email or password");
+  const signIn = async () => {
+    if (email.trim() !== "" && password.trim() !== "") {
+      try {
+        await login(email, password);
+        navigate("/", { replace: true });
+      } catch (error) {
+        setError("Invalid email or password");
+      }
+    } else {
+      setError("Please fill in all fields");
     }
-  } else {
-    setError("Please fill in all fields");
-  }
-};
+  };
 
   return (
-    <div className="min-h-screen py-6 md:py-8">
+    <div className="min-h-screen py-6 md:py-8  ">
       <h1 className="text-2xl font-bold text-gray-900">Sign in</h1>
 
       {/* Desktop: centered | Mobile: full width below title */}
@@ -101,17 +101,17 @@ const signIn = async () => {
               <input
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
-                placeholder="E-mail"
+                placeholder="password"
                 className="w-full px-4 py-3 rounded-2xl bg-white shadow-sm text-sm placeholder-gray-400 outline-none"
               />
             </div>
-{error && (
-  <p className="text-red-500 text-sm text-center">{error}</p>
-)}
+            {error && (
+              <p className="text-red-500 text-sm text-center">{error}</p>
+            )}
             {/* Button */}
             <button
               type="submit"
-              className="w-full cursor-pointer hover:opacity-90 py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium active:bg-black"  
+              className="w-full cursor-pointer hover:opacity-90 py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium active:bg-black"
             >
               Sign in
             </button>

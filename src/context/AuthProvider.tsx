@@ -55,7 +55,6 @@ import {
   type ReactNode,
 } from "react";
 
-
 interface User {
   id: string;
   fistname: string;
@@ -93,8 +92,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       fistname: "John ",
       lastname: "Doe",
       phone: "123-456-7890",
-      email: "john@example.com",
-      password: "password",
+      email: "luka@example.com",
+      password: "luka123",
     });
     setIsLoading(false);
   }, []);
@@ -188,7 +187,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (!response.ok) throw new Error("Registration failed");
 
       const user = await response.json();
-      localStorage.setItem("token", user.id); 
+      localStorage.setItem("token", user.id);
       setUser({
         id: user.id,
         fistname: user.fistname,

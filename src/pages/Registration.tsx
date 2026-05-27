@@ -20,7 +20,6 @@ const Registration = () => {
     }
     setPasswordError(false);
     await register(firstName, lastName, phone, email, password);
-
   }
 
   return (
@@ -97,7 +96,7 @@ const Registration = () => {
               <label htmlFor="password" className="text-[#797979] text-sm">
                 Password*
               </label>
-              <p className="text-red-500 ">passwords arn't same </p>
+             {passwordError ? <p className="text-red-500 ">passwords arn't same </p> : ''} 
             </div>
 
             <input
@@ -119,7 +118,7 @@ const Registration = () => {
               >
                 Repeat Password*
               </label>
-              <p className="text-red-500">passwords arn't same </p>
+              {passwordError ?<p className="text-red-500">passwords arn't same </p> : ''}
             </div>
 
             <input
@@ -142,6 +141,7 @@ const Registration = () => {
             <button
               type="submit"
               className="bg-blue-500 text-white p-4 rounded-[10px] mt-4 hover:bg-blue-600 w-full "
+              onSubmit={handleSubmit}
             >
               Register
             </button>

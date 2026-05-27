@@ -21,15 +21,13 @@ export interface CardProps{
   category: string;
   images: string[];
   label: string;
-  parentId: string[];
+  parentId: string;
   price: number;
   finalPrice:number;
   amount: number;
+  quantity: number;
 }
 
-export interface CardProps {
-  product: Product;
-}
 
 export interface CartItem{
   id:string;

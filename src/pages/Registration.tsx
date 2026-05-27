@@ -1,16 +1,17 @@
 import { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
 
 const Registration = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
+  const [firstName, setFirstName] = useState("luka");
+  const [lastName, setLastName] = useState("xara");
+  const [phone, setPhone] = useState("123");
+  const [email, setEmail] = useState("luka@gmail.com");
+  const [password, setPassword] = useState("123");
+  const [repeatPassword, setRepeatPassword] = useState("123");
   const [passwordError, setPasswordError] = useState(false);
   const { register } = useAuth();
+  const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -20,6 +21,7 @@ const Registration = () => {
     }
     setPasswordError(false);
     await register(firstName, lastName, phone, email, password);
+    navigate("/sign-in");   
   }
 
   return (
@@ -132,16 +134,15 @@ const Registration = () => {
             />
           </div>
 
-          <div className=" gap-5  grid place-items-center xl:col-start-2C xl:col-end-3 ">
+          <div className=" gap-5  grid place-items-center xl:col-start-2 xl:col-end-3 ">
             <label className="terms-toggle">
-              <input type="checkbox" id="terms" />
+              <input type="checkbox" id="terms" required/>
               <span className="radio-visual"></span>
               <p>Please agree to terms & conditions</p>
             </label>
             <button
               type="submit"
-              className="bg-blue-500 text-white p-4 rounded-[10px] mt-4 hover:bg-blue-600 w-full "
-              onSubmit={handleSubmit}
+              className="bg-blue-500 text-white p-4 rounded-[10px] mt-4 hover:bg-blue-600 w-full cursor-pointer "
             >
               Register
             </button>

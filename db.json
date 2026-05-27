@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      "id": "s2Zr_oNOMIs",
+      "firstname": "luka",
+      "lastname": "xara",
+      "phone": "123",
+      "email": "luka@gmail.com",
+      "password": "123"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

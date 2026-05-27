@@ -8,7 +8,7 @@ function Profile() {
 
   return (
     <div className="min-h-screen  py-8 ">
-      <h1 className="text-xl font-bold text-gray-800 mb-6">{user?.fistname}, {user?.lastname}</h1>
+      <h1 className="text-xl font-bold text-gray-800 mb-6">{user?.firstname}, {user?.lastname}</h1>
       <div className="flex gap-6 ">
         <ProfileSideNavbar />
         <Outlet />

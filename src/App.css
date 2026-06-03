@@ -69,6 +69,9 @@ body{
   .blueButton{
     @apply bg-blue-50 text-white font-helvetocaMedium text-[18px] 
   }
+  .checkoutLeftText {
+   @apply text-[14px] font-normal text-[#797979] leading-[15px]
+  }
 }
 
 

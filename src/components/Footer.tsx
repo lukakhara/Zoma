@@ -30,23 +30,24 @@ const Footer = () => {
       w-full min-w-full sticky bottom-0 left-0 right-0  "
       >
         <div
-          className="min-w-full flex flex-col items-center relative pb-2 bg-no-repeat bg-cover bg-center bg-bottom w-full "
+          className=" min-w-full flex flex-col items-center relative pb-2 bg-no-repeat bg-cover bg-center bg-bottom w-full "
           style={{ backgroundImage: `url(${footerShape})` }}
         >
           {/* cart button */}
           <Link
             to="/checkout"
             className="headerButton md:grid relative   size-[64.21px] rounded-full bg-blue-50 
-            grid place-items-center mb-2  "
+            flex items-center justify-center pt-2 pr-2   "
           >
-            
-            <img src={cart} alt="seach icon" className="size-8.25 " />
-            <span
-              className="absolute top-2.5 right-1 rounded-full text-[14px]
-                text-[#FFFFFF] bg-[#FF4C4C] w-4 h-4.5  text-center center"
+            <img src={cart} alt="seach icon" className="size-[26.81px] " />
+            <div
+              className="absolute top-2 right-2 rounded-full 
+                 bg-[#FF4C4C] w-4 h-4.5  text-center center"
             >
-              {cartItems.length}
-            </span>
+              <span className=" text-[14px] text-[#FFFFFF] absolute bottom-0 right-1">
+                {cartItems.length}
+              </span>
+            </div>
           </Link>
 
           {/* <button

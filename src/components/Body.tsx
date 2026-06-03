@@ -9,7 +9,7 @@ const Body = ({ filter }: { filter: string }) => {
     { name: string ,category: string }
   >;
 
-
+  console.log(productsName);
 
 const products = productsData
   .filter((p, index, arr) => arr.findIndex((x) => x.parentId === p.parentId) === index)
@@ -20,6 +20,7 @@ const products = productsData
     category: productsName[p.parentId]?.category,
   }));
 
+  console.log(products);
 
   const filteredProducts =
     filter === ""
@@ -28,7 +29,7 @@ const products = productsData
 
 
   return (
-    <div className="grid  w-full grid-cols-2 gap-6 px-2.5 md:pb-22 m-auto md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  ">
+    <div className="grid  w-full grid-cols-2 gap-1.5 desktop:gap-6 px-2.5 md:pb-22 md:grid-cols-3   lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  ">
       {filteredProducts.map((product) => (
         <Card key={product.id} product={product} />
       ))}

@@ -17,6 +17,7 @@
     "@tailwindcss/vite": "^4.1.18",
     "i18next": "^26.0.3",
     "i18next-resources-to-backend": "^1.2.1",
+    "lucide-react": "^1.17.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-i18next": "^17.0.2",

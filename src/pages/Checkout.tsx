@@ -9,6 +9,7 @@ import warningIcon from "/assets/warning.png";
 import { useCartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import { useCartProducts } from "../context/UseCartProducts";
+import { placeOrder } from "../services/orderService";
 
 const Checkout = () => {
   const cartItems = useCartProducts();
@@ -36,6 +37,7 @@ const Checkout = () => {
 
     // only proceed if no errors
     if (!newErrors.terms && !newErrors.payment) {
+      const order = placeOrder(cartItems);     
       navigate("/transaction-result", { state: { success: true } });
       clearCart();
     }

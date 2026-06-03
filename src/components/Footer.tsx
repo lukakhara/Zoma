@@ -26,7 +26,7 @@ const Footer = () => {
       {/* <footer className="fixed bottom-0 left-0 right-0 md:hidden bg-no-repeat text-[#FFFFFF]  z-50 
       w-full min-w-full"> */}
       <footer
-        className=" md:hidden bg-no-repeat text-[#FFFFFF]  z-50 
+        className=" md:hidden bg-no-repeat text-[#FFFFFF]  z-100 
       w-full min-w-full sticky bottom-0 left-0 right-0  "
       >
         <div

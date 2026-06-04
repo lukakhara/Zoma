@@ -30,7 +30,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-blue-50 rounded-b-2xl md:rounded-none  px-7.25 pb-5 md:py-8.75 md:px-30">
+      <header className="bg-blue-50 rounded-b-2xl md:rounded-none  px-7.25 pb-5 md:py-8.75 md:px-10  lg:px-30  ">
         <div className="flex items-center justify-between  md:hidden py-2.5">
           <h1 className="text-white font-bold">{`${currentHour}:${currentMinute}`}</h1>
           <div className="flex gap-2">

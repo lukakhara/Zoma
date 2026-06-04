@@ -1,11 +1,5 @@
 import { useTranslation } from "react-i18next";
 
-const menuItems = [
-  "Profile",
-  "My Orders",
-  "Change Password",
-  "Delivery Address",
-];
 
 function AddressForm({ title }: { title: string }) {
   const { t } = useTranslation();

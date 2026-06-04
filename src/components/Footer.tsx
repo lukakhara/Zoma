@@ -16,8 +16,7 @@ import { Link } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
 
 const Footer = () => {
-  const { i18n,t } = useTranslation();
-  const languageGeorgian = i18n.language === "ka";
+  const {t } = useTranslation();
   const { cartItems } = useCartContext();
 
   return (
@@ -61,7 +60,7 @@ const Footer = () => {
 
             {/* PROFILE PAGE BUTTON  */}
             <Link
-              className="flex gap-2  cursor-pointer flex items-center gap-2"
+              className="flex gap-2  cursor-pointer  items-center"
               to="/user/profile"
             >
               <img src={user} alt="seach icon" />

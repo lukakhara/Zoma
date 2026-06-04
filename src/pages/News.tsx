@@ -26,8 +26,6 @@ function NewsCard({
 }) {
 
 
-   const { i18n } = useTranslation();
-
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
       {/* Image placeholder */}

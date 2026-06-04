@@ -27,8 +27,6 @@ export default function PasswordRecovery() {
         return;
       }
 
-      // In a real app you'd send an email here.
-      // With json-server we just simulate success.
       setSubmitted(true);
     } catch {
       setError("Something went wrong. Please try again.");

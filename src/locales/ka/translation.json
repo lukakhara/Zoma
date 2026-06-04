@@ -27,7 +27,7 @@
   "phone": "ტელეფონი",
   "email": "ელ. ფოსტა",
   "password": "პაროლი",
-  "repeatPassword": "პაროლის გამეორება",
+
 
   "orderNumber": "შეკვეთის ნომერი",
   "date": "თარიღი",
@@ -82,11 +82,13 @@
    "invalidEmailOrPassword": "ელ. ფოსტა ან პაროლი არასწორია",
   "signIn": "შესვლა",
   "e-mail":  "ელ. ფოსტა",
-  "password":  "პაროლი",
+
   "forgotYourPassword":"პაროლი დაგავიწყდათ",
   "signingIn": "შესვლა",
   "ifYouAreNotRegistered": "თუ არ ხართ რეგისტრირებული",
   "registerNow":"დარეგისტრირდი ახლა",
+
+ "profileUpdatedSuccessfully!":"პროფილი წარმატებით განახლდა",
 
   "products": {
     "1": {

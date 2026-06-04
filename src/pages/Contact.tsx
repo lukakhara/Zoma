@@ -1,13 +1,3 @@
-import user from "/assets/Vector(9).png";
-import logo from "/assets/logo.png";
-import phone from "/assets/Social/phone.png";
-import whatssap from "/assets/Social/whatsapp.png";
-import viber from "/assets/Social/viber.png";
-import message from "/assets/Social/message.png";
-import facebook from "/assets/Social/facebook.png";
-import instagram from "/assets/Social/instagram.png";
-import linkedin from "/assets/Social/linkedin.png";
-import tiktok from "/assets/Social/tiktokIcon.png";
 import { Phone } from "lucide-react";
 import {
   FaWhatsapp,
@@ -21,33 +11,6 @@ import { useTranslation } from "react-i18next";
 
 const offices = [{ city: "Tbilisi, Georgia" }, { city: "Batumi, Georgia" }];
 
-const socials = [
-  {
-    bg: "bg-blue-600",
-    label: "f",
-    textColor: "text-white",
-    fontWeight: "font-bold",
-  },
-  {
-    bg: "bg-pink-500",
-    label: "in",
-    textColor: "text-white",
-    fontWeight: "font-bold",
-    isInstagram: true,
-  },
-  {
-    bg: "bg-blue-700",
-    label: "in",
-    textColor: "text-white",
-    fontWeight: "font-bold",
-  },
-  {
-    bg: "bg-black",
-    label: "✦",
-    textColor: "text-white",
-    fontWeight: "font-bold",
-  },
-];
 
 const phones = [
   { color: "bg-blue-700", Icon: Phone },

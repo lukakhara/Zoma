@@ -9,7 +9,6 @@ import Contact from "./pages/Contact";
 import News from "./pages/News";
 import MyOrders from "./pages/MyOrders";
 import Profile from "./pages/Profile";
-// import ProfileSideNavbar from "./pages/ProfileSideNavbar";w
 import PasswordRecovery from "./pages/PasswordRecovery";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import DeliveryAddress from "./pages/DeliveryAddress";

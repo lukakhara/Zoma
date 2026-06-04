@@ -3,7 +3,7 @@ import { useAuth } from "../context/AuthProvider";
 import { useTranslation } from "react-i18next";
 
 const UserProfile = () => {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const {t} = useTranslation();
 
   const [firstname, setFirstname] = useState(user?.firstname ?? "");
@@ -105,7 +105,7 @@ const UserProfile = () => {
       {error && <p className="text-red-500 text-sm text-center">{error}</p>}
       {success && (
         <p className="text-green-500 text-sm text-center">
-          Profile updated successfully!
+          {t('profileUpdatedSuccessfully')}
         </p>
       )}
 

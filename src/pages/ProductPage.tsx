@@ -1,5 +1,3 @@
-// MY CODE
-
 import play from "/assets/play.png";
 import cart from "/assets/cart.png";
 import { useTranslation } from "react-i18next";
@@ -19,7 +17,6 @@ const ProductPage = () => {
   const [activeImage, setActiveImage] = useState<number>(0);
   const languageGeorgian = i18n.language === "ka";
 
-  // const myProductId = 1;
 
   const [selectCapacityIndex, setSelectCapacityIndex] = useState(0);
 

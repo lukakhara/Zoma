@@ -144,12 +144,12 @@ const Checkout = () => {
               <span className="checkoutLeftText">Total discount:</span>
               <span className="text-[#161F28] text-[16px]">{totalDiscount.toFixed(2)} ₾</span>
             </div>
-            {!selectedPaymentMethod && (
-              <div className="flex justify-between text-sm text-gray-700">
+            {/* {!selectedPaymentMethod && (
+              <div className="md:hidden flex justify-between text-sm text-gray-700">
                 <span className="checkoutLeftText">Delivery</span>
                 <span className="text-[#161F28] text-[16px]">5.20 ₾</span>
               </div>
-            )}
+            )} */}
             <div className="flex justify-between items-center pt-1">
               <span className="checkoutLeftText text-sm text-gray-700">Total price to pay</span>
               <span className="text-xl font-bold text-[#2f4a9c]">{totalPriceToPay.toFixed(2)} ₾</span>

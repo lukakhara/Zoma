@@ -38,7 +38,7 @@ export default function PasswordRecovery() {
   };
 
   return (
-    <div className="min-h-screen py-6 md:py-14 test">
+    <div className="min-h-screen py-6 md:py-14 ">
       <h1 className="text-2xl font-bold text-gray-900 mb-1">
         Password Recovery
       </h1>

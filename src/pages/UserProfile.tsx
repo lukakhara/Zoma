@@ -53,40 +53,64 @@ const UserProfile = () => {
   };
 
   const fields = [
-    { label: "First Name", value: firstname, setter: setFirstname, type: "text" },
-    { label: "Last Name",  value: lastname,  setter: setLastname,  type: "text" },
-    { label: "Phone",      value: phone,     setter: setPhone,     type: "tel"  },
-    { label: "Email",      value: email,     setter: setEmail,     type: "email"},
-    { label: "Password",   value: password,  setter: setPassword,  type: "password" },
-    { label: "Repeat Password", value: repeatPassword, setter: setRepeatPassword, type: "password" },
+    {
+      label: "First Name",
+      value: firstname,
+      setter: setFirstname,
+      type: "text",
+    },
+    { label: "Last Name", value: lastname, setter: setLastname, type: "text" },
+    { label: "Phone", value: phone, setter: setPhone, type: "tel" },
+    { label: "Email", value: email, setter: setEmail, type: "email" },
+    {
+      label: "Password",
+      value: password,
+      setter: setPassword,
+      type: "password",
+    },
+    {
+      label: "Repeat Password",
+      value: repeatPassword,
+      setter: setRepeatPassword,
+      type: "password",
+    },
   ];
 
   return (
-    <div className="flex-1 max-w-md md:flex flex-col gap-4 hidden">
-      {fields.map(({ label, value, setter, type }) => (
-        <div key={label} className="flex flex-col gap-1">
-          <span className="text-sm text-gray-700">{label}*</span>
-          <input
-            type={type}
-            value={value}
-            placeholder={label}
-            onChange={(e) => {
-              setter(e.target.value);
-              setError("");
-              setSuccess(false);
-            }}
-            className="w-full px-4 py-3 rounded-2xl bg-white shadow-sm text-sm placeholder-gray-400 outline-none"
-          />
-        </div>
-      ))}
+    <div className="flex-1 max-w-full  md:flex     flex-col  px-5 md:px-0 ">
+      <h1 className="text-[26px] text-[#1A1A1A] font-helvetocaMedium leading-[100%] pb-4">
+        Profile
+      </h1>
+      <ul className="flex flex-col gap-4 pb-5">
+        {fields.map(({ label, value, setter, type }) => (
+          <li key={label} className="flex flex-col  gap-2">
+            <span className="text-sm text-[#797979]">{label}*</span>
+            <input
+              type={type}
+              value={value}
+              placeholder={label}
+              onChange={(e) => {
+                setter(e.target.value);
+                setError("");
+                setSuccess(false);
+              }}
+              className="w-full md:w-1/2 px-4 py-3 rounded-2xl bg-white shadow-sm text-sm placeholder-gray-400 outline-none"
+            />
+          </li>
+        ))}
+      </ul>
 
-      {error   && <p className="text-red-500 text-sm text-center">{error}</p>}
-      {success && <p className="text-green-500 text-sm text-center">Profile updated successfully!</p>}
+      {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+      {success && (
+        <p className="text-green-500 text-sm text-center">
+          Profile updated successfully!
+        </p>
+      )}
 
       <button
         onClick={handleSave}
         disabled={isLoading}
-        className="w-full py-3 mt-1 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium
+        className="w-full py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium
           hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed transition-opacity"
       >
         {isLoading ? "Saving..." : "Save"}

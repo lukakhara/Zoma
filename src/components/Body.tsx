@@ -29,7 +29,7 @@ const products = productsData
 
 
   return (
-    <div className="grid  w-full grid-cols-2 gap-1.5 desktop:gap-6  md:pb-22 md:grid-cols-3   lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  ">
+    <div className="grid  w-full grid-cols-2 gap-1.5  md:gap-6  md:pb-22 md:grid-cols-3   lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  ">
       {filteredProducts.map((product) => (
         <Card key={product.id} product={product} />
       ))}

@@ -32,13 +32,13 @@ export default function MyOrders() {
   }
 
   return (
-    <div className="min-h-screen py-4 md:py-8 flex flex-col gap-6">
+    <div className="min-h-screen py-4 md:py-8 flex flex-col gap-6 w-full ">
       {orders.map((order) => (
         <div key={order.id} className="bg-white rounded-2xl shadow-sm overflow-hidden">
 
           {/* ── DESKTOP ── */}
           <div className="hidden md:block">
-            <div className="grid grid-cols-5 border-b border-[#C3C3C3]">
+            <div className="grid grid-cols-5 md:border-b border-[#C3C3C3]">
               {["Order Number", "Date", "Quantity", "Price", "Status"].map((h) => (
                 <div key={h} className="border-r border-[#EEEEEE] px-6 py-4 text-sm font-semibold text-gray-800 text-center">
                   {h}
@@ -46,7 +46,7 @@ export default function MyOrders() {
               ))}
             </div>
 
-            <div className="grid grid-cols-5 border-b border-[#C3C3C3]">
+            <div className="grid grid-cols-5 md:border-b border-[#C3C3C3]">
               <div className="px-6 py-4 text-sm text-gray-700 text-center border-r border-[#EEEEEE]">
                 #{order.id.slice(0, 8).toUpperCase()}
               </div>
@@ -104,36 +104,36 @@ export default function MyOrders() {
               { label: "Quantity", value: `${order.items.length} product${order.items.length !== 1 ? "s" : ""}` },
               { label: "Price", value: `${order.total.toFixed(2)} ₾` },
             ].map((row) => (
-              <div key={row.label} className="flex justify-between items-center px-5 py-3.5 border-b border-gray-100">
+              <div key={row.label} className="flex justify-between items-center px-5 py-3.5 md:md:border-b border-gray-100">
                 <span className="text-sm font-semibold text-gray-800">{row.label}</span>
                 <span className="text-sm text-gray-700">{row.value}</span>
               </div>
             ))}
 
-            <div className="flex justify-between items-center px-5 py-3.5 border-b border-gray-100">
-              <span className="text-sm font-semibold text-gray-800">Status</span>
+            <div className="flex justify-between items-center px-5 py-3.5 border-none md:md:border-b border-gray-100">
+              <span className="text-sm font-semibold text-gray-800 ">Status</span>
               <span className={`text-xs font-semibold px-3 py-1.5 rounded-lg ${statusColor[order.status]}`}>
                 {statusLabel[order.status]}
               </span>
             </div>
 
             {order.items.map((item, i) => (
-              <div key={i} className="border-t border-gray-200 pt-2">
-                <div className="flex justify-between items-start px-5 py-4 border-b border-gray-100">
+              <div key={i} className=" md:border-t border-gray-200 pt-2">
+                <div className="flex justify-between items-start px-5 py-4 md:border-b border-gray-100">
                   <span className="text-sm font-semibold text-gray-800">Image</span>
                   <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded-xl" />
                 </div>
-                <div className="flex justify-between items-start px-5 py-3.5 border-b border-gray-100">
+                <div className="flex justify-between items-start px-5 py-3.5 md:border-b border-gray-100">
                   <span className="text-sm font-semibold text-gray-800">Product</span>
                   <span className="text-sm text-gray-700 text-right max-w-[55%]">
                     {item.name} {item.label && `(${item.label})`}
                   </span>
                 </div>
-                <div className="flex justify-between items-center px-5 py-3.5 border-b border-gray-100">
+                <div className="flex justify-between items-center px-5 py-3.5 md:border-b border-gray-100">
                   <span className="text-sm font-semibold text-gray-800">Quantity</span>
                   <span className="text-sm text-gray-700">{item.quantity}</span>
                 </div>
-                <div className="flex justify-between items-center px-5 py-3.5 border-b border-gray-100">
+                <div className="flex justify-between items-center px-5 py-3.5 md:border-b border-gray-100">
                   <span className="text-sm font-semibold text-gray-800">Price</span>
                   <div className="flex gap-2 text-sm">
                     <span className="line-through text-gray-400">{item.price.toFixed(2)} ₾</span>

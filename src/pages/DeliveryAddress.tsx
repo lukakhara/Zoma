@@ -159,57 +159,57 @@ export default function DeliveryAddress() {
   );
 
   return (
-    <div className="min-h-screen py-6 md:py-14">
-      {/* Mobile */}
-      <div className="md:hidden">
-        <h1 className="text-2xl font-bold text-gray-900 mb-5">Delivery Address</h1>
+      <div className="min-h-screen py-6 md:py-14  w-full">
+        {/* Mobile */}
+        <div className="md:hidden  flex flex-col  ">
+          <h1 className="text-2xl font-bold text-gray-900 mb-5">Delivery Address</h1>
 
-        {success && <p className="text-green-500 text-sm text-center mb-3">{success}</p>}
+          {success && <p className="text-green-500 text-sm text-center mb-3">{success}</p>}
 
-       
-          <AddressForm
-            initial={editingAddress ?? undefined}
-            onSave={handleSave}
-           
-            isLoading={isLoading}
-          />
-      
-         
-            <AddressList />
-            <button
-              onClick={() => setShowForm(true)}
-              className="mt-3 w-full py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium flex items-center justify-center gap-2"
-            >
-              <span className="text-lg leading-none">⊕</span> Add new Address
-            </button>
-         
-       
-      </div>
-
-      {/* Desktop */}
-      <div className="hidden md:block">
-        <div className="flex-1 max-w-md flex flex-col gap-4">
-          {success && <p className="text-green-500 text-sm text-center">{success}</p>}
-
-      
+        
             <AddressForm
               initial={editingAddress ?? undefined}
               onSave={handleSave}
-           
+            
               isLoading={isLoading}
             />
+        
           
-            
               <AddressList />
               <button
                 onClick={() => setShowForm(true)}
-                className="w-full py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium flex items-center justify-center gap-2"
+                className="mt-3 w-full py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium flex items-center justify-center gap-2"
               >
                 <span className="text-lg leading-none">⊕</span> Add new Address
               </button>
+          
+        
+        </div>
+
+        {/* Desktop */}
+        <div className="hidden md:block   ">
+          <div className=" flex-1 max-w-md flex flex-col gap-4">
+            {success && <p className="text-green-500 text-sm text-center">{success}</p>}
+
+        
+              <AddressForm
+                initial={editingAddress ?? undefined}
+                onSave={handleSave}
             
+                isLoading={isLoading}
+              />
+            
+              
+                <AddressList />
+                <button
+                  onClick={() => setShowForm(true)}
+                  className="w-full py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium flex items-center justify-center gap-2"
+                >
+                  <span className="text-lg leading-none">⊕</span> Add new Address
+                </button>
+              
+          </div>
         </div>
       </div>
-    </div>
   );
 }

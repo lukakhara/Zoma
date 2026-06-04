@@ -44,24 +44,24 @@ const Card = ({ product }: { product: CardProps }) => {
           />
 
           {/* name and category and prices  */}
-          <div className="flex flex-col font-helvetocaRegular pl-[19px] gap-[3px] desktop:pl-[0px] desktop:ml-[19px] desktop:mr-[12px] -mt-5 flex-1  ">
+          <div className="flex flex-col font-helvetocaRegular pl-[19px] gap-[5px] desktop:pl-[0px] desktop:ml-[19px] desktop:mr-[12px] -mt-5 flex-1  ">
             {/* name and category */}
-            <div className=" text-[#DDDDDD] text-[10px] desktop:text-[8.91px] category leading-[100%]">
+            <div className=" text-[#DDDDDD] text-[10px]  category leading-[100%]">
               {product.category}
             </div>
-            <div className="text-[#1A1A1A] text-[14px] desktop:text-[12.48px] leading-[100%] h-[30px] line-clamp-2 overflow-hidden">
+            <div className="text-[#1A1A1A] text-[14px]  leading-[100%]  overflow-hidden">
               {product.name}
             </div>
             {/* prices */}
             <div className="flex  items-center  gap-2 sm:text-nowrap">
               <p
-                className="bg-[#FDE800] text-[20px] desktop:text-[17.82px] text-[#474747]
+                className="bg-[#FDE800] text-[20px]  text-[#474747]
              font-helvetocaMedium p-2 rounded-sm leading-[15.19px] sm:leading-[12.19px] desktop:p-[7.13px] "
               >
                 {product.finalPrice}{" "}
                 <span className="font-helvetocaRegular">₾</span>
               </p>
-              <p className="font-helvetocaMedium text-[#C3C3C3] text-[20px] desktop:text-[17.82px] line-through leading-[17.36px]">
+              <p className="font-helvetocaMedium text-[#C3C3C3] text-[20px]  line-through leading-[17.36px]">
                 {product.price} <span>₾</span>
               </p>
             </div>
@@ -91,7 +91,7 @@ const Card = ({ product }: { product: CardProps }) => {
                           text-blue-50
                           text-[18px]
                           flex items-center justify-center
-                          desktop:text-[16.04px]
+                        
                           outline-none
                           cursor-pointer"
             >
@@ -102,7 +102,7 @@ const Card = ({ product }: { product: CardProps }) => {
 
           {/* Need to add product id to the link */}
           <Link
-            className="cursor-pointer bg-blue-50 text-white desktop:text-[12.48px] font-helvetocaRegular 
+            className="cursor-pointer bg-blue-50 text-white  font-helvetocaRegular 
              py-2 px-6 rounded-[100px] text-[14px] flex-1 h-[33px] desktop:h-[29.41 px] flex items-center justify-center font-normal"
             to={`${/product/}${product.parentId ? product.parentId : product.id}`}
           >

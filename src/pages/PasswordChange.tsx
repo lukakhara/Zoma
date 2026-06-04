@@ -67,11 +67,12 @@ export default function PasswordChange() {
   ];
 
   return (
-    <div className="min-h-screen py-6 md:py-14">
-      <h1 className="text-2xl font-bold text-gray-900 mb-1">Change Password</h1>
+    <div className="min-h-screen w-full ">
+     
 
-      <div className="md:flex md:justify-center md:items-center md:mt-16">
-        <div className="w-full md:max-w-xs">
+      <div className="md:flex md:justify-start md:items-center px-5 md:px-0 md:w-1/2">
+         <h1 className="text-2xl font-bold text-gray-900 mb-1  md:hidden">Change Password</h1>
+        <div className="flex-1 max-w-full block md:flex md:max-w-[75%%]  flex-col  px-5 md:px-0 ">
           <p className="text-sm text-gray-400 mb-4">
             Please fill in the information to change password
           </p>

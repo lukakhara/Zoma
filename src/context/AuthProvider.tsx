@@ -32,7 +32,13 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>({
+    id: "1",
+    firstname: "Luka",
+    lastname: "Dev",
+    phone: "+995 55 55 55",
+    email: "luka@dev.com",
+  });
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -68,9 +74,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   // ✅ json-server doesn't support POST /login — use GET with query params
   const login = async (email: string, password: string) => {
     try {
-       const response = await fetch(
-      `/api/users?email=${encodeURIComponent(email)}`
-    );  
+      const response = await fetch(
+        `/api/users?email=${encodeURIComponent(email)}`,
+      );
       if (!response.ok) throw new Error("Server error");
 
       const users = await response.json();
@@ -104,7 +110,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     password: string,
   ) => {
     try {
-      const existing = await fetch(`/api/users?email=${encodeURIComponent(email)}`);
+      const existing = await fetch(
+        `/api/users?email=${encodeURIComponent(email)}`,
+      );
       const existingUsers = await existing.json();
       if (existingUsers.length > 0) throw new Error("Email already exists");
 
@@ -140,7 +148,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, isAuthenticated: !!user, isLoading, login, logout, register }}
+      value={{
+        user,
+        isAuthenticated: !!user,
+        isLoading,
+        login,
+        logout,
+        register,
+      }}
     >
       {children}
     </AuthContext.Provider>

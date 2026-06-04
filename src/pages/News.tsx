@@ -1,10 +1,19 @@
 const news = Array(6).fill({
   date: "12 September 2025",
   title: "Medium Size Headline",
-  excerpt: "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from...",
+  excerpt:
+    "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from...",
 });
 
-function NewsCard({ date, title, excerpt } : {date:string, title:string, excerpt:string} ) {
+function NewsCard({
+  date,
+  title,
+  excerpt,
+}: {
+  date: string;
+  title: string;
+  excerpt: string;
+}) {
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
       {/* Image placeholder */}

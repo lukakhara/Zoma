@@ -17,15 +17,16 @@ import { useCartContext } from "../context/CartContext";
 
 
 const Header = () => {
-  // const { languageGeorgian, setLanguageGeorgian } = useLanguage();
-  const { i18n } = useTranslation();
+  const { i18n,t  } = useTranslation();
   const languageGeorgian = i18n.language === "ka";
+
 
   const {cartItems} = useCartContext();
 
   const currentData = new Date();
   const currentHour = currentData.getHours();
-  const currentMinute = currentData.getMinutes();
+  const currentMinute = String(currentData.getMinutes()).padStart(2, "0");
+
 
   return (
     <>
@@ -47,16 +48,16 @@ const Header = () => {
               className="flex items-baseline justify-center gap-2 p text-[16px]"
               to="/"
             >
-              {languageGeorgian ? "პროდუქტები" : "Products"}
+              {t("product")}
               <img src={collapseIcon} alt="collapse icon" />
             </Link>
 
             <Link to="/news">
-              {languageGeorgian ? "ახალი ამბები" : " News"}{" "}
+              {t("news")}
             </Link>
 
             <Link to="/contact">
-              {languageGeorgian ? "კონტაქტი" : "Contact"}{" "}
+             {t("contact")}
             </Link>
           </div>
           <div className="flex gap-2 ">

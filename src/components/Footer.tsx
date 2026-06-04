@@ -16,15 +16,13 @@ import { Link } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
 
 const Footer = () => {
-  const { i18n } = useTranslation();
+  const { i18n,t } = useTranslation();
   const languageGeorgian = i18n.language === "ka";
   const { cartItems } = useCartContext();
 
   return (
     <>
-      {/* MOBILE FOOTER */}
-      {/* <footer className="fixed bottom-0 left-0 right-0 md:hidden bg-no-repeat text-[#FFFFFF]  z-50 
-      w-full min-w-full"> */}
+    
       <footer
         className=" md:hidden bg-no-repeat text-[#FFFFFF]  z-100 
       w-full min-w-full sticky bottom-0 left-0 right-0  "
@@ -50,23 +48,15 @@ const Footer = () => {
             </div>
           </Link>
 
-          {/* <button
-            className=" "
-          >
-            <img src={cart} alt="cart icon" />
-            <span className="absolute top-2 right-1  bg-orange-100 rounded-full text-white size-4 grid place-items-center text-[14px] ">
-              1
-            </span>
-          </button> */}
-
+    
           <div className=" flex items-center w-full text-white justify-around pb-4.25 mx-9 ">
             {/* MAIN PAGE BUTTON  */}
             <Link
-              className="flex items-baseline justify-center gap-2 p text-[16px]   cursor-pointer  "
+              className="flex items-baseline justify-center gap-2 p text-[16px]   cursor-pointer   "
               to="/"
             >
               <img src={house} className="size-6" alt="house icon" />
-              <p>{languageGeorgian ? "მთავარი" : "Home"}</p>
+              <p className="">{t("home")}</p>
             </Link>
 
             {/* PROFILE PAGE BUTTON  */}
@@ -75,7 +65,7 @@ const Footer = () => {
               to="/user/profile"
             >
               <img src={user} alt="seach icon" />
-              <p>{languageGeorgian ? "პროფილი" : "Profile"}</p>
+              <p>{t("profile")}</p>
             </Link>
           </div>
         </div>
@@ -94,40 +84,32 @@ const Footer = () => {
             alt="logo icon"
           />
           <p className="text-xl">
-            {languageGeorgian
-              ? "შექმნილია Integrals-ის მიერ"
-              : "Created by Integrals"}
+           {t("createdBy")}
           </p>
         </section>
         {/* physical office address and working time */}
         <section className="flex gap-4 flex-col justify-around">
           <div className="flex gap-16.5 items-start">
             <p>
-              {languageGeorgian
-                ? "მთავარი ოფისი, ქუჩა #13"
-                : "Head Office, Street Name #13 "}
+              {t("mainOffice")}
               <br />
-              {languageGeorgian ? "თბილისი, საქართველო" : "Tbilisi, Georgia"}
+          {t("city")}
             </p>
             <p>10:00-18:00</p>
           </div>
           <div className="flex gap-16.5 items-start">
             <p>
-              {languageGeorgian
-                ? "მთავარი ოფისი, ქუჩა #13"
-                : "Head Office, Street Name #13 "}
+           {t("mainOffice")}
               <br />
-              {languageGeorgian ? "თბილისი, საქართველო" : "Tbilisi, Georgia"}
+             {t("city")}
             </p>
             <p>10:00-18:00</p>
           </div>
           <div className="flex gap-16.5 items-start">
             <p>
-              {languageGeorgian
-                ? "მთავარი ოფისი, ქუჩა #13"
-                : "Head Office, Street Name #13 "}
+             {t("mainOffice")}
               <br />
-              {languageGeorgian ? "თბილისი, საქართველო" : "Tbilisi, Georgia"}
+              {t("city")}
             </p>
             <p>10:00-18:00</p>
           </div>

@@ -6,6 +6,17 @@
     "paper": "paper",
     "textiles": "textiles"
   },
+  
+    "product":"Products",
+    "news":"News",
+    "contact":"Contact",
+
+     "home":"Home",
+      "profile":"Profile",
+      "createdBy":"Created by Integrals",
+      "mainOffice":"Head Office, Street Name #13 ",
+      "city":"Tbilisi, Georgia"
+  ,
   "products": {
     "1": {
       "name": "ZOMA BAFIX FOAM",

@@ -33,6 +33,7 @@
   --font-helvetocaMedium: "helvetocaMed";
   --font-helvetocaRegular: "helvetocaReg";
   --font-helvetocaBold: "helvetocaBold";
+   --breakpoint-desktop: 1440px;
 }
 
 
@@ -68,7 +69,14 @@ body{
   .blueButton{
     @apply bg-blue-50 text-white font-helvetocaMedium text-[18px] 
   }
+  .checkoutLeftText {
+   @apply text-[14px] font-normal text-[#797979] leading-[15px]
+  }
+  .sectionHeader{
+  @apply text-2xl font-bold text-gray-900 
 }
+}
+
 
 
 .parent * {
@@ -142,3 +150,4 @@ body{
 .scrollbar-none::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
 }
+

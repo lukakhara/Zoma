@@ -8,14 +8,13 @@ export default defineConfig({
   define:{
     'process.env':{}
   },
-  server: {
-    fs: { allow: [".."] },
+   server: {
     proxy: {
-    '/api': {
-      target: 'http://localhost:3000',
-      changeOrigin: true,
-      rewrite: (path) => path.replace(/^\/api/, '') // ✅ removes /api prefix
-    }
-  }
+      "/api": {
+        target: "http://localhost:3001",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
   },
 });

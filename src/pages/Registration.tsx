@@ -1,16 +1,20 @@
 import { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
+import { useTranslation } from "react-i18next";
 
 const Registration = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
+  const {t} = useTranslation();
+
+  const [firstName, setFirstName] = useState("luka");
+  const [lastName, setLastName] = useState("xara");
+  const [phone, setPhone] = useState("123");
+  const [email, setEmail] = useState("luka@gmail.com");
+  const [password, setPassword] = useState("123");
+  const [repeatPassword, setRepeatPassword] = useState("123");
   const [passwordError, setPasswordError] = useState(false);
   const { register } = useAuth();
+  const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -20,13 +24,13 @@ const Registration = () => {
     }
     setPasswordError(false);
     await register(firstName, lastName, phone, email, password);
-
+    navigate("/sign-in");   
   }
 
   return (
     <>
       <div className="mt-14 mb-37  flex-1 shrink-0  justify-center flex flex-col gap-4">
-        <h1 className="text-[26px] text-[#1A1A1A]    w-full">Registration</h1>
+        <h1 className="text-[26px] text-[#1A1A1A] w-full">{t('registration')}</h1>
         <form
           onSubmit={handleSubmit}
           className="grid xl:gap-14 gap-4   grid-cols-1 gap-9.75 xl:gap-x-5 xl:gap-y-4  md:grid-cols-2 lg:grid-cols-3 align-items-center
@@ -34,7 +38,7 @@ const Registration = () => {
         >
           <div className="">
             <label htmlFor="firstName" className="text-[#797979] text-sm">
-              First Name*
+              {t('firstName')}*
             </label>
             <input
               id="firstName"
@@ -49,7 +53,7 @@ const Registration = () => {
 
           <div className="">
             <label htmlFor="lastName" className="text-[#797979] text-sm">
-              Last Name*
+              {t('lastName')}*
             </label>
             <input
               id="lastName"
@@ -64,7 +68,7 @@ const Registration = () => {
 
           <div>
             <label htmlFor="phone" className="text-[#797979] text-sm">
-              Phone*
+              {t('phone')}*
             </label>
             <input
               id="phone"
@@ -79,7 +83,7 @@ const Registration = () => {
 
           <div>
             <label htmlFor="email" className="text-[#797979] text-sm">
-              Email*
+            {t('email')}*
             </label>
             <input
               id="email"
@@ -95,9 +99,9 @@ const Registration = () => {
           <div>
             <div className="flex  justify-between items-center">
               <label htmlFor="password" className="text-[#797979] text-sm">
-                Password*
+               {t('password')}*
               </label>
-              <p className="text-red-500 ">passwords arn't same </p>
+             {passwordError ? <p className="text-red-500 ">{t('passwordsArntSame')}  </p> : ''} 
             </div>
 
             <input
@@ -117,9 +121,9 @@ const Registration = () => {
                 htmlFor="repeatPassword"
                 className="text-[#797979] text-sm"
               >
-                Repeat Password*
+              {t('repeatPassword')}*
               </label>
-              <p className="text-red-500">passwords arn't same </p>
+              {passwordError ?<p className="text-red-500"> {t('passwordsArntSame')} </p> : ''}
             </div>
 
             <input
@@ -133,22 +137,22 @@ const Registration = () => {
             />
           </div>
 
-          <div className=" gap-5  grid place-items-center xl:col-start-2C xl:col-end-3 ">
+          <div className=" gap-5  grid place-items-center xl:col-start-2 xl:col-end-3 ">
             <label className="terms-toggle">
-              <input type="checkbox" id="terms" />
+              <input type="checkbox" id="terms" required/>
               <span className="radio-visual"></span>
-              <p>Please agree to terms & conditions</p>
+              <p>{t('PleaseAgreeToTermsAndConditions')}</p>
             </label>
             <button
               type="submit"
-              className="bg-blue-500 text-white p-4 rounded-[10px] mt-4 hover:bg-blue-600 w-full "
+              className="bg-blue-500 text-white p-4 rounded-[10px] mt-4 hover:bg-blue-600 w-full cursor-pointer "
             >
-              Register
+             {t('register')}
             </button>
             <p>
-              Already registered?
+             {t('alreadyRegistered')}? 
               <Link to="/sign-in" className="text-blue-500 hover:text-blue-700">
-                Log in
+                {t('logIn')}
               </Link>
             </p>
           </div>

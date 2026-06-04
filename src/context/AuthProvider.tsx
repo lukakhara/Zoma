@@ -1,52 +1,3 @@
-// import {
-//   useContext,
-//   createContext,
-//   useState,
-//   useEffect,
-//   type ReactNode,
-// } from "react";
-
-// interface User {
-//   id: number;
-//   name: string;
-//   email: string;
-// }
-
-// interface AuthContextType {
-//   user: User | null;
-//   isLoading: boolean;
-//   isAuthenticated: boolean;
-//   login: (email, password) => Promise<void>;
-//   logout: () => void;
-//   register: (name, email, password) => Promise<void>;
-// }
-
-// const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
-// export const AuthProvider = (children: ReactNode) => {
-//   const [user, setUser] = useState<User | null>(null);
-//   const [isLoading, setIsLoading] = useState(true);
-
-//   const register = (name:string, email:string, password:string) => {
-
-//   }
-
-//   return
-//   <AuthContext.Provider
-//     value={{
-//       user,
-//       isLoading,
-//       isAuthenticated: !!user,
-//       login,
-//       logout,
-//       register,
-//     }}
-//   >
-//     {children}
-//   </AuthContext.Provider>;
-// };
-
-// context/AuthContext.tsx
 import {
   createContext,
   useContext,
@@ -55,14 +6,12 @@ import {
   type ReactNode,
 } from "react";
 
-
 interface User {
   id: string;
-  fistname: string;
+  firstname: string;
   lastname: string;
   phone: string;
   email: string;
-  password: string;
 }
 
 interface AuthContextType {
@@ -72,7 +21,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
   register: (
-    fistname: string,
+    firstname: string,
     lastname: string,
     phone: string,
     email: string,
@@ -83,20 +32,17 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>({
+    id: "1",
+    firstname: "Luka",
+    lastname: "Dev",
+    phone: "+995 55 55 55",
+    email: "luka@dev.com",
+  });
   const [isLoading, setIsLoading] = useState(true);
 
-  // Check if user is already logged in on mount
   useEffect(() => {
-    setUser({
-      id: "1",
-      fistname: "John ",
-      lastname: "Doe",
-      phone: "123-456-7890",
-      email: "john@example.com",
-      password: "password",
-    });
-    setIsLoading(false);
+    checkAuth();
   }, []);
 
   const checkAuth = async () => {
@@ -105,14 +51,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (token) {
         const response = await fetch(`/api/users/${token}`);
         if (response.ok) {
-          const user = await response.json();
+          const data = await response.json();
           setUser({
-            id: user.id,
-            fistname: user.fistname,
-            lastname: user.lastname,
-            phone: user.phone,
-            password: user.password,
-            email: user.email,
+            id: data.id,
+            firstname: data.firstname,
+            lastname: data.lastname,
+            phone: data.phone,
+            email: data.email,
           });
         } else {
           localStorage.removeItem("token");
@@ -126,24 +71,25 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  // ✅ json-server doesn't support POST /login — use GET with query params
   const login = async (email: string, password: string) => {
     try {
       const response = await fetch(
-        `/api/users?email=${email}&password=${password}`,
+        `/api/users?email=${encodeURIComponent(email)}`,
       );
-      const users = await response.json();
+      if (!response.ok) throw new Error("Server error");
 
+      const users = await response.json();
       if (users.length === 0) throw new Error("Invalid email or password");
 
-      const user = users[0];
-      localStorage.setItem("token", user.id); // ✅ Use id as fake token
+      const data = users[0];
+      localStorage.setItem("token", data.id);
       setUser({
-        id: user.id,
-        fistname: user.fistname,
-        lastname: user.lastname,
-        phone: user.phone,
-        password: user.password,
-        email: user.email,
+        id: data.id,
+        firstname: data.firstname,
+        lastname: data.lastname,
+        phone: data.phone,
+        email: data.email,
       });
     } catch (error) {
       console.error("Login error:", error);
@@ -157,26 +103,24 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const register = async (
-    fistname: string,
+    firstname: string,
     lastname: string,
     phone: string,
     email: string,
     password: string,
   ) => {
     try {
-      // ✅ Check if email already exists
-      const existing = await fetch(`/api/users?email=${email}`);
+      const existing = await fetch(
+        `/api/users?email=${encodeURIComponent(email)}`,
+      );
       const existingUsers = await existing.json();
-      if (existingUsers.length > 0) {
-        throw new Error("Email already exists");
-      }
+      if (existingUsers.length > 0) throw new Error("Email already exists");
 
-      // ✅ Save user to db.json
       const response = await fetch("/api/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          fistname,
+          firstname,
           lastname,
           phone,
           email,
@@ -187,15 +131,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
       if (!response.ok) throw new Error("Registration failed");
 
-      const user = await response.json();
-      localStorage.setItem("token", user.id); 
+      const data = await response.json();
+      localStorage.setItem("token", data.id);
       setUser({
-        id: user.id,
-        fistname: user.fistname,
-        lastname: user.lastname,
-        phone: user.phone,
-        password: user.password,
-        email: user.email,
+        id: data.id,
+        firstname: data.firstname,
+        lastname: data.lastname,
+        phone: data.phone,
+        email: data.email,
       });
     } catch (error) {
       console.error("Registration error:", error);
@@ -221,8 +164,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within AuthProvider");
-  }
+  if (!context) throw new Error("useAuth must be used within AuthProvider");
   return context;
 };

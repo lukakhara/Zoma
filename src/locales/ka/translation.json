@@ -6,6 +6,88 @@
     "paper": "ქაღალდი",
     "textiles": "ტილოები"
   },
+
+  "productsHeader": "პროდუქტები",
+  "news": "ახალი ამბები",
+  "contact": "კონტაქტი",
+
+  "home": "მთავარი",
+  "profile": "პროფილი",
+  "createdBy": "შექმნილია Integrals-ის მიერ",
+  "mainOffice": "მთავარი ოფისი, ქუჩა #13",
+  "city": "თბილისი, საქართველო",
+
+  "myOrders": "ჩემი შეკვეთები",
+  "changePassword": "პაროლის შეცვლა",
+  "deliverAddress": "მიწოდების მისამართი",
+  "logOut": "გასვლა",
+
+  "firstName": "სახელი",
+  "lastName": "გვარი",
+  "phone": "ტელეფონი",
+  "email": "ელ. ფოსტა",
+  "password": "პაროლი",
+  "repeatPassword": "პაროლის გამეორება",
+
+  "orderNumber": "შეკვეთის ნომერი",
+  "date": "თარიღი",
+  "quantity": "რაოდენობა",
+  "price": "ფასი",
+  "status": "სტატუსი",
+
+  "image": "სურათი",
+  "total": "სულ",
+  "product": "პროდუქტი",
+
+  "pending": "მოლოდინის რეჟიმშია",
+  "isBeingDelivered": "იგზავნება ",
+  "delivered": "მიწოდებულია ",
+
+
+
+  "pleaseFillInAllFields": "გთხოვთ, შეავსოთ ყველა ველი",
+  "newPasswordsDon'tMatch": "ახალი პაროლები არ ემთხვევა",
+  "newPasswordMustBeAtLeast6Characters": "ახალი პაროლი უნდა იყოს მინიმუმ 6 სიმბოლო",
+  "UserNotFound": "მომხმარებელი ვერ მოიძებნა",
+  "CurrentPasswordIsIncorrect": "მიმდინარე პაროლი არასწორია",
+  "FailedToUpdatePassword": "პაროლის განახლება ვერ მოხერხდა",
+  "FailedToChangePasswordPleaseTryAgain.": "პაროლის შეცვლა ვერ მოხერხდა. გთხოვთ, სცადოთ ხელახლა.",
+  "currentPassword": "მიმდინარე პაროლი",
+  "newPassword": "ახალი პაროლი",
+  "confirmNewPassword": "ახალი პაროლის დადასტურება",
+  "PleaseFillInTheInformationToChangePassword": "გთხოვთ, შეავსოთ ინფორმაცია პაროლის შესაცვლელად",
+  "PasswordChangedSuccessfully!": "პაროლი წარმატებით შეიცვალა!",
+  "Changing": "იცვლება...",
+
+  "city": "ქალაქი",
+  "fullAddress": "სრული მისამართი",
+  "zipCode": "საფოსტო ინდექსი",
+  "pleaseFillInAllRequiredFields": "გთხოვთ, შეავსოთ ყველა სავალდებულო ველი",
+  "saving": "ინახება...",
+  "save": "შენახვა",
+  "addressUpdatedSuccessfully!": "მისამართი წარმატებით განახლდა!",
+  "addressAddedSuccessfully!": "მისამართი წარმატებით დაემატა!",
+  "deliveryAddress": "მიწოდების მისამართი",
+  "addNewAddress": "ახალი მისამართის დამატება",
+
+  
+  "registration":"რეგისტრაცია",
+  "passwordsArntSame ":"პაროლები არ არის იგივე ",
+  "PleaseAgreeToTermsAndConditions":"გთხოვთ, დაეთანხმოთ წესებსა და პირობებს",
+  "register":"რეგისტრაცია",
+  "alreadyRegistered":"უკვე დარეგისტრირებულია",
+  "logIn":"შესვლა",
+  "repeatPassword":"გაიმეორე პაროლი",
+
+   "invalidEmailOrPassword": "ელ. ფოსტა ან პაროლი არასწორია",
+  "signIn": "შესვლა",
+  "e-mail":  "ელ. ფოსტა",
+  "password":  "პაროლი",
+  "forgotYourPassword":"პაროლი დაგავიწყდათ",
+  "signingIn": "შესვლა",
+  "ifYouAreNotRegistered": "თუ არ ხართ რეგისტრირებული",
+  "registerNow":"დარეგისტრირდი ახლა",
+
   "products": {
     "1": {
       "name": "ზომა - ქაფი",

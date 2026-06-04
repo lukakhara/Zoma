@@ -11,6 +11,7 @@ i18n
   )
   .use(initReactI18next)
   .init({
+     ns: ["translation", "header"], 
     lng: "ka",
     fallbackLng: "ka",
     interpolation: {

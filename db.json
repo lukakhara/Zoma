@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "id": "s2Zr_oNOMIs",
+      "firstname": "luka",
+      "lastname": "xara",
+      "phone": "12345",
+      "email": "luka@gmail.com",
+      "password": "1234567"
+    }
+  ],
+  "addresses": [
+    {
+      "id": "addr_001",
+      "userId": "s2Zr_oNOMIs",
+      "city": "Tbilisi",
+      "fullAddress": "Rustaveli Avenue 13",
+      "zipCode": "0108"
+    },
+    {
+      "id": "addr_002",
+      "userId": "s2Zr_oNOMIs",
+      "city": "Batumi",
+      "fullAddress": "Ninoshvili Street 5",
+      "zipCode": "6010"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

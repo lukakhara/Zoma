@@ -17,19 +17,20 @@ import { useCartContext } from "../context/CartContext";
 
 
 const Header = () => {
-  // const { languageGeorgian, setLanguageGeorgian } = useLanguage();
-  const { i18n } = useTranslation();
+  const { i18n,t  } = useTranslation();
   const languageGeorgian = i18n.language === "ka";
+
 
   const {cartItems} = useCartContext();
 
   const currentData = new Date();
   const currentHour = currentData.getHours();
-  const currentMinute = currentData.getMinutes();
+  const currentMinute = String(currentData.getMinutes()).padStart(2, "0");
+
 
   return (
     <>
-      <header className="bg-blue-50 rounded-b-2xl md:rounded-none  px-7.25 pb-5 md:py-8.75 md:px-30">
+      <header className="bg-blue-50 rounded-b-2xl md:rounded-none  px-7.25 pb-5 md:py-8.75 md:px-10  lg:px-30  ">
         <div className="flex items-center justify-between  md:hidden py-2.5">
           <h1 className="text-white font-bold">{`${currentHour}:${currentMinute}`}</h1>
           <div className="flex gap-2">
@@ -47,16 +48,16 @@ const Header = () => {
               className="flex items-baseline justify-center gap-2 p text-[16px]"
               to="/"
             >
-              {languageGeorgian ? "პროდუქტები" : "Products"}
+              {t("productsHeader")}
               <img src={collapseIcon} alt="collapse icon" />
             </Link>
 
             <Link to="/news">
-              {languageGeorgian ? "ახალი ამბები" : " News"}{" "}
+              {t("news")}
             </Link>
 
             <Link to="/contact">
-              {languageGeorgian ? "კონტაქტი" : "Contact"}{" "}
+             {t("contact")}
             </Link>
           </div>
           <div className="flex gap-2 ">

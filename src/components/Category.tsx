@@ -64,7 +64,7 @@ const Category = ({ setFilter }: CategoryProps) => {
   };
 
   return (
-    <section className="my-4 md:my-9 mx-1 w-full flex justify-center">
+    <section className="mt-4 my-6 md:my-9 mx-1 w-full flex justify-center">
       <ul
         ref={listRef}
         onPointerDown={onPointerDown}

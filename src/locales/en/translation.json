@@ -6,12 +6,92 @@
     "paper": "paper",
     "textiles": "textiles"
   },
+
+  "productsHeader": "Products",
+  "news": "News",
+  "contact": "Contact",
+
+  "home": "Home",
+  "profile": "Profile",
+  "createdBy": "Created by Integrals",
+  "mainOffice": "Head Office, Street Name #13 ",
+  "city": "Tbilisi, Georgia",
+
+  "myOrders": "My Orders",
+  "changePassword": "Change Password",
+  "deliverAddress": "Delivery Address",
+  "logOut": "Log Out",
+
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "phone": "Phone",
+  "email": "Email",
+  "password": "Password",
+  "repeatPassword": "Repeat Password",
+
+  "orderNumber": "Order Number",
+  "date": "Date",
+  "quantity": "Quantity",
+  "price": "Price",
+  "status": "Status",
+
+  "image": "Image",
+  "total": "Total",
+  "product": "Product",
+
+  "pending": "Pending",
+  "isBeingDelivered": "Is Being Delivered",
+  "delivered": "Delivered",
+
+  "pleaseFillInAllFields": "Please fill in all fields",
+  "newPasswordsDon'tMatch": "New passwords don't match",
+  "newPasswordMustBeAtLeast6Characters": "New password must be at least 6 characters",
+  "UserNotFound": "User not found",
+  "CurrentPasswordIsIncorrect": "Current password is incorrect",
+  "FailedToUpdatePassword": "Failed to update password",
+  "FailedToChangePasswordPleaseTryAgain.": "Failed to change password. Please try again.",
+  "currentPassword": "Current Password",
+  "newPassword": "New Password",
+  "confirmNewPassword": "Confirm New Password",
+  "PleaseFillInTheInformationToChangePassword": " Please fill in the information to change password",
+  "PasswordChangedSuccessfully!": "Password changed successfully!",
+  "Changing": "Changing",
+
+  "city": "City",
+  "fullAddress": "Full Address",
+  "zipCode": "Zip Code",
+  "pleaseFillInAllRequiredFields": "Please fill in all required fields",
+  "saving": "Saving...",
+  "save": "Save",
+  "addressUpdatedSuccessfully!": "Address updated successfully!",
+  "addressAddedSuccessfully!": "Address added successfully!",
+  "deliveryAddress": "Delivery Address",
+  "addNewAddress": "Add new Address",
+
+  "registration": "Registration",
+  "passwordsArntSame ": "passwords arn't same ",
+  "PleaseAgreeToTermsAndConditions": "Please agree to terms & conditions",
+  "register": "Register",
+  "alreadyRegistered": "Already registered",
+  "logIn": "Log in",
+  "repeatPassword": "Repeat Password",
+
+  "invalidEmailOrPassword": "Invalid email or password",
+  "signIn": "Sign in",
+  "e-mail": "E-mail",
+  "password": "Password",
+  "forgotYourPassword": "   Forgot Your Password",
+  "signingIn": "Signing in",
+  "ifYouAreNotRegistered": "If you are not registered",
+  "registerNow": "register now",
+  
+
   "products": {
     "1": {
       "name": "ZOMA BAFIX FOAM",
       "category": "cleaning",
       "purpose": "cleaning agent designet to remove scale from bathroom surfaces",
-      "description": "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from bathroom surfaces. It effectively eliminates limescale and other types of dirt. Suitable for use on undamaged porcelain, ceramic, and enamel sanitary surfaces.",
+      "description": "Cleaning agent designed to remove scale from bathroom surfaces.",
       "instructionsForUse": [
         "Spray onto the surface",
         "Wait for 5–10 minutes",

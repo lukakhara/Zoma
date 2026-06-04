@@ -1,8 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function SignIn() {
+  const {t} = useTranslation();
   const { login } = useAuth();
   const [email, setEmail] = useState("luka@gmail.com");
   const [password, setPassword] = useState("123");
@@ -19,7 +21,7 @@ export default function SignIn() {
 
   const signIn = async () => {
     if (!email.trim() || !password.trim()) {
-      setError("Please fill in all fields");
+      setError(t('pleaseFillInAllFields'));
       return;
     }
     setIsLoading(true);
@@ -27,7 +29,7 @@ export default function SignIn() {
       await login(email, password);
       navigate("/user/profile", { replace: true });
     } catch {
-      setError("Invalid email or password");
+      setError(t('invalidEmailOrPassword'));
     } finally {
       setIsLoading(false);
     }
@@ -35,7 +37,8 @@ export default function SignIn() {
 
   return (
     <div className="min-h-screen py-6 md:py-14">
-      <h1 className="text-2xl font-bold text-gray-900">Sign in</h1>
+      <h1 className="text-2xl font-bold text-gray-900">
+        {t('signIn')}</h1>
 
       <div className="md:flex md:justify-center md:items-center md:mt-16">
         <div className="w-full md:max-w-sm mt-6">
@@ -45,7 +48,7 @@ export default function SignIn() {
           >
             {/* Email */}
             <div className="flex flex-col gap-1">
-              <span className="text-sm text-gray-700">E-mail*</span>
+              <span className="text-sm text-gray-700">{t('e-mail')}*</span>
               <input
                 type="email"
                 value={email}
@@ -58,9 +61,9 @@ export default function SignIn() {
             {/* Password */}
             <div className="flex flex-col gap-1">
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-700">Password*</span>
+                <span className="text-sm text-gray-700">{t('password')}*</span>
                 <Link to="/password-recovery" className="text-sm text-gray-400 cursor-pointer hover:text-gray-600">
-                  Forgot Your Password?
+                 {t('forgotYourPassword')}?  
                 </Link>
               </div>
               <div className="relative">
@@ -104,14 +107,14 @@ export default function SignIn() {
                 hover:opacity-90 active:bg-black cursor-pointer
                 disabled:opacity-60 disabled:cursor-not-allowed transition-opacity"
             >
-              {isLoading ? "Signing in..." : "Sign in"}
+              {isLoading ? t('signingIn') : t('signIn')}
             </button>
           </form>
 
           <p className="text-center text-sm text-gray-400 mt-4">
-            If you are not registered,{" "}
+         {t('ifYouAreNotRegistered')},{" "}
             <Link className="font-semibold text-gray-600 hover:text-gray-900" to="/registration">
-              register now
+           {t('registerNow')}
             </Link>
           </p>
         </div>

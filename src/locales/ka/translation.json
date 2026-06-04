@@ -43,6 +43,8 @@
   "isBeingDelivered": "იგზავნება ",
   "delivered": "მიწოდებულია ",
 
+
+
   "pleaseFillInAllFields": "გთხოვთ, შეავსოთ ყველა ველი",
   "newPasswordsDon'tMatch": "ახალი პაროლები არ ემთხვევა",
   "newPasswordMustBeAtLeast6Characters": "ახალი პაროლი უნდა იყოს მინიმუმ 6 სიმბოლო",
@@ -67,6 +69,24 @@
   "addressAddedSuccessfully!": "მისამართი წარმატებით დაემატა!",
   "deliveryAddress": "მიწოდების მისამართი",
   "addNewAddress": "ახალი მისამართის დამატება",
+
+  
+  "registration":"რეგისტრაცია",
+  "passwordsArntSame ":"პაროლები არ არის იგივე ",
+  "PleaseAgreeToTermsAndConditions":"გთხოვთ, დაეთანხმოთ წესებსა და პირობებს",
+  "register":"რეგისტრაცია",
+  "alreadyRegistered":"უკვე დარეგისტრირებულია",
+  "logIn":"შესვლა",
+  "repeatPassword":"გაიმეორე პაროლი",
+
+   "invalidEmailOrPassword": "ელ. ფოსტა ან პაროლი არასწორია",
+  "signIn": "შესვლა",
+  "e-mail":  "ელ. ფოსტა",
+  "password":  "პაროლი",
+  "forgotYourPassword":"პაროლი დაგავიწყდათ",
+  "signingIn": "შესვლა",
+  "ifYouAreNotRegistered": "თუ არ ხართ რეგისტრირებული",
+  "registerNow":"დარეგისტრირდი ახლა",
 
   "products": {
     "1": {

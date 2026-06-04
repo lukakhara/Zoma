@@ -34,15 +34,16 @@ export default function MyOrders() {
   }
 
   return (
-    <div className="min-h-screen py-4 md:py-8 flex flex-col gap-6 w-full ">
+    <div className="min-h-screen py-4 md:py-8 flex flex-col gap-6 w-full test ">
+      <h1 className="block md:hidden sectionHeader">{t('myOrders')}</h1>
       {orders.map((order) => (
         <div
           key={order.id}
           className="bg-white rounded-2xl shadow-sm overflow-hidden"
         >
           {/* ── DESKTOP ── */}
-          <div className="hidden md:block">
-            <div className="grid grid-cols-5 md:border-b border-[#C3C3C3]">
+          <div className="hidden md:block ">
+            <div className="grid grid-cols-5  md:border-b border-[#C3C3C3] text-nowrap">
               {[
                 t("orderNumber"),
                 t("date"),
@@ -52,7 +53,7 @@ export default function MyOrders() {
               ].map((h) => (
                 <div
                   key={h}
-                  className="border-r border-[#EEEEEE] px-6 py-4 text-sm font-semibold text-gray-800 text-center"
+                  className=" border-r border-[#EEEEEE] px-6 py-4 text-sm font-semibold text-gray-800 text-center"
                 >
                   {h}
                 </div>
@@ -133,7 +134,8 @@ export default function MyOrders() {
           </div>
 
           {/* ── MOBILE ── */}
-          <div className="md:hidden">
+
+          <div className="md:hidden ">
             {[
               {
                 label: t("orderNumber"),
@@ -144,7 +146,7 @@ export default function MyOrders() {
                 label: t("quantity"),
                 value: `${order.items.length} ${order.items.length !== 1 ? t("productsHeader") : t("product")}`,
               },
-              
+
               { label: t("total"), value: `${order.total.toFixed(2)} ₾` },
             ].map((row) => (
               <div

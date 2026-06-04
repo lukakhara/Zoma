@@ -80,12 +80,12 @@ const UserProfile = () => {
 
   return (
     <div className="flex-1 max-w-full  md:flex     flex-col  px-5 md:px-0 ">
-      <h1 className="text-[26px] text-[#1A1A1A] font-helvetocaMedium leading-[100%] pb-4">
-        Profile
+      <h1 className="text-[26px] text-[#1A1A1A] font-helvetocaMedium leading-[100%] pb-4 block md:hidden">
+       {t("profile")}
       </h1>
-      <ul className="flex flex-col gap-4 pb-5">
+      <ul className="flex flex-col gap-4 pb-5 test ">
         {fields.map(({ label, value, setter, type }) => (
-          <li key={label} className="flex flex-col  gap-2">
+          <li key={label} className="flex flex-col  gap-2 ">
             <span className="text-sm text-[#797979]">{label}*</span>
             <input
               type={type}
@@ -96,7 +96,7 @@ const UserProfile = () => {
                 setError("");
                 setSuccess(false);
               }}
-              className="w-full md:w-1/2 px-4 py-3 rounded-2xl bg-white shadow-sm text-sm placeholder-gray-400 outline-none"
+              className="w-full md:w-[75%] lg:w-1/2 px-4 py-3 rounded-2xl bg-white shadow-sm text-sm placeholder-gray-400 outline-none"
             />
           </li>
         ))}

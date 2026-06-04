@@ -68,6 +68,24 @@
   "deliveryAddress": "Delivery Address",
   "addNewAddress": "Add new Address",
 
+  "registration": "Registration",
+  "passwordsArntSame ": "passwords arn't same ",
+  "PleaseAgreeToTermsAndConditions": "Please agree to terms & conditions",
+  "register": "Register",
+  "alreadyRegistered": "Already registered",
+  "logIn": "Log in",
+  "repeatPassword": "Repeat Password",
+
+  "invalidEmailOrPassword": "Invalid email or password",
+  "signIn": "Sign in",
+  "e-mail": "E-mail",
+  "password": "Password",
+  "forgotYourPassword": "   Forgot Your Password",
+  "signingIn": "Signing in",
+  "ifYouAreNotRegistered": "If you are not registered",
+  "registerNow": "register now",
+  
+
   "products": {
     "1": {
       "name": "ZOMA BAFIX FOAM",

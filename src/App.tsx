@@ -10,7 +10,7 @@ import News from "./pages/News";
 import MyOrders from "./pages/MyOrders";
 import Profile from "./pages/Profile";
 import PasswordRecovery from "./pages/PasswordRecovery";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter , Routes, Route, Navigate } from "react-router-dom";
 import DeliveryAddress from "./pages/DeliveryAddress";
 import PasswordChange from "./pages/PasswordChange";
 import NotFound from "./pages/NotFound";
@@ -24,7 +24,7 @@ function App() {
   return (
     <CartContextProdiver>
       <AuthProvider>
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route path="/" element={<Layout />}>
               {/* public routes */}
@@ -62,7 +62,7 @@ function App() {
               <Route path="*" element={<NotFound />}></Route>
             </Route>
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </AuthProvider>
     </CartContextProdiver>
   );

@@ -83,7 +83,7 @@ const UserProfile = () => {
       <h1 className="text-[26px] text-[#1A1A1A] font-helvetocaMedium leading-[100%] pb-4 block md:hidden">
        {t("profile")}
       </h1>
-      <ul className="flex flex-col gap-4 pb-5 test ">
+      <ul className="flex flex-col gap-4 pb-5  ">
         {fields.map(({ label, value, setter, type }) => (
           <li key={label} className="flex flex-col  gap-2 ">
             <span className="text-sm text-[#797979]">{label}*</span>

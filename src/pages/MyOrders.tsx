@@ -34,7 +34,7 @@ export default function MyOrders() {
   }
 
   return (
-    <div className="min-h-screen py-4 md:py-8 flex flex-col gap-6 w-full test ">
+    <div className="min-h-screen py-4 md:py-8 flex flex-col gap-6 w-full  ">
       <h1 className="block md:hidden sectionHeader">{t('myOrders')}</h1>
       {orders.map((order) => (
         <div

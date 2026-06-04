@@ -9,7 +9,7 @@ const Body = ({ filter }: { filter: string }) => {
     { name: string ,category: string }
   >;
 
-  console.log(productsName);
+  
 
 const products = productsData
   .filter((p, index, arr) => arr.findIndex((x) => x.parentId === p.parentId) === index)
@@ -20,7 +20,7 @@ const products = productsData
     category: productsName[p.parentId]?.category,
   }));
 
-  console.log(products);
+
 
   const filteredProducts =
     filter === ""

@@ -30,8 +30,6 @@ export function useCartProducts(): FullCartItem[] {
       const staticData = productsJson.find((p) => String(p.id) === String(cartItem.id));
       const i18nData = staticData ? translations[staticData.parentId] : undefined;
 
-      console.log("staticData",staticData)
-            console.log("i18nData",i18nData)
       // guard: skip if product no longer exists
       if (!staticData || !i18nData) return null;
 

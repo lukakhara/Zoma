@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthProvider";
+import { useTranslation } from "react-i18next";
 
 const UserProfile = () => {
   const { user, logout } = useAuth();
+  const {t} = useTranslation();
 
   const [firstname, setFirstname] = useState(user?.firstname ?? "");
   const [lastname, setLastname] = useState(user?.lastname ?? "");
@@ -54,22 +56,22 @@ const UserProfile = () => {
 
   const fields = [
     {
-      label: "First Name",
+      label: t("firstName"),
       value: firstname,
       setter: setFirstname,
       type: "text",
     },
-    { label: "Last Name", value: lastname, setter: setLastname, type: "text" },
-    { label: "Phone", value: phone, setter: setPhone, type: "tel" },
-    { label: "Email", value: email, setter: setEmail, type: "email" },
+    { label:  t("lastName"), value: lastname, setter: setLastname, type: "text" },
+    { label:  t("phone"), value: phone, setter: setPhone, type: "tel" },
+    { label:  t("email"), value: email, setter: setEmail, type: "email" },
     {
-      label: "Password",
+      label:  t("password"),
       value: password,
       setter: setPassword,
       type: "password",
     },
     {
-      label: "Repeat Password",
+      label:  t("repeatPassword"),
       value: repeatPassword,
       setter: setRepeatPassword,
       type: "password",
@@ -110,8 +112,9 @@ const UserProfile = () => {
       <button
         onClick={handleSave}
         disabled={isLoading}
-        className="w-full py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium
-          hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed transition-opacity"
+        className="w-full md:w-1/2 py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium
+          hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed transition-opacity
+          "
       >
         {isLoading ? "Saving..." : "Save"}
       </button>

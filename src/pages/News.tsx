@@ -1,8 +1,18 @@
-const news = Array(6).fill({
+import { useTranslation } from "react-i18next";
+
+
+const newsEng = Array(6).fill({
   date: "12 September 2025",
   title: "Medium Size Headline",
   excerpt:
     "Zoma Bafix Foam is a ready-to-use, foaming cleaning agent designed to remove scale from...",
+});
+
+const newsGe = Array(6).fill({
+  date: "12 სექტემბერი 2025",
+  title: "საშუალო ზომის სათაური",
+  excerpt:
+    "Zoma Bafix Foam არის მზა, ქაფიანი საწმენდი საშუალება, რომელიც შექმნილია ნადების მოსაშორებლად...",
 });
 
 function NewsCard({
@@ -14,6 +24,10 @@ function NewsCard({
   title: string;
   excerpt: string;
 }) {
+
+
+   const { i18n } = useTranslation();
+
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
       {/* Image placeholder */}
@@ -29,14 +43,15 @@ function NewsCard({
       </div>
     </div>
   );
+
 }
-
 export default function News() {
-  return (
-    <div className="min-h-screen  py-6 md:py-8">
-      <h1 className="text-2xl font-bold text-gray-900 mb-5">News</h1>
+  const { i18n } = useTranslation();
+  const news = i18n.language === "ka" ? newsGe : newsEng;
 
-      {/* Mobile: 1 col | Desktop: 3 cols */}
+  return (
+    <div className="min-h-screen py-6 md:py-8">
+      <h1 className="text-2xl font-bold text-gray-900 mb-5">News</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {news.map((item, i) => (
           <NewsCard key={i} {...item} />

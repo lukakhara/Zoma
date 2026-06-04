@@ -48,7 +48,7 @@ const Header = () => {
               className="flex items-baseline justify-center gap-2 p text-[16px]"
               to="/"
             >
-              {t("product")}
+              {t("productsHeader")}
               <img src={collapseIcon} alt="collapse icon" />
             </Link>
 

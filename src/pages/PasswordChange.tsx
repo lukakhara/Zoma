@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthProvider";
+import { useTranslation } from "react-i18next";
 
 export default function PasswordChange() {
   const { user } = useAuth();
+  const { t } = useTranslation();
 
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -16,27 +18,29 @@ export default function PasswordChange() {
     setSuccess(false);
 
     if (!currentPassword || !newPassword || !confirmPassword) {
-      setError("Please fill in all fields");
+      setError(t("pleaseFillInAllFields"));
       return;
     }
     if (newPassword !== confirmPassword) {
-      setError("New passwords don't match");
+      setError(t("newPasswordsDontMatch"));
       return;
     }
     if (newPassword.length < 6) {
-      setError("New password must be at least 6 characters");
+      setError(t("newPasswordMustBeAtLeast6Characters"));
       return;
     }
 
     setIsLoading(true);
     try {
       // First verify current password
-      const response = await fetch(`/api/users?email=${encodeURIComponent(user?.email ?? "")}`);
+      const response = await fetch(
+        `/api/users?email=${encodeURIComponent(user?.email ?? "")}`,
+      );
       const users = await response.json();
 
-      if (users.length === 0) throw new Error("User not found");
+      if (users.length === 0) throw new Error(t("UserNotFound"));
       if (users[0].password !== currentPassword) {
-        setError("Current password is incorrect");
+        setError(t("CurrentPasswordIsIncorrect"));
         return;
       }
 
@@ -47,34 +51,42 @@ export default function PasswordChange() {
         body: JSON.stringify({ password: newPassword }),
       });
 
-      if (!update.ok) throw new Error("Failed to update password");
+      if (!update.ok) throw new Error(t("FailedToUpdatePassword"));
 
       setSuccess(true);
       setCurrentPassword("");
       setNewPassword("");
       setConfirmPassword("");
     } catch (err) {
-      setError("Failed to change password. Please try again.");
+      setError(t("FailedToChangePasswordPleaseTryAgain"));
     } finally {
       setIsLoading(false);
     }
   };
 
   const fields = [
-    { label: "Current Password",     value: currentPassword, setter: setCurrentPassword },
-    { label: "New Password",         value: newPassword,     setter: setNewPassword     },
-    { label: "Confirm New Password", value: confirmPassword, setter: setConfirmPassword },
+    {
+      label: t("currentPassword"),
+      value: currentPassword,
+      setter: setCurrentPassword,
+    },
+    { label: t("newPassword"), value: newPassword, setter: setNewPassword },
+    {
+      label: t("confirmNewPassword"),
+      value: confirmPassword,
+      setter: setConfirmPassword,
+    },
   ];
 
   return (
     <div className="min-h-screen w-full ">
-     
-
       <div className="md:flex md:justify-start md:items-center px-5 md:px-0 md:w-1/2">
-         <h1 className="text-2xl font-bold text-gray-900 mb-1  md:hidden">Change Password</h1>
+        <h1 className="text-2xl font-bold text-gray-900 mb-1  md:hidden">
+          {t("changePassword")}
+        </h1>
         <div className="flex-1 max-w-full block md:flex md:max-w-[75%%]  flex-col  px-5 md:px-0 ">
           <p className="text-sm text-gray-400 mb-4">
-            Please fill in the information to change password
+            {t("PleaseFillInTheInformationToChangePassword")}
           </p>
 
           <div className="flex flex-col gap-4">
@@ -95,8 +107,14 @@ export default function PasswordChange() {
               </div>
             ))}
 
-            {error   && <p className="text-red-500 text-sm text-center">{error}</p>}
-            {success && <p className="text-green-500 text-sm text-center">Password changed successfully!</p>}
+            {error && (
+              <p className="text-red-500 text-sm text-center">{error}</p>
+            )}
+            {success && (
+              <p className="text-green-500 text-sm text-center">
+                {t("PasswordChangedSuccessfully")}
+              </p>
+            )}
 
             <button
               onClick={handleChange}
@@ -104,7 +122,7 @@ export default function PasswordChange() {
               className="w-full py-3 mt-1 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium
                 hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed transition-opacity"
             >
-              {isLoading ? "Changing..." : "Change Password"}
+              {isLoading ? t("Changing") : t("changePassword")}
             </button>
           </div>
         </div>

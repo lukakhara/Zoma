@@ -6,17 +6,68 @@
     "paper": "paper",
     "textiles": "textiles"
   },
-  
-    "product":"Products",
-    "news":"News",
-    "contact":"Contact",
 
-     "home":"Home",
-      "profile":"Profile",
-      "createdBy":"Created by Integrals",
-      "mainOffice":"Head Office, Street Name #13 ",
-      "city":"Tbilisi, Georgia"
-  ,
+  "productsHeader": "Products",
+  "news": "News",
+  "contact": "Contact",
+
+  "home": "Home",
+  "profile": "Profile",
+  "createdBy": "Created by Integrals",
+  "mainOffice": "Head Office, Street Name #13 ",
+  "city": "Tbilisi, Georgia",
+
+  "myOrders": "My Orders",
+  "changePassword": "Change Password",
+  "deliverAddress": "Delivery Address",
+  "logOut": "Log Out",
+
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "phone": "Phone",
+  "email": "Email",
+  "password": "Password",
+  "repeatPassword": "Repeat Password",
+
+  "orderNumber": "Order Number",
+  "date": "Date",
+  "quantity": "Quantity",
+  "price": "Price",
+  "status": "Status",
+
+  "image": "Image",
+  "total": "Total",
+  "product": "Product",
+
+  "pending": "Pending",
+  "isBeingDelivered": "Is Being Delivered",
+  "delivered": "Delivered",
+
+  "pleaseFillInAllFields": "Please fill in all fields",
+  "newPasswordsDon'tMatch": "New passwords don't match",
+  "newPasswordMustBeAtLeast6Characters": "New password must be at least 6 characters",
+  "UserNotFound": "User not found",
+  "CurrentPasswordIsIncorrect": "Current password is incorrect",
+  "FailedToUpdatePassword": "Failed to update password",
+  "FailedToChangePasswordPleaseTryAgain.": "Failed to change password. Please try again.",
+  "currentPassword": "Current Password",
+  "newPassword": "New Password",
+  "confirmNewPassword": "Confirm New Password",
+  "PleaseFillInTheInformationToChangePassword": " Please fill in the information to change password",
+  "PasswordChangedSuccessfully!": "Password changed successfully!",
+  "Changing": "Changing",
+
+  "city": "City",
+  "fullAddress": "Full Address",
+  "zipCode": "Zip Code",
+  "pleaseFillInAllRequiredFields": "Please fill in all required fields",
+  "saving": "Saving...",
+  "save": "Save",
+  "addressUpdatedSuccessfully!": "Address updated successfully!",
+  "addressAddedSuccessfully!": "Address added successfully!",
+  "deliveryAddress": "Delivery Address",
+  "addNewAddress": "Add new Address",
+
   "products": {
     "1": {
       "name": "ZOMA BAFIX FOAM",

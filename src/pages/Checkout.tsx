@@ -295,7 +295,7 @@ const Checkout = () => {
                     setErrors((prev) => ({ ...prev, terms: "" }));
                   }}
                 />
-                <span className="radio-visual  bg-[#FFFFFF]! test" />
+                <span className="radio-visual  bg-[#FFFFFF]! " />
                 <p className="text-[#797979] font-normal">
                   {t('iAgreeToTermsAndConditions')}
                 </p>

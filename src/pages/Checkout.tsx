@@ -185,10 +185,10 @@ const Checkout = () => {
               </div>
             )} */}
             <div className="flex justify-between items-center pt-1">
-              <span className="checkoutLeftText text-sm text-gray-700">
+              <span className="checkoutLeftText text-sm text-gray-700 ">
                 {t('TotalPriceToPay')}
               </span>
-              <span className="text-xl font-bold text-[#2f4a9c]">
+              <span className="text-xl font-bold text-[#2f4a9c] text-nowrap">
                 {totalPriceToPay.toFixed(2)} ₾
               </span>
             </div>
@@ -277,14 +277,14 @@ const Checkout = () => {
 
           {/* Terms + CTA */}
           {selectedPaymentMethod ? (
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 ">
               {errors.terms && (
                 <div className="flex items-center gap-1">
                   <img src={warningIcon} alt="{t('warningIcon')}" />
                   <p className="text-red-500 text-sm">{errors.terms}</p>
                 </div>
               )}
-              <label className="terms-toggle px-4 md:px-0">
+              <label className="terms-toggle px-4 md:px-0 " >
                 <input
                   type="checkbox"
                   id="terms"
@@ -295,7 +295,7 @@ const Checkout = () => {
                     setErrors((prev) => ({ ...prev, terms: "" }));
                   }}
                 />
-                <span className="radio-visual size-3! bg-[#FFFFFF]!" />
+                <span className="radio-visual  bg-[#FFFFFF]! test" />
                 <p className="text-[#797979] font-normal">
                   {t('iAgreeToTermsAndConditions')}
                 </p>

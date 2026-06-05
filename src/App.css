@@ -96,12 +96,12 @@ body{
 /* Outer ring */
 .radio-visual {
   flex-shrink: 0;
-  width: 18px;
-  height: 18px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   border: 2px solid #aaa;
   position: relative;
-  margin-top: 2px;
+  margin-top:5px;
   transition: border-color 0s;
 }
 
@@ -111,19 +111,16 @@ body{
   position: absolute;
   top: 50%;
   left: 50%;
-  translate: -50% -50%;
-  width: 10px;
-  height: 10px;
+  translate: -56% -55%;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: #1a73e8;
   transform: scale(0);
   transition: transform 0 ease;
 }
 
-/* Checked state */
-.terms-toggle input:checked ~ .radio-visual {
-  border-color: #1a73e8;
-}
+
 
 .terms-toggle input:checked ~ .radio-visual::after {
   transform: scale(1);

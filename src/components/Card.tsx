@@ -27,7 +27,7 @@ const Card = ({ product }: { product: CardProps }) => {
             <button
               className="cursor-pointer size-[27.62px] centeredFlex bg-blue-100 rounded-full p-2
                 mt-[8px] mr-[12.05px]    "
-              onClick={() => addToCart(String(product.id))}
+              onClick={() => addToCart(String(product.id),quantity)}
             >
               <img
                 className="bg-none size-[14.83px] "

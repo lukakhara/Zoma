@@ -176,7 +176,7 @@ const ProductPage = () => {
             <button
               className="flex-1 py-3 rounded-2xl border border-gray-300 bg-white text-gray-800 text-sm font-medium centeredFlex gap-2
               cursor-pointer"
-              onClick={() => addToCart(String(selectedId))}
+              onClick={() => addToCart(String(selectedId),quantity)}
             >
               <img src={cart} alt="cart" className="w-4 h-4" />
               {languageGeorgian ? "დამატება კალათაში" : "Add to cart"}
@@ -327,7 +327,7 @@ const ProductPage = () => {
           <button
             className="flex-1 py-3 rounded-[10px]   bg-[rgba(255,255,255,0.83)] text-gray-800 text-sm font-medium centeredFlex gap-2 cursor-pointer"
             onClick={() => {
-              addToCart(String(selectedId));
+              addToCart(String(selectedId),quantity);
             }}
           >
             <img src={cart} alt="cart" className="w-4 h-4" />

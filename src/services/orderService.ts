@@ -40,7 +40,6 @@ export const placeOrder = (cartItems: FullCartItem[]): Order => {
   return order;
 };
 
-// ✅ this was missing
 export const getOrders = (): Order[] => {
   return JSON.parse(localStorage.getItem("orders") ?? "[]");
 };

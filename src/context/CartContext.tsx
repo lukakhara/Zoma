@@ -4,7 +4,7 @@ import productsJson from "../locales/products.json";
 
 interface CartContextType {
   cartItems: CartItem[];
-  addToCart: (id: string) => void;
+  addToCart: (id: string,quantity:number) => void;
   removeFromCart: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
@@ -18,7 +18,7 @@ const CartContextProdiver = ({ children }: { children: ReactNode }) => {
   const getStock = (id: string) =>
     productsJson.find((p) => p.id === id)?.amount ?? 0;
 
-  const addToCart = (id: string) => {
+  const addToCart = (id: string,quantity:number) => {
     setCartItems((prev) => {
       const exists = prev.find((item) => item.id === id);
       const stock = getStock(id);
@@ -26,12 +26,12 @@ const CartContextProdiver = ({ children }: { children: ReactNode }) => {
       if (exists) {
         return prev.map((item) =>
           item.id === id
-            ? { ...item, quantity: Math.min(item.quantity + 1, stock) }
+            ? { ...item, quantity: Math.min(item.quantity + quantity, stock) }
             : item,
         );
       }
       if (stock === 0) return prev;
-      return [...prev, { id, quantity: 1 }];
+      return [...prev, { id, quantity: quantity }];
     });
   };
 

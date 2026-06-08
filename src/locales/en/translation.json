@@ -11,11 +11,11 @@
   "news": "News",
   "contact": "Contact",
 
-  "home": "Home",
+  "footer":{"home": "Home",
   "profile": "Profile",
   "createdBy": "Created by Integrals",
   "mainOffice": "Head Office, Street Name #13 ",
-  "cityContact": "Tbilisi, Georgia",
+  "city": "Tbilisi, Georgia"},
 
   "myOrders": "My Orders",
   "changePassword": "Change Password",

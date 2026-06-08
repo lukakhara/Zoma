@@ -11,11 +11,13 @@
   "news": "ახალი ამბები",
   "contact": "კონტაქტი",
 
-  "home": "მთავარი",
-  "profile": "პროფილი",
-  "createdBy": "შექმნილია Integrals-ის მიერ",
-  "mainOffice": "მთავარი ოფისი, ქუჩა #13",
-  "cityContact": "თბილისი, საქართველო",
+  "footer": {
+    "home": "მთავარი",
+    "profile": "პროფილი",
+    "createdBy": "შექმნილია Integrals-ის მიერ",
+    "mainOffice": "მთავარი ოფისი, ქუჩა #13",
+    "city": "თბილისი, საქართველო"
+  },
 
   "myOrders": "ჩემი შეკვეთები",
   "changePassword": "პაროლის შეცვლა",
@@ -28,24 +30,24 @@
   "email": "ელ. ფოსტა",
   "password": "პაროლი",
 
-  "checkout":"გადახდა",
-  "summary":"ჯამი",
-  "totalPrice":"სრული ფასი",
-  "totalDiscount":"სრული ფასდაკლება",
-  "TotalPriceToPay":"გადასახდელი მთლიანი თანხა",
-  "PaymentMethod":"გადახდის მეთოდი",
-  "choosePaymentMethod":"გადახდის მეთოდის არჩევა",
-  "TbcBank":"თიბისი ბანკი",
-  "bankOfGeorgia":"საქართველოს ბანკი",
-  "applePay":"ეფლ ფეი",
-  "googlePay":"გუგლ ფეი",
-  "iAgreeToTermsAndConditions":"ვეთანხმები წესებსა და პირობებს",
-  "deliveryAddressCheckout":"მიწოდების მისამართი",
-"edit":"რედაქტირება",
-"deliveryDetails":"მიწოდების დეტალები",
-"mobile":"ტელეფონი",
-"warningIcon":"გაფრთხილების ხატულა",
-"buyNow":"იყიდე ახლავე",
+  "checkout": "გადახდა",
+  "summary": "ჯამი",
+  "totalPrice": "სრული ფასი",
+  "totalDiscount": "სრული ფასდაკლება",
+  "TotalPriceToPay": "გადასახდელი მთლიანი თანხა",
+  "PaymentMethod": "გადახდის მეთოდი",
+  "choosePaymentMethod": "გადახდის მეთოდის არჩევა",
+  "TbcBank": "თიბისი ბანკი",
+  "bankOfGeorgia": "საქართველოს ბანკი",
+  "applePay": "ეფლ ფეი",
+  "googlePay": "გუგლ ფეი",
+  "iAgreeToTermsAndConditions": "ვეთანხმები წესებსა და პირობებს",
+  "deliveryAddressCheckout": "მიწოდების მისამართი",
+  "edit": "რედაქტირება",
+  "deliveryDetails": "მიწოდების დეტალები",
+  "mobile": "ტელეფონი",
+  "warningIcon": "გაფრთხილების ხატულა",
+  "buyNow": "იყიდე ახლავე",
 
   "orderNumber": "შეკვეთის ნომერი",
   "date": "თარიღი",
@@ -60,8 +62,6 @@
   "pending": "მოლოდინის რეჟიმშია",
   "isBeingDelivered": "იგზავნება ",
   "delivered": "მიწოდებულია ",
-
-
 
   "pleaseFillInAllFields": "გთხოვთ, შეავსოთ ყველა ველი",
   "newPasswordsDon'tMatch": "ახალი პაროლები არ ემთხვევა",
@@ -88,25 +88,24 @@
   "deliveryAddress": "მიწოდების მისამართი",
   "addNewAddress": "ახალი მისამართის დამატება",
 
-  
-  "registration":"რეგისტრაცია",
-  "passwordsArntSame ":"პაროლები არ არის იგივე ",
-  "PleaseAgreeToTermsAndConditions":"გთხოვთ, დაეთანხმოთ წესებსა და პირობებს",
-  "register":"რეგისტრაცია",
-  "alreadyRegistered":"უკვე დარეგისტრირებულია",
-  "logIn":"შესვლა",
-  "repeatPassword":"გაიმეორე პაროლი",
+  "registration": "რეგისტრაცია",
+  "passwordsArntSame ": "პაროლები არ არის იგივე ",
+  "PleaseAgreeToTermsAndConditions": "გთხოვთ, დაეთანხმოთ წესებსა და პირობებს",
+  "register": "რეგისტრაცია",
+  "alreadyRegistered": "უკვე დარეგისტრირებულია",
+  "logIn": "შესვლა",
+  "repeatPassword": "გაიმეორე პაროლი",
 
-   "invalidEmailOrPassword": "ელ. ფოსტა ან პაროლი არასწორია",
+  "invalidEmailOrPassword": "ელ. ფოსტა ან პაროლი არასწორია",
   "signIn": "შესვლა",
-  "e-mail":  "ელ. ფოსტა",
+  "e-mail": "ელ. ფოსტა",
 
-  "forgotYourPassword":"პაროლი დაგავიწყდათ",
+  "forgotYourPassword": "პაროლი დაგავიწყდათ",
   "signingIn": "შესვლა",
   "ifYouAreNotRegistered": "თუ არ ხართ რეგისტრირებული",
-  "registerNow":"დარეგისტრირდი ახლა",
+  "registerNow": "დარეგისტრირდი ახლა",
 
- "profileUpdatedSuccessfully!":"პროფილი წარმატებით განახლდა",
+  "profileUpdatedSuccessfully!": "პროფილი წარმატებით განახლდა",
 
   "products": {
     "1": {

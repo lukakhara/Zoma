@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
 
 const Footer = () => {
-  const {t } = useTranslation();
+  const { t } = useTranslation('translation', { keyPrefix: 'footer' });
   const { cartItems } = useCartContext();
 
   return (

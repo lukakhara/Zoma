@@ -3,7 +3,7 @@ import cart from "/assets/cart.png";
 import { useTranslation } from "react-i18next";
 import { type Product } from "../types";
 import productsData from "../locales/products.json";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { useCartContext } from "../context/CartContext";
 
@@ -17,7 +17,6 @@ const ProductPage = () => {
   const [activeImage, setActiveImage] = useState<number>(0);
   const languageGeorgian = i18n.language === "ka";
 
-
   const [selectCapacityIndex, setSelectCapacityIndex] = useState(0);
 
   const product = productDataFromTranslation[Number(id)];
@@ -29,6 +28,11 @@ const ProductPage = () => {
   const selectedId = capacities[selectCapacityIndex].id;
 
   const [quantity, setQuantity] = useState(1);
+
+  const formatLabel = (label: string) => {
+    if (!languageGeorgian) return label.toLocaleLowerCase();
+    return label.toLocaleLowerCase().replace(/ml/g, "მლ").replace(/l\b/g, "ლ");
+  };
 
   useEffect(() => {
     setQuantity(1);
@@ -109,7 +113,7 @@ const ProductPage = () => {
                           `}
                   onClick={() => setSelectCapacityIndex(index)}
                 >
-                  {i.label}
+                  {formatLabel(i.label)}
                 </button>
               ))}
             </div>
@@ -170,13 +174,18 @@ const ProductPage = () => {
 
           {/* Buttons */}
           <div className="flex gap-3">
-            <button className="flex-1 py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium cursor-pointer">
+            <Link
+              to="/checkout"
+              className="flex-1 py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium cursor-pointer text-center"
+              onClick={() => addToCart(String(selectedId), quantity)}
+            >
               {languageGeorgian ? "იყიდეთ ახლა" : "Buy Now"}
-            </button>
+            </Link>
+
             <button
               className="flex-1 py-3 rounded-2xl border border-gray-300 bg-white text-gray-800 text-sm font-medium centeredFlex gap-2
               cursor-pointer"
-              onClick={() => addToCart(String(selectedId),quantity)}
+              onClick={() => addToCart(String(selectedId), quantity)}
             >
               <img src={cart} alt="cart" className="w-4 h-4" />
               {languageGeorgian ? "დამატება კალათაში" : "Add to cart"}
@@ -207,7 +216,7 @@ const ProductPage = () => {
             <p className="text-sm text-gray-600 mt-0.5">{product.store}</p>
             <p className="text-sm text-gray-600">
               {languageGeorgian ? "მოცულობა" : "volume"}:
-              {capacities[selectCapacityIndex].label.toLocaleLowerCase()}
+              {formatLabel(capacities[selectCapacityIndex].label)}
             </p>
           </div>
         </div>
@@ -220,7 +229,9 @@ const ProductPage = () => {
           <p className="text-sm text-[#2f4a9c] font-medium">
             {product.category}
           </p>
-          <h1 className="text-[22px] font-normal text-[#1A1A1A]">{product.name}</h1>
+          <h1 className="text-[22px] font-normal text-[#1A1A1A]">
+            {product.name}
+          </h1>
         </div>
 
         {/* Main image */}
@@ -265,7 +276,7 @@ const ProductPage = () => {
             }`}
                 onClick={() => setSelectCapacityIndex(index)}
               >
-                {cap.label}
+                {formatLabel(cap.label)}
               </button>
             ))}
           </div>
@@ -321,31 +332,31 @@ const ProductPage = () => {
 
         {/* Buttons */}
         <div className="flex gap-3">
-          <button className="flex-1 py-3 rounded-[10px] bg-[#2f4a9c] text-white text-sm font-medium  cursor-pointer">
+          <Link
+            to="/checkout"
+            className="flex-1 py-3 rounded-[10px] bg-[#2f4a9c] text-white text-sm font-medium  cursor-pointer"
+            onClick={() => addToCart(String(selectedId), quantity)}
+          >
             {languageGeorgian ? "იყიდეთ ახლა" : "Buy Now"}
-          </button>
+          </Link>
           <button
             className="flex-1 py-3 rounded-[10px]   bg-[rgba(255,255,255,0.83)] text-gray-800 text-sm font-medium centeredFlex gap-2 cursor-pointer"
             onClick={() => {
-              addToCart(String(selectedId),quantity);
+              addToCart(String(selectedId), quantity);
             }}
           >
             <img src={cart} alt="cart" className="w-4 h-4" />
             {languageGeorgian ? "დამატება კალათაში" : "Add to cart"}
           </button>
         </div>
-            {/* divider */}
-            <div className="border-t-4 border-[#DBDBDB]">
-
-            </div>
+        {/* divider */}
+        <div className="border-t-4 border-[#DBDBDB]"></div>
         {/* Description */}
         <div className="text-[#898989]">
           <h2 className="text-[18px] font-medium text-[#000000]! mb-1">
             {languageGeorgian ? "აღწერა" : "Description"}
           </h2>
-          <p className="text-sm  leading-relaxed">
-            {product.description}
-          </p>
+          <p className="text-sm  leading-relaxed">{product.description}</p>
           <ul className="mt-2 space-y-0.5 ">
             {product.instructionsForUse?.map((item, i) => (
               <li key={i} className="text-sm  flex gap-2">
@@ -362,7 +373,7 @@ const ProductPage = () => {
           <p className="text-sm  mt-0.5 ">{product.store}</p>
           <p className="text-sm ">
             {languageGeorgian ? "მოცულობა: " : "Volume: "}
-            {capacities[selectCapacityIndex].label.toLocaleLowerCase()}
+            {formatLabel(capacities[selectCapacityIndex].label)}
           </p>
         </div>
       </div>

@@ -27,7 +27,7 @@ function OfficeCard({ city }: { city: string }) {
       <div className="flex justify-between items-start">
         <div>
           <p className="text-sm font-medium text-gray-800">{t("mainOffice")}</p>
-          <p className="text-sm text-gray-600">{t("city")}</p>
+          <p className="text-sm text-gray-600">{t("cityContactty")}</p>
         </div>
         <span className="text-sm text-gray-700 whitespace-nowrap ml-4">
           10:00-18:00

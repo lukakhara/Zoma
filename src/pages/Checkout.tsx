@@ -13,7 +13,7 @@ import { placeOrder } from "../services/orderService";
 import { useTranslation } from "react-i18next";
 
 const Checkout = () => {
-  const {t} = useTranslation();
+  const {t} = useTranslation('translation', { keyPrefix: 'checkout' });
   const cartItems = useCartProducts();
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(false);
   const { removeFromCart, updateQuantity, clearCart } = useCartContext();

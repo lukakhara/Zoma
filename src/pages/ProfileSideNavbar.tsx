@@ -3,7 +3,7 @@ import { useAuth } from "../context/AuthProvider";
 import { useTranslation } from "react-i18next";
 
 const ProfileSideNavbar = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation', { keyPrefix: 'profileSideNavbar' });
   const { logout } = useAuth();
   const navigate = useNavigate();
   const linkClass = ({ isActive }: { isActive: boolean }) =>

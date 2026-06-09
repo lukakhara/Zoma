@@ -11,16 +11,21 @@
   "news": "News",
   "contact": "Contact",
 
-  "footer":{"home": "Home",
-  "profile": "Profile",
-  "createdBy": "Created by Integrals",
-  "mainOffice": "Head Office, Street Name #13 ",
-  "city": "Tbilisi, Georgia"},
+  "footer": {
+    "home": "Home",
+    "profile": "Profile",
+    "createdBy": "Created by Integrals",
+    "mainOffice": "Head Office, Street Name #13 ",
+    "city": "Tbilisi, Georgia"
+  },
 
-  "myOrders": "My Orders",
-  "changePassword": "Change Password",
-  "deliverAddress": "Delivery Address",
-  "logOut": "Log Out",
+  "profileSideNavbar": {
+    "profile": "Profile",
+    "myOrders": "My Orders",
+    "changePassword": "Change Password",
+    "deliverAddress": "Delivery Address",
+    "logOut": "Log Out"
+  },
 
   "firstName": "First Name",
   "lastName": "Last Name",
@@ -29,39 +34,44 @@
   "password": "Password",
   "repeatPassword": "Repeat Password",
 
-  "checkout":"Checkout",
-  "summary":"Summary",
-  "totalPrice":"Total Price",
-  "totalDiscount":"Total Disount",
-  "TotalPriceToPay":"Total price to pay",
-  "PaymentMethod":"Payment Method",
-  "choosePaymentMethod":"Choose payment method",
-  "TbcBank":"TBC Bank",
-  "bankOfGeorgia":"Bank of Georgia",
-  "applePay":"Apple pay",
-  "googlePay":"Google pay",
-  "iAgreeToTermsAndConditions":"i agreee to terms & conditions",
-"deliveryAddressCheckout":"delivery address",
-"edit":"Edit",
-"deliveryDetails":"Delivery details",
-"mobile":"Mobile",
-"warningIcon":"warning icon",
-"buyNow":"Buy Now",
+  "checkout": {
+    "checkout": "Checkout",
+    "summary": "Summary",
+    "totalPrice": "Total Price",
+    "totalDiscount": "Total Disount",
+    "TotalPriceToPay": "Total price to pay",
+    "PaymentMethod": "Payment Method",
+    "choosePaymentMethod": "Choose payment method",
+    "TbcBank": "TBC Bank",
+    "bankOfGeorgia": "Bank of Georgia",
+    "applePay": "Apple pay",
+    "googlePay": "Google pay",
+    "iAgreeToTermsAndConditions": "i agreee to terms & conditions",
+    "deliveryAddressCheckout": "delivery address",
+    "edit": "Edit",
+    "deliveryDetails": "Delivery details",
+    "mobile": "Mobile",
+    "warningIcon": "warning icon",
+    "buyNow": "Buy Now"
+  },
 
-
-  "orderNumber": "Order Number",
-  "date": "Date",
-  "quantity": "Quantity",
-  "price": "Price",
-  "status": "Status",
-
-  "image": "Image",
+  "myOrders": {
+    "orderNumber": "Order Number",
+    "date": "Date",
+    "quantity": "Quantity",
+    "price": "Price",
+    "status": "Status",
+     "image": "Image",
   "total": "Total",
   "product": "Product",
 
   "pending": "Pending",
   "isBeingDelivered": "Is Being Delivered",
   "delivered": "Delivered",
+  "youHaveNoOrdersYet":"You have no orders yet.",
+  "productsHeader": "Products"
+  },
+ 
 
   "pleaseFillInAllFields": "Please fill in all fields",
   "newPasswordsDon'tMatch": "New passwords don't match",
@@ -104,9 +114,8 @@
   "signingIn": "Signing in",
   "ifYouAreNotRegistered": "If you are not registered",
   "registerNow": "register now",
-  
-  "profileUpdatedSuccessfully!":"Profile updated successfully",
 
+  "profileUpdatedSuccessfully!": "Profile updated successfully",
 
   "products": {
     "1": {

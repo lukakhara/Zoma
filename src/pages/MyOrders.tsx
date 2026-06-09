@@ -16,7 +16,7 @@ const statusColor: Record<Order["status"], string> = {
 };
 
 export default function MyOrders() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation', { keyPrefix: 'myOrders' });
   const orders = getOrders();
 
   const statusLabel: Record<Order["status"], string> = {
@@ -28,7 +28,7 @@ export default function MyOrders() {
   if (orders.length === 0) {
     return (
       <div className="min-h-screen py-4 md:py-8 flex items-center justify-center">
-        <p className="text-gray-500">You have no orders yet.</p>
+        <p className="text-gray-500">{t('youHaveNoOrdersYet')} </p>
       </div>
     );
   }
@@ -69,7 +69,7 @@ export default function MyOrders() {
               </div>
               <div className="px-6 py-4 text-sm text-gray-700 text-center border-r border-[#EEEEEE]">
                 {order.items.length}{" "}
-                {order.items.length !== 1 ? t("productsHeader") : t("product")}
+                {order.items.length !== 1 ? t("product") : t("productsHeader")}
               </div>
               <div className="px-6 py-4 text-sm text-gray-700 text-center border-r border-[#EEEEEE]">
                 {order.total.toFixed(2)} ₾

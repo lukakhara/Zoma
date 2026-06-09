@@ -19,42 +19,49 @@
     "city": "თბილისი, საქართველო"
   },
 
-  "myOrders": "ჩემი შეკვეთები",
-  "changePassword": "პაროლის შეცვლა",
-  "deliverAddress": "მიწოდების მისამართი",
-  "logOut": "გასვლა",
+  "profileSideNavbar": {
+    "profile": "პროფილი",
+    "myOrders": "ჩემი შეკვეთები",
+    "changePassword": "პაროლის შეცვლა",
+    "deliverAddress": "მიწოდების მისამართი",
+    "logOut": "გასვლა"
+  },
 
   "firstName": "სახელი",
   "lastName": "გვარი",
   "phone": "ტელეფონი",
   "email": "ელ. ფოსტა",
   "password": "პაროლი",
+  "repeatPassword": "გაიმეორე პაროლი",
 
-  "checkout": "გადახდა",
-  "summary": "ჯამი",
-  "totalPrice": "სრული ფასი",
-  "totalDiscount": "სრული ფასდაკლება",
-  "TotalPriceToPay": "გადასახდელი მთლიანი თანხა",
-  "PaymentMethod": "გადახდის მეთოდი",
-  "choosePaymentMethod": "გადახდის მეთოდის არჩევა",
-  "TbcBank": "თიბისი ბანკი",
-  "bankOfGeorgia": "საქართველოს ბანკი",
-  "applePay": "ეფლ ფეი",
-  "googlePay": "გუგლ ფეი",
-  "iAgreeToTermsAndConditions": "ვეთანხმები წესებსა და პირობებს",
-  "deliveryAddressCheckout": "მიწოდების მისამართი",
-  "edit": "რედაქტირება",
-  "deliveryDetails": "მიწოდების დეტალები",
-  "mobile": "ტელეფონი",
-  "warningIcon": "გაფრთხილების ხატულა",
-  "buyNow": "იყიდე ახლავე",
+  "checkout": {
+    "checkout": "გადახდა",
+    "summary": "ჯამი",
+    "totalPrice": "სრული ფასი",
+    "totalDiscount": "სრული ფასდაკლება",
+    "TotalPriceToPay": "გადასახდელი მთლიანი თანხა",
+    "PaymentMethod": "გადახდის მეთოდი",
+    "choosePaymentMethod": "გადახდის მეთოდის არჩევა",
+    "TbcBank": "თიბისი ბანკი",
+    "bankOfGeorgia": "საქართველოს ბანკი",
+    "applePay": "ეფლ ფეი",
+    "googlePay": "გუგლ ფეი",
+    "iAgreeToTermsAndConditions": "ვეთანხმები წესებსა და პირობებს",
+    "deliveryAddressCheckout": "მიწოდების მისამართი",
+    "edit": "რედაქტირება",
+    "deliveryDetails": "მიწოდების დეტალები",
+    "mobile": "ტელეფონი",
+    "warningIcon": "გაფრთხილების ხატულა",
+    "buyNow": "იყიდე ახლავე"
+  },
 
-  "orderNumber": "შეკვეთის ნომერი",
+  "myOrders":{
+    "orderNumber": "შეკვეთის ნომერი",
   "date": "თარიღი",
   "quantity": "რაოდენობა",
   "price": "ფასი",
   "status": "სტატუსი",
-
+  
   "image": "სურათი",
   "total": "სულ",
   "product": "პროდუქტი",
@@ -62,6 +69,11 @@
   "pending": "მოლოდინის რეჟიმშია",
   "isBeingDelivered": "იგზავნება ",
   "delivered": "მიწოდებულია ",
+   "youHaveNoOrdersYet":"შენ ჯერჯერობით არ გაქვს შეკვეთები.",
+     "productsHeader": "პროდუქტები"
+  },
+  
+
 
   "pleaseFillInAllFields": "გთხოვთ, შეავსოთ ყველა ველი",
   "newPasswordsDon'tMatch": "ახალი პაროლები არ ემთხვევა",

@@ -14,6 +14,7 @@ const Card = ({ product }: { product: CardProps }) => {
   const { addToCart } = useCartContext();
 
   const [quantity, setQuantity] = useState(1);
+  console.log('cart components is rendering');
 
   return (
     <>

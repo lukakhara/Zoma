@@ -17,12 +17,12 @@ import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UserProfile from "./pages/UserProfile";
 import { AuthProvider } from "./context/AuthProvider";
-import CartContextProdiver from "./context/CartContext";
+import CartContextProvider from "./context/CartContext";
 import TransactionResult from "./pages/TransactionResult";
 
 function App() {
   return (
-    <CartContextProdiver>
+    <CartContextProvider>
       <AuthProvider>
         <HashRouter>
           <Routes>
@@ -64,7 +64,7 @@ function App() {
           </Routes>
         </HashRouter>
       </AuthProvider>
-    </CartContextProdiver>
+    </CartContextProvider>
   );
 }
 

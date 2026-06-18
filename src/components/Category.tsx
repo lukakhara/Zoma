@@ -62,6 +62,7 @@ const Category = ({ setFilter }: CategoryProps) => {
     // if deselecting, clear the filter immediately
     if (next === null) setFilter("");
   };
+console.log('category components is rendering');
 
   return (
     <section className="mt-4 my-6 md:my-9 mx-1 w-full flex justify-center">

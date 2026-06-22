@@ -27,8 +27,8 @@ const products = productsData
       ? products
       : products.filter((product) => product.category === filter);
 
-console.log('cart components is rendering');
 
+        console.timeEnd("Body render");
   return (
     <div className="grid  w-full grid-cols-2 gap-1.5  md:gap-6  md:pb-22 md:grid-cols-3   lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  ">
       {filteredProducts.map((product) => (

@@ -102,7 +102,7 @@ export default function MyOrders() {
 
             {order.items.map((item, i) => (
               <div
-                key={i}
+                key={item.id}
                 className="grid grid-cols-5 items-center border-t border-[#EEEEEE]"
               >
                 <div className="px-6 py-5 flex justify-center border-r border-[#EEEEEE]">
@@ -171,8 +171,8 @@ export default function MyOrders() {
               </span>
             </div>
 
-            {order.items.map((item, i) => (
-              <div key={i} className=" md:border-t border-gray-200 pt-2">
+            {order.items.map((item) => (
+              <div key={item.id} className=" md:border-t border-gray-200 pt-2">
                 <div className="flex justify-between items-start px-5 py-4 md:border-b border-gray-100">
                   <span className="text-sm font-semibold text-gray-800">
                     {t("image")}

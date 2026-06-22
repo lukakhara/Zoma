@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import garbageIcon from "/assets/garbage.png";
 import editIcon from "/assets/pencil.png";
 import tbc from "/assets/Payment/tbc.png";
@@ -13,7 +13,7 @@ import { placeOrder } from "../services/orderService";
 import { useTranslation } from "react-i18next";
 
 const Checkout = () => {
-  const { t } = useTranslation("translation", { keyPrefix: "checkout" });
+  const {t} = useTranslation('translation', { keyPrefix: 'checkout' });
   const cartItems = useCartProducts();
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(false);
   const { removeFromCart, updateQuantity, clearCart } = useCartContext();
@@ -34,37 +34,28 @@ const Checkout = () => {
       clearCart();
     }
   };
-  console.log("checkout components is rendering");
 
-  const totalPrice = useMemo(() => {
-    return cartItems.reduce((t, item) => t + item.price * item.quantity, 0);
-  }, [cartItems]);
-
-  console.log("totalPrice111111", totalPrice);
-
-  const totalPriceToPay = useMemo(() => {
-    return cartItems.reduce(
-      (t, item) => t + item.finalPrice * item.quantity, 0,);
-  }, cartItems);
-  
-  console.log("totalPriceToPay", totalPriceToPay);
-
+  const totalPrice = cartItems.reduce(
+    (t, item) => t + item.price * item.quantity,
+    0,
+  );
+  const totalPriceToPay = cartItems.reduce(
+    (t, item) => t + item.finalPrice * item.quantity,
+    0,
+  );
   const totalDiscount = totalPrice - totalPriceToPay;
-  console.log("totalDiscount", totalDiscount);
 
   return (
     <div className="min-h-screen py-4 md:py-8">
-      <h1 className="text-2xl font-bold text-gray-900 mb-4">
-        {t("checkout")}{" "}
-      </h1>
+      <h1 className="text-2xl font-bold text-gray-900 mb-4">{t('checkout')} </h1>
 
       <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-start">
         {/* ── LEFT: Cart Items ── */}
         <div className="w-full md:flex-1 bg-white rounded-2xl p-4 shadow-sm">
           <ul className="flex flex-col divide-y divide-[#E6E6E6]">
-            {cartItems.map((item, index) => (
+            {cartItems.map((item) => (
               <li
-                key={index}
+                key={item.id}
                 className="flex items-center justify-between gap-4 py-4 first:pt-0 last:pb-0"
               >
                 {/* Image + name/qty/delete */}
@@ -95,7 +86,7 @@ const Checkout = () => {
                         }
                       >
                         {Array.from({ length: item.amount }, (_, i) => (
-                          <option key={i + 1} value={i + 1}>
+                          <option key={item.id} value={i + 1}>
                             {i + 1}
                           </option>
                         ))}
@@ -119,7 +110,7 @@ const Checkout = () => {
                 <div className="flex flex-col items-end gap-1 min-w-[90px]">
                   <div
                     className="flex items-center gap-1 flex-col"
-                    key={item.label}
+                    key={item.id}
                   >
                     <div className="flex items-center gap-1 md:gap-2">
                       <span className="unactiveStartingPrice text-[11.25px] text-[#C3C3C3]">
@@ -153,23 +144,20 @@ const Checkout = () => {
             <div className="flex bg-white rounded-2xl p-4 shadow-sm md:hidden flex-col gap-3">
               <div className="flex justify-between items-center">
                 <h2 className="text-[18px] font-medium text-[#2f4a9c]">
-                  {t("deliveryDetails")}
+                 {t('deliveryDetails')} 
                 </h2>
                 <button className="flex items-center gap-1 text-sm text-[#2E4790]">
-                  {t("edit")}{" "}
-                  <img src={editIcon} alt="edit" className="w-3 h-3" />
+                {t('edit')} <img src={editIcon} alt="edit" className="w-3 h-3" />
                 </button>
               </div>
               <div className="flex justify-between text-sm text-gray-700">
-                <span className="checkoutLeftText">
-                  {t("deliveryAddress")}:{" "}
-                </span>
+                <span className="checkoutLeftText">{t('deliveryAddress')}: </span>
                 <span className="text-[#161F28]">
-                  Tbilisi, Rustaveli 1, 01212
+                 Tbilisi, Rustaveli 1, 01212
                 </span>
               </div>
               <div className="flex justify-between text-sm text-gray-700">
-                <span className="checkoutLeftText">{t("mobile")}:</span>
+                <span className="checkoutLeftText">{t('mobile')}:</span>
                 <span className="text-[#161F28] text-[14px]">555 555 555</span>
               </div>
             </div>
@@ -177,17 +165,15 @@ const Checkout = () => {
 
           {/* Summary */}
           <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-2">
-            <h2 className="text-lg font-bold text-[#2f4a9c]">
-              {t("summary")}:
-            </h2>
+            <h2 className="text-lg font-bold text-[#2f4a9c]">{t('summary')}:</h2>
             <div className="flex justify-between text-sm text-gray-700">
-              <span className="checkoutLeftText">{t("totalPrice")}:</span>
+              <span className="checkoutLeftText">{t('totalPrice')}:</span>
               <span className="text-[#161F28] text-[16px]">
                 {totalPrice.toFixed(2)} ₾
               </span>
             </div>
             <div className="flex justify-between text-sm text-gray-700">
-              <span className="checkoutLeftText">{t("totalDiscount")}:</span>
+              <span className="checkoutLeftText">{t('totalDiscount')}:</span>
               <span className="text-[#161F28] text-[16px]">
                 {totalDiscount.toFixed(2)} ₾
               </span>
@@ -200,7 +186,7 @@ const Checkout = () => {
             )} */}
             <div className="flex justify-between items-center pt-1">
               <span className="checkoutLeftText text-sm text-gray-700 ">
-                {t("TotalPriceToPay")}
+                {t('TotalPriceToPay')}
               </span>
               <span className="text-xl font-bold text-[#2f4a9c] text-nowrap">
                 {totalPriceToPay.toFixed(2)} ₾
@@ -212,21 +198,19 @@ const Checkout = () => {
           {selectedPaymentMethod && (
             <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-3">
               <h2 className="text-lg font-bold text-[#2f4a9c]">
-                {t("PaymentMethod")}:
+               {t('PaymentMethod')}:
               </h2>
-              <p className="text-sm text-gray-500">
-                {t("choosePaymentMethod")}{" "}
-              </p>
+              <p className="text-sm text-gray-500">{t('choosePaymentMethod')} </p>
               {[
                 {
                   value: "tbc",
-                  label: t("TbcBank"),
+                  label: t('TbcBank'),
                   img: tbc,
                   imgClass: "size-8.5 rounded-[7px]",
                 },
                 {
                   value: "bog",
-                  label: t("bankOfGeorgia"),
+                  label: t('bankOfGeorgia'),
                   img: bog,
                   imgClass: "",
                 },
@@ -262,7 +246,7 @@ const Checkout = () => {
                   }}
                 />
                 <div className="w-[62px] h-[34px] border border-gray-300 rounded-md flex items-center justify-center">
-                  <img src={applePay} alt={t("applePay")} />
+                  <img src={applePay} alt={t('applePay')}  />
                 </div>
               </label>
 
@@ -278,13 +262,13 @@ const Checkout = () => {
                   }}
                 />
                 <div className="w-[62px] h-[34px] border border-gray-300 rounded-md flex items-center justify-center px-[6px] py-[7px]">
-                  <img src={googlePay} alt={t("googlePay")} />
+                  <img src={googlePay} alt={t('googlePay')} />
                 </div>
               </label>
 
               {errors.payment && (
                 <div className="flex items-center gap-1">
-                  <img src={warningIcon} alt={t("warningIcon")} />
+                  <img src={warningIcon} alt={t('warningIcon')} />
                   <p className="text-red-500 text-sm">{errors.payment}</p>
                 </div>
               )}
@@ -300,7 +284,7 @@ const Checkout = () => {
                   <p className="text-red-500 text-sm">{errors.terms}</p>
                 </div>
               )}
-              <label className="terms-toggle px-4 md:px-0 ">
+              <label className="terms-toggle px-4 md:px-0 " >
                 <input
                   type="checkbox"
                   id="terms"
@@ -313,14 +297,14 @@ const Checkout = () => {
                 />
                 <span className="radio-visual  bg-[#FFFFFF]! " />
                 <p className="text-[#797979] font-normal">
-                  {t("iAgreeToTermsAndConditions")}
+                  {t('iAgreeToTermsAndConditions')}
                 </p>
               </label>
               <button
                 className="w-full py-3 rounded-2xl bg-[#FDE800] text-blue-50 font-helvetocaMedium text-[16px] cursor-pointer hover:opacity-90 transition-opacity"
                 onClick={handleCheckout}
               >
-                {t("checkout")}
+               {t('checkout')}
               </button>
             </div>
           ) : (
@@ -329,7 +313,7 @@ const Checkout = () => {
               disabled={cartItems.length === 0}
               className="w-full py-3 rounded-2xl bg-[#FDE800] text-gray-900 font-bold text-sm cursor-pointer hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {t("buyNow")}
+              {t('buyNow')}
             </button>
           )}
         </div>

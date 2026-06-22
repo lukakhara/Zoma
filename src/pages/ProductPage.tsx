@@ -115,7 +115,7 @@ const ProductPage = () => {
             <div className="flex gap-2 flex-wrap ">
               {capacities.map((i, index) => (
                 <button
-                  key={index}
+                  key={i.label}
                   className={` px-3 py-1.5 font-helvetocaMedium leading-[19.48px]  rounded-lg  text-[16px] uppercase 
                       ${index === selectCapacityIndex ? "border-blue-50 text-blue-50 border-2 font-hevletocaBold" : "border-[#B2B2B2] text-[#B2B2B2] border cursor-pointer"}
                           `}
@@ -143,7 +143,7 @@ const ProductPage = () => {
                   {Array.from(
                     { length: capacities[selectCapacityIndex].amount },
                     (_, i) => (
-                      <option key={i + 1} value={i + 1}>
+                      <option key={i} value={i + 1}>
                         {i + 1}
                       </option>
                     ),

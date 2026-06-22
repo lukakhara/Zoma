@@ -4,7 +4,7 @@ import { type CardProps } from "../types";
 import { Link } from "react-router";
 import { useCartContext } from "../context/CartContext";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 const Card = ({ product }: { product: CardProps }) => {
@@ -14,7 +14,7 @@ const Card = ({ product }: { product: CardProps }) => {
   const { addToCart } = useCartContext();
 
   const [quantity, setQuantity] = useState(1);
-  console.log('cart components is rendering');
+ 
 
   return (
     <>
@@ -82,7 +82,7 @@ const Card = ({ product }: { product: CardProps }) => {
               onChange={(e) => setQuantity(Number(e.target.value))}
             >
               {Array.from({ length: product.amount }, (_, i) => (
-                <option key={i + 1} value={i + 1}>
+                <option key={i} value={i + 1}>
                   {i + 1}
                 </option>
               ))}

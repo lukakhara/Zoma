@@ -4,6 +4,8 @@ import {
   useState,
   useEffect,
   type ReactNode,
+  useCallback,
+  useMemo,
 } from "react";
 
 interface User {
@@ -32,6 +34,8 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  console.log("AuthProvider rendered"); // add this
+
   const [user, setUser] = useState<User | null>({
     id: "1",
     firstname: "Luka",
@@ -71,8 +75,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  // ✅ json-server doesn't support POST /login — use GET with query params
-  const login = async (email: string, password: string) => {
+  const login = useCallback(async (email: string, password: string) => {
     try {
       const response = await fetch(
         `/api/users?email=${encodeURIComponent(email)}`,
@@ -95,71 +98,74 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       console.error("Login error:", error);
       throw error;
     }
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     localStorage.removeItem("token");
     setUser(null);
-  };
+  }, []);
 
-  const register = async (
-    firstname: string,
-    lastname: string,
-    phone: string,
-    email: string,
-    password: string,
-  ) => {
-    try {
-      const existing = await fetch(
-        `/api/users?email=${encodeURIComponent(email)}`,
-      );
-      const existingUsers = await existing.json();
-      if (existingUsers.length > 0) throw new Error("Email already exists");
+  const register = useCallback(
+    async (
+      firstname: string,
+      lastname: string,
+      phone: string,
+      email: string,
+      password: string,
+    ) => {
+      try {
+        const existing = await fetch(
+          `/api/users?email=${encodeURIComponent(email)}`,
+        );
+        const existingUsers = await existing.json();
+        if (existingUsers.length > 0) throw new Error("Email already exists");
 
-      const response = await fetch("/api/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          firstname,
-          lastname,
-          phone,
-          email,
-          password,
-          id: Date.now().toString(),
-        }),
-      });
+        const response = await fetch("/api/users", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            firstname,
+            lastname,
+            phone,
+            email,
+            password,
+            id: Date.now().toString(),
+          }),
+        });
 
-      if (!response.ok) throw new Error("Registration failed");
+        if (!response.ok) throw new Error("Registration failed");
 
-      const data = await response.json();
-      localStorage.setItem("token", data.id);
-      setUser({
-        id: data.id,
-        firstname: data.firstname,
-        lastname: data.lastname,
-        phone: data.phone,
-        email: data.email,
-      });
-    } catch (error) {
-      console.error("Registration error:", error);
-      throw error;
-    }
-  };
-
-  return (
-    <AuthContext.Provider
-      value={{
-        user,
-        isAuthenticated: !!user,
-        isLoading,
-        login,
-        logout,
-        register,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
+        const data = await response.json();
+        localStorage.setItem("token", data.id);
+        setUser({
+          id: data.id,
+          firstname: data.firstname,
+          lastname: data.lastname,
+          phone: data.phone,
+          email: data.email,
+        });
+      } catch (error) {
+        console.error("Registration error:", error);
+        throw error;
+      }
+    },
+    [],
   );
+
+  const value = useMemo(
+    () => ({
+      user,
+      isAuthenticated: !!user,
+      isLoading,
+      login,
+      logout,
+      register,
+    }),
+    [user, isLoading, login, logout, register],
+  );
+  console.log("AuthProvider is rendered");
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {

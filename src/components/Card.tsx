@@ -4,17 +4,20 @@ import { type CardProps } from "../types";
 import { Link } from "react-router";
 import { useCartContext } from "../context/CartContext";
 import { useTranslation } from "react-i18next";
-import { memo, useState } from "react";
+import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-const Card = ({ product }: { product: CardProps }) => {
+const ABOVE_FOLD_COUNT = 12;
+
+const Card = ({ product, index }: { product: CardProps; index: number }) => {
   const { i18n } = useTranslation();
   const languageGeorgian = i18n.language === "ka";
-
   const { addToCart } = useCartContext();
 
+  const isAboveFold = index < ABOVE_FOLD_COUNT;
+  const isLCP = index < 2; // first 2 get highest priority
+
   const [quantity, setQuantity] = useState(1);
- 
 
   return (
     <>
@@ -28,7 +31,7 @@ const Card = ({ product }: { product: CardProps }) => {
             <button
               className="cursor-pointer size-[27.62px] centeredFlex bg-blue-100 rounded-full p-2
                 mt-[8px] mr-[12.05px]    "
-              onClick={() => addToCart(String(product.id),quantity)}
+              onClick={() => addToCart(String(product.id), quantity)}
             >
               <img
                 className="bg-none size-[14.83px] "
@@ -42,6 +45,11 @@ const Card = ({ product }: { product: CardProps }) => {
             src={product.images[0]}
             className="w-[65.94px] h-[130.99px] object-cover relative bottom-5 z-100 m-auto  "
             alt="Product image"
+            decoding="async" //
+            loading={isAboveFold ? "eager" : "lazy"}
+            fetchPriority={isLCP ? "high" : isAboveFold ? "auto" : "low"}
+            width={66} 
+            height={131}
           />
 
           {/* name and category and prices  */}

@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 
-
 const newsEng = Array(6).fill({
   date: "12 September 2025",
   title: "Medium Size Headline",
@@ -24,8 +23,6 @@ function NewsCard({
   title: string;
   excerpt: string;
 }) {
-
-
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
       {/* Image placeholder */}
@@ -41,7 +38,6 @@ function NewsCard({
       </div>
     </div>
   );
-
 }
 export default function News() {
   const { i18n } = useTranslation();

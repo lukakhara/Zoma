@@ -25,7 +25,6 @@ const Header = () => {
   const isHome = location.pathname === "/";
 
   const navigate = useNavigate();
-  console.log("ishome=", isHome);
   const { cartItems } = useCartContext();
   const currentData = new Date();
   const currentHour = currentData.getHours();

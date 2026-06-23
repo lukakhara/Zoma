@@ -34,7 +34,6 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  console.log("AuthProvider rendered"); // add this
 
   const [user, setUser] = useState<User | null>({
     id: "1",
@@ -163,7 +162,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }),
     [user, isLoading, login, logout, register],
   );
-  console.log("AuthProvider is rendered");
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

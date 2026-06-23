@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
 import { FaHouse } from "react-icons/fa6";
+import footerBg from "/footershape.png";
 
 const Footer = () => {
   const { t } = useTranslation("translation", { keyPrefix: "footer" });
@@ -28,7 +29,7 @@ const Footer = () => {
       >
         <section className=" min-w-full flex flex-col items-center relative pb-2 w-full">
           <img
-            src="./public/footershape.png"
+            src={footerBg}
             alt="background of footer"
             fetchPriority="high"
             className="absolute inset-0 w-full h-full object-cover object-bottom -z-10"

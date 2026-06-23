@@ -151,7 +151,7 @@ const Checkout = () => {
                 </button>
               </div>
               <div className="flex justify-between text-sm text-gray-700">
-                <span className="checkoutLeftText">{t('deliveryAddress')}: </span>
+                <span className="checkoutLeftText">{t('deliveryAddressCheckout')}:</span>
                 <span className="text-[#161F28]">
                  Tbilisi, Rustaveli 1, 01212
                 </span>

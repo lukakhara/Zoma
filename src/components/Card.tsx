@@ -34,9 +34,14 @@ const Card = ({ product, index }: { product: CardProps; index: number }) => {
               onClick={() => addToCart(String(product.id), quantity)}
             >
               <img
-                className="bg-none size-[14.83px] "
+                className="bg-none size-[15px] "
                 src={cartIcon}
                 alt="playIcon"
+                decoding="async" //
+                loading="eager"
+                fetchPriority="high"
+                width={15}
+                height={15}
               />
             </button>
           </div>
@@ -48,14 +53,14 @@ const Card = ({ product, index }: { product: CardProps; index: number }) => {
             decoding="async" //
             loading={isAboveFold ? "eager" : "lazy"}
             fetchPriority={isLCP ? "high" : isAboveFold ? "auto" : "low"}
-            width={66} 
+            width={66}
             height={131}
           />
 
           {/* name and category and prices  */}
           <div className="flex flex-col font-helvetocaRegular pl-[19px] gap-[5px] desktop:pl-[0px] desktop:ml-[19px] desktop:mr-[12px] -mt-5 flex-1  ">
             {/* name and category */}
-            <div className=" text-[#DDDDDD] text-[10px]  category leading-[100%]">
+            <div className=" text-[#7D7D7D]! text-[10px]  category leading-[100%]">
               {product.category}
             </div>
             <div className="text-[#1A1A1A] text-[14px]  leading-[100%]  overflow-hidden">
@@ -80,12 +85,9 @@ const Card = ({ product, index }: { product: CardProps; index: number }) => {
         <div className="flex items-baseline  gap-2 desktop:gap-[7.13px] justify-between  mb-[10px] ml-[15px] mr-[16px] mt-auto  ">
           <div className=" relative  h-[33px] desktop:mt-2.5   rounded-[100px]   bg-[#F2F2F2]  desktop:w-[50.79px] desktop:h-[33px] flex items-center justify-center   gap-1.5 w-[57px]">
             <select
-              className="
-
-                          absolute inset-0 opacity-0 cursor-pointer
-                        "
+              className=" absolute inset-0 opacity-0 cursor-pointer "
               name="amounth"
-              id="amounth"
+              aria-label="select quantity of product"
               value={quantity}
               onChange={(e) => setQuantity(Number(e.target.value))}
             >

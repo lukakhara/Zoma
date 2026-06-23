@@ -1,20 +1,22 @@
 @import "tailwindcss";
 @tailwind utilities;
 
-
 @font-face {
   font-family: "helvetocaReg";
   src: url("/helvetica-neue-5/HelveticaNeueRoman.otf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "helvetocaMed";
   src: url("/helvetica-neue-5/HelveticaNeueMedium.otf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "helvetocaBold";
   src: url("/helvetica-neue-5/HelveticaNeueBold.otf");
+  font-display: swap;
 }
 
 :root {
@@ -22,24 +24,22 @@
   --color-gray-50: #d2d2d2;
   --color-blue-100: #2e47903b;
   --color-orange-100: #ff6565;
-  --color-red-100:#FF4C4C;
+  --color-red-100: #ff4c4c;
   --color-gray-100: #686868;
-  --color-gray-300:#474747;
-  --color-yellow-100:#FDE800;
-  
+  --color-gray-300: #474747;
+  --color-yellow-100: #fde800;
 }
 
-@theme{
+@theme {
   --font-helvetocaMedium: "helvetocaMed";
   --font-helvetocaRegular: "helvetocaReg";
   --font-helvetocaBold: "helvetocaBold";
-   --breakpoint-desktop: 1440px;
+  --breakpoint-desktop: 1440px;
 }
 
-
-body{
+body {
   overflow-x: hidden;
-  font-family: "helvetocaReg"
+  font-family: "helvetocaReg", sans-serif;
 }
 
 @layer base {
@@ -53,31 +53,29 @@ body{
     @apply rounded-full size-9 grid place-items-center 
     bg-white cursor-pointer hover:opacity-90;
   }
-  .centeredFlex{
+  .centeredFlex {
     @apply flex justify-center items-center;
   }
-  .goldPrice{
-  @apply bg-yellow-100 text-[19.56px] text-gray-300 font-helvetocaMedium
+  .goldPrice {
+    @apply bg-yellow-100 text-[19.56px] text-gray-300 font-helvetocaMedium
   px-[8px] py-[6.71px] rounded-[1.87px];
   }
-  .redDiscount{
-    @apply  text-white line-through text-sm font-helvetocaMedium size-[9.85px] leading-[11.72px] ;
+  .redDiscount {
+    @apply text-white line-through text-sm font-helvetocaMedium size-[9.85px] leading-[11.72px];
   }
-  .unactiveStartingPrice{
-    @apply text-[#C3C3C3] line-through text-[11.25px] font-helvetocaMedium ;
+  .unactiveStartingPrice {
+    @apply text-[#C3C3C3] line-through text-[11.25px] font-helvetocaMedium;
   }
-  .blueButton{
-    @apply bg-blue-50 text-white font-helvetocaMedium text-[18px] 
+  .blueButton {
+    @apply bg-blue-50 text-white font-helvetocaMedium text-[18px];
   }
   .checkoutLeftText {
-   @apply text-[14px] font-normal text-[#797979] leading-[15px]
+    @apply text-[14px] font-normal text-[#797979] leading-[15px];
   }
-  .sectionHeader{
-  @apply text-2xl font-bold text-gray-900 
+  .sectionHeader {
+    @apply text-2xl font-bold text-gray-900;
+  }
 }
-}
-
-
 
 .parent * {
   color: blue;
@@ -101,13 +99,13 @@ body{
   border-radius: 50%;
   border: 2px solid #aaa;
   position: relative;
-  margin-top:5px;
+  margin-top: 5px;
   transition: border-color 0s;
 }
 
 /* Inner dot */
 .radio-visual::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -119,8 +117,6 @@ body{
   transform: scale(0);
   transition: transform 0 ease;
 }
-
-
 
 .terms-toggle input:checked ~ .radio-visual::after {
   transform: scale(1);
@@ -147,4 +143,3 @@ body{
 .scrollbar-none::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
 }
-

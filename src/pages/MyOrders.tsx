@@ -100,7 +100,7 @@ export default function MyOrders() {
               ))}
             </div>
 
-            {order.items.map((item, i) => (
+            {order.items.map((item) => (
               <div
                 key={item.id}
                 className="grid grid-cols-5 items-center border-t border-[#EEEEEE]"

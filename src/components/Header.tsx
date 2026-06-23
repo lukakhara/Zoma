@@ -1,32 +1,35 @@
-import georgiaFlagIcon from "/assets/georgia-flag-icon.png";
-import englandFlagIcon from "/assets/england-flag-icon.png";
-import search from "/assets/search.png";
-import logo from "/assets/logo.png";
-import wifi from "/assets/MobileIcons/Wifi.png";
-import battery from "/assets/MobileIcons/Battery.png";
-import mobileSignal from "/assets/MobileIcons/Mobile-Signal.png";
+
+import { FaWifi } from "react-icons/fa";
+import { IoIosBatteryFull } from "react-icons/io";
+import { BsReception4 } from "react-icons/bs";
+import { FaMagnifyingGlass } from "react-icons/fa6";
 import collapseIcon from "/assets/collapse.png";
 import userIcon from "/assets/user.png";
 import cartIcon from "/assets/cart.png";
-import logoDesktop from "/assets/logoDesktop.png";
-import { Link } from "react-router-dom";
+import logoDesktop from "/assets/logo.webp";
+import { Link, useNavigate } from "react-router-dom";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import { useCartContext } from "../context/CartContext";
-
-
+import EnglandFlag from "/public/assets/gb.svg";
+import GeorgiadFlag from "/public/assets/ge.svg";
+import { MdArrowBackIosNew } from "react-icons/md";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const Header = () => {
-  const { i18n,t  } = useTranslation();
+  const { i18n, t } = useTranslation();
   const languageGeorgian = i18n.language === "ka";
 
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
-  const {cartItems} = useCartContext();
-
+  const navigate = useNavigate();
+  console.log("ishome=", isHome);
+  const { cartItems } = useCartContext();
   const currentData = new Date();
   const currentHour = currentData.getHours();
   const currentMinute = String(currentData.getMinutes()).padStart(2, "0");
-
 
   return (
     <>
@@ -34,15 +37,25 @@ const Header = () => {
         <div className="flex items-center justify-between  md:hidden py-2.5">
           <h1 className="text-white font-bold">{`${currentHour}:${currentMinute}`}</h1>
           <div className="flex gap-2">
-            <img src={mobileSignal} alt="icon" />
-            <img src={wifi} alt="icon" />
-            <img src={battery} alt="icon" />
+            <BsReception4 className="text-white" />
+            <FaWifi className="text-white" />
+            <IoIosBatteryFull className="text-white min-w-[24px] min-h-[11px]" />
           </div>
         </div>
 
         <div className="flex items-center justify-between">
-          <img className="md:hidden" src={logo} alt="logo" />
-          <img className="hidden md:block" src={logoDesktop} alt="logo" />
+           <img className="md:block hidden" src={logoDesktop} alt="logo" />
+          {isHome ? (
+            <img className="block md:hidden" src={logoDesktop} alt="logo" />
+          ) : (
+            <button
+              className="block md:hidden size-[50px] rounded-full bg-[rgba(223,223,223,0.54)] flex items-center justify-center cursor-pointer hover:opacity-85"
+              onClick={() => navigate(-1)}
+            >
+              <MdArrowBackIosNew className="text-white " />
+            </button>
+          )}
+
           <div className=" hidden md:flex gap-2 text-white md:gap-9">
             <Link
               className="flex items-baseline justify-center gap-2 p text-[16px]"
@@ -52,17 +65,13 @@ const Header = () => {
               <img src={collapseIcon} alt="collapse icon" />
             </Link>
 
-            <Link to="/news">
-              {t("news")}
-            </Link>
+            <Link to="/news">{t("news")}</Link>
 
-            <Link to="/contact">
-             {t("contact")}
-            </Link>
+            <Link to="/contact">{t("contact")}</Link>
           </div>
           <div className="flex gap-2 ">
             <button className="headerButton">
-              <img className="" src={search} alt="seach icon" />
+              <FaMagnifyingGlass className="text-[#2E4790]" />
             </button>
 
             <Link
@@ -86,16 +95,19 @@ const Header = () => {
             </Link>
 
             <button
-              className="border border-gray-50  rounded-full size-9 grid place-items-center cursor-pointer hover:opacity-90"
+              className="border border-gray-50  rounded-full size-[38px] grid place-items-center cursor-pointer hover:opacity-90"
               onClick={() =>
                 i18next.changeLanguage(i18next.language === "ka" ? "en" : "ka")
               }
             >
               <img
-                className=""
-                src={languageGeorgian ? englandFlagIcon : georgiaFlagIcon}
+                className="rounded-full"
+                src={languageGeorgian ? EnglandFlag : GeorgiadFlag}
                 alt="language change icon"
+                width={21}
+                height={21}
               />
+              {/* <img src={EnglandFlag} alt="England" width={24} /> */}
             </button>
           </div>
         </div>

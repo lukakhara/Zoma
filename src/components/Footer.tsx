@@ -1,35 +1,38 @@
-import footerShape from "/assets/footershape.png";
 import cart from "/assets/footerCart.png";
 import house from "/assets/home.png";
 import user from "/assets/Vector(9).png";
-import logo from "/assets/logo.png";
-import phone from "/assets/Social/phone.png";
-import whatssap from "/assets/Social/whatsapp.png";
-import viber from "/assets/Social/viber.png";
-import message from "/assets/Social/message.png";
-import facebook from "/assets/Social/facebook.png";
-import instagram from "/assets/Social/instagram.png";
-import linkedin from "/assets/Social/linkedin.png";
-import tiktok from "/assets/Social/tiktokIcon.png";
+import logo from "/assets/logo.webp";
+import phone from "/assets/Social/phone.webp";
+import whatssap from "/assets/Social/whatsapp.webp";
+import viber from "/assets/Social/viber.webp";
+import message from "/assets/Social/message.webp";
+import facebook from "/assets/Social/facebook.webp";
+import instagram from "/assets/Social/instagram.webp";
+import linkedin from "/assets/Social/linkedin.webp";
+import tiktok from "/assets/Social/tiktokIcon.webp";
+import { FaUser } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
+import { FaHouse } from "react-icons/fa6";
 
 const Footer = () => {
-  const { t } = useTranslation('translation', { keyPrefix: 'footer' });
+  const { t } = useTranslation("translation", { keyPrefix: "footer" });
   const { cartItems } = useCartContext();
 
   return (
     <>
-    
       <footer
         className=" md:hidden bg-no-repeat text-[#FFFFFF]  z-100 
       w-full min-w-full sticky bottom-0 left-0 right-0  "
       >
-        <div
-          className=" min-w-full flex flex-col items-center relative pb-2 bg-no-repeat bg-cover bg-center bg-bottom w-full "
-          style={{ backgroundImage: `url(${footerShape})` }}
-        >
+        <section className=" min-w-full flex flex-col items-center relative pb-2 w-full">
+          <img
+            src="public/footershape.png"
+            alt="background of footer"
+            fetchPriority="high"
+            className="absolute inset-0 w-full h-full object-cover object-bottom -z-10"
+          />
           {/* cart button */}
           <Link
             to="/checkout"
@@ -47,14 +50,13 @@ const Footer = () => {
             </div>
           </Link>
 
-    
           <div className=" flex items-center w-full text-white justify-around pb-4.25 mx-9 ">
             {/* MAIN PAGE BUTTON  */}
             <Link
               className="flex items-baseline justify-center gap-2 p text-[16px]   cursor-pointer   "
               to="/"
             >
-              <img src={house} className="size-6" alt="house icon" />
+              <FaHouse className="size-6"/> 
               <p className="">{t("home")}</p>
             </Link>
 
@@ -63,11 +65,11 @@ const Footer = () => {
               className="flex gap-2  cursor-pointer  items-center"
               to="/user/profile"
             >
-              <img src={user} alt="seach icon" />
+              <FaUser/>
               <p>{t("profile")}</p>
             </Link>
           </div>
-        </div>
+        </section>
       </footer>
 
       {/* DESKTOP FOOTER */}
@@ -82,9 +84,7 @@ const Footer = () => {
             className="max-w-[108.14px] max-h-[51px] h-auto"
             alt="logo icon"
           />
-          <p className="text-xl">
-           {t("createdBy")}
-          </p>
+          <p className="text-xl">{t("createdBy")}</p>
         </section>
         {/* physical office address and working time */}
         <section className="flex gap-4 flex-col justify-around">
@@ -92,21 +92,21 @@ const Footer = () => {
             <p>
               {t("mainOffice")}
               <br />
-          {t("city")}
+              {t("city")}
             </p>
             <p>10:00-18:00</p>
           </div>
           <div className="flex gap-16.5 items-start">
             <p>
-           {t("mainOffice")}
+              {t("mainOffice")}
               <br />
-             {t("city")}
+              {t("city")}
             </p>
             <p>10:00-18:00</p>
           </div>
           <div className="flex gap-16.5 items-start">
             <p>
-             {t("mainOffice")}
+              {t("mainOffice")}
               <br />
               {t("city")}
             </p>

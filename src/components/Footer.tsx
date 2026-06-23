@@ -28,7 +28,7 @@ const Footer = () => {
       >
         <section className=" min-w-full flex flex-col items-center relative pb-2 w-full">
           <img
-            src="public/footershape.png"
+            src="./public/footershape.png"
             alt="background of footer"
             fetchPriority="high"
             className="absolute inset-0 w-full h-full object-cover object-bottom -z-10"

@@ -15,11 +15,12 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
 import { FaHouse } from "react-icons/fa6";
-import footerBg from "/footershape.png";
 
 const Footer = () => {
   const { t } = useTranslation("translation", { keyPrefix: "footer" });
   const { cartItems } = useCartContext();
+
+const footerBg = `${import.meta.env.BASE_URL}footershape.png`;
 
   return (
     <>

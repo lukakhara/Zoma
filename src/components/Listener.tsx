@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 const Listener = () => {
  useEffect(() => {
-  fetch('http://localhost:3001/api/products')
+  fetch('http://localhost:3000/products/')
     .then(res => {
       console.log('status:', res.status);
       return res.json();

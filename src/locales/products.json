@@ -1,13 +1,13 @@
 [
   {
-    "id": "1-500ml",
-    "parentId": "1",
-    "images": ["./assets/product.webp", "./assets/product2.webp", "./assets/product.webp"],
-    "label": "500 ml",
-    "price": 9.78,
-    "finalPrice": 8.61,
-    "discount": 12,
-    "amount": 17
+      "id": "1-500ml",
+      "parentId": "1",
+      "images": ["./assets/product.webp", "./assets/product2.webp", "./assets/product.webp"],
+      "label": "500 ml",
+      "price": 9.78,
+      "finalPrice": 8.61,
+      "discount": 12,
+      "amount": 17
   },
   {
     "id": "1-600ml",

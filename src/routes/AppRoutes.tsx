@@ -19,6 +19,7 @@ const TransactionResult = lazy(() => import("../pages/TransactionResult"));
 import ProtectedRoute from "../components/ProtectedRoute";
 import PageLoader from "../pages/PageLoader";
 import Layout from "../Layout";
+import AdminProducts from "../pages/AdminProducts";
 
 
 const AppRoutes = () => {
@@ -32,6 +33,7 @@ const AppRoutes = () => {
           <Route path="contact" element={<Contact />} />
           <Route path="news" element={<News />} />
           <Route path="checkout" element={<Checkout />} />
+          
 
           {/* pages that accessible when NOT logged in */}
           <Route path="sign-in" element={<SignIn />} />
@@ -40,6 +42,7 @@ const AppRoutes = () => {
 
           {/* Protected routes routes that are avalibe when user is logged in */}
           <Route element={<ProtectedRoute />}>
+         
             <Route path="transaction-result" element={<TransactionResult />} />
 
             <Route path="user" element={<Profile />}>

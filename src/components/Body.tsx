@@ -1,10 +1,25 @@
 import Card from "./Card.tsx";
 import productsData from "../locales/products.json";
 import { useTranslation } from "react-i18next";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
+import { getProducts } from "../services/productService.ts";
 
 const Body = ({ filter }: { filter: string }) => {
-  const { t, i18n } = useTranslation();
+ const { t, i18n } = useTranslation();
+
+
+ useEffect(() =>{
+  try{
+    getProducts(i18n.language)
+    .then(data => console.log(data));
+  } 
+  catch (error){
+    console.error('error message', error);
+  }
+ }
+ ,[i18n.language])
+
+
   const productsName = useMemo(() => {
     return t("products", { returnObjects: true }) as Record<
       string,

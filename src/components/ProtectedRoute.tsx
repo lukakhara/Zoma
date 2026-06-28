@@ -1,17 +1,23 @@
-import {Navigate,Outlet} from "react-router-dom";
-import { useAuth } from '../context/AuthProvider';
+import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
 
-const ProtectedRoute = () => {
- const { isAuthenticated, isLoading } = useAuth();
- 
+interface ProtectedRouteProps {
+  requiredRole?: "admin" | "user";
+}
 
-  // If not authenticated, redirect to sign-in page
+const ProtectedRoute = ({ requiredRole }: ProtectedRouteProps) => {
+  const { isAuthenticated, isLoading, user } = useAuth();
+
   if (isLoading) return <div>Loading...</div>;
+
   if (!isAuthenticated) {
-    return <Navigate to="/sign-in"  replace />;
+    return <Navigate to="/sign-in" replace />;
   }
 
-  // If authenticated, render the child routes
+  if (requiredRole && user?.role !== requiredRole) {
+    return <Navigate to="/unauthorized" replace />; // or "/"
+  }
+
   return <Outlet />;
 };
 

@@ -1,52 +1,44 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 import { type CartItem } from "../types";
-import productsJson from "../locales/products.json";
 
 interface CartContextType {
   cartItems: CartItem[];
-  addToCart: (id: string,quantity:number) => void;
-  removeFromCart: (id: string) => void;
-  updateQuantity: (id: string, quantity: number) => void;
+  addToCart: (item: CartItem) => void;
+  removeFromCart: (variantId: number) => void;
+  updateQuantity: (variantId: number, quantity: number) => void;
   clearCart: () => void;
 }
 
-const cartContext = createContext<CartContextType | null>(null);
+const CartContext = createContext<CartContextType | null>(null);
 
-const CartContextProdiver = ({ children }: { children: ReactNode }) => {
+const CartContextProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const getStock = (id: string) =>
-    productsJson.find((p) => p.id === id)?.amount ?? 0;
-
-  const addToCart = (id: string,quantity:number) => {
+  const addToCart = (item: CartItem) => {
     setCartItems((prev) => {
-      const exists = prev.find((item) => item.id === id);
-      const stock = getStock(id);
-
+      const exists = prev.find((i) => i.variantId === item.variantId);
       if (exists) {
-        return prev.map((item) =>
-          item.id === id
-            ? { ...item, quantity: Math.min(item.quantity + quantity, stock) }
-            : item,
+        return prev.map((i) =>
+          i.variantId === item.variantId
+            ? { ...i, quantity: Math.min(i.quantity + item.quantity, 100) }
+            : i,
         );
       }
-      if (stock === 0) return prev;
-      return [...prev, { id, quantity: quantity }];
+      return [...prev, item];
     });
   };
 
-  const removeFromCart = (id: string) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  const removeFromCart = (variantId: number) => {
+    setCartItems((prev) => prev.filter((i) => i.variantId !== variantId));
   };
 
-  const updateQuantity = (id: string, quantity: number) => {
-    if (quantity <= 0) return removeFromCart(id);
-    const stock = getStock(id);
+  const updateQuantity = (variantId: number, quantity: number) => {
+    if (quantity <= 0) return removeFromCart(variantId);
     setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.min(quantity, stock) }
-          : item,
+      prev.map((i) =>
+        i.variantId === variantId
+          ? { ...i, quantity: Math.min(quantity, 100) }
+          : i,
       ),
     );
   };
@@ -54,7 +46,7 @@ const CartContextProdiver = ({ children }: { children: ReactNode }) => {
   const clearCart = () => setCartItems([]);
 
   return (
-    <cartContext.Provider
+    <CartContext.Provider
       value={{
         cartItems,
         addToCart,
@@ -64,16 +56,15 @@ const CartContextProdiver = ({ children }: { children: ReactNode }) => {
       }}
     >
       {children}
-    </cartContext.Provider>
+    </CartContext.Provider>
   );
 };
 
-export default CartContextProdiver;
+export default CartContextProvider;
 
 export const useCartContext = () => {
-  const context = useContext(cartContext);
-  if (!context) {
+  const context = useContext(CartContext);
+  if (!context)
     throw new Error("useCartContext must be used within a CartContextProvider");
-  }
   return context;
 };

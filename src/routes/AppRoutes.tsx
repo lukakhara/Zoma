@@ -29,11 +29,12 @@ const AppRoutes = () => {
         <Route path="/" element={<Layout />}>
           {/* public routes */}
           <Route element={<Home />} index />
-          <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/products/:slug" element={<ProductPage />} />
           <Route path="contact" element={<Contact />} />
           <Route path="news" element={<News />} />
           <Route path="checkout" element={<Checkout />} />
-          
+           <Route path="admin-products" element={<AdminProducts />} />
+         
 
           {/* pages that accessible when NOT logged in */}
           <Route path="sign-in" element={<SignIn />} />
@@ -48,13 +49,18 @@ const AppRoutes = () => {
             <Route path="user" element={<Profile />}>
               <Route index element={<Navigate to="profile" replace />} />
               <Route path="profile" element={<UserProfile />} />{" "}
-              {/* ADD THIS */}
+       
               <Route path="orders" element={<MyOrders />} />
               <Route path="delivery-address" element={<DeliveryAddress />} />
               <Route path="password-change" element={<PasswordChange />} />
             </Route>
           </Route>
 
+        // Admin-only routes
+        <Route element={<ProtectedRoute requiredRole="admin" />}>
+         {/* <Route path="/admin" element={<AdminDashboard />} />` */}
+          <Route path="/admin/products" element={<AdminProducts />} />
+        </Route>
           <Route />
 
           {/* 404 Route */}

@@ -14,6 +14,7 @@ interface User {
   lastname: string;
   phone: string;
   email: string;
+  role: string;
 }
 
 interface AuthContextType {
@@ -28,19 +29,20 @@ interface AuthContextType {
     phone: string,
     email: string,
     password: string,
+    role: string,
   ) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-
   const [user, setUser] = useState<User | null>({
     id: "1",
     firstname: "Luka",
     lastname: "Dev",
     phone: "+995 55 55 55",
     email: "luka@dev.com",
+    role: "admin",
   });
   const [isLoading, setIsLoading] = useState(true);
 
@@ -61,6 +63,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             lastname: data.lastname,
             phone: data.phone,
             email: data.email,
+            role: data.role,
           });
         } else {
           localStorage.removeItem("token");
@@ -92,6 +95,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         lastname: data.lastname,
         phone: data.phone,
         email: data.email,
+        role: data.role,
       });
     } catch (error) {
       console.error("Login error:", error);
@@ -111,6 +115,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       phone: string,
       email: string,
       password: string,
+      role: string,
     ) => {
       try {
         const existing = await fetch(
@@ -142,6 +147,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           lastname: data.lastname,
           phone: data.phone,
           email: data.email,
+          role:data.role
         });
       } catch (error) {
         console.error("Registration error:", error);

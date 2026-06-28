@@ -1,17 +1,20 @@
 import Card from "./Card.tsx";
 import productsData from "../locales/products.json";
 import { useTranslation } from "react-i18next";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getProducts } from "../services/productService.ts";
+import type { CardProps } from "../types";
+
 
 const Body = ({ filter }: { filter: string }) => {
  const { t, i18n } = useTranslation();
-
+  const [products, setProducts ] = useState<CardProps[]>([])
 
  useEffect(() =>{
   try{
     getProducts(i18n.language)
-    .then(data => console.log(data));
+    .then(data => {setProducts(data), console.log(data)});
+    
   } 
   catch (error){
     console.error('error message', error);
@@ -20,26 +23,26 @@ const Body = ({ filter }: { filter: string }) => {
  ,[i18n.language])
 
 
-  const productsName = useMemo(() => {
-    return t("products", { returnObjects: true }) as Record<
-      string,
-      { name: string; category: string }
-    >;
-  }, [i18n.language]);
+  // const productsName = useMemo(() => {
+  //   return t("products", { returnObjects: true }) as Record<
+  //     string,
+  //     { name: string; category: string }
+  //   >;
+  // }, [i18n.language]);
 
-  const products = useMemo(() => {
-    return productsData
-      .filter(
-        (p, index, arr) =>
-          arr.findIndex((x) => x.parentId === p.parentId) === index,
-      )
-      .map((p) => ({
-        ...p,
-        quantity: 1,
-        name: productsName[p.parentId]?.name,
-        category: productsName[p.parentId]?.category,
-      }));
-  }, [productsName]);
+  // const products = useMemo(() => {
+  //   return productsData
+  //     .filter(
+  //       (p, index, arr) =>
+  //         arr.findIndex((x) => x.parentId === p.parentId) === index,
+  //     )
+  //     .map((p) => ({
+  //       ...p,
+  //       quantity: 1,
+  //       name: productsName[p.parentId]?.name,
+  //       category: productsName[p.parentId]?.category,
+  //     }));
+  // }, [productsName]);
 
   const filteredProducts = useMemo(() => {
     return filter === ""

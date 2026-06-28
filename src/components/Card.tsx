@@ -1,6 +1,6 @@
 import playIcon from "/assets/play.png";
 import cartIcon from "/assets/cart.png";
-import { type CardProps } from "../types";
+import type { CardProps } from "../types";
 import { Link } from "react-router";
 import { useCartContext } from "../context/CartContext";
 import { useTranslation } from "react-i18next";
@@ -47,7 +47,7 @@ const Card = ({ product, index }: { product: CardProps; index: number }) => {
           </div>
 
           <img
-            src={product.images[0]}
+            src={product.image}
             className="w-[65.94px] h-[130.99px] object-cover relative bottom-5 z-100 m-auto  "
             alt="Product image"
             decoding="async" //
@@ -72,11 +72,11 @@ const Card = ({ product, index }: { product: CardProps; index: number }) => {
                 className="bg-[#FDE800] text-[20px]  text-[#474747]
              font-helvetocaMedium p-2 rounded-sm leading-[15.19px] sm:leading-[12.19px] desktop:p-[7.13px] "
               >
-                {product.finalPrice}{" "}
+                {product.min_final_price}{" "}
                 <span className="font-helvetocaRegular">₾</span>
               </p>
               <p className="font-helvetocaMedium text-[#C3C3C3] text-[20px]  line-through leading-[17.36px]">
-                {product.price} <span>₾</span>
+                {product.min_price} <span>₾</span>
               </p>
             </div>
           </div>
@@ -91,7 +91,7 @@ const Card = ({ product, index }: { product: CardProps; index: number }) => {
               value={quantity}
               onChange={(e) => setQuantity(Number(e.target.value))}
             >
-              {Array.from({ length: product.amount }, (_, i) => (
+              {Array.from({ length: product.stock }, (_, i) => (
                 <option key={i} value={i + 1}>
                   {i + 1}
                 </option>
@@ -115,7 +115,7 @@ const Card = ({ product, index }: { product: CardProps; index: number }) => {
           <Link
             className="cursor-pointer bg-blue-50 text-white  font-helvetocaRegular 
              py-2 px-6 rounded-[100px] text-[14px] flex-1 h-[33px] desktop:h-[29.41 px] flex items-center justify-center font-normal"
-            to={`${/product/}${product.parentId ? product.parentId : product.id}`}
+            to={`${/products/}${product.slug}`}
           >
             {languageGeorgian ? "ყიდვა" : "Buy Now"}
           </Link>

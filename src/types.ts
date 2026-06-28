@@ -17,14 +17,6 @@ export interface Product {
   discount: number;
 }
 
-interface CardVariant {
-  id: number;
-  capacity: string;
-  price: number;
-  discount: number;
-  stock: number;
-}
-
 export interface CardProps {
   id: number;
   slug: string;
@@ -32,8 +24,15 @@ export interface CardProps {
   name: string;
   image: string;
   variants: CardVariant[];
-  min_price: number;
-  min_final_price: number;
+}
+
+export interface CardVariant {
+  id: number;
+  capacity: string;
+  price: number;
+  discount: number;
+  stock: number;
+  finalPrice: number;
 }
 
 export interface CartItem {

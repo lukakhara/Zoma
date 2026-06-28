@@ -10,6 +10,7 @@ import { ChevronDown } from "lucide-react";
 const ABOVE_FOLD_COUNT = 12;
 
 const Card = ({ product, index }: { product: CardProps; index: number }) => {
+  const activeVariant = product.variants[0];
   const { i18n } = useTranslation();
   const languageGeorgian = i18n.language === "ka";
   const { addToCart } = useCartContext();
@@ -17,13 +18,8 @@ const Card = ({ product, index }: { product: CardProps; index: number }) => {
   const isAboveFold = index < ABOVE_FOLD_COUNT;
   const isLCP = index < 2; // first 2 get highest priority
 
- 
-  const activeVariant =product.variants[0];
-  console.log(activeVariant);
   const [quantity, setQuantity] = useState(1);
-  console.log('card',product);
-  console.log('activeVariant',activeVariant.stock);
-  
+
   return (
     <>
       <div className=" rounded-xl  bg-white flex flex-col relative ">
@@ -39,14 +35,14 @@ const Card = ({ product, index }: { product: CardProps; index: number }) => {
               onClick={() =>
                 addToCart({
                   productId: product.id,
-                  variantId: activeVariant.id,
+                  variantId: product.variants[0].id,
                   slug: product.slug,
                   name: product.name,
                   image: product.image,
-                  capacity: activeVariant.capacity,
-                  price: activeVariant.price,
-                  discount: activeVariant.discount,
-                  stock: activeVariant.stock,
+                  capacity: product.variants[0].capacity,
+                  price: product.variants[0].price,
+                  discount: product.variants[0].discount,
+                  stock: product.variants[0].stock,
                   quantity: 1,
                 })
               }
@@ -90,11 +86,11 @@ const Card = ({ product, index }: { product: CardProps; index: number }) => {
                 className="bg-[#FDE800] text-[20px]  text-[#474747]
              font-helvetocaMedium p-2 rounded-sm leading-[15.19px] sm:leading-[12.19px] desktop:p-[7.13px] "
               >
-                {product.min_final_price}{" "}
+                {product.variants[0].finalPrice}{" "}
                 <span className="font-helvetocaRegular">₾</span>
               </p>
               <p className="font-helvetocaMedium text-[#C3C3C3] text-[20px]  line-through leading-[17.36px]">
-                {product.min_price} <span>₾</span>
+                {product.variants[0].price} <span>₾</span>
               </p>
             </div>
           </div>

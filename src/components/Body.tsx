@@ -12,15 +12,16 @@ const Body = ({ filter }: { filter: string }) => {
 
  useEffect(() =>{
   try{
-    getProducts(i18n.language)
-    .then(data => {setProducts(data), console.log(data)});
+      getProducts(i18n.language, filter || undefined)
+    .then(data => {setProducts(data)});
     
   } 
   catch (error){
     console.error('error message', error);
   }
  }
- ,[i18n.language])
+ ,[i18n.language,filter])
+
 
 
   // const productsName = useMemo(() => {
@@ -44,15 +45,15 @@ const Body = ({ filter }: { filter: string }) => {
   //     }));
   // }, [productsName]);
 
-  const filteredProducts = useMemo(() => {
-    return filter === ""
-      ? products
-      : products.filter((product) => product.category === filter);
-  }, [filter,products]);
+  // const filteredProducts = useMemo(() => {
+  //   return filter === ""
+  //     ? products
+  //     : products.filter((product) => product.category === filter);
+  // }, [filter,products]);
 
   return (
     <div className="grid  w-full grid-cols-2 gap-1.5  md:gap-6  md:pb-22 md:grid-cols-3   lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6  ">
-      {filteredProducts.map((product,index) => (
+      {products.map((product,index) => (
         <Card key={product.id} product={product} index={index} />
       ))}
     </div>

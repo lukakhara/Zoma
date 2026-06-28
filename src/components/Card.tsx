@@ -17,8 +17,13 @@ const Card = ({ product, index }: { product: CardProps; index: number }) => {
   const isAboveFold = index < ABOVE_FOLD_COUNT;
   const isLCP = index < 2; // first 2 get highest priority
 
+ 
+  const activeVariant =product.variants[0];
+  console.log(activeVariant);
   const [quantity, setQuantity] = useState(1);
-
+  console.log('card',product);
+  console.log('activeVariant',activeVariant.stock);
+  
   return (
     <>
       <div className=" rounded-xl  bg-white flex flex-col relative ">
@@ -31,7 +36,20 @@ const Card = ({ product, index }: { product: CardProps; index: number }) => {
             <button
               className="cursor-pointer size-[27.62px] centeredFlex bg-blue-100 rounded-full p-2
                 mt-[8px] mr-[12.05px]    "
-              onClick={() => addToCart(String(product.id), quantity)}
+              onClick={() =>
+                addToCart({
+                  productId: product.id,
+                  variantId: activeVariant.id,
+                  slug: product.slug,
+                  name: product.name,
+                  image: product.image,
+                  capacity: activeVariant.capacity,
+                  price: activeVariant.price,
+                  discount: activeVariant.discount,
+                  stock: activeVariant.stock,
+                  quantity: 1,
+                })
+              }
             >
               <img
                 className="bg-none size-[15px] "
@@ -91,7 +109,7 @@ const Card = ({ product, index }: { product: CardProps; index: number }) => {
               value={quantity}
               onChange={(e) => setQuantity(Number(e.target.value))}
             >
-              {Array.from({ length: product.stock }, (_, i) => (
+              {Array.from({ length: activeVariant.stock }, (_, i) => (
                 <option key={i} value={i + 1}>
                   {i + 1}
                 </option>

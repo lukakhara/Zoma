@@ -11,12 +11,19 @@ export interface Product {
   label: string;
   parentId: string;
   price: number;
-  finalPrice:number;
+  finalPrice: number;
   quantity: number;
-  amount:number;
-  discount:number;
+  amount: number;
+  discount: number;
 }
 
+interface CardVariant {
+  id: number;
+  capacity: string;
+  price: number;
+  discount: number;
+  stock: number;
+}
 
 export interface CardProps {
   id: number;
@@ -24,25 +31,33 @@ export interface CardProps {
   category: string;
   name: string;
   image: string;
-  min_price: string;       // Keeping as string to match database format
-  min_final_price: string; // Keeping as string to match database format
-  capacity:string,
-  stock:number,
+  variants: CardVariant[];
+  min_price: number;
+  min_final_price: number;
 }
 
-
-
-// types.ts
 export interface CartItem {
   productId: number;
   variantId: number;
-  quantity: number;
-  name: string;       // display name (current language)
-  capacity: string;   // "500ml"
+  slug: string;
+  name: string;
+  image: string;
+  capacity: string;
   price: number;
   discount: number;
-  imageUrl: string;
-  stock:number;
+  stock: number;
+  quantity: number;
 }
 
-
+// types.ts
+// export interface CartItem {
+//   productId: number;
+//   variantId: number;
+//   quantity: number;
+//   name: string; // display name (current language)
+//   capacity: string; // "500ml"
+//   price: number;
+//   discount: number;
+//   image: string;
+//   stock: number;
+// }

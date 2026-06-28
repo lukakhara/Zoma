@@ -5,6 +5,7 @@ import { getCategories } from "../services/productService";
 interface Category {
   id: string | number;
   name: string;
+  slug: string; // ← add this
 }
 
 interface CategoryProps {
@@ -12,7 +13,7 @@ interface CategoryProps {
   setFilter: (category: string) => void;
 }
 
-const Category = ({ setFilter }: CategoryProps) => {
+const Category = ({ setFilter, filter }: CategoryProps) => {
   const { i18n } = useTranslation();
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedKey, setSelectedKey] = useState<number | null>(null);
@@ -23,6 +24,7 @@ const Category = ({ setFilter }: CategoryProps) => {
   const startX = useRef(0);
   const scrollLeft = useRef(0);
   const pressedKey = useRef<number | null>(null);
+  console.log("filter from caregory comp", filter);
 
   useEffect(() => {
     getCategories(i18n.language)
@@ -33,7 +35,7 @@ const Category = ({ setFilter }: CategoryProps) => {
   // Sync filter whenever selection or categories change
   useLayoutEffect(() => {
     if (selectedKey !== null && categories[selectedKey] !== undefined) {
-      setFilter(categories[selectedKey].name);
+      setFilter(categories[selectedKey].slug);
     }
   }, [selectedKey, categories]);
 

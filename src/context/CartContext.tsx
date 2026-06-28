@@ -17,13 +17,15 @@ const CartContextProvider = ({ children }: { children: ReactNode }) => {
   const addToCart = (item: CartItem) => {
     setCartItems((prev) => {
       const exists = prev.find((i) => i.variantId === item.variantId);
+
       if (exists) {
         return prev.map((i) =>
           i.variantId === item.variantId
-            ? { ...i, quantity: Math.min(i.quantity + item.quantity, 100) }
+            ? { ...i, quantity: Math.min(i.quantity + item.quantity, i.stock) }
             : i,
         );
       }
+
       return [...prev, item];
     });
   };
@@ -35,10 +37,10 @@ const CartContextProvider = ({ children }: { children: ReactNode }) => {
   const updateQuantity = (variantId: number, quantity: number) => {
     if (quantity <= 0) return removeFromCart(variantId);
     setCartItems((prev) =>
-      prev.map((i) =>
-        i.variantId === variantId
-          ? { ...i, quantity: Math.min(quantity, 100) }
-          : i,
+      prev.map((item) =>
+        item.variantId === variantId
+          ? { ...item, quantity: Math.min(quantity, item.stock) }
+          : item,
       ),
     );
   };

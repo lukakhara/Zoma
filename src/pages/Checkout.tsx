@@ -22,39 +22,40 @@ const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
   const [errors, setErrors] = useState({ terms: "", payment: "" });
 
-  console.log('cart items:',cartItems);
+  const totalPriceToPay = cartItems.reduce(
+    (sum, item) =>
+      sum + (item.price - (item.price * item.discount) / 100) * item.quantity,
+    0,
+  );
+  const totalDiscount = cartItems.reduce(
+    (sum, item) => sum + ((item.price * item.discount) / 100) * item.quantity,
+    0,
+  );
 
-  // const addOrder = async () => {
-  //   if (agreedToTerms && paymentMethod != null) {
-  //     const res = await fetch(`${import.meta.env.VITE_API_URL}/api/orders`, {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({
-  //         items: cartItems.map((i) => ({
-  //           variantId: i.variantId,
-  //           quantity: i.quantity,
-  //         })),
-  //       }),
-  //     });
-  //     if (res.ok) {
-  //       clearCart();
-  //       navigate("/transaction-result", { state: { success: true } });
-  //     }
-  //   }
-  //   return;
-  // };
+  const total = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
 
-  // const totalPrice = cartItems.reduce(
-  //   (t, item) => t + item.price * item.quantity,
-  //   0,
-  // );
-  // const totalPriceToPay = cartItems.reduce(
-  //   (t, item) => t + item.quantity * item.quantity,
-  //   0,
-  // );
-  // const totalDiscount = totalPrice - totalPriceToPay;
-  // const finalPrice = (item.price * (100 - item.discount)) / 100;
-  // finalPrice * item.quantity;
+  const addOrder = async () => {
+    if (agreedToTerms && paymentMethod != null) {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/orders`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: cartItems.map((i) => ({
+            variantId: i.variantId,
+            quantity: i.quantity,
+          })),
+        }),
+      });
+      if (res.ok) {
+        clearCart();
+        navigate("/transaction-result", { state: { success: true } });
+      }
+    }
+    return;
+  };
 
   return (
     <div className="min-h-screen py-4 md:py-8">
@@ -68,7 +69,7 @@ const Checkout = () => {
           <ul className="flex flex-col divide-y divide-[#E6E6E6]">
             {cartItems.map((item) => (
               <li
-                key={item.productId}
+                key={item.variantId}
                 className="flex items-center justify-between gap-4 py-4 first:pt-0 last:pb-0"
               >
                 {/* Image + name/qty/delete */}
@@ -90,18 +91,16 @@ const Checkout = () => {
 
                     <div className="flex items-center gap-2 md:gap-4 lg:gap-5  ">
                       <select
-                        className="bg-[#F2F2F2] py-2 px-3 rounded-3xl text-blue-50 text-xl test"
+                        className="bg-[#F2F2F2] py-2 px-3 rounded-3xl text-blue-50 text-xl "
                         name="amount"
                         id="amount"
                         value={item.quantity}
                         onChange={(e) =>
-                          updateQuantity(item.stock, Number(e.target.value))
+                          updateQuantity(item.variantId, Number(e.target.value))
                         }
                       >
                         {Array.from({ length: item.stock }, (_, i) => (
-                          <option value={i + 1}>
-                            {i + 1}
-                          </option>
+                          <option value={i + 1}>{i + 1}</option>
                         ))}
                       </select>
 
@@ -130,14 +129,19 @@ const Checkout = () => {
                         <span className="redDiscount text-[11.25px]">
                           -
                           {(
-                            (item.price*item.discount/100) *item.quantity
+                            ((item.price * item.discount) / 100) *
+                            item.quantity
                           ).toFixed(2)}{" "}
                           ₾
                         </span>
                       </div>
                     </div>
                     <span className="goldPrice text-[19.57px] text-[#474747] leading-[13.58px] px-[6.71px] py-[8px]">
-                      {((item.price - (item.price*item.discount/100)) * item.quantity).toFixed(2)}₾
+                      {(
+                        (item.price - (item.price * item.discount) / 100) *
+                        item.quantity
+                      ).toFixed(2)}
+                      ₾
                     </span>
                   </div>
                 </div>
@@ -183,13 +187,13 @@ const Checkout = () => {
             <div className="flex justify-between text-sm text-gray-700">
               <span className="checkoutLeftText">{t("totalPrice")}:</span>
               <span className="text-[#161F28] text-[16px]">
-                {/* {totalPrice.toFixed(2)} ₾ */}
+                {total.toFixed(2)} ₾
               </span>
             </div>
             <div className="flex justify-between text-sm text-gray-700">
               <span className="checkoutLeftText">{t("totalDiscount")}:</span>
               <span className="text-[#161F28] text-[16px]">
-                {/* {totalDiscount.toFixed(2)} ₾ */}
+                {totalDiscount.toFixed(2)} ₾
               </span>
             </div>
             {/* {!selectedPaymentMethod && (
@@ -203,7 +207,7 @@ const Checkout = () => {
                 {t("TotalPriceToPay")}
               </span>
               <span className="text-xl font-bold text-[#2f4a9c] text-nowrap">
-                {/* {totalPriceToPay.toFixed(2)} ₾ */}
+                {totalPriceToPay.toFixed(2)} ₾
               </span>
             </div>
           </div>
@@ -316,10 +320,7 @@ const Checkout = () => {
                   {t("iAgreeToTermsAndConditions")}
                 </p>
               </label>
-              <button
-                className="w-full py-3 rounded-2xl bg-[#FDE800] text-blue-50 font-helvetocaMedium text-[16px] cursor-pointer hover:opacity-90 transition-opacity"
-                
-              >
+              <button className="w-full py-3 rounded-2xl bg-[#FDE800] text-blue-50 font-helvetocaMedium text-[16px] cursor-pointer hover:opacity-90 transition-opacity " onClick={() => addOrder()}>
                 {t("checkout")}
               </button>
             </div>

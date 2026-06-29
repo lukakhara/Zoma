@@ -6,16 +6,12 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   base: "/Zoma/",
   plugins: [react(), tailwindcss()],
-  define:{
-    'process.env':{}
+  define: {
+    "process.env": {},
   },
-   server: {
+  server: {
     proxy: {
-      "/api": {
-        target: "http://localhost:3001",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
+      "/api": "http://localhost:3000",
     },
   },
 });

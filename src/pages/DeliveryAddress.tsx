@@ -4,11 +4,13 @@ import { useTranslation } from "react-i18next";
 
 interface Address {
   id: string;
-  userId: string;
+  user_id: string;
   city: string;
-  fullAddress: string;
-  zipCode: string;
+  full_address: string;
+  zip_code: string;
 }
+
+const API = import.meta.env.VITE_API_URL;
 
 const AddressForm = ({
   initial,
@@ -21,8 +23,8 @@ const AddressForm = ({
 }) => {
   const { t } = useTranslation();
   const [city, setCity] = useState(initial?.city ?? "");
-  const [fullAddress, setFullAddress] = useState(initial?.fullAddress ?? "");
-  const [zipCode, setZipCode] = useState(initial?.zipCode ?? "");
+  const [fullAddress, setFullAddress] = useState(initial?.full_address ?? ""); // ✅ fixed
+  const [zipCode, setZipCode] = useState(initial?.zip_code ?? ""); // ✅ fixed
   const [error, setError] = useState("");
 
   const handleSave = () => {
@@ -75,19 +77,14 @@ const AddressForm = ({
           />
         </div>
       ))}
-
       {error && <p className="text-red-500 text-sm text-center">{error}</p>}
-
-      <div className="flex gap-2">
-        <button
-          onClick={handleSave}
-          disabled={isLoading}
-          className="flex-1 py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium
-            hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed transition-opacity"
-        >
-          {isLoading ? t("saving") : t("save")}
-        </button>
-      </div>
+      <button
+        onClick={handleSave}
+        disabled={isLoading}
+        className="w-full py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed transition-opacity"
+      >
+        {isLoading ? t("saving") : t("save")}
+      </button>
     </div>
   );
 };
@@ -97,7 +94,6 @@ export default function DeliveryAddress() {
   const { t } = useTranslation();
 
   const [addresses, setAddresses] = useState<Address[]>([]);
-  const [showForm, setShowForm] = useState(false);
   const [editingAddress, setEditingAddress] = useState<Address | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState("");
@@ -107,7 +103,7 @@ export default function DeliveryAddress() {
   }, [user?.id]);
 
   const fetchAddresses = async () => {
-    const res = await fetch(`/api/addresses?userId=${user?.id}`);
+    const res = await fetch(`${API}/api/addresses?user_id=${user?.id}`);
     const data = await res.json();
     setAddresses(data);
   };
@@ -120,49 +116,49 @@ export default function DeliveryAddress() {
     setIsLoading(true);
     try {
       if (editingAddress) {
-        // Update existing
-        const res = await fetch(`/api/addresses/${editingAddress.id}`, {
+        const res = await fetch(`${API}/api/addresses/${editingAddress.id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ city, fullAddress, zipCode }),
+          body: JSON.stringify({
+            city,
+            full_address: fullAddress,
+            zip_code: zipCode,
+          }),
         });
         if (!res.ok) throw new Error();
         setSuccess(t("addressUpdatedSuccessfully"));
       } else {
-        // Add new
-        const res = await fetch("/api/addresses", {
+        const res = await fetch(`${API}/api/addresses`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            id: Date.now().toString(),
-            userId: user?.id,
+            user_id: user?.id,
             city,
-            fullAddress,
-            zipCode,
+            full_address: fullAddress,
+            zip_code: zipCode,
           }),
         });
         if (!res.ok) throw new Error();
         setSuccess(t("addressAddedSuccessfully"));
       }
+
       await fetchAddresses();
-      setShowForm(false);
       setEditingAddress(null);
       setTimeout(() => setSuccess(""), 3000);
     } catch {
-      // error handled in form
+      setSuccess("");
     } finally {
       setIsLoading(false);
     }
   };
 
   const handleDelete = async (id: string) => {
-    await fetch(`/api/addresses/${id}`, { method: "DELETE" });
+    await fetch(`${API}/api/addresses/${id}`, { method: "DELETE" });
     setAddresses((prev) => prev.filter((a) => a.id !== id));
   };
 
   const handleEdit = (address: Address) => {
     setEditingAddress(address);
-    setShowForm(true);
   };
 
   const AddressList = () => (
@@ -173,7 +169,8 @@ export default function DeliveryAddress() {
           className="flex items-center justify-between bg-white rounded-2xl px-4 py-3 shadow-sm"
         >
           <span className="text-sm text-gray-700">
-            {[a.city, a.fullAddress, a.zipCode].filter(Boolean).join(", ")}
+            {[a.city, a.full_address, a.zip_code].filter(Boolean).join(", ")}{" "}
+            {/* ✅ fixed */}
           </span>
           <div className="flex gap-2">
             <button
@@ -195,49 +192,44 @@ export default function DeliveryAddress() {
   );
 
   return (
-    <div className="min-h-screen py-6 md:py-14  w-full">
+    <div className="min-h-screen py-6 md:py-14 w-full">
       {/* Mobile */}
-      <div className="md:hidden  flex flex-col  ">
+      <div className="md:hidden flex flex-col">
         <h1 className="text-2xl font-bold text-gray-900 mb-5">
           {t("deliveryAddress")}
         </h1>
-
         {success && (
           <p className="text-green-500 text-sm text-center mb-3">{success}</p>
         )}
-
         <AddressForm
           initial={editingAddress ?? undefined}
           onSave={handleSave}
           isLoading={isLoading}
         />
-
         <AddressList />
         <button
-          onClick={() => setShowForm(true)}
+          onClick={() => setEditingAddress(null)}
           className="mt-3 w-full py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium flex items-center justify-center gap-2"
         >
           <span className="text-lg leading-none">⊕</span>
-          {t("addNewAddress")} new Address
+          {t("addNewAddress")}
         </button>
       </div>
 
       {/* Desktop */}
-      <div className="hidden md:block   ">
-        <div className=" flex-1 max-w-md flex flex-col gap-4">
+      <div className="hidden md:block">
+        <div className="flex-1 max-w-md flex flex-col gap-4">
           {success && (
             <p className="text-green-500 text-sm text-center">{success}</p>
           )}
-
           <AddressForm
             initial={editingAddress ?? undefined}
             onSave={handleSave}
             isLoading={isLoading}
           />
-
           <AddressList />
           <button
-            onClick={() => setShowForm(true)}
+            onClick={() => setEditingAddress(null)}
             className="w-full py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium flex items-center justify-center gap-2"
           >
             <span className="text-lg leading-none">⊕</span>

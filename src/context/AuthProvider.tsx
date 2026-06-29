@@ -19,6 +19,7 @@ interface User {
 
 interface AuthContextType {
   user: User | null;
+  setUser: (user: User | null) => void;
   isAuthenticated: boolean;
   isLoading: boolean;
   login: (email: string, password: string) => Promise<void>;
@@ -55,7 +56,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   try {
     const token = localStorage.getItem('token');
     if (token) {
-      const response = await fetch('http://localhost:3000/api/auth/me', {
+      const response = await fetch(`${API}/api/auth/me`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (response.ok) {
@@ -73,7 +74,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 };
 
  const login = useCallback(async (email: string, password: string) => {
-  const response = await fetch('http://localhost:3000/api/auth/login', {
+  const response = await fetch(`${API}/api/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password })
@@ -98,7 +99,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   firstname: string, lastname: string, phone: string,
   email: string, password: string,
 ) => {
-  const response = await fetch('http://localhost:3000/api/auth/register', {
+  const response = await fetch(`${API}/api/auth/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ firstname, lastname, phone, email, password })
@@ -117,6 +118,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const value = useMemo(
     () => ({
       user,
+      setUser,
       isAuthenticated: !!user,
       isLoading,
       login,

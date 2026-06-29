@@ -13,56 +13,52 @@ export default function PasswordChange() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const handleChange = async () => {
-    setError("");
-    setSuccess(false);
+ const handleChange = async () => {
+  setError("");
+  setSuccess(false);
 
-    if (!currentPassword || !newPassword || !confirmPassword) {
-      setError(t("pleaseFillInAllFields"));
+  if (!currentPassword || !newPassword || !confirmPassword) {
+    setError(t("pleaseFillInAllFields"));
+    return;
+  }
+  if (newPassword !== confirmPassword) {
+    setError(t("newPasswordsDontMatch"));
+    return;
+  }
+  if (newPassword.length < 6) {
+    setError(t("newPasswordMustBeAtLeast6Characters"));
+    return;
+  }
+
+  setIsLoading(true);
+  try {
+    const token = localStorage.getItem('token');
+
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${user?.id}/password`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ currentPassword, newPassword })
+    });
+
+    if (!response.ok) {
+      const data = await response.json();
+      setError(data.error || t("FailedToChangePasswordPleaseTryAgain"));
       return;
     }
-    if (newPassword !== confirmPassword) {
-      setError(t("newPasswordsDontMatch"));
-      return;
-    }
-    if (newPassword.length < 6) {
-      setError(t("newPasswordMustBeAtLeast6Characters"));
-      return;
-    }
 
-    setIsLoading(true);
-    try {
-      // First verify current password
-      const response = await fetch(
-        `/api/users?email=${encodeURIComponent(user?.email ?? "")}`,
-      );
-      const users = await response.json();
-
-      if (users.length === 0) throw new Error(t("UserNotFound"));
-      if (users[0].password !== currentPassword) {
-        setError(t("CurrentPasswordIsIncorrect"));
-        return;
-      }
-
-      // Update with new password
-      const update = await fetch(`/api/users/${user?.id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password: newPassword }),
-      });
-
-      if (!update.ok) throw new Error(t("FailedToUpdatePassword"));
-
-      setSuccess(true);
-      setCurrentPassword("");
-      setNewPassword("");
-      setConfirmPassword("");
-    } catch (err) {
-      setError(t("FailedToChangePasswordPleaseTryAgain"));
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    setSuccess(true);
+    setCurrentPassword("");
+    setNewPassword("");
+    setConfirmPassword("");
+  } catch (err) {
+    setError(t("FailedToChangePasswordPleaseTryAgain"));
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const fields = [
     {

@@ -3,7 +3,7 @@ import { useAuth } from "../context/AuthProvider";
 import { useTranslation } from "react-i18next";
 
 const UserProfile = () => {
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
   const {t} = useTranslation();
 
   const [firstname, setFirstname] = useState(user?.firstname ?? "");
@@ -41,6 +41,8 @@ const UserProfile = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
+      const data = await response.json();
+      setUser(data);
 
       if (!response.ok) throw new Error("Failed to update profile");
 

@@ -62,7 +62,7 @@ const AddressForm = ({
         },
       ].map((f) => (
         <div key={f.label} className="flex flex-col gap-1">
-          <span className="text-sm text-gray-700">
+          <span className="text-sm text-[#797979]">
             {f.label}
             {f.required && "*"}
           </span>
@@ -228,13 +228,15 @@ export default function DeliveryAddress() {
             isLoading={isLoading}
           />
           <AddressList />
-          <button
-            onClick={() => setEditingAddress(null)}
-            className="w-full py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium flex items-center justify-center gap-2"
-          >
-            <span className="text-lg leading-none">⊕</span>
-            {t("addNewAddress")}
-          </button>
+          {addresses.length > 0 && (
+            <button
+              onClick={() => setEditingAddress(null)}
+              className="w-full py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium flex items-center justify-center gap-2"
+            >
+              <span className="text-lg leading-none">⊕</span>
+              {t("addNewAddress")}
+            </button>
+          )}
         </div>
       </div>
     </div>

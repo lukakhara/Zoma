@@ -88,7 +88,7 @@ export default function PasswordChange() {
           <div className="flex flex-col gap-4">
             {fields.map(({ label, value, setter }) => (
               <div key={label} className="flex flex-col gap-1">
-                <span className="text-sm text-gray-700">{label}*</span>
+                <span className="text-sm text-[#797979]">{label}*</span>
                 <input
                   type="password"
                   value={value}

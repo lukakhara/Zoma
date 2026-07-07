@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthProvider";
 import { useTranslation } from "react-i18next";
+import editIcon from '/public/assets/Vector.png'
 
 interface Address {
   id: string;
@@ -23,8 +24,8 @@ const AddressForm = ({
 }) => {
   const { t } = useTranslation();
   const [city, setCity] = useState(initial?.city ?? "");
-  const [fullAddress, setFullAddress] = useState(initial?.full_address ?? ""); // ✅ fixed
-  const [zipCode, setZipCode] = useState(initial?.zip_code ?? ""); // ✅ fixed
+  const [fullAddress, setFullAddress] = useState(initial?.full_address ?? "");
+  const [zipCode, setZipCode] = useState(initial?.zip_code ?? "");
   const [error, setError] = useState("");
 
   const handleSave = () => {
@@ -81,7 +82,7 @@ const AddressForm = ({
       <button
         onClick={handleSave}
         disabled={isLoading}
-        className="w-full py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed transition-opacity"
+        className="w-full py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed transition-opacity "
       >
         {isLoading ? t("saving") : t("save")}
       </button>
@@ -102,17 +103,16 @@ export default function DeliveryAddress() {
     if (user?.id) fetchAddresses();
   }, [user?.id]);
 
-  const fetchAddresses = async () => {
-    const res = await fetch(`${API}/api/addresses?user_id=${user?.id}`);
-    const data = await res.json();
-    setAddresses(data);
-  };
+ const fetchAddresses = async () => {
+  console.log("user object:", user);
+  console.log("fetching for user_id:", user?.id);
+  const res = await fetch(`${API}/api/addresses?user_id=${user?.id}`);
+  const data = await res.json();
+  console.log("addresses response:", data);
+  setAddresses(data);
+};
 
-  const handleSave = async (
-    city: string,
-    fullAddress: string,
-    zipCode: string,
-  ) => {
+  const handleSave = async (city: string, street: string, zip: string) => {
     setIsLoading(true);
     try {
       if (editingAddress) {
@@ -120,9 +120,9 @@ export default function DeliveryAddress() {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            city,
-            full_address: fullAddress,
-            zip_code: zipCode,
+            city:city,
+            street: street,
+            zip: zip,
           }),
         });
         if (!res.ok) throw new Error();
@@ -133,9 +133,9 @@ export default function DeliveryAddress() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             user_id: user?.id,
-            city,
-            full_address: fullAddress,
-            zip_code: zipCode,
+            city:city,
+            street: street,
+            zip: zip,
           }),
         });
         if (!res.ok) throw new Error();
@@ -177,7 +177,7 @@ export default function DeliveryAddress() {
               onClick={() => handleEdit(a)}
               className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50"
             >
-              ✏️
+              <img src={editIcon} alt="edit icon" />
             </button>
             <button
               onClick={() => handleDelete(a.id)}

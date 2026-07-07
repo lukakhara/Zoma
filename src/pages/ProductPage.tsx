@@ -23,7 +23,7 @@ interface ProductDetail {
   slug: string;
   brand: string;
   store: string;
-  category: string;  // was category: number
+  category: string; // was category: number
   name: string;
   description: string;
   instructions_for_use: string[];
@@ -51,17 +51,10 @@ const ProductPage = () => {
     } catch (error) {
       console.error("error message is ", error);
     }
-  }, [product,i18n.language]);
+  }, [product, i18n.language]);
 
   const [selectCapacityIndex, setSelectCapacityIndex] = useState(0);
 
-  // const product = productDataFromTranslation[Number(id)];
-
-  // const capacities = productsData.filter(
-  //   (product) => Number(product.parentId) === Number(id),
-  // );
-
-  // const selectedId = capacities[selectCapacityIndex].id;
 
   const [quantity, setQuantity] = useState(1);
 
@@ -77,8 +70,26 @@ const ProductPage = () => {
 
   if (!product || !product.variants?.length) return <div>Loading...</div>;
 
+  const currentVariant: Variant =
+    product.variants[selectCapacityIndex] ?? product.variants[0];
+  const images = currentVariant?.images ?? [];
+
+  const handleAddToCart = () => {
+    addToCart({
+      productId: product.id,
+      variantId: currentVariant.id,
+      slug: product.slug,
+      name: product.name,
+      image: currentVariant.images[0] ?? "/product.png",
+      capacity: currentVariant.capacity,
+      price: currentVariant.price,
+      discount: currentVariant.discount,
+      stock: currentVariant.stock,
+      quantity: quantity,
+    });
+  };
+
   return (
-    
     <div className="min-h-screen  py-4 md:py-8  ">
       {/* ── DESKTOP layout ── */}
       <div className="md:flex gap-8 items-start ">
@@ -98,14 +109,14 @@ const ProductPage = () => {
               <img src={play} alt="play" className="w-4 h-4" />
             </button>
             {/* here is needed data from difrend json file */}
-            <img
-              src={product.variants[selectCapacityIndex].images[activeImage]}
+            <img 
+              src={images[activeImage] ?? "assets/product.png"}
               alt="Product"
               className="max-h-60 object-contain "
             />
             {/* Dots */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              {product.variants[selectCapacityIndex].images.map((_, i) => (
+              {images.map((_, i) => (
                 <span
                   key={i}
                   className={`w-2 h-2 rounded-full  ${i === activeImage ? "bg-[#2f4a9c]" : "bg-gray-300 cursor-pointer hover:opacity-65 "}`}
@@ -117,7 +128,7 @@ const ProductPage = () => {
 
           {/* Thumbnails */}
           <div className="md:flex gap-3 hidden ">
-            {product.variants[selectCapacityIndex].images.map((img, i) => (
+            {images.map((img, i) => (
               <div
                 key={i}
                 className="cursor-pointer hover:opacity-60 bg-white rounded-xl p-2 shadow-sm size-24 md:size-45 flex items-center justify-center flex-1"
@@ -153,15 +164,15 @@ const ProductPage = () => {
               {languageGeorgian ? "ზომა:" : "Size:"}
             </p>
             <div className="flex gap-2 flex-wrap ">
-              {product.variants.map((i, index) => (
+              {product.variants.map((variant, index) => (
                 <button
-                  key={i.id}
+                  key={variant.id}
                   className={` px-3 py-1.5 font-helvetocaMedium leading-[19.48px]  rounded-lg  text-[16px] uppercase 
                       ${index === selectCapacityIndex ? "border-blue-50 text-blue-50 border-2 font-hevletocaBold" : "border-[#B2B2B2] text-[#B2B2B2] border cursor-pointer"}
                           `}
                   onClick={() => setSelectCapacityIndex(index)}
                 >
-                  {formatLabel(i.capacity)}
+                  {formatLabel(variant.capacity)}
                 </button>
               ))}
             </div>
@@ -180,14 +191,11 @@ const ProductPage = () => {
                 value={quantity}
                 onChange={(e) => setQuantity(Number(e.target.value))}
               >
-                {Array.from(
-                  { length: product.variants[selectCapacityIndex].stock },
-                  (_, i) => (
-                    <option key={i} value={i + 1}>
-                      {i + 1}
-                    </option>
-                  ),
-                )}
+                {Array.from({ length: currentVariant.stock }, (_, i) => (
+                  <option key={i} value={i + 1}>
+                    {i + 1}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -198,14 +206,13 @@ const ProductPage = () => {
                   className=" text-sm 
               unactiveStartingPrice"
                 >
-                  {product.variants[selectCapacityIndex].price.toFixed(2)} ₾
+                  {currentVariant.price.toFixed(2)} ₾
                 </span>
                 <div className="">
                   <span className="bg-red-100 text-white text-xs font-semibold px-2 py-0.5 rounded">
                     -
                     {(
-                      (product.variants[selectCapacityIndex].price -
-                        product.variants[selectCapacityIndex].finalPrice) *
+                      (currentVariant.price - currentVariant.finalPrice) *
                       quantity
                     ).toFixed(2)}
                     ₾
@@ -214,10 +221,7 @@ const ProductPage = () => {
               </div>
 
               <span className="  px-3 py-0.5 rounded-lg goldPrice ">
-                {(
-                  product.variants[selectCapacityIndex].finalPrice * quantity
-                ).toFixed(2)}{" "}
-                ₾
+                {(currentVariant.finalPrice * quantity).toFixed(2)} ₾
               </span>
             </div>
           </div>
@@ -227,7 +231,7 @@ const ProductPage = () => {
             <Link
               to="/checkout"
               className="flex-1 py-3 rounded-2xl bg-[#2f4a9c] text-white text-sm font-medium cursor-pointer text-center align-middle "
-              onClick={() => addToCart(String(product.id), quantity)}
+              onClick={() => handleAddToCart()}
             >
               {languageGeorgian ? "იყიდეთ ახლა" : "Buy Now"}
             </Link>
@@ -235,7 +239,7 @@ const ProductPage = () => {
             <button
               className="flex-1 py-3 rounded-2xl  bg-white text-gray-800 text-sm font-medium centeredFlex gap-2 
               cursor-pointer  "
-              onClick={() => addToCart(String(product.id), quantity)}
+              onClick={() => handleAddToCart()}
             >
               <img src={cart} alt="cart" className="w-4 h-4 ml-3" />
               {languageGeorgian ? "დამატება კალათაში" : "Add to cart"}
@@ -248,7 +252,7 @@ const ProductPage = () => {
           {/* Description */}
           <div className="mt-2 leading-[19.48px]">
             <h2 className="text-[18px] h font-medium text-[#000000] mb-1 tracking-[0%] ">
-              {t('desciption')}
+              {t("desciption")}
             </h2>
             <p className="text-sm text-gray-600  leading-[19.48px]">
               {product.description}
@@ -269,7 +273,7 @@ const ProductPage = () => {
             <p className="text-sm text-gray-600 mt-0.5">{product.store}</p>
             <p className="text-sm text-gray-600">
               {languageGeorgian ? "მოცულობა" : "volume"}:
-              {formatLabel(product.variants[selectCapacityIndex].capacity)}
+              {formatLabel(currentVariant.capacity)}
             </p>
           </div>
         </div>

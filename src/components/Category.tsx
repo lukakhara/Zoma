@@ -13,7 +13,7 @@ interface CategoryProps {
   setFilter: (category: string) => void;
 }
 
-const Category = ({ setFilter, filter }: CategoryProps) => {
+const Category = ({ setFilter }: CategoryProps) => {
   const { i18n } = useTranslation();
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedKey, setSelectedKey] = useState<number | null>(null);
@@ -24,7 +24,6 @@ const Category = ({ setFilter, filter }: CategoryProps) => {
   const startX = useRef(0);
   const scrollLeft = useRef(0);
   const pressedKey = useRef<number | null>(null);
-  console.log("filter from caregory comp", filter);
 
   useEffect(() => {
     getCategories(i18n.language)

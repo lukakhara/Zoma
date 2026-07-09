@@ -11,16 +11,21 @@ import { useNavigate } from "react-router-dom";
 import { useCartProducts } from "../context/UseCartProducts";
 import { placeOrder } from "../services/orderService";
 import { useTranslation } from "react-i18next";
+import DeliveryAdressDialog from "./DeliveryAdressDialog";
+import { useAuth } from "../context/AuthProvider"; // adjust to your actual hook/path
 
 const Checkout = () => {
   const { t } = useTranslation("translation", { keyPrefix: "checkout" });
+  const { user } = useAuth(); // null/undefined => not signed in
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(false);
   const { cartItems, removeFromCart, updateQuantity, clearCart } =
     useCartContext();
   const navigate = useNavigate();
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
-  const [errors, setErrors] = useState({ terms: "", payment: "" });
+  const [errors, setErrors] = useState({ terms: "", payment: "", general: "" });
+  const [addressDialog, setAddressDialog] = useState(false);
+  const [selectedAddressId, setSelectedAddressId] = useState<number | null>(null);
 
   const totalPriceToPay = cartItems.reduce(
     (sum, item) =>
@@ -37,28 +42,71 @@ const Checkout = () => {
     0,
   );
 
+  const handleCheckoutClick = () => {
+    // Not signed in — send them to login, then back here.
+    if (!user) {
+      navigate("/login", { state: { from: "/checkout" } });
+      return;
+    }
+
+    if (!agreedToTerms || paymentMethod == null) {
+      setErrors((prev) => ({
+        ...prev,
+        terms: !agreedToTerms ? t("mustAgreeToTerms") : prev.terms,
+        payment: paymentMethod == null ? t("mustSelectPaymentMethod") : prev.payment,
+      }));
+      return;
+    }
+
+    // Everything else is set — now make sure we have a delivery address.
+    if (selectedAddressId == null) {
+      setAddressDialog(true);
+      return;
+    }
+
+    addOrder();
+  };
+
   const addOrder = async () => {
-    if (agreedToTerms && paymentMethod != null) {
+    if (!user || !agreedToTerms || paymentMethod == null || selectedAddressId == null) {
+      return; // guard: shouldn't happen if handleCheckoutClick gated correctly
+    }
+
+    try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/orders`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify({
+          address_id: selectedAddressId,
           items: cartItems.map((i) => ({
             variantId: i.variantId,
             quantity: i.quantity,
           })),
         }),
       });
+
       if (res.ok) {
         clearCart();
         navigate("/transaction-result", { state: { success: true } });
+      } else if (res.status === 401) {
+        navigate("/login", { state: { from: "/checkout" } });
+      } else {
+        setErrors((prev) => ({
+          ...prev,
+          general: t("orderFailed") || "Something went wrong placing your order.",
+        }));
       }
+    } catch {
+      setErrors((prev) => ({
+        ...prev,
+        general: t("orderFailed") || "Something went wrong placing your order.",
+      }));
     }
-    return;
   };
 
   return (
-    <div className="min-h-screen py-4 md:py-8">
+    <div className="min-h-screen py-4 md:py-8 relative">
       <h1 className="text-2xl font-bold text-gray-900 mb-4">
         {t("checkout")}{" "}
       </h1>
@@ -72,15 +120,12 @@ const Checkout = () => {
                 key={item.variantId}
                 className="flex items-center justify-between gap-4 py-4 first:pt-0 last:pb-0"
               >
-                {/* Image + name/qty/delete */}
                 <div className="flex gap-2 md:gap-8 flex-1 ">
                   <img
                     src={item.image}
                     alt="product"
                     className="w-[54px] h-[107px] object-cover"
                   />
-
-                  {/* name + controls — stacked on mobile, row on desktop */}
                   <div className="flex flex-col lg:flex-row items-start gap-[20px] md:gap-2 lg:gap-9 flex-1   ">
                     <p
                       className="text-sm font-helvetocaRegular text-blue-50 text-center  flex-wrap
@@ -100,7 +145,9 @@ const Checkout = () => {
                         }
                       >
                         {Array.from({ length: item.stock }, (_, i) => (
-                          <option value={i + 1}>{i + 1}</option>
+                          <option key={i + 1} value={i + 1}>
+                            {i + 1}
+                          </option>
                         ))}
                       </select>
 
@@ -118,7 +165,6 @@ const Checkout = () => {
                   </div>
                 </div>
 
-                {/* Pricing */}
                 <div className="flex flex-col items-end gap-1 min-w-[90px] ">
                   <div className="flex items-center gap-1 flex-col">
                     <div className="flex items-center gap-1 md:gap-2">
@@ -152,14 +198,16 @@ const Checkout = () => {
 
         {/* ── RIGHT: Summary + Payment/Delivery ── */}
         <div className="w-full md:w-72 flex flex-col gap-4">
-          {/* Delivery details — only shown before payment step */}
           {!selectedPaymentMethod && (
             <div className="flex bg-white rounded-2xl p-4 shadow-sm md:hidden flex-col gap-3">
               <div className="flex justify-between items-center">
                 <h2 className="text-[18px] font-medium text-[#2f4a9c]">
                   {t("deliveryDetails")}
                 </h2>
-                <button className="flex items-center gap-1 text-sm text-[#2E4790]">
+                <button
+                  className="flex items-center gap-1 text-sm text-[#2E4790]"
+                  onClick={() => setAddressDialog(true)}
+                >
                   {t("edit")}{" "}
                   <img src={editIcon} alt="edit" className="w-3 h-3" />
                 </button>
@@ -169,12 +217,10 @@ const Checkout = () => {
                   {t("deliveryAddressCheckout")}:
                 </span>
                 <span className="text-[#161F28]">
-                  Tbilisi, Rustaveli 1, 01212
+                  {selectedAddressId != null
+                    ? t("addressSelected") || "Address selected"
+                    : t("noAddressSelected") || "No address selected"}
                 </span>
-              </div>
-              <div className="flex justify-between text-sm text-gray-700">
-                <span className="checkoutLeftText">{t("mobile")}:</span>
-                <span className="text-[#161F28] text-[14px]">555 555 555</span>
               </div>
             </div>
           )}
@@ -196,12 +242,6 @@ const Checkout = () => {
                 {totalDiscount.toFixed(2)} ₾
               </span>
             </div>
-            {/* {!selectedPaymentMethod && (
-              <div className="md:hidden flex justify-between text-sm text-gray-700">
-                <span className="checkoutLeftText">Delivery</span>
-                <span className="text-[#161F28] text-[16px]">5.20 ₾</span>
-              </div>
-            )} */}
             <div className="flex justify-between items-center pt-1">
               <span className="checkoutLeftText text-sm text-gray-700 ">
                 {t("TotalPriceToPay")}
@@ -300,8 +340,14 @@ const Checkout = () => {
             <div className="flex flex-col gap-3 ">
               {errors.terms && (
                 <div className="flex items-center gap-1">
-                  <img src={warningIcon} alt="{t('warningIcon')}" />
+                  <img src={warningIcon} alt={t("warningIcon")} />
                   <p className="text-red-500 text-sm">{errors.terms}</p>
+                </div>
+              )}
+              {errors.general && (
+                <div className="flex items-center gap-1">
+                  <img src={warningIcon} alt={t("warningIcon")} />
+                  <p className="text-red-500 text-sm">{errors.general}</p>
                 </div>
               )}
               <label className="terms-toggle px-4 md:px-0 ">
@@ -320,8 +366,11 @@ const Checkout = () => {
                   {t("iAgreeToTermsAndConditions")}
                 </p>
               </label>
-              <button className="w-full py-3 rounded-2xl bg-[#FDE800] text-blue-50 font-helvetocaMedium text-[16px] cursor-pointer hover:opacity-90 transition-opacity " onClick={() => addOrder()}>
-                {t("checkout")}
+              <button
+                className="w-full py-3 rounded-2xl bg-[#FDE800] text-blue-50 font-helvetocaMedium text-[16px] cursor-pointer hover:opacity-90 transition-opacity "
+                onClick={handleCheckoutClick}
+              >
+                  {t("checkout")}
               </button>
             </div>
           ) : (
@@ -335,6 +384,15 @@ const Checkout = () => {
           )}
         </div>
       </div>
+
+      <DeliveryAdressDialog
+        open={addressDialog}
+        onClose={() => setAddressDialog(false)}
+        onAddressConfirmed={(id) => {
+          setSelectedAddressId(id);
+          setAddressDialog(false);
+        }}
+      />
     </div>
   );
 };

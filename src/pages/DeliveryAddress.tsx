@@ -8,7 +8,7 @@ interface Address {
   user_id: string;
   city: string;
   full_address: string;
-  zip_code: string;
+  zip: string;
 }
 
 const API = import.meta.env.VITE_API_URL;
@@ -19,22 +19,22 @@ const AddressForm = ({
   isLoading,
 }: {
   initial?: Address;
-  onSave: (city: string, fullAddress: string, zipCode: string) => void;
+  onSave: (city: string, fullAddress: string, zip: string) => void;
   isLoading: boolean;
 }) => {
   const { t } = useTranslation();
   const [city, setCity] = useState(initial?.city ?? "");
   const [fullAddress, setFullAddress] = useState(initial?.full_address ?? "");
-  const [zipCode, setZipCode] = useState(initial?.zip_code ?? "");
+  const [zip, setZip] = useState(initial?.zip ?? "");
   const [error, setError] = useState("");
 
   const handleSave = () => {
-    if (!fullAddress.trim() || !zipCode.trim()) {
+    if (!fullAddress.trim() || !zip.trim()) {
       setError(t("pleaseFillInAllRequiredFields"));
       return;
     }
     setError("");
-    onSave(city, fullAddress, zipCode);
+    onSave(city, fullAddress, zip);
   };
 
   return (
@@ -56,8 +56,8 @@ const AddressForm = ({
         },
         {
           label: t("zipCode"),
-          value: zipCode,
-          setter: setZipCode,
+          value: zip,
+          setter: setZip,
           required: true,
           placeholder: "Zip Code",
         },
@@ -103,49 +103,55 @@ export default function DeliveryAddress() {
     if (user?.id) fetchAddresses();
   }, [user?.id]);
 
- const fetchAddresses = async () => {
-  console.log("user object:", user);
-  console.log("fetching for user_id:", user?.id);
-  const res = await fetch(`${API}/api/addresses?user_id=${user?.id}`);
-  const data = await res.json();
-  console.log("addresses response:", data);
-  setAddresses(data);
-};
+  const fetchAddresses = async () => {
+    try {
+      const res = await fetch(`${API}/api/addresses`, {
+        credentials: "include", // sends the auth cookie — no user_id param needed anymore
+      });
+      if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+      const data = await res.json();
+      setAddresses(Array.isArray(data) ? data : []);
+    } catch (err) {
+      console.error("fetchAddresses failed:", err);
+    }
+  };
 
-  const handleSave = async (city: string, street: string, zip: string) => {
+  const handleSave = async (city: string, fullAddress: string, zip: string) => {
     setIsLoading(true);
     try {
       if (editingAddress) {
         const res = await fetch(`${API}/api/addresses/${editingAddress.id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
+          credentials: "include",
           body: JSON.stringify({
-            city:city,
-            street: street,
-            zip: zip,
+            city,
+            full_address: fullAddress,
+            zip,
           }),
         });
-        if (!res.ok) throw new Error();
+        if (!res.ok) throw new Error("Failed to update address");
         setSuccess(t("addressUpdatedSuccessfully"));
       } else {
         const res = await fetch(`${API}/api/addresses`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
+          credentials: "include", // no user_id in body — backend derives it from the auth cookie
           body: JSON.stringify({
-            user_id: user?.id,
-            city:city,
-            street: street,
-            zip: zip,
+            city,
+            full_address: fullAddress,
+            zip,
           }),
         });
-        if (!res.ok) throw new Error();
+        if (!res.ok) throw new Error("Failed to create address");
         setSuccess(t("addressAddedSuccessfully"));
       }
 
       await fetchAddresses();
       setEditingAddress(null);
       setTimeout(() => setSuccess(""), 3000);
-    } catch {
+    } catch (err) {
+      console.error("handleSave failed:", err);
       setSuccess("");
     } finally {
       setIsLoading(false);
@@ -153,8 +159,16 @@ export default function DeliveryAddress() {
   };
 
   const handleDelete = async (id: string) => {
-    await fetch(`${API}/api/addresses/${id}`, { method: "DELETE" });
-    setAddresses((prev) => prev.filter((a) => a.id !== id));
+    try {
+      const res = await fetch(`${API}/api/addresses/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+      if (!res.ok) throw new Error("Failed to delete address");
+      setAddresses((prev) => prev.filter((a) => a.id !== id));
+    } catch (err) {
+      console.error("handleDelete failed:", err);
+    }
   };
 
   const handleEdit = (address: Address) => {
@@ -169,8 +183,7 @@ export default function DeliveryAddress() {
           className="flex items-center justify-between bg-white rounded-2xl px-4 py-3 shadow-sm"
         >
           <span className="text-sm text-gray-700">
-            {[a.city, a.full_address, a.zip_code].filter(Boolean).join(", ")}{" "}
-            {/* ✅ fixed */}
+            {[a.city, a.full_address, a.zip].filter(Boolean).join(", ")}
           </span>
           <div className="flex gap-2">
             <button

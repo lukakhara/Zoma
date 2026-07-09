@@ -11,10 +11,12 @@ const Registration = () => {
   const [phone, setPhone] = useState("123");
   const [email, setEmail] = useState("luka@gmail.com");
   const [password, setPassword] = useState("123");
+  
   const [repeatPassword, setRepeatPassword] = useState("123");
   const [passwordError, setPasswordError] = useState(false);
   const { register } = useAuth();
   const navigate = useNavigate();
+  const role='user';
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -23,7 +25,7 @@ const Registration = () => {
       return;
     }
     setPasswordError(false);
-    await register(firstName, lastName, phone, email, password);
+    await register(firstName, lastName, phone, email, password,role);
     navigate("/sign-in");   
   }
 

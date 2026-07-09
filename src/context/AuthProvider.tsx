@@ -34,18 +34,11 @@ interface AuthContextType {
   ) => Promise<void>;
 }
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const API = import.meta.env.VITE_API_URL || "http://localhost:3000";
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>({
-    id: "1",
-    firstname: "Luka",
-    lastname: "Dev",
-    phone: "+995 55 55 55",
-    email: "luka@dev.com",
-    role: "admin",
-  });
+  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -53,67 +46,81 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const checkAuth = async () => {
-  try {
-    const token = localStorage.getItem('token');
-    if (token) {
+    try {
       const response = await fetch(`${API}/api/auth/me`, {
-        headers: { Authorization: `Bearer ${token}` }
+        credentials: "include",
       });
       if (response.ok) {
         const data = await response.json();
         setUser(data);
       } else {
-        localStorage.removeItem('token');
+        setUser(null);
       }
+    } catch {
+      setUser(null);
+    } finally {
+      setIsLoading(false);
     }
-  } catch {
-    localStorage.removeItem('token');
-  } finally {
-    setIsLoading(false);
-  }
-};
+  };
 
- const login = useCallback(async (email: string, password: string) => {
-  const response = await fetch(`${API}/api/auth/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password })
-  });
+  const login = useCallback(async (email: string, password: string) => {
+    const response = await fetch(`${API}/api/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ email, password }),
+    });
 
-  if (!response.ok) {
-    const err = await response.json();
-    throw new Error(err.error);
-  }
+    if (!response.ok) {
+      const err = await response.json();
+      throw new Error(err.error);
+    }
 
-  const { token, user } = await response.json();
-  localStorage.setItem('token', token);
-  setUser(user);
-}, []);
+    const { user } = await response.json(); // no token in the body anymore — it's in the cookie
+    setUser(user);
+  }, []);
 
-  const logout = useCallback(() => {
-    localStorage.removeItem("token");
+  const logout = useCallback(async () => {
+    await fetch(`${API}/api/auth/logout`, {
+      method: "POST",
+      credentials: "include",
+    });
     setUser(null);
   }, []);
 
-  const register = useCallback(async (
-  firstname: string, lastname: string, phone: string,
-  email: string, password: string,
-) => {
-  const response = await fetch(`${API}/api/auth/register`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ firstname, lastname, phone, email, password })
-  });
+  const register = useCallback(
+    async (
+      firstname: string,
+      lastname: string,
+      phone: string,
+      email: string,
+      password: string,
+      role: string,
+    ) => {
+      const response = await fetch(`${API}/api/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          firstname,
+          lastname,
+          phone,
+          email,
+          password,
+          role,
+        }),
+      });
 
-  if (!response.ok) {
-    const err = await response.json();
-    throw new Error(err.error);
-  }
+      if (!response.ok) {
+        const err = await response.json();
+        throw new Error(err.error);
+      }
 
-  const { token, user } = await response.json();
-  localStorage.setItem('token', token);
-  setUser(user);
-}, []);
+      const { user } = await response.json();
+      setUser(user);
+    },
+    [],
+  );
 
   const value = useMemo(
     () => ({

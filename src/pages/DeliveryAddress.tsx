@@ -37,10 +37,13 @@ const AddressForm = ({
     }
     setError("");
     onSave(city, fullAddress, zip);
+    setCity('');
+    setFullAddress('');
+    setZip('');
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 ">
       {[
         {
           label: t("city"),

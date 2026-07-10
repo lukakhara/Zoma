@@ -7,6 +7,7 @@ import {
   useCallback,
   useMemo,
 } from "react";
+import { invalidateCsrfToken } from "../lib/csrf";
 
 interface User {
   id: string;
@@ -77,6 +78,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
 
     const { user } = await response.json(); // no token in the body anymore — it's in the cookie
+    invalidateCsrfToken();
     setUser(user);
   }, []);
 
@@ -85,6 +87,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       method: "POST",
       credentials: "include",
     });
+    invalidateCsrfToken();
     setUser(null);
   }, []);
 
@@ -117,6 +120,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
 
       const { user } = await response.json();
+      invalidateCsrfToken();
       setUser(user);
     },
     [],

@@ -13,3 +13,7 @@ export async function getCsrfToken(): Promise<string> {
   csrfToken = data.csrfToken;
   return data.csrfToken; // return the locally-typed value, not the outer variable
 }
+
+export function invalidateCsrfToken() {
+  csrfToken = null;
+}

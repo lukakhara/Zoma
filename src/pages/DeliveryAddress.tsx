@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthProvider";
 import { useTranslation } from "react-i18next";
 import editIcon from "/public/assets/Vector.png";
 import { getCsrfToken } from "../lib/csrf";
+import { invalidateCsrfToken } from "../lib/csrf";
 
 interface Address {
   id: string;

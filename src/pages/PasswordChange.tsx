@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthProvider";
 import { useTranslation } from "react-i18next";
+import { getCsrfToken } from "../lib/csrf";
 
 export default function PasswordChange() {
   const { user } = useAuth();
   const { t } = useTranslation();
-
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -13,62 +13,79 @@ export default function PasswordChange() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
- const handleChange = async () => {
-  setError("");
-  setSuccess(false);
+  const handleChange = async () => {
+    setError("");
+    setSuccess(false);
 
-  if (!currentPassword || !newPassword || !confirmPassword) {
-    setError(t("pleaseFillInAllFields"));
-    return;
-  }
-  if (newPassword !== confirmPassword) {
-    setError(t("newPasswordsDontMatch"));
-    return;
-  }
-  if (newPassword.length < 6) {
-    setError(t("newPasswordMustBeAtLeast6Characters"));
-    return;
-  }
-
-  setIsLoading(true);
-  try {
-    const token = localStorage.getItem('token');
-
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${user?.id}/password`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify({ currentPassword, newPassword })
-    });
-
-    if (!response.ok) {
-      const data = await response.json();
-      setError(data.error || t("FailedToChangePasswordPleaseTryAgain"));
+    if (!user?.id) {
+      setError(t("mustBeLoggedIn"));
+      return;
+    }
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      setError(t("pleaseFillInAllFields"));
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      setError(t("newPasswordsDontMatch"));
+      return;
+    }
+    if (newPassword.length < 8) {
+      setError(t("newPasswordMustBeAtLeast8Characters"));
       return;
     }
 
-    setSuccess(true);
-    setCurrentPassword("");
-    setNewPassword("");
-    setConfirmPassword("");
-  } catch (err) {
-    setError(t("FailedToChangePasswordPleaseTryAgain"));
-  } finally {
-    setIsLoading(false);
-  }
-};
+    setIsLoading(true);
+    try {
+      const token = await getCsrfToken();
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/users/${user.id}/password`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "x-csrf-token": token,
+          },
+          credentials: "include",
+          body: JSON.stringify({ currentPassword, newPassword }),
+        },
+      );
+
+      const data = await response.json();
+      if (!response.ok) {
+        const detailMsg = data.details
+          ? Object.values(data.details).flat().join(" ")
+          : data.error;
+        setError(detailMsg || t("FailedToChangePasswordPleaseTryAgain"));
+        return;
+      }
+
+      setSuccess(true);
+      setCurrentPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
+    } catch (err) {
+      setError(t("FailedToChangePasswordPleaseTryAgain"));
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const fields = [
     {
       label: t("currentPassword"),
+      hint: t("enterYourCurrentPassword"),
       value: currentPassword,
       setter: setCurrentPassword,
     },
-    { label: t("newPassword"), value: newPassword, setter: setNewPassword },
+    {
+      label: t("newPassword"),
+      hint: t("atLeast8Characters"),
+      value: newPassword,
+      setter: setNewPassword,
+    },
     {
       label: t("confirmNewPassword"),
+      hint: t("mustMatchNewPasswordAbove"),
       value: confirmPassword,
       setter: setConfirmPassword,
     },
@@ -84,9 +101,8 @@ export default function PasswordChange() {
           <p className="text-sm text-gray-400 mb-4">
             {t("PleaseFillInTheInformationToChangePassword")}
           </p>
-
           <div className="flex flex-col gap-4">
-            {fields.map(({ label, value, setter }) => (
+            {fields.map(({ label, hint, value, setter }) => (
               <div key={label} className="flex flex-col gap-1">
                 <span className="text-sm text-[#797979]">{label}*</span>
                 <input
@@ -100,9 +116,9 @@ export default function PasswordChange() {
                   }}
                   className="w-full px-4 py-3 rounded-2xl bg-white shadow-sm text-sm placeholder-gray-400 outline-none"
                 />
+                <span className="text-xs text-[#a0a0a0]">{hint}</span>
               </div>
             ))}
-
             {error && (
               <p className="text-red-500 text-sm text-center">{error}</p>
             )}
@@ -111,7 +127,6 @@ export default function PasswordChange() {
                 {t("PasswordChangedSuccessfully")}
               </p>
             )}
-
             <button
               onClick={handleChange}
               disabled={isLoading}

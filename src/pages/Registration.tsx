@@ -2,21 +2,24 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
 import { useTranslation } from "react-i18next";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
+import { Checkbox, FormControlLabel } from "@mui/material";
 
 const Registration = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const [firstName, setFirstName] = useState("luka");
   const [lastName, setLastName] = useState("xara");
   const [phone, setPhone] = useState("123");
   const [email, setEmail] = useState("luka@gmail.com");
   const [password, setPassword] = useState("123");
-  
+
   const [repeatPassword, setRepeatPassword] = useState("123");
   const [passwordError, setPasswordError] = useState(false);
   const { register } = useAuth();
   const navigate = useNavigate();
-  const role='user';
+  const role = "user";
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -25,14 +28,16 @@ const Registration = () => {
       return;
     }
     setPasswordError(false);
-    await register(firstName, lastName, phone, email, password,role);
-    navigate("/sign-in");   
+    await register(firstName, lastName, phone, email, password, role);
+    navigate("/sign-in");
   }
 
   return (
     <>
       <div className="mt-14 mb-37  flex-1 shrink-0  justify-center flex flex-col gap-4">
-        <h1 className="text-[26px] text-[#1A1A1A] w-full">{t('registration')}</h1>
+        <h1 className="text-[26px] text-[#1A1A1A] w-full">
+          {t("registration")}
+        </h1>
         <form
           onSubmit={handleSubmit}
           className="grid xl:gap-14 gap-4   grid-cols-1 gap-9.75 xl:gap-x-5 xl:gap-y-4  md:grid-cols-2 lg:grid-cols-3 align-items-center
@@ -40,7 +45,7 @@ const Registration = () => {
         >
           <div className="">
             <label htmlFor="firstName" className="text-[#797979] text-sm">
-              {t('firstName')}*
+              {t("firstName")}*
             </label>
             <input
               id="firstName"
@@ -55,7 +60,7 @@ const Registration = () => {
 
           <div className="">
             <label htmlFor="lastName" className="text-[#797979] text-sm">
-              {t('lastName')}*
+              {t("lastName")}*
             </label>
             <input
               id="lastName"
@@ -70,7 +75,7 @@ const Registration = () => {
 
           <div>
             <label htmlFor="phone" className="text-[#797979] text-sm">
-              {t('phone')}*
+              {t("phone")}*
             </label>
             <input
               id="phone"
@@ -85,7 +90,7 @@ const Registration = () => {
 
           <div>
             <label htmlFor="email" className="text-[#797979] text-sm">
-            {t('email')}*
+              {t("email")}*
             </label>
             <input
               id="email"
@@ -101,9 +106,13 @@ const Registration = () => {
           <div>
             <div className="flex  justify-between items-center">
               <label htmlFor="password" className="text-[#797979] text-sm">
-               {t('password')}*
+                {t("password")}*
               </label>
-             {passwordError ? <p className="text-red-500 ">{t('passwordsArntSame')}  </p> : ''} 
+              {passwordError ? (
+                <p className="text-red-500 ">{t("passwordsArntSame")} </p>
+              ) : (
+                ""
+              )}
             </div>
 
             <input
@@ -123,9 +132,13 @@ const Registration = () => {
                 htmlFor="repeatPassword"
                 className="text-[#797979] text-sm"
               >
-              {t('repeatPassword')}*
+                {t("repeatPassword")}*
               </label>
-              {passwordError ?<p className="text-red-500"> {t('passwordsArntSame')} </p> : ''}
+              {passwordError ? (
+                <p className="text-red-500"> {t("passwordsArntSame")} </p>
+              ) : (
+                ""
+              )}
             </div>
 
             <input
@@ -141,20 +154,30 @@ const Registration = () => {
 
           <div className=" gap-5  grid place-items-center xl:col-start-2 xl:col-end-3 ">
             <label className="terms-toggle">
-              <input type="checkbox" id="terms" required/>
+              {/* <input type="checkbox" id="terms" required />
               <span className="radio-visual"></span>
-              <p>{t('PleaseAgreeToTermsAndConditions')}</p>
+              <p></p> */}
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    icon={<RadioButtonUncheckedIcon />}
+                    checkedIcon={<RadioButtonCheckedIcon />}
+                    size="small"
+                  />
+                }
+                label={t("PleaseAgreeToTermsAndConditions")}
+              />
             </label>
             <button
               type="submit"
               className="bg-blue-500 text-white p-4 rounded-[10px] mt-4 hover:bg-blue-600 w-full cursor-pointer "
             >
-             {t('register')}
+              {t("register")}
             </button>
             <p>
-             {t('alreadyRegistered')}? 
+              {t("alreadyRegistered")}?
               <Link to="/sign-in" className="text-blue-500 hover:text-blue-700">
-                {t('logIn')}
+                {t("logIn")}
               </Link>
             </p>
           </div>

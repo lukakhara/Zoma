@@ -9,10 +9,12 @@ import warningIcon from "/assets/warning.png";
 import { useCartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import { useCartProducts } from "../context/UseCartProducts";
-import { placeOrder } from "../services/orderService";
+// import { placeOrder } from "../services/orderService";
 import { useTranslation } from "react-i18next";
 import DeliveryAdressDialog from "./DeliveryAdressDialog";
 import { useAuth } from "../context/AuthProvider"; // adjust to your actual hook/path
+import FormControl from "@mui/material/FormControl";
+import { FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 
 const Checkout = () => {
   const { t } = useTranslation("translation", { keyPrefix: "checkout" });
@@ -25,7 +27,9 @@ const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
   const [errors, setErrors] = useState({ terms: "", payment: "", general: "" });
   const [addressDialog, setAddressDialog] = useState(false);
-  const [selectedAddressId, setSelectedAddressId] = useState<number | null>(null);
+  const [selectedAddressId, setSelectedAddressId] = useState<number | null>(
+    null,
+  );
 
   const totalPriceToPay = cartItems.reduce(
     (sum, item) =>
@@ -45,7 +49,7 @@ const Checkout = () => {
   const handleCheckoutClick = () => {
     // Not signed in — send them to login, then back here.
     if (!user) {
-      navigate("/login", { state: { from: "/checkout" } });
+      navigate("/sign-in", { state: { from: "/checkout" } });
       return;
     }
 
@@ -53,7 +57,8 @@ const Checkout = () => {
       setErrors((prev) => ({
         ...prev,
         terms: !agreedToTerms ? t("mustAgreeToTerms") : prev.terms,
-        payment: paymentMethod == null ? t("mustSelectPaymentMethod") : prev.payment,
+        payment:
+          paymentMethod == null ? t("mustSelectPaymentMethod") : prev.payment,
       }));
       return;
     }
@@ -68,7 +73,12 @@ const Checkout = () => {
   };
 
   const addOrder = async () => {
-    if (!user || !agreedToTerms || paymentMethod == null || selectedAddressId == null) {
+    if (
+      !user ||
+      !agreedToTerms ||
+      paymentMethod == null ||
+      selectedAddressId == null
+    ) {
       return; // guard: shouldn't happen if handleCheckoutClick gated correctly
     }
 
@@ -94,7 +104,8 @@ const Checkout = () => {
       } else {
         setErrors((prev) => ({
           ...prev,
-          general: t("orderFailed") || "Something went wrong placing your order.",
+          general:
+            t("orderFailed") || "Something went wrong placing your order.",
         }));
       }
     } catch {
@@ -226,7 +237,7 @@ const Checkout = () => {
           )}
 
           {/* Summary */}
-          <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-2">
+          <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-2 ">
             <h2 className="text-lg font-bold text-[#2f4a9c]">
               {t("summary")}:
             </h2>
@@ -258,80 +269,96 @@ const Checkout = () => {
               <h2 className="text-lg font-bold text-[#2f4a9c]">
                 {t("PaymentMethod")}:
               </h2>
-              <p className="text-sm text-gray-500">
-                {t("choosePaymentMethod")}{" "}
-              </p>
-              {[
-                {
-                  value: "tbc",
-                  label: t("TbcBank"),
-                  img: tbc,
-                  imgClass: "size-8.5 rounded-[7px]",
-                },
-                {
-                  value: "bog",
-                  label: t("bankOfGeorgia"),
-                  img: bog,
-                  imgClass: "",
-                },
-              ].map(({ value, label, img, imgClass }) => (
-                <label
-                  key={value}
-                  className="flex items-center gap-3 cursor-pointer"
+              <FormControl error={!!errors.payment} >
+                <FormLabel id={`label`} className="mb-3">{t("choosePaymentMethod")} </FormLabel>
+                <RadioGroup
+                  aria-labelledby={`-label`}
+                  className="flex flex-col gap-2"
+                  name="payment_method"
+                  value={paymentMethod}
+                  onChange={(e) => {
+                    setPaymentMethod(e.target.value);
+                    setErrors((prev) => ({ ...prev, payment: "" }));
+                  }}
                 >
-                  <input
-                    type="radio"
-                    name="payment_method"
-                    className="accent-[#2f4a9c] size-3"
-                    value={value}
-                    onChange={(e) => {
-                      setPaymentMethod(e.target.value);
-                      setErrors((prev) => ({ ...prev, payment: "" }));
-                    }}
+                  {[
+                    {
+                      value: "tbc",
+                      label: t("TbcBank"),
+                      img: tbc,
+                      imgClass: "size-8.5 rounded-[7px]",
+                    },
+                    {
+                      value: "bog",
+                      label: t("bankOfGeorgia"),
+                      img: bog,
+                      imgClass: "",
+                    },
+                  ].map(({ value, label, img, imgClass }) => (
+                    <FormControlLabel
+                      key={value}
+                      value={value}
+                      control={
+                        <Radio
+                          sx={{
+                            "& .MuiSvgIcon-root": {
+                              fontSize: 12,
+                            },
+                          }}
+                        />
+                      }
+                      label={
+                        <span className="flex items-center gap-3">
+                          <img className={imgClass} src={img} alt={label} />
+                          <span className="text-[16px] text-[#797979]">
+                            {label}
+                          </span>
+                        </span>
+                      }
+                    />
+                  ))}
+
+                  <FormControlLabel
+                    value="apple_pay"
+                    control={
+                      <Radio
+                        sx={{
+                          "& .MuiSvgIcon-root": {
+                            fontSize: 12,
+                          },
+                        }}
+                      />
+                    }
+                    label={
+                      <div className="w-[62px] h-[34px] border border-gray-300 rounded-md flex items-center justify-center">
+                        <img src={applePay} alt={t("applePay")} />
+                      </div>
+                    }
                   />
-                  <img className={imgClass} src={img} alt={label} />
-                  <span className="text-[16px] text-[#797979]">{label}</span>
-                </label>
-              ))}
 
-              <label className="flex items-center gap-3 cursor-pointer">
-                <input
-                  type="radio"
-                  name="payment_method"
-                  className="accent-[#2f4a9c] size-3"
-                  value="apple_pay"
-                  onChange={(e) => {
-                    setPaymentMethod(e.target.value);
-                    setErrors((prev) => ({ ...prev, payment: "" }));
-                  }}
-                />
-                <div className="w-[62px] h-[34px] border border-gray-300 rounded-md flex items-center justify-center">
-                  <img src={applePay} alt={t("applePay")} />
-                </div>
-              </label>
+                  <FormControlLabel
+                    value="google_pay"
+                    control={
+                      <Radio
+                        sx={{
+                          "& .MuiSvgIcon-root": {
+                            fontSize: 12,
+                          },
+                        }}
+                      />
+                    }
+                    label={
+                      <div className="w-[62px] h-[34px] border border-gray-300 rounded-md flex items-center justify-center px-[6px] py-[7px]">
+                        <img src={googlePay} alt={t("googlePay")} />
+                      </div>
+                    }
+                  />
+                </RadioGroup>
 
-              <label className="flex items-center gap-3 cursor-pointer">
-                <input
-                  type="radio"
-                  name="payment_method"
-                  className="accent-[#2f4a9c] size-3"
-                  value="google_pay"
-                  onChange={(e) => {
-                    setPaymentMethod(e.target.value);
-                    setErrors((prev) => ({ ...prev, payment: "" }));
-                  }}
-                />
-                <div className="w-[62px] h-[34px] border border-gray-300 rounded-md flex items-center justify-center px-[6px] py-[7px]">
-                  <img src={googlePay} alt={t("googlePay")} />
-                </div>
-              </label>
-
-              {errors.payment && (
-                <div className="flex items-center gap-1">
-                  <img src={warningIcon} alt={t("warningIcon")} />
-                  <p className="text-red-500 text-sm">{errors.payment}</p>
-                </div>
-              )}
+                {errors.payment && (
+                  <p className="text-sm text-red-500">{errors.payment}</p>
+                )}
+              </FormControl>
             </div>
           )}
 
@@ -370,7 +397,7 @@ const Checkout = () => {
                 className="w-full py-3 rounded-2xl bg-[#FDE800] text-blue-50 font-helvetocaMedium text-[16px] cursor-pointer hover:opacity-90 transition-opacity "
                 onClick={handleCheckoutClick}
               >
-                  {t("checkout")}
+                {t("checkout")}
               </button>
             </div>
           ) : (

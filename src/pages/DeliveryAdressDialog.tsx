@@ -132,7 +132,7 @@ const DeliveryAdressDialog = ({ open, onClose, onAddressConfirmed }: Props) => {
                 addresses.map((address) => (
                   <FormControlLabel
                     key={address.id}
-                    value={address.city}
+                    value={address.id}
                     control={<Radio />}
                     label={`${address.city} - ${address.full_address}`}
                   />

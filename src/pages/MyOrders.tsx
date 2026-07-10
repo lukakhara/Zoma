@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getOrders, type Order } from "../services/orderService";
 
@@ -16,8 +17,21 @@ const statusColor: Record<Order["status"], string> = {
 };
 
 export default function MyOrders() {
-  const { t } = useTranslation('translation', { keyPrefix: 'myOrders' });
-  const orders = getOrders();
+  const { t } = useTranslation("translation", { keyPrefix: "myOrders" });
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+  console.log(orders);
+
+  useEffect(() => {
+    getOrders()
+      .then(setOrders)
+      .catch((err) => {
+        console.error("getOrders failed:", err);
+        setError(t("failedToLoadOrders") || "Could not load your orders.");
+      })
+      .finally(() => setIsLoading(false));
+  }, []);
 
   const statusLabel: Record<Order["status"], string> = {
     pending: t("pending"),
@@ -25,17 +39,33 @@ export default function MyOrders() {
     delivered: t("delivered"),
   };
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen py-4 md:py-8 flex items-center justify-center">
+        <p className="text-gray-500">{t("loading") || "Loading..."}</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen py-4 md:py-8 flex items-center justify-center">
+        <p className="text-red-500">{error}</p>
+      </div>
+    );
+  }
+
   if (orders.length === 0) {
     return (
       <div className="min-h-screen py-4 md:py-8 flex items-center justify-center">
-        <p className="text-gray-500">{t('youHaveNoOrdersYet')} </p>
+        <p className="text-gray-500">{t("youHaveNoOrdersYet")} </p>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen py-4 md:py-8 flex flex-col gap-6 w-full  ">
-      <h1 className="block md:hidden sectionHeader">{t('myOrders')}</h1>
+      <h1 className="block md:hidden sectionHeader">{t("myOrders")}</h1>
       {orders.map((order) => (
         <div
           key={order.id}
@@ -62,17 +92,17 @@ export default function MyOrders() {
 
             <div className="grid grid-cols-5 md:border-b border-[#C3C3C3]">
               <div className="px-6 py-4 text-sm text-gray-700 text-center border-r border-[#EEEEEE]">
-                #{order.id.slice(0, 8).toUpperCase()}
+                #{String(order.id).padStart(8, "0").toUpperCase()}
               </div>
               <div className="px-6 py-4 text-sm text-gray-700 text-center border-r border-[#EEEEEE]">
-                {formatDate(order.date)}
+                {formatDate(order.created_at)}
               </div>
               <div className="px-6 py-4 text-sm text-gray-700 text-center border-r border-[#EEEEEE]">
                 {order.items.length}{" "}
                 {order.items.length !== 1 ? t("product") : t("productsHeader")}
               </div>
               <div className="px-6 py-4 text-sm text-gray-700 text-center border-r border-[#EEEEEE]">
-                {order.total.toFixed(2)} ₾
+                {order.total.toFixed(2)}₾
               </div>
               <div className="px-6 py-4 text-center">
                 <span
@@ -134,19 +164,17 @@ export default function MyOrders() {
           </div>
 
           {/* ── MOBILE ── */}
-
           <div className="md:hidden ">
             {[
               {
                 label: t("orderNumber"),
-                value: `#${order.id.slice(0, 8).toUpperCase()}`,
+                value: `#${String(order.id).padStart(8, "0").toUpperCase()}`,
               },
-              { label: t("date"), value: formatDate(order.date) },
+              { label: t("date"), value: formatDate(order.created_at) },
               {
                 label: t("quantity"),
                 value: `${order.items.length} ${order.items.length !== 1 ? t("productsHeader") : t("product")}`,
               },
-
               { label: t("total"), value: `${order.total.toFixed(2)} ₾` },
             ].map((row) => (
               <div

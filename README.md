@@ -142,4 +142,4 @@ This project is licensed under the MIT License.
 
 ## Author
 
-Built by Luka — [GitHub profile link]
+Built by Luka — (https://github.com/lukakhara/Zoma)

@@ -15,6 +15,7 @@ import DeliveryAdressDialog from "./DeliveryAdressDialog";
 import { useAuth } from "../context/AuthProvider"; // adjust to your actual hook/path
 import FormControl from "@mui/material/FormControl";
 import { FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
+import { getCsrfToken } from "../lib/csrf";
 
 const Checkout = () => {
   const { t } = useTranslation("translation", { keyPrefix: "checkout" });
@@ -81,11 +82,12 @@ const Checkout = () => {
     ) {
       return; // guard: shouldn't happen if handleCheckoutClick gated correctly
     }
+    const token = await getCsrfToken();
 
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/orders`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "x-csrf-token": token },
         credentials: "include",
         body: JSON.stringify({
           address_id: selectedAddressId,
@@ -269,8 +271,10 @@ const Checkout = () => {
               <h2 className="text-lg font-bold text-[#2f4a9c]">
                 {t("PaymentMethod")}:
               </h2>
-              <FormControl error={!!errors.payment} >
-                <FormLabel id={`label`} className="mb-3">{t("choosePaymentMethod")} </FormLabel>
+              <FormControl error={!!errors.payment}>
+                <FormLabel id={`label`} className="mb-3">
+                  {t("choosePaymentMethod")}{" "}
+                </FormLabel>
                 <RadioGroup
                   aria-labelledby={`-label`}
                   className="flex flex-col gap-2"

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthProvider";
 import { useTranslation } from "react-i18next";
-import editIcon from '/public/assets/Vector.png'
+import editIcon from "/public/assets/Vector.png";
+import { getCsrfToken } from "../lib/csrf";
 
 interface Address {
   id: string;
@@ -104,9 +105,11 @@ export default function DeliveryAddress() {
   }, [user?.id]);
 
   const fetchAddresses = async () => {
+    const token = await getCsrfToken();
     try {
       const res = await fetch(`${API}/api/addresses`, {
         credentials: "include", // sends the auth cookie — no user_id param needed anymore
+        headers: { "x-csrf-token": token },
       });
       if (!res.ok) throw new Error(`Request failed: ${res.status}`);
       const data = await res.json();
@@ -118,11 +121,15 @@ export default function DeliveryAddress() {
 
   const handleSave = async (city: string, fullAddress: string, zip: string) => {
     setIsLoading(true);
+    const token = await getCsrfToken();
     try {
       if (editingAddress) {
         const res = await fetch(`${API}/api/addresses/${editingAddress.id}`, {
           method: "PATCH",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            "x-csrf-token": token,
+          },
           credentials: "include",
           body: JSON.stringify({
             city,
@@ -135,7 +142,10 @@ export default function DeliveryAddress() {
       } else {
         const res = await fetch(`${API}/api/addresses`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            "x-csrf-token": token,
+          },
           credentials: "include", // no user_id in body — backend derives it from the auth cookie
           body: JSON.stringify({
             city,
@@ -159,10 +169,14 @@ export default function DeliveryAddress() {
   };
 
   const handleDelete = async (id: string) => {
+    const token = await getCsrfToken();
     try {
       const res = await fetch(`${API}/api/addresses/${id}`, {
         method: "DELETE",
         credentials: "include",
+        headers: {
+          "x-csrf-token": token,
+        },
       });
       if (!res.ok) throw new Error("Failed to delete address");
       setAddresses((prev) => prev.filter((a) => a.id !== id));

@@ -21,7 +21,6 @@ export default function MyOrders() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
-  console.log(orders);
 
   useEffect(() => {
     getOrders()

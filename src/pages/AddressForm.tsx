@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../context/AuthProvider";
+import { getCsrfToken } from "../lib/csrf";
 
 function AddressForm({ title }: { title: string }) {
   const { t } = useTranslation();
@@ -15,10 +16,12 @@ function AddressForm({ title }: { title: string }) {
   const handleSave = async () => {
     setIsLoading(true);
     setError('');
+    const token = await getCsrfToken();
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/addresses`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', "x-csrf-token": token,},
+         credentials: "include",
         body: JSON.stringify({
           user_id: user?.id,
           city,

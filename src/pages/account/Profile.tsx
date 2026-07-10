@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import ProfileSideNavbar from "./ProfileSideNavbar";
-import { useAuth } from "../context/AuthProvider";
+import ProfileSideNavbar from "../account/ProfileSideNavbar";
+import { useAuth } from "../../context/AuthProvider";
 import { Suspense } from "react";
 
 function Profile() {

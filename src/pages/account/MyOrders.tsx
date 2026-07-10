@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getOrders, type Order } from "../services/orderService";
+import { getOrders, type Order } from "../../services/orderService";
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-GB", {

@@ -1,13 +1,15 @@
+// ProfileSideNavbar.tsx
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthProvider";
+import { useAuth } from "../../context/AuthProvider";
 import { useTranslation } from "react-i18next";
 
 const ProfileSideNavbar = () => {
-  const { t } = useTranslation('translation', { keyPrefix: 'profileSideNavbar' });
+  const { t } = useTranslation("translation", { keyPrefix: "profileSideNavbar" });
   const { logout } = useAuth();
   const navigate = useNavigate();
+
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `pl-4 py-3 text-sm cursor-pointer hover:bg-[#e6e6e6] ${
+    `pl-4 py-3 text-sm cursor-pointer hover:bg-[#e6e6e6] leading-tight ${
       isActive ? "font-bold text-gray-900" : "text-gray-600"
     }`;
 
@@ -17,9 +19,12 @@ const ProfileSideNavbar = () => {
   };
 
   return (
-    <div className="md:flex gap-6 justify-center hidden  ">
-      <aside className="md:w-96.25 w-97.5 shrink-0 flex flex-col gap-3 ">
-        <div className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm ">
+    <div className="md:flex gap-6 justify-center hidden">
+      <aside
+        className="flex flex-col gap-3 transition-[width] duration-200"
+        style={{ width: "clamp(160px, 22vw, 385px)" }}
+      >
+        <div className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm">
           <NavLink className={linkClass} to="/user/profile">
             {t("profile")}
           </NavLink>

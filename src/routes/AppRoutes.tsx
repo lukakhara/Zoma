@@ -4,11 +4,11 @@ const ProductPage = lazy(() => import("../pages/ProductPage"));
 const Home = lazy(() => import("../pages/Home"));
 const Checkout = lazy(() => import("../pages/Checkout"));
 const SignIn = lazy(() => import("../pages/SignIn"));
-const UserProfile = lazy(() => import("../pages/UserProfile"));
-const Profile = lazy(() => import("../pages/Profile")); // already done
-const MyOrders = lazy(() => import("../pages/MyOrders"));
-const DeliveryAddress = lazy(() => import("../pages/DeliveryAddress"));
-const PasswordChange = lazy(() => import("../pages/PasswordChange"));
+const UserProfile = lazy(() => import("../pages/account/UserProfile"));
+const Profile = lazy(() => import("../pages/account/Profile")); // already done
+const MyOrders = lazy(() => import("../pages/account/MyOrders"));
+const DeliveryAddress = lazy(() => import("../pages/account/DeliveryAddress"));
+const PasswordChange = lazy(() => import("../pages/account/PasswordChange"));
 const Registration = lazy(() => import("../pages/Registration"));
 const Contact = lazy(() => import("../pages/Contact"));
 const News = lazy(() => import("../pages/News"));
@@ -37,10 +37,9 @@ const AppRoutes = () => {
           <Route path="registration" element={<Registration />} />
           <Route path="password-recovery" element={<PasswordRecovery />} />
           {/* Protected routes routes that are avalibe when user is logged in */}
-
           <Route element={<ProtectedRoute />}>
             <Route path="transaction-result" element={<TransactionResult />} />
-            
+
             <Route path="user" element={<Profile />}>
               <Route index element={<Navigate to="profile" replace />} />
               <Route path="profile" element={<UserProfile />} />{" "}
@@ -49,7 +48,6 @@ const AppRoutes = () => {
               <Route path="password-change" element={<PasswordChange />} />
             </Route>
           </Route>
-
           // Admin-only routes
           <Route element={<ProtectedRoute requiredRole="admin" />}>
             {/* <Route path="/admin" element={<AdminDashboard />} />` */}

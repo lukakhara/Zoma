@@ -7,6 +7,10 @@
     "textiles": "textiles"
   },
 
+  "enterYourCurrentPassword": "Enter Your Current Password",
+  "atLeast8Characters": "At Least 8 Characters",
+  "mustMatchNewPasswordAbove": "Must Match New Password Above",
+
   "desciption":"description",
   "productsHeader": "Products",
   "news": "News",

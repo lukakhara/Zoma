@@ -7,6 +7,10 @@
     "textiles": "ტილოები"
   },
 
+ "enterYourCurrentPassword": "შეიყვანეთ თქვენი მიმდინარე პაროლი",
+  "atLeast8Characters": "მინიმუმ 8 სიმბოლო",
+  "mustMatchNewPasswordAbove": "უნდა ემთხვეოდეს ზემოთ მოცემულ ახალ პაროლს",
+
   "desciption":"აღწერა",
   "productsHeader": "პროდუქტები",
   "news": "ახალი ამბები",

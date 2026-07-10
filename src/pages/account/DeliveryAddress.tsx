@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { useAuth } from "../context/AuthProvider";
+import { useAuth } from "../../context/AuthProvider";
 import { useTranslation } from "react-i18next";
 import editIcon from "/public/assets/Vector.png";
-import { getCsrfToken } from "../lib/csrf";
-import { invalidateCsrfToken } from "../lib/csrf";
+import { getCsrfToken } from "../../lib/csrf";
+// import { invalidateCsrfToken } from "../../lib/csrf";
 
 interface Address {
   id: string;
@@ -37,9 +37,9 @@ const AddressForm = ({
     }
     setError("");
     onSave(city, fullAddress, zip);
-    setCity('');
-    setFullAddress('');
-    setZip('');
+    setCity("");
+    setFullAddress("");
+    setZip("");
   };
 
   return (
@@ -194,7 +194,7 @@ export default function DeliveryAddress() {
   };
 
   const AddressList = () => (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 pt-4 md:pt-0">
       {addresses.map((a) => (
         <div
           key={a.id}
@@ -223,7 +223,7 @@ export default function DeliveryAddress() {
   );
 
   return (
-    <div className="min-h-screen py-6 md:py-14 w-full">
+    <div className="min-h-screen   w-full">
       {/* Mobile */}
       <div className="md:hidden flex flex-col">
         <h1 className="text-2xl font-bold text-gray-900 mb-5">

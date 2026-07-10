@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useAuth } from "../context/AuthProvider";
+import { useAuth } from "../../context/AuthProvider";
 import { useTranslation } from "react-i18next";
-import { getCsrfToken } from "../lib/csrf";
+import { getCsrfToken } from "../../lib/csrf";
 
 const UserProfile = () => {
   const { user, setUser } = useAuth();
@@ -52,7 +52,12 @@ const UserProfile = () => {
 
     setIsLoading(true);
     try {
-      const body: Record<string, string> = { firstname, lastname, phone, email };
+      const body: Record<string, string> = {
+        firstname,
+        lastname,
+        phone,
+        email,
+      };
       if (password) body.password = password;
 
       const token = await getCsrfToken();
@@ -80,7 +85,11 @@ const UserProfile = () => {
       setPassword("");
       setRepeatPassword("");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to save changes. Please try again.");
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Failed to save changes. Please try again.",
+      );
     } finally {
       setIsLoading(false);
     }

@@ -11,6 +11,13 @@
   "atLeast8Characters": "At Least 8 Characters",
   "mustMatchNewPasswordAbove": "Must Match New Password Above",
 
+  "required": "Required",
+  "atLeast5Characters": "At least 5 characters",
+  "mustBeAValidEmailAddressE_GNameExampleCom": "Must be a valid email address, e.g. name@example.com",
+  "LeaveBlankToKeepYourCurrentPasswordAtLeast8CharactersIfChangingIt": "Leave blank to keep your current password. At least 8 characters if changing it",
+  "MustMatchThePasswordAbove": "Must match the password above",
+
+
   "desciption":"description",
   "productsHeader": "Products",
   "news": "News",

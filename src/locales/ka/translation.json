@@ -16,6 +16,12 @@
   "news": "ახალი ამბები",
   "contact": "კონტაქტი",
 
+  "required": "სავალდებულო",
+  "atLeast5Characters": "მინიმუმ 5 სიმბოლო",
+  "mustBeAValidEmailAddressE_GNameExampleCom": "უნდა იყოს სწორი ელ. ფოსტის მისამართი, მაგ. name@example.com",
+  "LeaveBlankToKeepYourCurrentPasswordAtLeast8CharactersIfChangingIt": "დატოვეთ ცარიელი, თუ გნებავთ, შეინახოთ თქვენი მიმდინარე პაროლი. 8-ზე მეტი სიმბოლო, თუ ცვლით.",
+  "MustMatchThePasswordAbove": "უნდა ემთხვეოდეს ზემოთ მოცემულ პაროლს",
+
   "footer": {
     "home": "მთავარი",
     "profile": "პროფილი",

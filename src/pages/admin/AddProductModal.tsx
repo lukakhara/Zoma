@@ -4,7 +4,7 @@ import { getCsrfToken } from "../../lib/csrf";
 
 interface Category {
   id: number;
-  translations: { lang: string; name: string }[];
+  name: { en?: string; ka?: string };
 }
 
 interface NewProductPayload {
@@ -195,7 +195,7 @@ export default function AddProductModal({
                     <option value="">— none —</option>
                     {categories.map((c) => (
                       <option key={c.id} value={c.id}>
-                        {c.translations.find((t) => t.lang === "en")?.name ?? `#${c.id}`}
+                    {c.name.en ?? `#${c.id}`}
                       </option>
                     ))}
                   </select>

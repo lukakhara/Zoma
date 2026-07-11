@@ -1,19 +1,7 @@
-// pages/admin/AdminProducts.tsx
-//
-// Admin product management page.
-// Shows a paginated table (5 products per page, fetched from the backend —
-// never the full catalog) with search/filter, inline quick-edit, delete,
-// and an "add product" modal.
-
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import AddProductModal from "./AddProductModal";
 import { getCsrfToken } from "../../lib/csrf";
-
-// ── Types aligned to your DB schema ──────────────────────────────────────────
-// These mirror the shape returned by the backend for a single product,
-// including its translations (EN/KA), variants (price/stock/etc per SKU),
-// category, and images.
 
 interface ProductTranslation {
   lang: "en" | "ka";
@@ -32,7 +20,7 @@ interface ProductVariant {
 
 interface Category {
   id: number;
-  translations: { lang: string; name: string }[];
+  name: { en?: string; ka?: string };
 }
 
 interface Product {
@@ -45,10 +33,6 @@ interface Product {
   images?: { url: string; is_primary: boolean }[];
 }
 
-// Shape of the paginated response from GET /api/admin/products.
-// `stats` are aggregate counts across the WHOLE catalog (not just this page),
-// computed server-side with SQL COUNT() — this is what keeps the stat cards
-// accurate even though we only ever fetch 5 rows of actual product data.
 interface ProductsPage {
   products: Product[];
   totalCount: number; // total products matching current filters (for pagination controls)
@@ -62,18 +46,11 @@ interface ProductsPage {
 
 const PAGE_SIZE = 5;
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
-// Small pure functions for pulling display values out of the nested
-// translations/variants/category structures.
-
 const getTranslation = (
   translations: ProductTranslation[],
   lang: "en" | "ka",
 ) => translations.find((t) => t.lang === lang)?.name ?? "—";
 
-// A product can have multiple variants (e.g. different bottle sizes) — the
-// table's quick-edit only edits the first one, since a full multi-variant
-// editor lives on the "Full edit" page instead.
 const getBaseVariant = (variants: ProductVariant[]) => variants[0] ?? null;
 
 const getFinalPrice = (price: number, discount: number) =>
@@ -83,7 +60,7 @@ const getTotalStock = (variants: ProductVariant[]) =>
   variants.reduce((sum, v) => sum + v.stock, 0);
 
 const getCategoryName = (category: Category | null, lang: "en" | "ka" = "en") =>
-  category?.translations.find((t) => t.lang === lang)?.name ?? "—";
+  category?.name?.[lang] ?? "—";
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
@@ -120,8 +97,6 @@ function StatusBadge({ status }: { status: "active" | "inactive" }) {
   );
 }
 
-// Stock indicator — red "out of stock", amber "low" (under 10), or plain
-// number otherwise. Purely a display helper, no side effects.
 function StockBadge({ stock }: { stock: number }) {
   if (stock === 0)
     return (
@@ -138,9 +113,6 @@ function StockBadge({ stock }: { stock: number }) {
   return <span className="text-sm text-gray-600">{stock}</span>;
 }
 
-// Prev/Next pagination control shown below the table.
-// Purely presentational — the parent owns the `page` state and passes down
-// what to do when the arrows are clicked.
 function Pagination({
   page,
   totalCount,
@@ -185,11 +157,6 @@ function Pagination({
   );
 }
 
-// ── Inline edit row ───────────────────────────────────────────────────────────
-// Replaces a normal table row with editable inputs when "quick edit" (✎) is
-// clicked. Keeps its own local draft state (`buf`) and only calls `onSave`
-// once the user confirms — nothing is sent to the server on every keystroke.
-
 interface EditBuf {
   name_en: string;
   name_ka: string;
@@ -224,8 +191,6 @@ function EditRow({
     status: product.status,
   });
 
-  // Generic field setter — number inputs get coerced to a number,
-  // everything else stays a string.
   const set =
     (field: keyof EditBuf) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -238,15 +203,12 @@ function EditRow({
 
   return (
     <tr className="bg-blue-50/40">
-      {/* thumbnail — not editable inline, only shown for context */}
       <td className="px-3 py-2">
         <div className="w-9 h-9 rounded-md bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 text-xs">
           img
         </div>
       </td>
 
-      {/* name — both languages editable at once here, unlike the two-step
-          modal used for creating a new product */}
       <td className="px-3 py-2 space-y-1">
         <input
           className={inputCls}
@@ -271,9 +233,6 @@ function EditRow({
         />
       </td>
 
-      {/* category — intentionally read-only here; changing category is
-          reserved for the full edit page, since it may involve other
-          side effects (e.g. re-slugging, category-specific fields) */}
       <td className="px-3 py-2 text-sm text-gray-500">
         {getCategoryName(product.category)}
       </td>
@@ -351,26 +310,22 @@ function EditRow({
 export default function AdminProducts() {
   const navigate = useNavigate();
 
-  // "Add product" modal visibility
   const [showAddModal, setShowAddModal] = useState(false);
-
-  // Current page's products (max PAGE_SIZE items) and catalog-wide stats —
-  // these come from ONE backend call per page load, not a full-catalog fetch.
   const [products, setProducts] = useState<Product[]>([]);
-  const [stats, setStats] = useState({ total: 0, active: 0, lowStock: 0, outOfStock: 0 });
+  const [stats, setStats] = useState({
+    total: 0,
+    active: 0,
+    lowStock: 0,
+    outOfStock: 0,
+  });
   const [totalCount, setTotalCount] = useState(0); // total rows matching current filters, for pagination
 
-  // Category list for the filter dropdown and the add-product modal —
-  // small, rarely-changing list, so it's fine to fetch in full.
   const [categories, setCategories] = useState<Category[]>([]);
 
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
   const [editId, setEditId] = useState<number | null>(null);
 
-  // Pagination + filter state. Changing any of these triggers a refetch
-  // from the backend — filtering happens server-side, not on the client,
-  // since the client only ever holds one page's worth of products.
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [filterCat, setFilterCat] = useState("");
@@ -382,16 +337,10 @@ export default function AdminProducts() {
     setToast(msg);
     setTimeout(() => setToast(null), 2200);
   };
-
-  // Whenever the search box or either filter changes, jump back to page 1 —
-  // otherwise you could be sitting on page 4 of an old filter result set
-  // that no longer has 4 pages under the new filter.
   useEffect(() => {
     setPage(1);
   }, [search, filterCat, filterStatus]);
 
-  // Fetches exactly one page of products (PAGE_SIZE rows) plus catalog-wide
-  // stats, from the backend — re-runs whenever page/search/filters change.
   const loadProducts = useCallback(async () => {
     setLoading(true);
     setLoadError("");
@@ -405,13 +354,17 @@ export default function AdminProducts() {
       if (filterStatus) params.set("status", filterStatus);
 
       const [prodRes, catRes] = await Promise.all([
-        fetch(`/api/admin/products?${params.toString()}`, { credentials: "include" }),
+        fetch(`/api/admin/products?${params.toString()}`, {
+          credentials: "include",
+        }),
         fetch("/api/categories", { credentials: "include" }),
       ]);
 
       if (!prodRes.ok) {
         if (prodRes.status === 401 || prodRes.status === 403) {
-          throw new Error("You're not authorized to view admin products. Please log in as an admin.");
+          throw new Error(
+            "You're not authorized to view admin products. Please log in as an admin.",
+          );
         }
         throw new Error(`Failed to load products (${prodRes.status})`);
       }
@@ -429,7 +382,9 @@ export default function AdminProducts() {
       );
       setCategories(Array.isArray(cats) ? cats : []);
     } catch (err) {
-      setLoadError(err instanceof Error ? err.message : "Failed to load products.");
+      setLoadError(
+        err instanceof Error ? err.message : "Failed to load products.",
+      );
       setProducts([]);
     } finally {
       setLoading(false);
@@ -440,9 +395,6 @@ export default function AdminProducts() {
     loadProducts();
   }, [loadProducts]);
 
-  // Deletes a product, then simply reloads the current page — simpler and
-  // more correct than trying to patch local state, since deleting the last
-  // item on a page should also pull in whatever was on the next page.
   const handleDelete = async (id: number) => {
     if (!confirm("Delete this product?")) return;
     try {
@@ -463,8 +415,6 @@ export default function AdminProducts() {
     }
   };
 
-  // Saves an inline quick-edit, then reloads the current page so stats and
-  // any filter-affecting fields (e.g. status) stay in sync with the server.
   const handleSave = useCallback(
     async (id: number, buf: EditBuf) => {
       try {
@@ -483,7 +433,11 @@ export default function AdminProducts() {
               { lang: "en", name: buf.name_en },
               { lang: "ka", name: buf.name_ka },
             ],
-            variant: { price: buf.price, discount: buf.discount, stock: buf.stock },
+            variant: {
+              price: buf.price,
+              discount: buf.discount,
+              stock: buf.stock,
+            },
           }),
         });
         if (!res.ok) {
@@ -515,17 +469,21 @@ export default function AdminProducts() {
         </button>
       </div>
 
-      {/* Stat cards — these reflect the ENTIRE catalog (server-computed
-          aggregates), not just the 5 rows currently on screen */}
       <div className="grid grid-cols-4 gap-3 mb-5">
         <StatCard label="Total products" value={stats.total} />
         <StatCard label="Active" value={stats.active} color="text-green-700" />
-        <StatCard label="Low stock" value={stats.lowStock} color="text-amber-600" />
-        <StatCard label="Out of stock" value={stats.outOfStock} color="text-red-600" />
+        <StatCard
+          label="Low stock"
+          value={stats.lowStock}
+          color="text-amber-600"
+        />
+        <StatCard
+          label="Out of stock"
+          value={stats.outOfStock}
+          color="text-red-600"
+        />
       </div>
 
-      {/* Search + category/status filters — these are sent to the backend
-          as query params (see loadProducts), not applied locally */}
       <div className="flex gap-2 mb-4 flex-wrap">
         <input
           type="text"
@@ -557,30 +515,48 @@ export default function AdminProducts() {
         </select>
       </div>
 
-      {/* Error banner — shown instead of silently rendering an empty table
-          when the load fails (e.g. not authorized, server error) */}
       {loadError && <p className="text-red-500 text-sm mb-3">{loadError}</p>}
 
       {/* Product table — always at most PAGE_SIZE (5) rows */}
       <div className="overflow-x-auto border border-gray-100 rounded-xl">
-        <table className="w-full border-collapse text-sm" style={{ minWidth: 780 }}>
+        <table
+          className="w-full border-collapse text-sm"
+          style={{ minWidth: 780 }}
+        >
           <thead>
             <tr className="bg-gray-50 border-b border-gray-100">
               <th className="w-12 px-3 py-2" />
-              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 w-44">Name (EN / KA)</th>
-              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 w-32">Slug</th>
-              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 w-28">Category</th>
-              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 w-24">Price (₾)</th>
-              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 w-20">Discount</th>
-              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 w-20">Stock</th>
-              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 w-24">Status</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 w-44">
+                Name (EN / KA)
+              </th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 w-32">
+                Slug
+              </th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 w-28">
+                Category
+              </th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 w-24">
+                Price (₾)
+              </th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 w-20">
+                Discount
+              </th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 w-20">
+                Stock
+              </th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 w-24">
+                Status
+              </th>
               <th className="px-3 py-2 w-24" />
             </tr>
           </thead>
           <tbody>
             {loading && (
               <tr>
-                <td colSpan={9} className="px-3 py-8 text-center text-sm text-gray-400">
+                <td
+                  colSpan={9}
+                  className="px-3 py-8 text-center text-sm text-gray-400"
+                >
                   Loading…
                 </td>
               </tr>
@@ -588,7 +564,10 @@ export default function AdminProducts() {
 
             {!loading && !loadError && products.length === 0 && (
               <tr>
-                <td colSpan={9} className="px-3 py-10 text-center text-sm text-gray-400">
+                <td
+                  colSpan={9}
+                  className="px-3 py-10 text-center text-sm text-gray-400"
+                >
                   No products found
                 </td>
               </tr>
@@ -598,7 +577,9 @@ export default function AdminProducts() {
               products.map((p) => {
                 const base = getBaseVariant(p.variants);
                 const totalStockVal = getTotalStock(p.variants);
-                const fp = base ? getFinalPrice(base.price, base.discount) : null;
+                const fp = base
+                  ? getFinalPrice(base.price, base.discount)
+                  : null;
 
                 // Swap this row for the inline editor when it's the one
                 // currently being edited.
@@ -614,7 +595,10 @@ export default function AdminProducts() {
                   );
 
                 return (
-                  <tr key={p.id} className="border-b border-gray-100 hover:bg-gray-50/60 transition-colors">
+                  <tr
+                    key={p.id}
+                    className="border-b border-gray-100 hover:bg-gray-50/60 transition-colors"
+                  >
                     {/* thumbnail */}
                     <td className="px-3 py-2">
                       {p.images?.find((i) => i.is_primary) ? (
@@ -648,21 +632,29 @@ export default function AdminProducts() {
                     </td>
 
                     {/* category */}
-                    <td className="px-3 py-2 text-gray-700">{getCategoryName(p.category)}</td>
+                    <td className="px-3 py-2 text-gray-700">
+                      {getCategoryName(p.category)}
+                    </td>
 
                     {/* price — shows the discounted final price underneath
                         if a discount is set */}
                     <td className="px-3 py-2 tabular-nums">
-                      <span className="text-gray-900">₾{base?.price.toFixed(2) ?? "—"}</span>
+                      <span className="text-gray-900">
+                        ₾{base?.price.toFixed(2) ?? "—"}
+                      </span>
                       {base && base.discount > 0 && (
-                        <p className="text-xs text-gray-400">→ ₾{fp!.toFixed(2)}</p>
+                        <p className="text-xs text-gray-400">
+                          → ₾{fp!.toFixed(2)}
+                        </p>
                       )}
                     </td>
 
                     {/* discount */}
                     <td className="px-3 py-2">
                       {base?.discount ? (
-                        <span className="text-amber-600 text-sm">{base.discount}%</span>
+                        <span className="text-amber-600 text-sm">
+                          {base.discount}%
+                        </span>
                       ) : (
                         <span className="text-gray-300">—</span>
                       )}
@@ -689,7 +681,9 @@ export default function AdminProducts() {
                           ✎
                         </button>
                         <button
-                          onClick={() => navigate(`/admin/products/${p.id}/edit`)}
+                          onClick={() =>
+                            navigate(`/admin/products/${p.id}/edit`)
+                          }
                           className="p-1.5 rounded hover:bg-blue-50 text-blue-500 transition-colors text-xs"
                           title="Full edit"
                         >
@@ -711,8 +705,6 @@ export default function AdminProducts() {
         </table>
       </div>
 
-      {/* Pagination controls — only ever navigates between server-fetched
-          pages of PAGE_SIZE products, never loads the whole catalog */}
       {!loading && !loadError && (
         <Pagination
           page={page}

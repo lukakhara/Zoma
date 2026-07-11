@@ -20,7 +20,6 @@ const Card = ({ product, index }: { product: CardProps; index: number }) => {
   const isAboveFold = index < ABOVE_FOLD_COUNT;
   const isLCP = index < 2; // first 2 get highest priority
 
-  console.log("product", product);
   const [quantity, setQuantity] = useState(1);
 
   return (

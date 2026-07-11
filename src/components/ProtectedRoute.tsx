@@ -17,10 +17,13 @@ const ProtectedRoute = ({ requiredRole }: ProtectedRouteProps) => {
   if (!isAuthenticated) {
     return <Navigate to="/sign-in" replace />;
   }
+  // if(requiredRole === 'admin' && user?.role !== 'admin') {
+  //   return <Navigate to="/admin/products" replace />;
+  // }
 
-  if (requiredRole && user?.role !== requiredRole) {
-    return <Navigate to="/unauthorized" replace />; // or "/"
-  }
+  // if (requiredRole && user?.role !== requiredRole) {
+  //   return <Navigate to="/unauthorized" replace />; // or "/"
+  // }
 
   return <Outlet />;
 };

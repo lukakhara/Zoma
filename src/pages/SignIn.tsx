@@ -10,7 +10,7 @@ export default function SignIn() {
   const login = useAuthStore((state) => state.login);
 
   const [email, setEmail] = useState("luka@gmail.com");
-  const [password, setPassword] = useState("123");
+  const [password, setPassword] = useState("123456789");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);

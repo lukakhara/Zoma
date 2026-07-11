@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { useAuth } from "../../context/AuthProvider";
 import { useTranslation } from "react-i18next";
 import { getCsrfToken } from "../../lib/csrf";
+import { useAuthStore } from "../../store/useAuthStore";
 
 const UserProfile = () => {
-  const { user, setUser } = useAuth();
+  // const { user, setUser } = useAuth();
+  const user = useAuthStore((state) => state.user);
+  const setUser = useAuthStore((state) => state.setUser);
   const { t } = useTranslation();
   const [firstname, setFirstname] = useState(user?.firstname ?? "");
   const [lastname, setLastname] = useState(user?.lastname ?? "");

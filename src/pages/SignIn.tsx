@@ -1,11 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthProvider";
+
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useAuthStore } from "../store/useAuthStore";
 
 export default function SignIn() {
   const {t} = useTranslation();
-  const { login } = useAuth();
+  // const { login } = useAuth();
+  const login = useAuthStore((state) => state.login);
+
   const [email, setEmail] = useState("luka@gmail.com");
   const [password, setPassword] = useState("123");
   const [error, setError] = useState("");

@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useAuth } from "../context/AuthProvider";
+
 import { getCsrfToken } from "../lib/csrf";
+import { useAuthStore } from "../store/useAuthStore";
 
 function AddressForm({ title }: { title: string }) {
   const { t } = useTranslation();
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  const user = useAuthStore((state) => state.user);
 
   const [city, setCity] = useState('');
   const [fullAddress, setFullAddress] = useState('');

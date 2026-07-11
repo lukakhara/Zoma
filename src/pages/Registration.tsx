@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from "../context/AuthProvider";
+
 import { useTranslation } from "react-i18next";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import { Checkbox, FormControlLabel } from "@mui/material";
+import { useAuthStore } from "../store/useAuthStore";
 
 const Registration = () => {
   const { t } = useTranslation();
@@ -17,7 +18,9 @@ const Registration = () => {
 
   const [repeatPassword, setRepeatPassword] = useState("123");
   const [passwordError, setPasswordError] = useState(false);
-  const { register } = useAuth();
+  // const { register } = useAuth();
+  const register = useAuthStore((state) => state.register);
+
   const navigate = useNavigate();
   const role = "user";
 

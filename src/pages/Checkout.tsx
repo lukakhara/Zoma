@@ -11,15 +11,18 @@ import { useNavigate } from "react-router-dom";
 // import { placeOrder } from "../services/orderService";
 import { useTranslation } from "react-i18next";
 import DeliveryAdressDialog from "./DeliveryAdressDialog";
-import { useAuth } from "../context/AuthProvider"; // adjust to your actual hook/path
+
 import FormControl from "@mui/material/FormControl";
 import { FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 import { getCsrfToken } from "../lib/csrf";
 import { useCartStore } from "../store/useCartStore";
+import { useAuthStore } from "../store/useAuthStore";
 
 const Checkout = () => {
   const { t } = useTranslation("translation", { keyPrefix: "checkout" });
-  const { user } = useAuth(); // null/undefined => not signed in
+  // const { user } = useAuth(); // null/undefined => not signed in
+  const user = useAuthStore((state) => state.user); // null/undefined => not signed in
+
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(false);
   // const { cartItems, removeFromCart, updateQuantity, clearCart } =useCartContext();
 

@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
 import ProfileSideNavbar from "../account/ProfileSideNavbar";
-import { useAuth } from "../../context/AuthProvider";
 import { Suspense } from "react";
+import { useAuthStore } from "../../store/useAuthStore";
 
 function Profile() {
-  const { user } = useAuth();
+  const user = useAuthStore((state) => state.user);
 
   return (
     <div className="min-h-screen pt-4  py-8 ">

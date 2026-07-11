@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useAuth } from "../../context/AuthProvider";
 import { useTranslation } from "react-i18next";
 import { getCsrfToken } from "../../lib/csrf";
+import { useAuthStore } from "../../store/useAuthStore";
 
 export default function PasswordChange() {
-  const { user } = useAuth();
+  const user = useAuthStore((state) => state.user);
   const { t } = useTranslation();
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");

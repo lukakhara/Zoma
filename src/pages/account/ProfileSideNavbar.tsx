@@ -1,11 +1,11 @@
 // ProfileSideNavbar.tsx
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthProvider";
 import { useTranslation } from "react-i18next";
+import { useAuthStore } from "../../store/useAuthStore";
 
 const ProfileSideNavbar = () => {
   const { t } = useTranslation("translation", { keyPrefix: "profileSideNavbar" });
-  const { logout } = useAuth();
+  const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>

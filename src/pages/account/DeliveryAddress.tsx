@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useAuth } from "../../context/AuthProvider";
 import { useTranslation } from "react-i18next";
 import editIcon from "/public/assets/Vector.png";
 import { getCsrfToken } from "../../lib/csrf";
+import { useAuthStore } from "../../store/useAuthStore";
 // import { invalidateCsrfToken } from "../../lib/csrf";
 
 interface Address {
@@ -96,7 +96,8 @@ const AddressForm = ({
 };
 
 export default function DeliveryAddress() {
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  const user = useAuthStore((state) => state.user);
   const { t } = useTranslation();
 
   const [addresses, setAddresses] = useState<Address[]>([]);

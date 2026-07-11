@@ -8,7 +8,6 @@ import googlePay from "/assets/Payment/google-pay.png";
 import warningIcon from "/assets/warning.png";
 import { useCartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
-import { useCartProducts } from "../context/UseCartProducts";
 // import { placeOrder } from "../services/orderService";
 import { useTranslation } from "react-i18next";
 import DeliveryAdressDialog from "./DeliveryAdressDialog";

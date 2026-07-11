@@ -18,7 +18,7 @@ const TransactionResult = lazy(() => import("../pages/TransactionResult"));
 import ProtectedRoute from "../components/ProtectedRoute";
 import PageLoader from "../pages/PageLoader";
 import Layout from "../Layout";
-import AdminProducts from "../pages/AdminProducts";
+import AdminProducts from "../pages/admin/AdminProducts";
 
 const AppRoutes = () => {
   return (

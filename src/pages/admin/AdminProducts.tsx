@@ -1,8 +1,19 @@
 // pages/admin/AdminProducts.tsx
+//
+// Admin product management page.
+// Shows a paginated table (5 products per page, fetched from the backend —
+// never the full catalog) with search/filter, inline quick-edit, delete,
+// and an "add product" modal.
+
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import AddProductModal from "./AddProductModal";
+import { getCsrfToken } from "../../lib/csrf";
 
 // ── Types aligned to your DB schema ──────────────────────────────────────────
+// These mirror the shape returned by the backend for a single product,
+// including its translations (EN/KA), variants (price/stock/etc per SKU),
+// category, and images.
 
 interface ProductTranslation {
   lang: "en" | "ka";
@@ -34,13 +45,36 @@ interface Product {
   images?: { url: string; is_primary: boolean }[];
 }
 
+// Shape of the paginated response from GET /api/admin/products.
+// `stats` are aggregate counts across the WHOLE catalog (not just this page),
+// computed server-side with SQL COUNT() — this is what keeps the stat cards
+// accurate even though we only ever fetch 5 rows of actual product data.
+interface ProductsPage {
+  products: Product[];
+  totalCount: number; // total products matching current filters (for pagination controls)
+  stats: {
+    total: number;
+    active: number;
+    lowStock: number;
+    outOfStock: number;
+  };
+}
+
+const PAGE_SIZE = 5;
+
 // ── Helpers ───────────────────────────────────────────────────────────────────
+// Small pure functions for pulling display values out of the nested
+// translations/variants/category structures.
 
-const getTranslation = (translations: ProductTranslation[], lang: "en" | "ka") =>
-  translations.find((t) => t.lang === lang)?.name ?? "—";
+const getTranslation = (
+  translations: ProductTranslation[],
+  lang: "en" | "ka",
+) => translations.find((t) => t.lang === lang)?.name ?? "—";
 
-const getBaseVariant = (variants: ProductVariant[]) =>
-  variants[0] ?? null;
+// A product can have multiple variants (e.g. different bottle sizes) — the
+// table's quick-edit only edits the first one, since a full multi-variant
+// editor lives on the "Full edit" page instead.
+const getBaseVariant = (variants: ProductVariant[]) => variants[0] ?? null;
 
 const getFinalPrice = (price: number, discount: number) =>
   +(price * (1 - discount / 100)).toFixed(2);
@@ -53,15 +87,27 @@ const getCategoryName = (category: Category | null, lang: "en" | "ka" = "en") =>
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
-function StatCard({ label, value, color }: { label: string; value: number; color?: string }) {
+// Small metric tile used in the stats row at the top of the page.
+function StatCard({
+  label,
+  value,
+  color,
+}: {
+  label: string;
+  value: number;
+  color?: string;
+}) {
   return (
     <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
       <p className="text-xs text-gray-500 mb-1">{label}</p>
-      <p className={`text-xl font-medium ${color ?? "text-gray-900"}`}>{value}</p>
+      <p className={`text-xl font-medium ${color ?? "text-gray-900"}`}>
+        {value}
+      </p>
     </div>
   );
 }
 
+// Green "Active" / gray "Inactive" pill shown in the Status column.
 function StatusBadge({ status }: { status: "active" | "inactive" }) {
   return status === "active" ? (
     <span className="inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full bg-green-50 text-green-700">
@@ -74,6 +120,8 @@ function StatusBadge({ status }: { status: "active" | "inactive" }) {
   );
 }
 
+// Stock indicator — red "out of stock", amber "low" (under 10), or plain
+// number otherwise. Purely a display helper, no side effects.
 function StockBadge({ stock }: { stock: number }) {
   if (stock === 0)
     return (
@@ -90,7 +138,57 @@ function StockBadge({ stock }: { stock: number }) {
   return <span className="text-sm text-gray-600">{stock}</span>;
 }
 
+// Prev/Next pagination control shown below the table.
+// Purely presentational — the parent owns the `page` state and passes down
+// what to do when the arrows are clicked.
+function Pagination({
+  page,
+  totalCount,
+  pageSize,
+  onPrev,
+  onNext,
+}: {
+  page: number;
+  totalCount: number;
+  pageSize: number;
+  onPrev: () => void;
+  onNext: () => void;
+}) {
+  const totalPages = Math.max(1, Math.ceil(totalCount / pageSize));
+
+  return (
+    <div className="flex items-center justify-between mt-4">
+      <p className="text-xs text-gray-400">
+        Showing {totalCount === 0 ? 0 : (page - 1) * pageSize + 1}–
+        {Math.min(page * pageSize, totalCount)} of {totalCount}
+      </p>
+      <div className="flex items-center gap-2">
+        <button
+          onClick={onPrev}
+          disabled={page <= 1}
+          className="px-3 py-1.5 rounded-md text-sm border border-gray-200 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          ← Prev
+        </button>
+        <span className="text-sm text-gray-600">
+          Page {page} of {totalPages}
+        </span>
+        <button
+          onClick={onNext}
+          disabled={page >= totalPages}
+          className="px-3 py-1.5 rounded-md text-sm border border-gray-200 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          Next →
+        </button>
+      </div>
+    </div>
+  );
+}
+
 // ── Inline edit row ───────────────────────────────────────────────────────────
+// Replaces a normal table row with editable inputs when "quick edit" (✎) is
+// clicked. Keeps its own local draft state (`buf`) and only calls `onSave`
+// once the user confirms — nothing is sent to the server on every keystroke.
 
 interface EditBuf {
   name_en: string;
@@ -114,6 +212,8 @@ function EditRow({
   onCancel: () => void;
 }) {
   const base = getBaseVariant(product.variants);
+
+  // Local draft, seeded from the product's current values.
   const [buf, setBuf] = useState<EditBuf>({
     name_en: getTranslation(product.translations, "en"),
     name_ka: getTranslation(product.translations, "ka"),
@@ -124,61 +224,108 @@ function EditRow({
     status: product.status,
   });
 
-  const set = (field: keyof EditBuf) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const val = e.target.type === "number" ? +e.target.value : e.target.value;
-    setBuf((prev) => ({ ...prev, [field]: val }));
-  };
+  // Generic field setter — number inputs get coerced to a number,
+  // everything else stays a string.
+  const set =
+    (field: keyof EditBuf) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      const val = e.target.type === "number" ? +e.target.value : e.target.value;
+      setBuf((prev) => ({ ...prev, [field]: val }));
+    };
 
   const inputCls =
     "w-full bg-white border border-blue-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-blue-400";
 
   return (
     <tr className="bg-blue-50/40">
-      {/* thumbnail */}
+      {/* thumbnail — not editable inline, only shown for context */}
       <td className="px-3 py-2">
         <div className="w-9 h-9 rounded-md bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 text-xs">
           img
         </div>
       </td>
 
-      {/* name */}
+      {/* name — both languages editable at once here, unlike the two-step
+          modal used for creating a new product */}
       <td className="px-3 py-2 space-y-1">
-        <input className={inputCls} value={buf.name_en} onChange={set("name_en")} placeholder="Name EN" />
-        <input className={inputCls} value={buf.name_ka} onChange={set("name_ka")} placeholder="სახელი KA" />
+        <input
+          className={inputCls}
+          value={buf.name_en}
+          onChange={set("name_en")}
+          placeholder="Name EN"
+        />
+        <input
+          className={inputCls}
+          value={buf.name_ka}
+          onChange={set("name_ka")}
+          placeholder="სახელი KA"
+        />
       </td>
 
       {/* slug */}
       <td className="px-3 py-2">
-        <input className={`${inputCls} font-mono text-xs`} value={buf.slug} onChange={set("slug")} />
+        <input
+          className={`${inputCls} font-mono text-xs`}
+          value={buf.slug}
+          onChange={set("slug")}
+        />
       </td>
 
-      {/* category — read-only in inline edit; full edit page handles this */}
-      <td className="px-3 py-2 text-sm text-gray-500">{getCategoryName(product.category)}</td>
+      {/* category — intentionally read-only here; changing category is
+          reserved for the full edit page, since it may involve other
+          side effects (e.g. re-slugging, category-specific fields) */}
+      <td className="px-3 py-2 text-sm text-gray-500">
+        {getCategoryName(product.category)}
+      </td>
 
       {/* price */}
       <td className="px-3 py-2">
-        <input className={inputCls} type="number" step="0.01" min="0" value={buf.price} onChange={set("price")} />
+        <input
+          className={inputCls}
+          type="number"
+          step="0.01"
+          min="0"
+          value={buf.price}
+          onChange={set("price")}
+        />
       </td>
 
       {/* discount */}
       <td className="px-3 py-2">
-        <input className={inputCls} type="number" min="0" max="100" value={buf.discount} onChange={set("discount")} />
+        <input
+          className={inputCls}
+          type="number"
+          min="0"
+          max="100"
+          value={buf.discount}
+          onChange={set("discount")}
+        />
       </td>
 
       {/* stock */}
       <td className="px-3 py-2">
-        <input className={inputCls} type="number" min="0" value={buf.stock} onChange={set("stock")} />
+        <input
+          className={inputCls}
+          type="number"
+          min="0"
+          value={buf.stock}
+          onChange={set("stock")}
+        />
       </td>
 
       {/* status */}
       <td className="px-3 py-2">
-        <select className={inputCls} value={buf.status} onChange={set("status")}>
+        <select
+          className={inputCls}
+          value={buf.status}
+          onChange={set("status")}
+        >
           <option value="active">Active</option>
           <option value="inactive">Inactive</option>
         </select>
       </td>
 
-      {/* actions */}
+      {/* confirm / cancel */}
       <td className="px-3 py-2">
         <div className="flex gap-1 justify-end">
           <button
@@ -203,113 +350,182 @@ function EditRow({
 
 export default function AdminProducts() {
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
 
+  // "Add product" modal visibility
+  const [showAddModal, setShowAddModal] = useState(false);
+
+  // Current page's products (max PAGE_SIZE items) and catalog-wide stats —
+  // these come from ONE backend call per page load, not a full-catalog fetch.
   const [products, setProducts] = useState<Product[]>([]);
+  const [stats, setStats] = useState({ total: 0, active: 0, lowStock: 0, outOfStock: 0 });
+  const [totalCount, setTotalCount] = useState(0); // total rows matching current filters, for pagination
+
+  // Category list for the filter dropdown and the add-product modal —
+  // small, rarely-changing list, so it's fine to fetch in full.
   const [categories, setCategories] = useState<Category[]>([]);
+
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
   const [editId, setEditId] = useState<number | null>(null);
+
+  // Pagination + filter state. Changing any of these triggers a refetch
+  // from the backend — filtering happens server-side, not on the client,
+  // since the client only ever holds one page's worth of products.
+  const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [filterCat, setFilterCat] = useState("");
   const [filterStatus, setFilterStatus] = useState("");
-  const [toast, setToast] = useState<string | null>(null);
 
-  const authHeaders = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
+  const [toast, setToast] = useState<string | null>(null);
 
   const showToast = (msg: string) => {
     setToast(msg);
     setTimeout(() => setToast(null), 2200);
   };
 
+  // Whenever the search box or either filter changes, jump back to page 1 —
+  // otherwise you could be sitting on page 4 of an old filter result set
+  // that no longer has 4 pages under the new filter.
   useEffect(() => {
-    Promise.all([
-      fetch("/api/admin/products", { headers: authHeaders }).then((r) => r.json()),
-      fetch("/api/categories", { headers: authHeaders }).then((r) => r.json()),
-    ])
-      .then(([prods, cats]) => {
-        setProducts(prods);
-        setCategories(cats);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+    setPage(1);
+  }, [search, filterCat, filterStatus]);
 
+  // Fetches exactly one page of products (PAGE_SIZE rows) plus catalog-wide
+  // stats, from the backend — re-runs whenever page/search/filters change.
+  const loadProducts = useCallback(async () => {
+    setLoading(true);
+    setLoadError("");
+    try {
+      const params = new URLSearchParams({
+        page: String(page),
+        limit: String(PAGE_SIZE),
+      });
+      if (search) params.set("search", search);
+      if (filterCat) params.set("category", filterCat);
+      if (filterStatus) params.set("status", filterStatus);
+
+      const [prodRes, catRes] = await Promise.all([
+        fetch(`/api/admin/products?${params.toString()}`, { credentials: "include" }),
+        fetch("/api/categories", { credentials: "include" }),
+      ]);
+
+      if (!prodRes.ok) {
+        if (prodRes.status === 401 || prodRes.status === 403) {
+          throw new Error("You're not authorized to view admin products. Please log in as an admin.");
+        }
+        throw new Error(`Failed to load products (${prodRes.status})`);
+      }
+      if (!catRes.ok) {
+        throw new Error(`Failed to load categories (${catRes.status})`);
+      }
+
+      const page_data: ProductsPage = await prodRes.json();
+      const cats = await catRes.json();
+
+      setProducts(Array.isArray(page_data.products) ? page_data.products : []);
+      setTotalCount(page_data.totalCount ?? 0);
+      setStats(
+        page_data.stats ?? { total: 0, active: 0, lowStock: 0, outOfStock: 0 },
+      );
+      setCategories(Array.isArray(cats) ? cats : []);
+    } catch (err) {
+      setLoadError(err instanceof Error ? err.message : "Failed to load products.");
+      setProducts([]);
+    } finally {
+      setLoading(false);
+    }
+  }, [page, search, filterCat, filterStatus]);
+
+  useEffect(() => {
+    loadProducts();
+  }, [loadProducts]);
+
+  // Deletes a product, then simply reloads the current page — simpler and
+  // more correct than trying to patch local state, since deleting the last
+  // item on a page should also pull in whatever was on the next page.
   const handleDelete = async (id: number) => {
     if (!confirm("Delete this product?")) return;
-    await fetch(`/api/admin/products/${id}`, { method: "DELETE", headers: authHeaders });
-    setProducts((prev) => prev.filter((p) => p.id !== id));
-    showToast("Product deleted");
+    try {
+      const token = await getCsrfToken();
+      const res = await fetch(`/api/admin/products/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+        headers: { "x-csrf-token": token },
+      });
+      if (!res.ok) {
+        showToast("Delete failed");
+        return;
+      }
+      showToast("Product deleted");
+      await loadProducts();
+    } catch {
+      showToast("Delete failed");
+    }
   };
 
+  // Saves an inline quick-edit, then reloads the current page so stats and
+  // any filter-affecting fields (e.g. status) stay in sync with the server.
   const handleSave = useCallback(
     async (id: number, buf: EditBuf) => {
-      const res = await fetch(`/api/admin/products/${id}`, {
-        method: "PUT",
-        headers: authHeaders,
-        body: JSON.stringify({
-          slug: buf.slug,
-          status: buf.status,
-          translations: [
-            { lang: "en", name: buf.name_en },
-            { lang: "ka", name: buf.name_ka },
-          ],
-          // variant price/discount/stock update — adjust to your endpoint shape
-          variant: { price: buf.price, discount: buf.discount, stock: buf.stock },
-        }),
-      });
-      if (!res.ok) { showToast("Save failed"); return; }
-      const updated: Product = await res.json();
-      setProducts((prev) => prev.map((p) => (p.id === id ? updated : p)));
-      setEditId(null);
-      showToast("Product saved");
+      try {
+        const token = await getCsrfToken();
+        const res = await fetch(`/api/admin/products/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "x-csrf-token": token,
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            slug: buf.slug,
+            status: buf.status,
+            translations: [
+              { lang: "en", name: buf.name_en },
+              { lang: "ka", name: buf.name_ka },
+            ],
+            variant: { price: buf.price, discount: buf.discount, stock: buf.stock },
+          }),
+        });
+        if (!res.ok) {
+          showToast("Save failed");
+          return;
+        }
+        setEditId(null);
+        showToast("Product saved");
+        await loadProducts();
+      } catch {
+        showToast("Save failed");
+      }
     },
-    [token]
+    [loadProducts],
   );
-
-  // ── Stats ──────────────────────────────────────────────────────────────────
-
-  const totalStock = products.reduce((s, p) => s + getTotalStock(p.variants), 0);
-  const activeCount = products.filter((p) => p.status === "active").length;
-  const lowStockCount = products.filter((p) => {
-    const s = getTotalStock(p.variants);
-    return s > 0 && s < 10;
-  }).length;
-  const outStockCount = products.filter((p) => getTotalStock(p.variants) === 0).length;
-
-  // ── Filtering ──────────────────────────────────────────────────────────────
-
-  const filtered = products.filter((p) => {
-    const nameEn = getTranslation(p.translations, "en").toLowerCase();
-    if (search && !nameEn.includes(search.toLowerCase()) && !p.slug.includes(search.toLowerCase()))
-      return false;
-    if (filterCat && getCategoryName(p.category) !== filterCat) return false;
-    if (filterStatus && p.status !== filterStatus) return false;
-    return true;
-  });
 
   // ── Render ─────────────────────────────────────────────────────────────────
 
   return (
     <div className="p-6 max-w-7xl mx-auto">
-      {/* Header */}
+      {/* Page header + "Add product" trigger */}
       <div className="flex items-center justify-between mb-5">
         <h1 className="text-xl font-medium text-gray-900">Products</h1>
         <button
-          onClick={() => navigate("/admin/products/new")}
+          onClick={() => setShowAddModal(true)}
           className="flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-md border border-gray-300 hover:bg-gray-50"
         >
           + Add product
         </button>
       </div>
 
-      {/* Stat cards */}
+      {/* Stat cards — these reflect the ENTIRE catalog (server-computed
+          aggregates), not just the 5 rows currently on screen */}
       <div className="grid grid-cols-4 gap-3 mb-5">
-        <StatCard label="Total products" value={products.length} />
-        <StatCard label="Active" value={activeCount} color="text-green-700" />
-        <StatCard label="Low stock" value={lowStockCount} color="text-amber-600" />
-        <StatCard label="Out of stock" value={outStockCount} color="text-red-600" />
+        <StatCard label="Total products" value={stats.total} />
+        <StatCard label="Active" value={stats.active} color="text-green-700" />
+        <StatCard label="Low stock" value={stats.lowStock} color="text-amber-600" />
+        <StatCard label="Out of stock" value={stats.outOfStock} color="text-red-600" />
       </div>
 
-      {/* Toolbar */}
+      {/* Search + category/status filters — these are sent to the backend
+          as query params (see loadProducts), not applied locally */}
       <div className="flex gap-2 mb-4 flex-wrap">
         <input
           type="text"
@@ -341,7 +557,11 @@ export default function AdminProducts() {
         </select>
       </div>
 
-      {/* Table */}
+      {/* Error banner — shown instead of silently rendering an empty table
+          when the load fails (e.g. not authorized, server error) */}
+      {loadError && <p className="text-red-500 text-sm mb-3">{loadError}</p>}
+
+      {/* Product table — always at most PAGE_SIZE (5) rows */}
       <div className="overflow-x-auto border border-gray-100 rounded-xl">
         <table className="w-full border-collapse text-sm" style={{ minWidth: 780 }}>
           <thead>
@@ -366,7 +586,7 @@ export default function AdminProducts() {
               </tr>
             )}
 
-            {!loading && filtered.length === 0 && (
+            {!loading && !loadError && products.length === 0 && (
               <tr>
                 <td colSpan={9} className="px-3 py-10 text-center text-sm text-gray-400">
                   No products found
@@ -375,11 +595,13 @@ export default function AdminProducts() {
             )}
 
             {!loading &&
-              filtered.map((p) => {
+              products.map((p) => {
                 const base = getBaseVariant(p.variants);
                 const totalStockVal = getTotalStock(p.variants);
                 const fp = base ? getFinalPrice(base.price, base.discount) : null;
 
+                // Swap this row for the inline editor when it's the one
+                // currently being edited.
                 if (editId === p.id)
                   return (
                     <EditRow
@@ -408,7 +630,7 @@ export default function AdminProducts() {
                       )}
                     </td>
 
-                    {/* name */}
+                    {/* name (both languages shown, EN prominent) */}
                     <td className="px-3 py-2">
                       <p className="font-medium text-gray-900 truncate max-w-[160px]">
                         {getTranslation(p.translations, "en")}
@@ -428,7 +650,8 @@ export default function AdminProducts() {
                     {/* category */}
                     <td className="px-3 py-2 text-gray-700">{getCategoryName(p.category)}</td>
 
-                    {/* price */}
+                    {/* price — shows the discounted final price underneath
+                        if a discount is set */}
                     <td className="px-3 py-2 tabular-nums">
                       <span className="text-gray-900">₾{base?.price.toFixed(2) ?? "—"}</span>
                       {base && base.discount > 0 && (
@@ -455,7 +678,7 @@ export default function AdminProducts() {
                       <StatusBadge status={p.status} />
                     </td>
 
-                    {/* actions */}
+                    {/* row actions: quick edit / full edit page / delete */}
                     <td className="px-3 py-2">
                       <div className="flex gap-1 justify-end">
                         <button
@@ -488,11 +711,38 @@ export default function AdminProducts() {
         </table>
       </div>
 
-      {/* Toast */}
+      {/* Pagination controls — only ever navigates between server-fetched
+          pages of PAGE_SIZE products, never loads the whole catalog */}
+      {!loading && !loadError && (
+        <Pagination
+          page={page}
+          totalCount={totalCount}
+          pageSize={PAGE_SIZE}
+          onPrev={() => setPage((p) => Math.max(1, p - 1))}
+          onNext={() => setPage((p) => p + 1)}
+        />
+      )}
+
+      {/* Toast — brief confirmation after save/delete/add actions */}
       {toast && (
         <div className="fixed bottom-5 right-5 bg-white border border-gray-200 shadow-md rounded-lg px-4 py-2.5 text-sm text-gray-800 z-50">
           {toast}
         </div>
+      )}
+
+      {/* Add product modal — two-step (EN details, then KA translation) */}
+      {showAddModal && (
+        <AddProductModal
+          categories={categories}
+          onClose={() => setShowAddModal(false)}
+          onCreated={() => {
+            showToast("Product added");
+            // Jump back to page 1 so the newly created product is visible
+            // (assuming the backend sorts newest-first).
+            setPage(1);
+            loadProducts();
+          }}
+        />
       )}
     </div>
   );

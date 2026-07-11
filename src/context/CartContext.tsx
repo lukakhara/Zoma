@@ -16,7 +16,8 @@ const CartContextProvider = ({ children }: { children: ReactNode }) => {
 
   const addToCart = (item: CartItem) => {
     setCartItems((prev) => {
-      const exists = prev.find((i) => i.variantId === item.variantId);
+      const exists = prev.find(
+        (i) => i.variantId === item.variantId);
 
       if (exists) {
         return prev.map((i) =>

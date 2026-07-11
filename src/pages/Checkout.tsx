@@ -6,7 +6,7 @@ import bog from "/assets/Payment/image-6.png";
 import applePay from "/assets/Payment/apple-pay.png";
 import googlePay from "/assets/Payment/google-pay.png";
 import warningIcon from "/assets/warning.png";
-import { useCartContext } from "../context/CartContext";
+// import { useCartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 // import { placeOrder } from "../services/orderService";
 import { useTranslation } from "react-i18next";
@@ -15,13 +15,19 @@ import { useAuth } from "../context/AuthProvider"; // adjust to your actual hook
 import FormControl from "@mui/material/FormControl";
 import { FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 import { getCsrfToken } from "../lib/csrf";
+import { useCartStore } from "../store/useCartStore";
 
 const Checkout = () => {
   const { t } = useTranslation("translation", { keyPrefix: "checkout" });
   const { user } = useAuth(); // null/undefined => not signed in
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(false);
-  const { cartItems, removeFromCart, updateQuantity, clearCart } =
-    useCartContext();
+  // const { cartItems, removeFromCart, updateQuantity, clearCart } =useCartContext();
+
+  const cartItems = useCartStore((state) => state.cartItems);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const updateQuantity = useCartStore((state) => state.updateQuantity);
+  const clearCart = useCartStore((state) => state.clearCart);
+
   const navigate = useNavigate();
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<string | null>(null);

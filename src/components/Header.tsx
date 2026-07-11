@@ -10,12 +10,13 @@ import logoDesktop from "/assets/logo.webp";
 import { Link, useNavigate } from "react-router-dom";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
-import { useCartContext } from "../context/CartContext";
+// import { useCartContext } from "../context/CartContext";
 import EnglandFlag from "/public/assets/gb.svg";
 import GeorgiadFlag from "/public/assets/ge.svg";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { useCartStore } from "../store/useCartStore";
 
 const Header = () => {
   const { i18n, t } = useTranslation();
@@ -25,7 +26,9 @@ const Header = () => {
   const isHome = location.pathname === "/";
 
   const navigate = useNavigate();
-  const { cartItems } = useCartContext();
+  // const { cartItems } = useCartContext();
+  const cartItems = useCartStore((state) => state.cartItems);
+  
   const currentData = new Date();
   const currentHour = currentData.getHours();
   const currentMinute = String(currentData.getMinutes()).padStart(2, "0");

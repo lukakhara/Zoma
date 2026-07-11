@@ -2,10 +2,11 @@ import playIcon from "/assets/play.png";
 import cartIcon from "/assets/cart.png";
 import type { CardProps } from "../types";
 import { Link } from "react-router";
-import { useCartContext } from "../context/CartContext";
+// import { useCartContext } from "../context/CartContext";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { useCartStore } from "../store/useCartStore";
 
 const ABOVE_FOLD_COUNT = 12;
 
@@ -13,11 +14,13 @@ const Card = ({ product, index }: { product: CardProps; index: number }) => {
   const activeVariant = product.variants[0];
   const { i18n } = useTranslation();
   const languageGeorgian = i18n.language === "ka";
-  const { addToCart } = useCartContext();
+  // const { addToCart } = useCartContext();
+  const addToCart = useCartStore((state) => state.addToCart);
 
   const isAboveFold = index < ABOVE_FOLD_COUNT;
   const isLCP = index < 2; // first 2 get highest priority
 
+  console.log("product", product);
   const [quantity, setQuantity] = useState(1);
 
   return (

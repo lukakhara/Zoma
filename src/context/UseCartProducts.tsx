@@ -1,50 +1,83 @@
-// // hooks/useCartProducts.ts
-// import { useTranslation } from "react-i18next";
-// import { useCartContext } from "../context/CartContext";
-// import productsJson from "../locales/products.json"; 
+// hooks/useCartProducts.ts
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useCartStore } from "../store/useCartStore";
 
-// // The full shape you use everywhere in the cart UI
-// export interface FullCartItem {
-//   id: string;
-//   name: string;
-//   label: string;
-//   price: number;
-//   image: string;
-//   discount: number;
-//   finalPrice: number;
-//   amount: number;
-//   quantity:number;
-// }
+export interface FullCartItem {
+  id: string;
+  name: string;
+  label: string;
+  price: number;
+  image: string;
+  discount: number;
+  finalPrice: number;
+  amount: number;
+  quantity: number;
+}
 
-// export function useCartProducts(): FullCartItem[] {
-//   const { cartItems } = useCartContext();
-//   const { t } = useTranslation();
+// Shape returned by your backend for a translated product
+interface ProductApiResponse {
+  id: string;
+  name: string;
+  label: string;
+  price: number;
+  images: string[];
+  discount: number;
+  finalPrice: number;
+  amount: number;
+}
 
-//   const translations = t("products", { returnObjects: true }) as Record<
-//     string,
-//     { name: string; description: string; categorie: string }
-//   >;
+export function useCartProducts(): FullCartItem[] {
+  const cartItems = useCartStore((state) => state.cartItems);
+  const { i18n } = useTranslation();
 
-//   return cartItems
-//     .map((cartItem) => {
-//       const staticData = productsJson.find((p) => String(p.id) === String(cartItem.id));
-//       const i18nData = staticData ? translations[staticData.parentId] : undefined;
+  const [products, setProducts] = useState<Record<string, ProductApiResponse>>({});
 
-//       // guard: skip if product no longer exists
-//       if (!staticData || !i18nData) return null;
+  useEffect(() => {
+    if (cartItems.length === 0) {
+      setProducts({});
+      return;
+    }
 
+    const ids = cartItems.map((item) => item.productId).join(",");
+    const controller = new AbortController();
 
-//       return {
-//         id: cartItem.id,
-//         amount: staticData.amount,
-//         name: i18nData.name,
-//         label: staticData.label,
-//         price: staticData.price,
-//         image: staticData.images[0], // assuming you want the first image
-//         discount: staticData.discount,
-//         finalPrice: staticData.finalPrice,
-//         quantity:cartItem.quantity
-//       };
-//     })
-//     .filter((item): item is FullCartItem => item !== null);
-// }
+    fetch(`/api/products?ids=${ids}&lang=${i18n.language}`, {
+      credentials: "include",
+      signal: controller.signal,
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error(`Failed to fetch cart products: ${res.status}`);
+        return res.json();
+      })
+      .then((data: ProductApiResponse[]) => {
+        const byId = Object.fromEntries(data.map((p) => [String(p.id), p]));
+        setProducts(byId);
+      })
+      .catch((err) => {
+        if (err.name !== "AbortError") console.error(err);
+      });
+
+    return () => controller.abort();
+    // re-fetch when cart contents or language change
+  }, [cartItems.map((i) => `${i.productId}:${i.quantity}`).join(","), i18n.language]);
+
+  return cartItems
+    .map((cartItem) => {
+      const product = products[String(cartItem.productId)];
+      if (!product) return null;
+
+      return {
+        id: product.id,
+        amount: product.amount,
+        name: product.name,
+        label: product.label,
+        price: Number(product.price),        // guard against Postgres numeric strings
+        image: product.images[0],
+        discount: Number(product.discount),
+        finalPrice: Number(product.finalPrice),
+        quantity: cartItem.quantity,
+      };
+    })
+    .filter((item): item is FullCartItem => item !== null);
+}

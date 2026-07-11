@@ -13,12 +13,15 @@ import tiktok from "/assets/Social/tiktokIcon.webp";
 import { FaUser } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { useCartContext } from "../context/CartContext";
+// import { useCartContext } from "../context/CartContext";
 import { FaHouse } from "react-icons/fa6";
+import { useCartStore } from "../store/useCartStore";
 
 const Footer = () => {
   const { t } = useTranslation("translation", { keyPrefix: "footer" });
-  const { cartItems } = useCartContext();
+  // const { cartItems } = useCartContext();
+ const cartItems = useCartStore((state) => state.cartItems);
+
 
 const footerBg = `${import.meta.env.BASE_URL}footershape.png`;
 

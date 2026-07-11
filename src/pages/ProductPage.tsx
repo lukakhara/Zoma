@@ -5,8 +5,9 @@ import { type Product } from "../types";
 import productsData from "../locales/products.json";
 import { Link, useParams } from "react-router";
 import { useState, useEffect } from "react";
-import { useCartContext } from "../context/CartContext";
+// import { useCartContext } from "../context/CartContext";
 import { getProduct } from "../services/productService";
+import { useCartStore } from "../store/useCartStore";
 
 interface Variant {
   id: number;
@@ -37,7 +38,9 @@ const ProductPage = () => {
     returnObjects: true,
   }) as Product[];
   const { slug } = useParams<{ slug: string }>();
-  const { addToCart } = useCartContext();
+  // const { addToCart } = useCartContext();
+   const addToCart = useCartStore((state) => state.addToCart);
+
   const [activeImage, setActiveImage] = useState<number>(0);
   const languageGeorgian = i18n.language === "ka";
   const [product, setProduct] = useState<ProductDetail | null>(null);

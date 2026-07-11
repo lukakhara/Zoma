@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { type CartItem } from "../types";
+import { devtools } from "zustand/middleware";
 
 interface CartState {
   cartItems: CartItem[];

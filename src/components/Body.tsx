@@ -1,12 +1,11 @@
 import Card from "./Card.tsx";
-import productsData from "../locales/products.json";
 import { useTranslation } from "react-i18next";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { getProducts } from "../services/productService.ts";
 import type { CardProps } from "../types";
 
 const Body = ({ filter }: { filter: string }) => {
-  const { t, i18n } = useTranslation();
+  const {i18n } = useTranslation();
   const [products, setProducts] = useState<CardProps[]>([]);
 
   useEffect(() => {

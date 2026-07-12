@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useAuthStore } from "../store/useAuthStore";
 
 export default function SignIn() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   // const { login } = useAuth();
   const login = useAuthStore((state) => state.login);
 
@@ -17,22 +17,32 @@ export default function SignIn() {
 
   const navigate = useNavigate();
 
-  const handleChange = (setter: (v: string) => void) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    setter(e.target.value);
-    if (error) setError("");
-  };
+  const handleChange =
+    (setter: (v: string) => void) =>
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setter(e.target.value);
+      if (error) setError("");
+    };
 
   const signIn = async () => {
     if (!email.trim() || !password.trim()) {
-      setError(t('pleaseFillInAllFields'));
+      setError(t("pleaseFillInAllFields"));
       return;
     }
     setIsLoading(true);
     try {
       await login(email, password);
-      navigate("/user/profile", { replace: true });
+
+      // Grab the freshly-set user from the store after login completes
+      const user = useAuthStore.getState().user;
+
+      if (user?.role === "admin") {
+        navigate("/admin/products", { replace: true });
+      } else {
+        navigate("/user/profile", { replace: true });
+      }
     } catch {
-      setError(t('invalidEmailOrPassword'));
+      setError(t("invalidEmailOrPassword"));
     } finally {
       setIsLoading(false);
     }
@@ -40,18 +50,20 @@ export default function SignIn() {
 
   return (
     <div className="min-h-screen py-6 md:py-14">
-      <h1 className="text-2xl font-bold text-gray-900">
-        {t('signIn')}</h1>
+      <h1 className="text-2xl font-bold text-gray-900">{t("signIn")}</h1>
 
       <div className="md:flex md:justify-center md:items-center md:mt-16">
         <div className="w-full md:max-w-sm mt-6">
           <form
             className="flex flex-col gap-4"
-            onSubmit={(e) => { e.preventDefault(); signIn(); }}
+            onSubmit={(e) => {
+              e.preventDefault();
+              signIn();
+            }}
           >
             {/* Email */}
             <div className="flex flex-col gap-1">
-              <span className="text-sm text-gray-700">{t('e-mail')}*</span>
+              <span className="text-sm text-gray-700">{t("e-mail")}*</span>
               <input
                 type="email"
                 value={email}
@@ -64,9 +76,12 @@ export default function SignIn() {
             {/* Password */}
             <div className="flex flex-col gap-1">
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-700">{t('password')}*</span>
-                <Link to="/password-recovery" className="text-sm text-gray-400 cursor-pointer hover:text-gray-600">
-                 {t('forgotYourPassword')}?  
+                <span className="text-sm text-gray-700">{t("password")}*</span>
+                <Link
+                  to="/password-recovery"
+                  className="text-sm text-gray-400 cursor-pointer hover:text-gray-600"
+                >
+                  {t("forgotYourPassword")}?
                 </Link>
               </div>
               <div className="relative">
@@ -85,14 +100,41 @@ export default function SignIn() {
                 >
                   {showPassword ? (
                     // Eye-off icon
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-5 0-9-4-9-7s4-7 9-7a9.96 9.96 0 015.657 1.757M15 12a3 3 0 01-4.875 2.337M3 3l18 18" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13.875 18.825A10.05 10.05 0 0112 19c-5 0-9-4-9-7s4-7 9-7a9.96 9.96 0 015.657 1.757M15 12a3 3 0 01-4.875 2.337M3 3l18 18"
+                      />
                     </svg>
                   ) : (
                     // Eye icon
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                      />
                     </svg>
                   )}
                 </button>
@@ -110,14 +152,17 @@ export default function SignIn() {
                 hover:opacity-90 active:bg-black cursor-pointer
                 disabled:opacity-60 disabled:cursor-not-allowed transition-opacity"
             >
-              {isLoading ? t('signingIn') : t('signIn')}
+              {isLoading ? t("signingIn") : t("signIn")}
             </button>
           </form>
 
           <p className="text-center text-sm text-gray-400 mt-4">
-         {t('ifYouAreNotRegistered')},{" "}
-            <Link className="font-semibold text-gray-600 hover:text-gray-900" to="/registration">
-           {t('registerNow')}
+            {t("ifYouAreNotRegistered")},{" "}
+            <Link
+              className="font-semibold text-gray-600 hover:text-gray-900"
+              to="/registration"
+            >
+              {t("registerNow")}
             </Link>
           </p>
         </div>

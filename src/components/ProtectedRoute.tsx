@@ -1,5 +1,4 @@
 import { Navigate, Outlet } from "react-router-dom";
-
 import { useAuthStore } from "../store/useAuthStore";
 
 interface ProtectedRouteProps {
@@ -7,7 +6,6 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute = ({ requiredRole }: ProtectedRouteProps) => {
-  // const { isAuthenticated, isLoading, user } = useAuth();
   const user = useAuthStore((state) => state.user);
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const isLoading = useAuthStore((state) => state.isLoading);
@@ -17,13 +15,12 @@ const ProtectedRoute = ({ requiredRole }: ProtectedRouteProps) => {
   if (!isAuthenticated) {
     return <Navigate to="/sign-in" replace />;
   }
-  // if(requiredRole === 'admin' && user?.role !== 'admin') {
-  //   return <Navigate to="/admin/products" replace />;
-  // }
 
-  // if (requiredRole && user?.role !== requiredRole) {
-  //   return <Navigate to="/unauthorized" replace />; // or "/"
-  // }
+  // If this is a "user" route but the logged-in user is actually an admin, send them to admin
+  if (requiredRole === "user" && user?.role === "admin") {
+    return <Navigate to="/admin/products" replace />;
+  }
+
 
   return <Outlet />;
 };

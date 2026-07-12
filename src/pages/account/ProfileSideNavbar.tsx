@@ -1,12 +1,16 @@
 // ProfileSideNavbar.tsx
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useAuthStore } from "../../store/useAuthStore";
 
 const ProfileSideNavbar = () => {
-  const { t } = useTranslation("translation", { keyPrefix: "profileSideNavbar" });
+  const user = useAuthStore((state) => state.user);
+  const { t } = useTranslation("translation", {
+    keyPrefix: "profileSideNavbar",
+  });
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
+  console.log("user in ProfileSideNavbar:", user); // Debugging line to check the user object
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `pl-4 py-3 text-sm cursor-pointer hover:bg-[#e6e6e6] leading-tight ${
@@ -25,6 +29,14 @@ const ProfileSideNavbar = () => {
         style={{ width: "clamp(160px, 22vw, 385px)" }}
       >
         <div className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm">
+          {user?.role === "admin" && (
+            <Link
+              className="pl-4 py-3 text-sm cursor-pointer hover:bg-[#e6e6e6] leading-tight "
+              to="/admin/products"
+            >
+              Admin Panel
+            </Link>
+          )}
           <NavLink className={linkClass} to="/user/profile">
             {t("profile")}
           </NavLink>

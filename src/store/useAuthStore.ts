@@ -14,6 +14,7 @@ interface AuthState {
   user: User | null;
   isAuthenticated: boolean;
   isLoading: boolean;
+  checkAuth: () => Promise<void>;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   register: (
@@ -33,6 +34,22 @@ export const useAuthStore = create<AuthState>()((set) => ({
   user: null,
   isAuthenticated: false,
   isLoading: false,
+
+  checkAuth: async () => {
+    console.log("checkAuth called");
+    set({ isLoading: true });
+    try {
+      const res = await fetch("/api/auth/me", { credentials: "include" });
+      console.log("checkAuth response status:", res.status);
+      if (!res.ok) throw new Error("Not authenticated");
+      const data = await res.json();
+      console.log("checkAuth data:", data);
+      set({ user: data.user, isAuthenticated: true, isLoading: false });
+    } catch (err) {
+      console.log("checkAuth failed:", err);
+      set({ user: null, isAuthenticated: false, isLoading: false });
+    }
+  },
 
   login: async (email: string, password: string) => {
     set({ isLoading: true });
@@ -101,5 +118,5 @@ export const useAuthStore = create<AuthState>()((set) => ({
       throw err;
     }
   },
-    setUser: (user: User) => set({ user, isAuthenticated: true }),
+  setUser: (user: User) => set({ user, isAuthenticated: true }),
 }));

@@ -1,20 +1,20 @@
 import "./App.css";
-import { HashRouter} from "react-router-dom";
-
-// import CartContextProvider from "./context/CartContext";
+import { HashRouter } from "react-router-dom";
 import AppRoutes from "./routes/AppRoutes";
-
-
+import { useEffect } from "react";
+import { useAuthStore } from "./store/useAuthStore";
 
 function App() {
+  const checkAuth = useAuthStore((state) => state.checkAuth);
+
+  useEffect(() => {
+    checkAuth();
+    
+  }, [checkAuth]);
   return (
-    // <CartContextProvider>
-      // <AuthProvider>
-        <HashRouter>
-          <AppRoutes/>
-        </HashRouter>
-      // </AuthProvider>
-    // </CartContextProvider>
+    <HashRouter>
+      <AppRoutes />
+    </HashRouter>
   );
 }
 

@@ -7,11 +7,20 @@ interface Category {
   name: { en?: string; ka?: string };
 }
 
+interface TranslationPayload {
+  lang: "en" | "ka";
+  name: string;
+  description?: string;
+  instructions_for_use: string[];
+  do_not_use: string[];
+  store?: string;
+}
+
 interface NewProductPayload {
   slug: string;
   status: "active" | "inactive";
   category_id: number | null;
-  translations: { lang: "en" | "ka"; name: string; description?: string }[];
+  translations: TranslationPayload[];
   variant: {
     sku: string;
     capacity_ml: number;
@@ -19,6 +28,70 @@ interface NewProductPayload {
     discount: number;
     stock: number;
   };
+}
+
+// ── Reusable step-list input ─────────────────────────────────────────────
+// Renders N text inputs with add/remove controls, for array-of-string
+// columns like instructions_for_use / do_not_use.
+function StepListInput({
+  label,
+  values,
+  onChange,
+  placeholder,
+}: {
+  label: string;
+  values: string[];
+  onChange: (next: string[]) => void;
+  placeholder?: string;
+}) {
+  const inputCls =
+    "w-full border border-gray-200 rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-blue-400";
+  const labelCls = "text-xs font-medium text-gray-500 mb-1 block";
+
+  const updateAt = (i: number, val: string) => {
+    const next = [...values];
+    next[i] = val;
+    onChange(next);
+  };
+
+  const removeAt = (i: number) => {
+    onChange(values.filter((_, idx) => idx !== i));
+  };
+
+  const addRow = () => onChange([...values, ""]);
+
+  return (
+    <div>
+      <label className={labelCls}>{label}</label>
+      <div className="flex flex-col gap-2">
+        {values.map((v, i) => (
+          <div key={i} className="flex gap-2">
+            <input
+              className={inputCls}
+              value={v}
+              onChange={(e) => updateAt(i, e.target.value)}
+              placeholder={placeholder ?? `Step ${i + 1}`}
+            />
+            <button
+              type="button"
+              onClick={() => removeAt(i)}
+              className="px-2 text-red-400 hover:text-red-600 text-sm"
+              title="Remove step"
+            >
+              ✕
+            </button>
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={addRow}
+          className="self-start text-xs text-[#2f4a9c] hover:underline"
+        >
+          + Add step
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default function AddProductModal({
@@ -35,6 +108,9 @@ export default function AddProductModal({
   // step 1 — English + core product data
   const [nameEn, setNameEn] = useState("");
   const [descriptionEn, setDescriptionEn] = useState("");
+  const [instructionsEn, setInstructionsEn] = useState<string[]>([]);
+  const [doNotUseEn, setDoNotUseEn] = useState<string[]>([]);
+  const [storeEn, setStoreEn] = useState("");
   const [slug, setSlug] = useState("");
   const [categoryId, setCategoryId] = useState<string>("");
   const [sku, setSku] = useState("");
@@ -47,6 +123,9 @@ export default function AddProductModal({
   // step 2 — Georgian translation
   const [nameKa, setNameKa] = useState("");
   const [descriptionKa, setDescriptionKa] = useState("");
+  const [instructionsKa, setInstructionsKa] = useState<string[]>([]);
+  const [doNotUseKa, setDoNotUseKa] = useState<string[]>([]);
+  const [storeKa, setStoreKa] = useState("");
 
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState("");
@@ -74,6 +153,9 @@ export default function AddProductModal({
     setStep(1);
   };
 
+  // Drops blank rows left over from "+ Add step" clicks the admin never filled in.
+  const cleanSteps = (arr: string[]) => arr.map((s) => s.trim()).filter(Boolean);
+
   const handleSubmit = async () => {
     setError("");
 
@@ -89,8 +171,22 @@ export default function AddProductModal({
         status,
         category_id: categoryId ? Number(categoryId) : null,
         translations: [
-          { lang: "en", name: nameEn.trim(), description: descriptionEn.trim() || undefined },
-          { lang: "ka", name: nameKa.trim(), description: descriptionKa.trim() || undefined },
+          {
+            lang: "en",
+            name: nameEn.trim(),
+            description: descriptionEn.trim() || undefined,
+            instructions_for_use: cleanSteps(instructionsEn),
+            do_not_use: cleanSteps(doNotUseEn),
+            store: storeEn.trim() || undefined,
+          },
+          {
+            lang: "ka",
+            name: nameKa.trim(),
+            description: descriptionKa.trim() || undefined,
+            instructions_for_use: cleanSteps(instructionsKa),
+            do_not_use: cleanSteps(doNotUseKa),
+            store: storeKa.trim() || undefined,
+          },
         ],
         variant: {
           sku: sku.trim(),
@@ -195,7 +291,7 @@ export default function AddProductModal({
                     <option value="">— none —</option>
                     {categories.map((c) => (
                       <option key={c.id} value={c.id}>
-                    {c.name.en ?? `#${c.id}`}
+                        {c.name.en ?? `#${c.id}`}
                       </option>
                     ))}
                   </select>
@@ -265,6 +361,30 @@ export default function AddProductModal({
                   <option value="inactive">Inactive</option>
                 </select>
               </div>
+
+              <StepListInput
+                label="Instructions for use (EN)"
+                values={instructionsEn}
+                onChange={setInstructionsEn}
+                placeholder="e.g. Spray onto the surface"
+              />
+
+              <StepListInput
+                label="Do not use on (EN)"
+                values={doNotUseEn}
+                onChange={setDoNotUseEn}
+                placeholder="e.g. Do not use on marble"
+              />
+
+              <div>
+                <label className={labelCls}>Storage instructions (EN)</label>
+                <input
+                  className={inputCls}
+                  value={storeEn}
+                  onChange={(e) => setStoreEn(e.target.value)}
+                  placeholder="e.g. Store in a cool, dry place away from sunlight"
+                />
+              </div>
             </>
           )}
 
@@ -281,6 +401,30 @@ export default function AddProductModal({
                   rows={3}
                   value={descriptionKa}
                   onChange={(e) => setDescriptionKa(e.target.value)}
+                />
+              </div>
+
+              <StepListInput
+                label="გამოყენების ინსტრუქცია (KA)"
+                values={instructionsKa}
+                onChange={setInstructionsKa}
+                placeholder="მაგ. შეასხურეთ ზედაპირზე"
+              />
+
+              <StepListInput
+                label="არ გამოიყენოთ (KA)"
+                values={doNotUseKa}
+                onChange={setDoNotUseKa}
+                placeholder="მაგ. არ გამოიყენოთ მარმარილოზე"
+              />
+
+              <div>
+                <label className={labelCls}>შენახვის პირობები (KA)</label>
+                <input
+                  className={inputCls}
+                  value={storeKa}
+                  onChange={(e) => setStoreKa(e.target.value)}
+                  placeholder="მაგ. შეინახეთ გრილ, მშრალ ადგილას"
                 />
               </div>
             </>

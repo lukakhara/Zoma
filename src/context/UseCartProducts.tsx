@@ -13,6 +13,8 @@ export interface FullCartItem {
   finalPrice: number;
   amount: number;
   quantity: number;
+  capacity_unit: string;
+  capacity_value: number;
 }
 
 // Shape returned by your backend for a translated product
@@ -25,6 +27,8 @@ interface ProductApiResponse {
   discount: number;
   finalPrice: number;
   amount: number;
+  capacity_unit: string;
+  capacity_value: number;
 }
 
 export function useCartProducts(): FullCartItem[] {
@@ -70,6 +74,8 @@ export function useCartProducts(): FullCartItem[] {
       return {
         id: product.id,
         amount: product.amount,
+        capacity_unit: product.capacity_unit,
+        capacity_value: product.capacity_value,
         name: product.name,
         label: product.label,
         price: Number(product.price),        // guard against Postgres numeric strings
@@ -77,6 +83,7 @@ export function useCartProducts(): FullCartItem[] {
         discount: Number(product.discount),
         finalPrice: Number(product.finalPrice),
         quantity: cartItem.quantity,
+
       };
     })
     .filter((item): item is FullCartItem => item !== null);

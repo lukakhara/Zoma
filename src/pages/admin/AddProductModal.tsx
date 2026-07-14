@@ -1,10 +1,10 @@
 // pages/admin/AddProductModal.tsx
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getCsrfToken } from "../../lib/csrf";
 
 interface Category {
   id: number;
-  name: { en?: string; ka?: string };
+  name: string ;
 }
 
 interface TranslationPayload {
@@ -16,18 +16,32 @@ interface TranslationPayload {
   store?: string;
 }
 
+const CAPACITY_UNITS = ["ml", "l", "g", "kg", "pcs", "rolls"] as const;
+type CapacityUnit = (typeof CAPACITY_UNITS)[number];
+
+interface VariantInput {
+  id: string; // client-side only, for React keys — stripped before sending to backend
+  sku: string;
+  capacity_value: number;
+  capacity_unit: CapacityUnit;
+  price: number;
+  discount: number;
+  stock: number;
+}
+
 interface NewProductPayload {
   slug: string;
   status: "active" | "inactive";
   category_id: number | null;
   translations: TranslationPayload[];
-  variant: {
+  variants: {
     sku: string;
-    capacity_ml: number;
+    capacity_value: number;
+    capacity_unit: CapacityUnit;
     price: number;
     discount: number;
     stock: number;
-  };
+  }[];
 }
 
 // ── Reusable step-list input ─────────────────────────────────────────────
@@ -94,16 +108,205 @@ function StepListInput({
   );
 }
 
+// ── Reusable variant list input ──────────────────────────────────────────
+// Renders N variant rows (sku / capacity / price / discount / stock),
+// each independently editable, with add/remove controls.
+function VariantListInput({
+  variants,
+  onChange,
+}: {
+  variants: VariantInput[];
+  onChange: (next: VariantInput[]) => void;
+}) {
+  const inputCls =
+    "w-full border border-gray-200 rounded-md px-2 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-blue-400";
+  const labelCls = "text-xs font-medium text-gray-500 mb-1 block";
+
+  const updateField = (
+    id: string,
+    field: keyof Omit<VariantInput, "id">,
+    value: string | number,
+  ) => {
+    onChange(variants.map((v) => (v.id === id ? { ...v, [field]: value } : v)));
+  };
+
+  const removeVariant = (id: string) => {
+    onChange(variants.filter((v) => v.id !== id));
+  };
+
+  const addVariant = () => {
+    onChange([
+      ...variants,
+      {
+        id: crypto.randomUUID(),
+        sku: "",
+        capacity_value: 0,
+        capacity_unit: "ml",
+        price: 0,
+        discount: 0,
+        stock: 0,
+      },
+    ]);
+  };
+
+
+  return (
+    <div>
+      <label className={labelCls}>Variants (capacity / price / stock)*</label>
+      <div className="flex flex-col gap-3">
+        {variants.map((v, i) => (
+          <div
+            key={v.id}
+            className="border border-gray-200 rounded-md p-3 flex flex-col gap-2"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-medium text-gray-400">
+                Variant {i + 1}
+              </span>
+              {variants.length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => removeVariant(v.id)}
+                  className="text-red-400 hover:text-red-600 text-sm"
+                  title="Remove variant"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <label className={labelCls}>SKU*</label>
+                <input
+                  className={inputCls}
+                  value={v.sku}
+                  onChange={(e) => updateField(v.id, "sku", e.target.value)}
+                />
+              </div>
+              <div>
+                <label className={labelCls}>Capacity*</label>
+                <div className="flex gap-2">
+                  <input
+                    className={inputCls}
+                    type="number"
+                    min="0"
+                    value={v.capacity_value}
+                    onChange={(e) =>
+                      updateField(v.id, "capacity_value", +e.target.value)
+                    }
+                  />
+                  <select
+                    className={`${inputCls} max-w-20`}
+                    value={v.capacity_unit}
+                    onChange={(e) =>
+                      updateField(v.id, "capacity_unit", e.target.value)
+                    }
+                  >
+                    {CAPACITY_UNITS.map((unit) => (
+                      <option key={unit} value={unit}>
+                        {unit}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-2">
+              <div>
+                <label className={labelCls}>Price (₾)*</label>
+                <input
+                  className={inputCls}
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  value={v.price}
+                  onChange={(e) => updateField(v.id, "price", +e.target.value)}
+                />
+              </div>
+              <div>
+                <label className={labelCls}>Discount (%)</label>
+                <input
+                  className={inputCls}
+                  type="number"
+                  min="0"
+                  max="100"
+                  value={v.discount}
+                  onChange={(e) =>
+                    updateField(v.id, "discount", +e.target.value)
+                  }
+                />
+              </div>
+              <div>
+                <label className={labelCls}>Stock</label>
+                <input
+                  className={inputCls}
+                  type="number"
+                  min="0"
+                  value={v.stock}
+                  onChange={(e) => updateField(v.id, "stock", +e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={addVariant}
+          className="self-start text-xs text-[#2f4a9c] hover:underline"
+        >
+          + Add variant
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function AddProductModal({
-  categories,
   onClose,
   onCreated,
 }: {
-  categories: Category[];
   onClose: () => void;
   onCreated: (product: any) => void;
 }) {
   const [step, setStep] = useState<1 | 2>(1);
+
+  // categories — fetched on mount so the modal doesn't depend on the parent
+  // passing them in as a prop
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [categoriesLoading, setCategoriesLoading] = useState(true);
+  const [categoriesError, setCategoriesError] = useState("");
+
+
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const fetchCategories = async () => {
+      setCategoriesLoading(true);
+      setCategoriesError("");
+      try {
+        const res = await fetch("/api/categories", {
+          credentials: "include",
+        });
+        if (!res.ok) throw new Error("Failed to load categories");
+        const data = await res.json();
+        if (!cancelled) setCategories(data);
+      } catch (err) {
+        if (!cancelled) {
+          setCategoriesError(
+            err instanceof Error ? err.message : "Failed to load categories",
+          );
+        }
+      } finally {
+        if (!cancelled) setCategoriesLoading(false);
+      }
+    };
+
+    fetchCategories();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // step 1 — English + core product data
   const [nameEn, setNameEn] = useState("");
@@ -113,12 +316,18 @@ export default function AddProductModal({
   const [storeEn, setStoreEn] = useState("");
   const [slug, setSlug] = useState("");
   const [categoryId, setCategoryId] = useState<string>("");
-  const [sku, setSku] = useState("");
-  const [capacityMl, setCapacityMl] = useState<number>(0);
-  const [price, setPrice] = useState<number>(0);
-  const [discount, setDiscount] = useState<number>(0);
-  const [stock, setStock] = useState<number>(0);
   const [status, setStatus] = useState<"active" | "inactive">("active");
+  const [variants, setVariants] = useState<VariantInput[]>([
+    {
+      id: crypto.randomUUID(),
+      sku: "",
+      capacity_value: 0,
+      capacity_unit: "ml",
+      price: 0,
+      discount: 0,
+      stock: 0,
+    },
+  ]);
 
   // step 2 — Georgian translation
   const [nameKa, setNameKa] = useState("");
@@ -131,13 +340,23 @@ export default function AddProductModal({
   const [error, setError] = useState("");
 
   const validateStep1 = () => {
-    if (!nameEn.trim() || !slug.trim() || !sku.trim()) {
-      setError("Name (EN), slug, and SKU are required.");
+    if (!nameEn.trim() || !slug.trim()) {
+      setError("Name (EN) and slug are required.");
       return false;
     }
-    if (price <= 0) {
-      setError("Price must be greater than 0.");
-      return false;
+    for (const v of variants) {
+      if (!v.sku.trim()) {
+        setError("Each variant needs a SKU.");
+        return false;
+      }
+      if (v.price <= 0) {
+        setError("Each variant's price must be greater than 0.");
+        return false;
+      }
+      if (v.capacity_value <= 0) {
+        setError("Each variant's capacity must be greater than 0.");
+        return false;
+      }
     }
     return true;
   };
@@ -154,7 +373,8 @@ export default function AddProductModal({
   };
 
   // Drops blank rows left over from "+ Add step" clicks the admin never filled in.
-  const cleanSteps = (arr: string[]) => arr.map((s) => s.trim()).filter(Boolean);
+  const cleanSteps = (arr: string[]) =>
+    arr.map((s) => s.trim()).filter(Boolean);
 
   const handleSubmit = async () => {
     setError("");
@@ -188,13 +408,7 @@ export default function AddProductModal({
             store: storeKa.trim() || undefined,
           },
         ],
-        variant: {
-          sku: sku.trim(),
-          capacity_ml: capacityMl,
-          price,
-          discount,
-          stock,
-        },
+        variants: variants.map(({ id, ...rest }) => rest),
       };
 
       const token = await getCsrfToken();
@@ -219,7 +433,9 @@ export default function AddProductModal({
       onCreated(data);
       onClose();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to create product.");
+      setError(
+        err instanceof Error ? err.message : "Failed to create product.",
+      );
     } finally {
       setIsSaving(false);
     }
@@ -242,7 +458,8 @@ export default function AddProductModal({
           <div>
             <h2 className="text-base font-medium text-gray-900">Add product</h2>
             <p className="text-xs text-gray-400 mt-0.5">
-              Step {step} of 2 — {step === 1 ? "Product details (EN)" : "Georgian translation"}
+              Step {step} of 2 —{" "}
+              {step === 1 ? "Product details (EN)" : "Georgian translation"}
             </p>
           </div>
           <button
@@ -258,7 +475,11 @@ export default function AddProductModal({
             <>
               <div>
                 <label className={labelCls}>Name (EN)*</label>
-                <input className={inputCls} value={nameEn} onChange={(e) => setNameEn(e.target.value)} />
+                <input
+                  className={inputCls}
+                  value={nameEn}
+                  onChange={(e) => setNameEn(e.target.value)}
+                />
               </div>
 
               <div>
@@ -287,66 +508,25 @@ export default function AddProductModal({
                     className={inputCls}
                     value={categoryId}
                     onChange={(e) => setCategoryId(e.target.value)}
+                    disabled={categoriesLoading}
                   >
                     <option value="">— none —</option>
                     {categories.map((c) => (
                       <option key={c.id} value={c.id}>
-                        {c.name.en ?? `#${c.id}`}
+                        {c.name}
                       </option>
                     ))}
                   </select>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className={labelCls}>SKU*</label>
-                  <input className={inputCls} value={sku} onChange={(e) => setSku(e.target.value)} />
-                </div>
-                <div>
-                  <label className={labelCls}>Capacity (ml)</label>
-                  <input
-                    className={inputCls}
-                    type="number"
-                    min="0"
-                    value={capacityMl}
-                    onChange={(e) => setCapacityMl(+e.target.value)}
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-3 gap-3">
-                <div>
-                  <label className={labelCls}>Price (₾)*</label>
-                  <input
-                    className={inputCls}
-                    type="number"
-                    step="0.01"
-                    min="0"
-                    value={price}
-                    onChange={(e) => setPrice(+e.target.value)}
-                  />
-                </div>
-                <div>
-                  <label className={labelCls}>Discount (%)</label>
-                  <input
-                    className={inputCls}
-                    type="number"
-                    min="0"
-                    max="100"
-                    value={discount}
-                    onChange={(e) => setDiscount(+e.target.value)}
-                  />
-                </div>
-                <div>
-                  <label className={labelCls}>Stock</label>
-                  <input
-                    className={inputCls}
-                    type="number"
-                    min="0"
-                    value={stock}
-                    onChange={(e) => setStock(+e.target.value)}
-                  />
+                  {categoriesLoading && (
+                    <p className="text-xs text-gray-400 mt-1">
+                      Loading categories…
+                    </p>
+                  )}
+                  {categoriesError && (
+                    <p className="text-xs text-red-500 mt-1">
+                      {categoriesError}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -355,12 +535,16 @@ export default function AddProductModal({
                 <select
                   className={inputCls}
                   value={status}
-                  onChange={(e) => setStatus(e.target.value as "active" | "inactive")}
+                  onChange={(e) =>
+                    setStatus(e.target.value as "active" | "inactive")
+                  }
                 >
                   <option value="active">Active</option>
                   <option value="inactive">Inactive</option>
                 </select>
               </div>
+
+              <VariantListInput variants={variants} onChange={setVariants} />
 
               <StepListInput
                 label="Instructions for use (EN)"
@@ -392,7 +576,11 @@ export default function AddProductModal({
             <>
               <div>
                 <label className={labelCls}>სახელი (KA)*</label>
-                <input className={inputCls} value={nameKa} onChange={(e) => setNameKa(e.target.value)} />
+                <input
+                  className={inputCls}
+                  value={nameKa}
+                  onChange={(e) => setNameKa(e.target.value)}
+                />
               </div>
               <div>
                 <label className={labelCls}>აღწერა (KA)</label>

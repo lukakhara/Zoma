@@ -10,7 +10,6 @@ const ProfileSideNavbar = () => {
   });
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
-  console.log("user in ProfileSideNavbar:", user); // Debugging line to check the user object
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `pl-4 py-3 text-sm cursor-pointer hover:bg-[#e6e6e6] leading-tight ${

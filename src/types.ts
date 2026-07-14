@@ -13,11 +13,14 @@ export interface Product {
   price: number;
   finalPrice: number;
   quantity: number;
-  amount: number;
+  capacity_unit: string;
+  capacity_value: number;
   discount: number;
 }
 
 export interface CardProps {
+  capacity_unit: string;
+  capacity_value: number;
   id: number;
   slug: string;
   category: string;
@@ -28,7 +31,8 @@ export interface CardProps {
 
 export interface CardVariant {
   id: number;
-  capacity: string;
+  capacity_unit: string;
+  capacity_value: number;
   price: number;
   discount: number;
   stock: number;
@@ -41,22 +45,10 @@ export interface CartItem {
   slug: string;
   name: string;
   image: string;
-  capacity: string;
+  capacity_unit: string;
+  capacity_value: number;
   price: number;
   discount: number;
   stock: number;
   quantity: number;
 }
-
-// types.ts
-// export interface CartItem {
-//   productId: number;
-//   variantId: number;
-//   quantity: number;
-//   name: string; // display name (current language)
-//   capacity: string; // "500ml"
-//   price: number;
-//   discount: number;
-//   image: string;
-//   stock: number;
-// }

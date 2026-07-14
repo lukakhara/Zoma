@@ -11,7 +11,8 @@ import { useCartStore } from "../store/useCartStore";
 
 interface Variant {
   id: number;
-  capacity: string;
+  capacity_value: number;
+  capacity_unit: string;
   price: number;
   finalPrice: number;
   discount: number;
@@ -62,9 +63,13 @@ const ProductPage = () => {
   const [quantity, setQuantity] = useState(1);
 
   const formatLabel = (label: string) => {
+    if (!label) return "";
     if (!languageGeorgian) return label.toLocaleLowerCase();
     return label.toLocaleLowerCase().replace(/ml/g, "მლ").replace(/l\b/g, "ლ");
   };
+
+  const getCapacityLabel = (variant: Variant) =>
+    `${variant.capacity_value}${variant.capacity_unit}`;
 
   useEffect(() => {
     setQuantity(1);
@@ -83,14 +88,17 @@ const ProductPage = () => {
       variantId: currentVariant.id,
       slug: product.slug,
       name: product.name,
-      image: currentVariant.images[0] ?? "/product.png",
-      capacity: currentVariant.capacity,
+      image: images[0] ?? "assets/product.png",
+      capacity_value: currentVariant.capacity_value,
+      capacity_unit: currentVariant.capacity_unit,
+
       price: currentVariant.price,
       discount: currentVariant.discount,
       stock: currentVariant.stock,
       quantity: quantity,
     });
   };
+ 
 
   return (
     <div className="min-h-screen  py-4 md:py-8  ">
@@ -175,7 +183,7 @@ const ProductPage = () => {
                           `}
                   onClick={() => setSelectCapacityIndex(index)}
                 >
-                  {formatLabel(variant.capacity)}
+                  {formatLabel(getCapacityLabel(variant))}
                 </button>
               ))}
             </div>
@@ -276,11 +284,11 @@ const ProductPage = () => {
             <p className="text-sm text-gray-600 mt-0.5">{product.store}</p>
             <p className="text-sm text-gray-600">
               {languageGeorgian ? "მოცულობა" : "volume"}:
-              {formatLabel(currentVariant.capacity)}
+              {formatLabel(getCapacityLabel(currentVariant))}
             </p>
           </div>
         </div>
-      </div>
+      </div>  
     </div>
   );
 };

@@ -6,9 +6,7 @@ import bog from "/assets/Payment/image-6.png";
 import applePay from "/assets/Payment/apple-pay.png";
 import googlePay from "/assets/Payment/google-pay.png";
 import warningIcon from "/assets/warning.png";
-// import { useCartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
-// import { placeOrder } from "../services/orderService";
 import { useTranslation } from "react-i18next";
 import DeliveryAdressDialog from "./DeliveryAdressDialog";
 
@@ -20,11 +18,9 @@ import { useAuthStore } from "../store/useAuthStore";
 
 const Checkout = () => {
   const { t } = useTranslation("translation", { keyPrefix: "checkout" });
-  // const { user } = useAuth(); // null/undefined => not signed in
   const user = useAuthStore((state) => state.user); // null/undefined => not signed in
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(false);
-  // const { cartItems, removeFromCart, updateQuantity, clearCart } =useCartContext();
 
   const cartItems = useCartStore((state) => state.cartItems);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
@@ -125,6 +121,7 @@ const Checkout = () => {
       }));
     }
   };
+  console.log(cartItems);
 
   return (
     <div className="min-h-screen py-4 md:py-8 relative">
@@ -152,7 +149,7 @@ const Checkout = () => {
                       className="text-sm font-helvetocaRegular text-blue-50 text-center  flex-wrap
                     md:w-[225px] md:min-w-[225px] "
                     >
-                      {item.name} ({item.capacity})
+                      {item.name} ({item.capacity_value}{item.capacity_unit})
                     </p>
 
                     <div className="flex items-center gap-2 md:gap-4 lg:gap-5  ">

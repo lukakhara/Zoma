@@ -16,7 +16,7 @@ const statusColor: Record<Order["status"], string> = {
 };
 
 export default function MyOrders() {
-  const { t } = useTranslation('translation', { keyPrefix: 'myOrders' });
+  const { t } = useTranslation("translation", { keyPrefix: "myOrders" });
   const orders = getOrders();
 
   const statusLabel: Record<Order["status"], string> = {
@@ -28,22 +28,22 @@ export default function MyOrders() {
   if (orders.length === 0) {
     return (
       <div className="min-h-screen py-4 md:py-8 flex items-center justify-center">
-        <p className="text-gray-500">{t('youHaveNoOrdersYet')} </p>
+        <p className="text-gray-500">{t("youHaveNoOrdersYet")} </p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen py-4 md:py-8 flex flex-col gap-6 w-full  ">
-      <h1 className="block md:hidden sectionHeader">{t('myOrders')}</h1>
+    <div className="min-h-screen py-4 md:py-8 flex flex-col gap-6 w-full">
+      <h1 className="block md:hidden sectionHeader">{t("myOrderstext")}</h1>
       {orders.map((order) => (
         <div
           key={order.id}
           className="bg-white rounded-2xl shadow-sm overflow-hidden"
         >
           {/* ── DESKTOP ── */}
-          <div className="hidden md:block ">
-            <div className="grid grid-cols-5  md:border-b border-[#C3C3C3] text-nowrap">
+          <div className="hidden md:block">
+            <div className="grid grid-cols-5 md:border-b border-[#C3C3C3] text-nowrap">
               {[
                 t("orderNumber"),
                 t("date"),
@@ -53,7 +53,7 @@ export default function MyOrders() {
               ].map((h) => (
                 <div
                   key={h}
-                  className=" border-r border-[#EEEEEE] px-6 py-4 text-sm font-semibold text-gray-800 text-center"
+                  className="border-r border-[#EEEEEE] px-6 py-4 text-sm font-semibold text-gray-800 text-center text-wrap flex items-center justify-center"
                 >
                   {h}
                 </div>
@@ -61,20 +61,18 @@ export default function MyOrders() {
             </div>
 
             <div className="grid grid-cols-5 md:border-b border-[#C3C3C3]">
-              <div className="px-6 py-4 text-sm text-gray-700 text-center border-r border-[#EEEEEE]">
+              <div className="gridStyle">
                 #{order.id.slice(0, 8).toUpperCase()}
               </div>
-              <div className="px-6 py-4 text-sm text-gray-700 text-center border-r border-[#EEEEEE]">
-                {formatDate(order.date)}
-              </div>
-              <div className="px-6 py-4 text-sm text-gray-700 text-center border-r border-[#EEEEEE]">
+              <div className="gridStyle">{formatDate(order.date)}</div>
+              <div className="gridStyle">
                 {order.items.length}{" "}
-                {order.items.length !== 1 ? t("product") : t("productsHeader")}
+                {order.items.length !== 1 ? t("productsHeader") : t("product")}
               </div>
-              <div className="px-6 py-4 text-sm text-gray-700 text-center border-r border-[#EEEEEE]">
+              <div className="gridStyle no-wrap">
                 {order.total.toFixed(2)} ₾
               </div>
-              <div className="px-6 py-4 text-center">
+              <div className="gridStyle">
                 <span
                   className={`text-xs font-semibold px-3 py-1.5 rounded-lg ${statusColor[order.status]}`}
                 >
@@ -134,8 +132,7 @@ export default function MyOrders() {
           </div>
 
           {/* ── MOBILE ── */}
-
-          <div className="md:hidden ">
+          <div className="md:hidden">
             {[
               {
                 label: t("orderNumber"),
@@ -144,14 +141,15 @@ export default function MyOrders() {
               { label: t("date"), value: formatDate(order.date) },
               {
                 label: t("quantity"),
-                value: `${order.items.length} ${order.items.length !== 1 ? t("productsHeader") : t("product")}`,
+                value: `${order.items.length} ${
+                  order.items.length !== 1 ? t("productsHeader") : t("product")
+                }`,
               },
-
               { label: t("total"), value: `${order.total.toFixed(2)} ₾` },
             ].map((row) => (
               <div
                 key={row.label}
-                className="flex justify-between items-center px-5 py-3.5 md:md:border-b border-gray-100 "
+                className="flex justify-between items-center px-5 py-3.5 md:border-b border-gray-100"
               >
                 <span className="text-sm font-semibold text-gray-800">
                   {row.label}
@@ -160,8 +158,8 @@ export default function MyOrders() {
               </div>
             ))}
 
-            <div className="flex justify-between items-center px-5 py-3.5 border-none md:md:border-b border-gray-100">
-              <span className="text-sm font-semibold text-gray-800 ">
+            <div className="flex justify-between items-center px-5 py-3.5 border-none md:border-b border-gray-100">
+              <span className="text-sm font-semibold text-gray-800">
                 {t("status")}
               </span>
               <span
@@ -172,7 +170,7 @@ export default function MyOrders() {
             </div>
 
             {order.items.map((item) => (
-              <div key={item.id} className=" md:border-t border-gray-200 pt-2">
+              <div key={item.id} className="border-t pt-2">
                 <div className="flex justify-between items-start px-5 py-4 md:border-b border-gray-100">
                   <span className="text-sm font-semibold text-gray-800">
                     {t("image")}

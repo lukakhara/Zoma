@@ -11,9 +11,12 @@ import { useNavigate } from "react-router-dom";
 import { useCartProducts } from "../context/UseCartProducts";
 import { placeOrder } from "../services/orderService";
 import { useTranslation } from "react-i18next";
+import Checkbox from "@mui/material/Checkbox";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 
 const Checkout = () => {
-  const {t} = useTranslation('translation', { keyPrefix: 'checkout' });
+  const { t } = useTranslation("translation", { keyPrefix: "checkout" });
   const cartItems = useCartProducts();
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(false);
   const { removeFromCart, updateQuantity, clearCart } = useCartContext();
@@ -47,7 +50,9 @@ const Checkout = () => {
 
   return (
     <div className="min-h-screen py-4 md:py-8">
-      <h1 className="text-2xl font-bold text-gray-900 mb-4">{t('checkout')} </h1>
+      <h1 className="text-2xl font-bold text-gray-900 mb-4">
+        {t("checkout")}{" "}
+      </h1>
 
       <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-start">
         {/* ── LEFT: Cart Items ── */}
@@ -144,20 +149,23 @@ const Checkout = () => {
             <div className="flex bg-white rounded-2xl p-4 shadow-sm md:hidden flex-col gap-3">
               <div className="flex justify-between items-center">
                 <h2 className="text-[18px] font-medium text-[#2f4a9c]">
-                 {t('deliveryDetails')} 
+                  {t("deliveryDetails")}
                 </h2>
                 <button className="flex items-center gap-1 text-sm text-[#2E4790]">
-                {t('edit')} <img src={editIcon} alt="edit" className="w-3 h-3" />
+                  {t("edit")}{" "}
+                  <img src={editIcon} alt="edit" className="w-3 h-3" />
                 </button>
               </div>
               <div className="flex justify-between text-sm text-gray-700">
-                <span className="checkoutLeftText">{t('deliveryAddressCheckout')}:</span>
+                <span className="checkoutLeftText">
+                  {t("deliveryAddressCheckout")}:
+                </span>
                 <span className="text-[#161F28]">
-                 Tbilisi, Rustaveli 1, 01212
+                  Tbilisi, Rustaveli 1, 01212
                 </span>
               </div>
               <div className="flex justify-between text-sm text-gray-700">
-                <span className="checkoutLeftText">{t('mobile')}:</span>
+                <span className="checkoutLeftText">{t("mobile")}:</span>
                 <span className="text-[#161F28] text-[14px]">555 555 555</span>
               </div>
             </div>
@@ -165,15 +173,17 @@ const Checkout = () => {
 
           {/* Summary */}
           <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-2">
-            <h2 className="text-lg font-bold text-[#2f4a9c]">{t('summary')}:</h2>
+            <h2 className="text-lg font-bold text-[#2f4a9c]">
+              {t("summary")}:
+            </h2>
             <div className="flex justify-between text-sm text-gray-700">
-              <span className="checkoutLeftText">{t('totalPrice')}:</span>
+              <span className="checkoutLeftText">{t("totalPrice")}:</span>
               <span className="text-[#161F28] text-[16px]">
                 {totalPrice.toFixed(2)} ₾
               </span>
             </div>
             <div className="flex justify-between text-sm text-gray-700">
-              <span className="checkoutLeftText">{t('totalDiscount')}:</span>
+              <span className="checkoutLeftText">{t("totalDiscount")}:</span>
               <span className="text-[#161F28] text-[16px]">
                 {totalDiscount.toFixed(2)} ₾
               </span>
@@ -186,7 +196,7 @@ const Checkout = () => {
             )} */}
             <div className="flex justify-between items-center pt-1">
               <span className="checkoutLeftText text-sm text-gray-700 ">
-                {t('TotalPriceToPay')}
+                {t("TotalPriceToPay")}
               </span>
               <span className="text-xl font-bold text-[#2f4a9c] text-nowrap">
                 {totalPriceToPay.toFixed(2)} ₾
@@ -198,19 +208,21 @@ const Checkout = () => {
           {selectedPaymentMethod && (
             <div className="bg-white rounded-2xl p-4 shadow-sm flex flex-col gap-3">
               <h2 className="text-lg font-bold text-[#2f4a9c]">
-               {t('PaymentMethod')}:
+                {t("PaymentMethod")}:
               </h2>
-              <p className="text-sm text-gray-500">{t('choosePaymentMethod')} </p>
+              <p className="text-sm text-gray-500">
+                {t("choosePaymentMethod")}{" "}
+              </p>
               {[
                 {
                   value: "tbc",
-                  label: t('TbcBank'),
+                  label: t("TbcBank"),
                   img: tbc,
                   imgClass: "size-8.5 rounded-[7px]",
                 },
                 {
                   value: "bog",
-                  label: t('bankOfGeorgia'),
+                  label: t("bankOfGeorgia"),
                   img: bog,
                   imgClass: "",
                 },
@@ -246,7 +258,7 @@ const Checkout = () => {
                   }}
                 />
                 <div className="w-[62px] h-[34px] border border-gray-300 rounded-md flex items-center justify-center">
-                  <img src={applePay} alt={t('applePay')}  />
+                  <img src={applePay} alt={t("applePay")} />
                 </div>
               </label>
 
@@ -262,13 +274,13 @@ const Checkout = () => {
                   }}
                 />
                 <div className="w-[62px] h-[34px] border border-gray-300 rounded-md flex items-center justify-center px-[6px] py-[7px]">
-                  <img src={googlePay} alt={t('googlePay')} />
+                  <img src={googlePay} alt={t("googlePay")} />
                 </div>
               </label>
 
               {errors.payment && (
                 <div className="flex items-center gap-1">
-                  <img src={warningIcon} alt={t('warningIcon')} />
+                  <img src={warningIcon} alt={t("warningIcon")} />
                   <p className="text-red-500 text-sm">{errors.payment}</p>
                 </div>
               )}
@@ -284,27 +296,33 @@ const Checkout = () => {
                   <p className="text-red-500 text-sm">{errors.terms}</p>
                 </div>
               )}
-              <label className="terms-toggle px-4 md:px-0 " >
-                <input
-                  type="checkbox"
-                  id="terms"
-                  className="size-3"
+              <label className="terms-toggle px-4 md:px-0 ">
+                <Checkbox
+                  icon={<RadioButtonUncheckedIcon />}
+                  checkedIcon={<RadioButtonCheckedIcon />}
+                  sx={{
+                    "& .MuiSvgIcon-root": {
+                      fontSize: 12,
+                    },
+                  }}
                   checked={agreedToTerms}
                   onChange={(e) => {
                     setAgreedToTerms(e.target.checked);
                     setErrors((prev) => ({ ...prev, terms: "" }));
                   }}
                 />
-                <span className="radio-visual  bg-[#FFFFFF]! " />
+
+                {/* <input type="checkbox" id="terms" className="size-3" /> */}
+                {/* <span className="radio-visual  bg-[#FFFFFF]! " /> */}
                 <p className="text-[#797979] font-normal">
-                  {t('iAgreeToTermsAndConditions')}
+                  {t("iAgreeToTermsAndConditions")}
                 </p>
               </label>
               <button
                 className="w-full py-3 rounded-2xl bg-[#FDE800] text-blue-50 font-helvetocaMedium text-[16px] cursor-pointer hover:opacity-90 transition-opacity"
                 onClick={handleCheckout}
               >
-               {t('checkout')}
+                {t("checkout")}
               </button>
             </div>
           ) : (
@@ -313,7 +331,7 @@ const Checkout = () => {
               disabled={cartItems.length === 0}
               className="w-full py-3 rounded-2xl bg-[#FDE800] text-gray-900 font-bold text-sm cursor-pointer hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {t('buyNow')}
+              {t("buyNow")}
             </button>
           )}
         </div>

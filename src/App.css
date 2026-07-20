@@ -75,7 +75,11 @@ body {
   .sectionHeader {
     @apply text-2xl font-bold text-gray-900;
   }
+  .gridStyle{
+    @apply px-6 py-4 text-sm text-gray-700 text-center border-r border-[#EEEEEE] flex items-center justify-center
+  }
 }
+
 
 .parent * {
   color: blue;

@@ -9,8 +9,30 @@ import {
 import { FaInstagram } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
-const offices = [{ city: "Tbilisi, Georgia" }, { city: "Batumi, Georgia" }];
+type OfficeLocation = {
+  en: { city: string; address: string };
+  ka: { city: string; address: string };
+  bbox: string; // per-office map bounding box
+};
 
+const offices: OfficeLocation[] = [
+  {
+    en: { city: "Tbilisi, Georgia", address: "Head Office, Street Name #13" },
+    ka: {
+      city: "თბილისი, საქართველო",
+      address: "მთავარი ოფისი, ქუჩა ნომერი #13",
+    },
+    bbox: "44.7,41.6,44.9,41.8", // Tbilisi
+  },
+  {
+    en: { city: "Batumi, Georgia", address: "Head Office, Street Name #13" },
+    ka: {
+      city: "ბათუმი, საქართველო",
+      address: "მთავარი ოფისი, ქუჩა ნომერი #13",
+    },
+    bbox: "41.55,41.55,41.70,41.70", // Batumi (approximate — adjust to your real coordinates)
+  },
+];
 
 const phones = [
   { color: "bg-blue-700", Icon: Phone },
@@ -18,18 +40,24 @@ const phones = [
   { color: "bg-purple-600", Icon: FaViber },
 ];
 
-function OfficeCard({ city }: { city: string }) {
-  const { t } = useTranslation();
+function OfficeCard({ office }: { office: OfficeLocation }) {
+  const { t, i18n } = useTranslation();
+  const lang = i18n.resolvedLanguage === "ka" ? "ka" : "en";
+  const { city, address } = office[lang];
 
   return (
     <div className="bg-white rounded-2xl p-5 shadow-sm flex flex-col gap-4">
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
-          <p className="text-sm font-medium text-gray-800">{t("mainOffice")}</p>
-          <p className="text-sm text-gray-600">{t("cityContactty")}</p>
+          <p className="text-[14px] md:text-[21px] font-medium text-gray-800">
+             {address}
+          </p>
+          <p className="text-[14px] md:text-[21px] text-gray-600">
+            {t("city")}: {city}
+          </p>
         </div>
-        <span className="text-sm text-gray-700 whitespace-nowrap ml-4">
+        <span className="text-[14px] md:text-[21px] text-gray-700 whitespace-nowrap ml-4">
           10:00-18:00
         </span>
       </div>
@@ -43,7 +71,9 @@ function OfficeCard({ city }: { city: string }) {
             >
               <p.Icon className="text-white w-4 h-4" />
             </div>
-            <span className="text-sm text-gray-700">+995 55 55 55</span>
+            <span className="text-gray-700 text-[14px] md:text-[21px]">
+              +995 55 55 55
+            </span>
           </div>
         ))}
       </div>
@@ -74,7 +104,7 @@ function OfficeCard({ city }: { city: string }) {
             height="100%"
             style={{ border: 0 }}
             loading="lazy"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=44.7%2C41.6%2C44.9%2C41.8&layer=mapnik"
+            src={`https://www.openstreetmap.org/export/embed.html?bbox=${office.bbox}&layer=mapnik`}
           />
         </div>
       </div>
@@ -84,14 +114,13 @@ function OfficeCard({ city }: { city: string }) {
 
 export default function Contact() {
   return (
-    <div className="min-h-screen  py-6 md:py-8">
+    <div className="min-h-screen py-6 md:py-8">
       <h1 className="text-2xl font-bold text-gray-900 mb-5">Contact</h1>
 
-      {/* Mobile: stacked | Desktop: 2 columns */}
       <div className="flex flex-col md:flex-row gap-5">
-        {offices.map((o) => (
-          <div key={o.city} className="flex-1">
-            <OfficeCard city={o.city} />
+        {offices.map((office, i) => (
+          <div key={i} className="flex-1">
+            <OfficeCard office={office} />
           </div>
         ))}
       </div>

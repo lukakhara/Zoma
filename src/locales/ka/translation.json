@@ -55,25 +55,24 @@
     "buyNow": "იყიდე ახლავე"
   },
 
-  "myOrders":{
+  "myOrders": {
     "orderNumber": "შეკვეთის ნომერი",
-  "date": "თარიღი",
-  "quantity": "რაოდენობა",
-  "price": "ფასი",
-  "status": "სტატუსი",
-  
-  "image": "სურათი",
-  "total": "სულ",
-  "product": "პროდუქტი",
+    "myOrderstext": "ჩემი შეკვეთები",
+    "date": "თარიღი",
+    "quantity": "რაოდენობა",
+    "price": "ფასი",
+    "status": "სტატუსი",
 
-  "pending": "მოლოდინის რეჟიმშია",
-  "isBeingDelivered": "იგზავნება ",
-  "delivered": "მიწოდებულია ",
-   "youHaveNoOrdersYet":"შენ ჯერჯერობით არ გაქვს შეკვეთები.",
-     "productsHeader": "პროდუქტები"
+    "image": "სურათი",
+    "total": "სულ",
+    "product": "პროდუქტი",
+
+    "pending": "მოლოდინის რეჟიმშია",
+    "isBeingDelivered": "იგზავნება ",
+    "delivered": "მიწოდებულია ",
+    "youHaveNoOrdersYet": "შენ ჯერჯერობით არ გაქვს შეკვეთები.",
+    "productsHeader": "პროდუქტები"
   },
-  
-
 
   "pleaseFillInAllFields": "გთხოვთ, შეავსოთ ყველა ველი",
   "newPasswordsDon'tMatch": "ახალი პაროლები არ ემთხვევა",

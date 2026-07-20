@@ -57,21 +57,21 @@
 
   "myOrders": {
     "orderNumber": "Order Number",
+    "myOrderstext": "My Orders",
     "date": "Date",
     "quantity": "Quantity",
     "price": "Price",
     "status": "Status",
-     "image": "Image",
-  "total": "Total",
-  "product": "Product",
+    "image": "Image",
+    "total": "Total",
+    "product": "Product",
 
-  "pending": "Pending",
-  "isBeingDelivered": "Is Being Delivered",
-  "delivered": "Delivered",
-  "youHaveNoOrdersYet":"You have no orders yet.",
-  "productsHeader": "Products"
+    "pending": "Pending",
+    "isBeingDelivered": "Is Being Delivered",
+    "delivered": "Delivered",
+    "youHaveNoOrdersYet": "You have no orders yet.",
+    "productsHeader": "Products"
   },
- 
 
   "pleaseFillInAllFields": "Please fill in all fields",
   "newPasswordsDon'tMatch": "New passwords don't match",

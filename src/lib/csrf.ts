@@ -1,6 +1,6 @@
 // src/lib/csrf.ts
 let csrfToken: string | null = null;
-const API = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API = import.meta.env.VITE_API_URL;
 
 export async function getCsrfToken(): Promise<string> {
   if (csrfToken) return csrfToken;

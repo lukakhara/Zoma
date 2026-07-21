@@ -28,7 +28,7 @@ interface AuthState {
   setUser: (user: User) => void;
 }
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API = import.meta.env.VITE_API_URL ;
 
 export const useAuthStore = create<AuthState>()((set) => ({
   user: null,

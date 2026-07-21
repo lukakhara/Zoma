@@ -15,7 +15,6 @@ import EnglandFlag from "/public/assets/gb.svg";
 import GeorgiadFlag from "/public/assets/ge.svg";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
 
 const Header = () => {
   const { i18n, t } = useTranslation();

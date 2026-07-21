@@ -8,7 +8,8 @@ interface CategoryProps {
 }
 
 const Category = ({ setFilter }: CategoryProps) => {
-  const { t } = useTranslation();
+  const { i18n, t } = useTranslation();
+  
   const categories = t("categories", { returnObjects: true }) as Record<string, string>;
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
 
@@ -23,7 +24,7 @@ const Category = ({ setFilter }: CategoryProps) => {
   if (selectedKey !== null && categories[selectedKey] !== undefined) {
     setFilter(categories[selectedKey]);
   }
-}, [selectedKey, i18next.language]);
+}, [categories, setFilter, selectedKey, [i18n.language]]);
 
   const isMobile = () => window.innerWidth < 768;
 

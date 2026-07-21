@@ -8,16 +8,18 @@ import { useState, useEffect } from "react";
 import { useCartContext } from "../context/CartContext";
 
 const ProductPage = () => {
+  const [quantity, setQuantity] = useState(1);
+  const [activeImage, setActiveImage] = useState<number>(0);
+  const [selectCapacityIndex, setSelectCapacityIndex] = useState(0);
+
   const { t, i18n } = useTranslation();
   const productDataFromTranslation = t("products", {
     returnObjects: true,
   }) as Product[];
   const { id } = useParams<{ id: string }>();
   const { addToCart } = useCartContext();
-  const [activeImage, setActiveImage] = useState<number>(0);
-  const languageGeorgian = i18n.language === "ka";
 
-  const [selectCapacityIndex, setSelectCapacityIndex] = useState(0);
+  const languageGeorgian = i18n.language === "ka";
 
   const product = productDataFromTranslation[Number(id)];
 
@@ -25,19 +27,24 @@ const ProductPage = () => {
     (product) => Number(product.parentId) === Number(id),
   );
 
-  const selectedId = capacities[selectCapacityIndex].id;
-
-  const [quantity, setQuantity] = useState(1);
-
   const formatLabel = (label: string) => {
     if (!languageGeorgian) return label.toLocaleLowerCase();
     return label.toLocaleLowerCase().replace(/ml/g, "მლ").replace(/l\b/g, "ლ");
   };
 
+  const selectedProduct = capacities[selectCapacityIndex];
+  const selectedId = selectedProduct.id;
+
+
   useEffect(() => {
     setQuantity(1);
     setActiveImage(0);
-  }, [selectCapacityIndex]);
+  }, [selectedProduct]);
+
+  
+  if (capacities.length === 0) {
+    return <div>Product not found</div>;
+  }
 
   return (
     <div className="min-h-screen  py-4 md:py-8  ">
@@ -60,13 +67,13 @@ const ProductPage = () => {
             </button>
             {/* here is needed data from difrend json file */}
             <img
-              src={capacities[selectCapacityIndex].images[activeImage]}
+              src={selectedProduct.images[activeImage]}
               alt="Product"
               className="max-h-60 object-contain  "
             />
             {/* Dots */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              {capacities[selectCapacityIndex].images.map((_, i) => (
+              {selectedProduct.images.map((_, i) => (
                 <span
                   key={i}
                   className={`w-2 h-2 rounded-full  ${i === activeImage ? "bg-[#2f4a9c]" : "bg-gray-300 cursor-pointer hover:opacity-65 "}`}
@@ -78,7 +85,7 @@ const ProductPage = () => {
 
           {/* Thumbnails */}
           <div className="md:flex gap-3 hidden ">
-            {capacities[selectCapacityIndex].images.map((img, i) => (
+            {selectedProduct.images.map((img, i) => (
               <div
                 key={i}
                 className="bg-white rounded-xl p-2 shadow-sm size-24 md:size-45 flex items-center justify-center flex-1"
@@ -133,22 +140,19 @@ const ProductPage = () => {
               <p className="text-[16px] font-medium font-helvetocaMedium text-[#B8B8B8] mb-2 md:mb-0 leading-[19.48px]">
                 {languageGeorgian ? "რაოდენობა:" : "Quantity:"}
               </p>
-                <select
-                  className="bg-[#F2F2F2] py-2 text-center px-1 md:px-2  centeredFlex  rounded-3xl text-blue-50 text-xl"
-                  name="amount"
-                  id="amount"
-                  value={quantity}
-                  onChange={(e) => setQuantity(Number(e.target.value))}
-                >
-                  {Array.from(
-                    { length: capacities[selectCapacityIndex].amount },
-                    (_, i) => (
-                      <option key={i} value={i + 1}>
-                        {i + 1}
-                      </option>
-                    ),
-                  )}
-                </select>       
+              <select
+                className="bg-[#F2F2F2] py-2 text-center px-1 md:px-2  centeredFlex  rounded-3xl text-blue-50 text-xl"
+                name="amount"
+                id="amount"
+                value={quantity}
+                onChange={(e) => setQuantity(Number(e.target.value))}
+              >
+                {Array.from({ length: selectedProduct.amount }, (_, i) => (
+                  <option key={i} value={i + 1}>
+                    {i + 1}
+                  </option>
+                ))}
+              </select>
             </div>
 
             {/* Pricing */}
@@ -158,14 +162,13 @@ const ProductPage = () => {
                   className=" text-sm 
               unactiveStartingPrice"
                 >
-                  {capacities[selectCapacityIndex].price.toFixed(2)} ₾
+                  {selectedProduct.price.toFixed(2)} ₾
                 </span>
                 <div className="">
                   <span className="bg-red-100 text-white text-xs font-semibold px-2 py-0.5 rounded">
                     -
                     {(
-                      (capacities[selectCapacityIndex].price -
-                        capacities[selectCapacityIndex].finalPrice) *
+                      (selectedProduct.price - selectedProduct.finalPrice) *
                       quantity
                     ).toFixed(2)}
                     ₾
@@ -174,10 +177,7 @@ const ProductPage = () => {
               </div>
 
               <span className="  px-3 py-0.5 rounded-lg goldPrice ">
-                {(
-                  capacities[selectCapacityIndex].finalPrice * quantity
-                ).toFixed(2)}{" "}
-                ₾
+                {(selectedProduct.finalPrice * quantity).toFixed(2)} ₾
               </span>
             </div>
           </div>
@@ -202,8 +202,8 @@ const ProductPage = () => {
             </button>
           </div>
 
-                {/* hr */}
-                <div className="border-t-4 border-[#DBDBDB] w-screen relative left-1/2 -translate-x-1/2 md:hidden"></div>
+          {/* hr */}
+          <div className="border-t-4 border-[#DBDBDB] w-screen relative left-1/2 -translate-x-1/2 md:hidden"></div>
 
           {/* Description */}
           <div className="mt-2 leading-[19.48px]">
@@ -229,7 +229,7 @@ const ProductPage = () => {
             <p className="text-sm text-gray-600 mt-0.5">{product.store}</p>
             <p className="text-sm text-gray-600">
               {languageGeorgian ? "მოცულობა" : "volume"}:
-              {formatLabel(capacities[selectCapacityIndex].label)}
+              {formatLabel(selectedProduct.label)}
             </p>
           </div>
         </div>

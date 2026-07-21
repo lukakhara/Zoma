@@ -1,6 +1,4 @@
 import cart from "/assets/footerCart.png";
-import house from "/assets/home.png";
-import user from "/assets/Vector(9).png";
 import logo from "/assets/logo.webp";
 import phone from "/assets/Social/phone.webp";
 import whatssap from "/assets/Social/whatsapp.webp";

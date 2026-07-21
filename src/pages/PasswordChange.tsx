@@ -57,7 +57,7 @@ export default function PasswordChange() {
       setCurrentPassword("");
       setNewPassword("");
       setConfirmPassword("");
-    } catch (err) {
+    } catch  {
       setError(t("FailedToChangePasswordPleaseTryAgain"));
     } finally {
       setIsLoading(false);

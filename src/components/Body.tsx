@@ -4,13 +4,10 @@ import { useTranslation } from "react-i18next";
 import { useMemo } from "react";
 
 const Body = ({ filter }: { filter: string }) => {
-  const { t, i18n } = useTranslation();
-  const productsName = useMemo(() => {
-    return t("products", { returnObjects: true }) as Record<
-      string,
-      { name: string; category: string }
-    >;
-  }, [i18n.language]);
+  const { t } = useTranslation();
+  const productsName = t("products", {
+  returnObjects: true,
+}) as Record<string, { name: string; category: string }>;
 
   const products = useMemo(() => {
     return productsData

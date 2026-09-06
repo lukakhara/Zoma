@@ -40,24 +40,35 @@ const phones = [
   { color: "bg-purple-600", Icon: FaViber },
 ];
 
+{
+  /* Social icons */
+}
+const SOCIALS = [
+  { Icon: FaFacebookF, bg: "bg-blue-600" },
+  {
+    Icon: FaInstagram,
+    bg: "bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600",
+  },
+  { Icon: FaLinkedinIn, bg: "bg-blue-700" },
+  { Icon: FaTiktok, bg: "bg-black" },
+];
+
 function OfficeCard({ office }: { office: OfficeLocation }) {
   const { t, i18n } = useTranslation();
   const lang = i18n.resolvedLanguage === "ka" ? "ka" : "en";
   const { city, address } = office[lang];
 
   return (
-    <div className="bg-white rounded-2xl p-5 shadow-sm flex flex-col gap-4">
+    <div className="bg-white rounded-2xl p-5 shadow-sm flex flex-col gap-4 text-[14px] md:text-[21.05px] ">
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
-          <p className="text-[14px] md:text-[21px] font-medium text-gray-800">
-             {address}
-          </p>
-          <p className="text-[14px] md:text-[21px] text-gray-600">
+          <p className="  font-medium text-gray-800">{address}</p>
+          <p className="  text-gray-600">
             {t("city")}: {city}
           </p>
         </div>
-        <span className="text-[14px] md:text-[21px] text-gray-700 whitespace-nowrap ml-4">
+        <span className="  text-gray-700 whitespace-nowrap ml-4">
           10:00-18:00
         </span>
       </div>
@@ -71,27 +82,20 @@ function OfficeCard({ office }: { office: OfficeLocation }) {
             >
               <p.Icon className="text-white w-4 h-4" />
             </div>
-            <span className="text-gray-700 text-[14px] md:text-[21px]">
-              +995 55 55 55
-            </span>
+            <span className="text-gray-700  ">+995 55 55 55</span>
           </div>
         ))}
       </div>
 
-      {/* Social icons */}
       <div className="flex gap-2">
-        <div className="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center">
-          <FaFacebookF className="text-white w-4 h-4" />
-        </div>
-        <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 flex items-center justify-center">
-          <FaInstagram className="text-white w-4 h-4" />
-        </div>
-        <div className="w-9 h-9 rounded-full bg-blue-700 flex items-center justify-center">
-          <FaLinkedinIn className="text-white w-4 h-4" />
-        </div>
-        <div className="w-9 h-9 rounded-full bg-black flex items-center justify-center">
-          <FaTiktok className="text-white w-4 h-4" />
-        </div>
+        {SOCIALS.map(({ Icon, bg }, i) => (
+          <div
+            key={i}
+            className={`md:size-9 size-6 rounded-full ${bg} flex items-center justify-center`}
+          >
+            <Icon className="text-white w-4 h-4" />
+          </div>
+        ))}
       </div>
 
       {/* Map */}
@@ -113,9 +117,11 @@ function OfficeCard({ office }: { office: OfficeLocation }) {
 }
 
 export default function Contact() {
+  const { t } = useTranslation();
+
   return (
     <div className="min-h-screen py-6 md:py-8">
-      <h1 className="text-2xl font-bold text-gray-900 mb-5">Contact</h1>
+      <h1 className="text-2xl font-bold text-gray-900 mb-5">{t("contact")}</h1>
 
       <div className="flex flex-col md:flex-row gap-5">
         {offices.map((office, i) => (

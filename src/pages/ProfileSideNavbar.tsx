@@ -17,7 +17,7 @@ const ProfileSideNavbar = () => {
   };
 
   return (
-    <div className="md:flex gap-6 justify-center hidden w-1/2 ">
+    <div className="md:flex gap-6  hidden w-1/2 justify-start max-w-[385px]">
       <aside className="md:max-w-96.25 max-w-97.5 w-full flex flex-col gap-3 ">
         <div className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm ">
           <NavLink className={linkClass} to="/user/profile">

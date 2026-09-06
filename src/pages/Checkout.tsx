@@ -16,7 +16,7 @@ import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 
 const Checkout = () => {
-  const { t } = useTranslation("translation", { keyPrefix: "checkout" });
+  const { t, i18n } = useTranslation("translation", { keyPrefix: "checkout" });
   const cartItems = useCartProducts();
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(false);
   const { removeFromCart, updateQuantity, clearCart } = useCartContext();
@@ -24,6 +24,8 @@ const Checkout = () => {
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
   const [errors, setErrors] = useState({ terms: "", payment: "" });
+
+  const address = i18n.language === 'en' ? 'Tbilisi, Rustaveli 1, 01212' : 'თბილისი, რუსთველის 1, 01212'
 
   const handleCheckout = () => {
     const newErrors = { terms: "", payment: "" };
@@ -146,9 +148,9 @@ const Checkout = () => {
         <div className="w-full md:w-72 flex flex-col gap-4">
           {/* Delivery details — only shown before payment step */}
           {!selectedPaymentMethod && (
-            <div className="flex bg-white rounded-2xl p-4 shadow-sm md:hidden flex-col gap-3">
+            <div className="flex bg-white rounded-2xl p-4 shadow-sm md:hidden flex-col gap-3 ">
               <div className="flex justify-between items-center">
-                <h2 className="text-[18px] font-medium text-[#2f4a9c]">
+                <h2 className="text-[18px] font-medium text-[#2f4a9c] ">
                   {t("deliveryDetails")}
                 </h2>
                 <button className="flex items-center gap-1 text-sm text-[#2E4790]">
@@ -161,7 +163,7 @@ const Checkout = () => {
                   {t("deliveryAddressCheckout")}:
                 </span>
                 <span className="text-[#161F28]">
-                  Tbilisi, Rustaveli 1, 01212
+                {address}
                 </span>
               </div>
               <div className="flex justify-between text-sm text-gray-700">
@@ -296,7 +298,7 @@ const Checkout = () => {
                   <p className="text-red-500 text-sm">{errors.terms}</p>
                 </div>
               )}
-              <label className="terms-toggle px-4 md:px-0 ">
+              <label className="terms-toggle px-4 md:px-0   flex  items-center  ">
                 <Checkbox
                   icon={<RadioButtonUncheckedIcon />}
                   checkedIcon={<RadioButtonCheckedIcon />}
@@ -312,11 +314,10 @@ const Checkout = () => {
                   }}
                 />
 
-                {/* <input type="checkbox" id="terms" className="size-3" /> */}
-                {/* <span className="radio-visual  bg-[#FFFFFF]! " /> */}
-                <p className="text-[#797979] font-normal">
+               
+                <div className="text-[#797979] font-normal   self-stretch flex items-center">
                   {t("iAgreeToTermsAndConditions")}
-                </p>
+                </div>
               </label>
               <button
                 className="w-full py-3 rounded-2xl bg-[#FDE800] text-blue-50 font-helvetocaMedium text-[16px] cursor-pointer hover:opacity-90 transition-opacity"

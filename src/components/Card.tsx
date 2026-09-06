@@ -70,12 +70,12 @@ const Card = ({ product, index }: { product: CardProps; index: number }) => {
             <div className="flex  items-center  gap-2 sm:text-nowrap">
               <p
                 className="bg-[#FDE800] text-[20px]  text-[#474747]
-             font-helvetocaMedium p-2 rounded-sm leading-[15.19px] sm:leading-[12.19px] desktop:p-[7.13px] "
+             font-helvetocaMedium p-2 rounded-sm leading-[15.19px] sm:leading-[12.19px] desktop:p-[7.13px] text-nowrap "
               >
                 {product.finalPrice}{" "}
                 <span className="font-helvetocaRegular">₾</span>
               </p>
-              <p className="font-helvetocaMedium text-[#C3C3C3] text-[20px]  line-through leading-[17.36px]">
+              <p className="font-helvetocaMedium text-[#C3C3C3] text-nowrap text-[20px]  line-through leading-[17.36px]">
                 {product.price} <span>₾</span>
               </p>
             </div>

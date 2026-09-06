@@ -67,7 +67,7 @@ const Card = ({ product, index }: { product: CardProps; index: number }) => {
               {product.name}
             </div>
             {/* prices */}
-            <div className="flex  items-center  gap-2 sm:text-nowrap">
+            <div className="flex   flex-col sm:flex-row items-start sm:items-center gap-2 sm:text-nowrap">
               <p
                 className="bg-[#FDE800] text-[20px]  text-[#474747]
              font-helvetocaMedium p-2 rounded-sm leading-[15.19px] sm:leading-[12.19px] desktop:p-[7.13px] text-nowrap "
@@ -75,51 +75,58 @@ const Card = ({ product, index }: { product: CardProps; index: number }) => {
                 {product.finalPrice}{" "}
                 <span className="font-helvetocaRegular">₾</span>
               </p>
-              <p className="font-helvetocaMedium text-[#C3C3C3] text-nowrap text-[20px]  line-through leading-[17.36px]">
+              <p className="font-helvetocaMedium  px-2 text-[#C3C3C3] text-nowrap text-[20px]  line-through leading-[17.36px]">
                 {product.price} <span>₾</span>
               </p>
             </div>
           </div>
         </div>
 
-        <div className="flex items-baseline  gap-2 desktop:gap-[7.13px] justify-between  mb-[10px] ml-[15px] mr-[16px] mt-auto  ">
-          <div className=" relative  h-[33px] desktop:mt-2.5   rounded-[100px]   bg-[#F2F2F2]  desktop:w-[50.79px] desktop:h-[33px] flex items-center justify-center   gap-1.5 w-[57px]">
-            <select
-              className=" absolute inset-0 opacity-0 cursor-pointer "
-              name="amounth"
-              aria-label="select quantity of product"
-              value={quantity}
-              onChange={(e) => setQuantity(Number(e.target.value))}
+ 
+          <div className="flex items-baseline gap-2 desktop:gap-[7.13px] justify-between mb-[10px] ml-[15px] mr-[16px] mt-auto">
+            <div
+              className="
+      relative h-[33px] desktop:mt-2.5 rounded-[100px] bg-[#F2F2F2]
+      desktop:w-[50.79px] desktop:h-[33px] w-[57px]
+      flex items-center justify-center gap-1.5
+      transition-colors hover:bg-[#e8e8e8]
+      focus-within:ring-2 focus-within:ring-blue-50/40
+    "
             >
-              {Array.from({ length: product.amount }, (_, i) => (
-                <option key={i} value={i + 1}>
-                  {i + 1}
-                </option>
-              ))}
-            </select>
-            <span
-              className=" 
-                          text-blue-50
-                          text-[18px]
-                          flex items-center justify-center
-                        
-                          outline-none
-                          cursor-pointer"
-            >
-              {quantity}
-            </span>
-            <ChevronDown className="size-3 " />
-          </div>
+              <select
+                className="absolute inset-0 opacity-0 cursor-pointer test"
+                name="amount"
+                aria-label="select quantity of product"
+                value={quantity}
+                onChange={(e) => setQuantity(Number(e.target.value))}
+              >
+                {Array.from({ length: product.amount }, (_, i) => (
+                  <option key={i} value={i + 1}>
+                    {i + 1}
+                  </option>
+                ))}
+              </select>
 
-          {/* Need to add product id to the link */}
-          <Link
-            className="cursor-pointer bg-blue-50 text-white  font-helvetocaRegular 
-             py-2 px-6 rounded-[100px] text-[14px] flex-1 h-[33px] desktop:h-[29.41 px] flex items-center justify-center font-normal"
-            to={`${/product/}${product.parentId ? product.parentId : product.id}`}
-          >
-            {languageGeorgian ? "ყიდვა" : "Buy Now"}
-          </Link>
+              <span className="text-blue-50 text-[18px] flex items-center justify-center pointer-events-none select-none">
+                {quantity}
+              </span>
+              <ChevronDown className="size-3 text-blue-50 pointer-events-none transition-transform" />
+            </div>
+
+            <Link
+              className="cursor-pointer bg-blue-50 text-white font-helvetocaRegular
+      py-2 px-6 rounded-[100px] text-[14px] flex-1 h-[33px] desktop:h-[29.41px]
+      flex items-center justify-center font-normal
+      transition-colors hover:bg-blue-700 active:scale-[0.98]
+    "
+              to={`/product/${product.parentId ? product.parentId : product.id}`}
+            >
+              {languageGeorgian ? "ყიდვა" : "Buy Now"}
+            </Link>
+
+       
         </div>
+        
       </div>
     </>
   );

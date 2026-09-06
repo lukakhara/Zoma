@@ -12,7 +12,7 @@ const TransactionResult = () => {
 
   return (
     <div className="h-screen flex justify-center items-center  ">
-      <div className=" flex flex-col items-center gap-5 ">
+      <div className=" flex flex-col items-center gap-5 max-w-[390px] w-full">
         <img
           src={state.success ? successImg : failedImg}
           alt={state.success ? "Success" : "Failure"}
@@ -33,14 +33,14 @@ const TransactionResult = () => {
         {state.success ? (
           <Link
             to="/user/orders"
-            className="blueButton w-[390px] py-4 font-medium text-center text-[18px] leading-[15px] rounded-[10px]"
+            className="blueButton max-w-[390px] w-full py-4 font-medium text-center text-[18px] leading-[15px] rounded-[10px] "
           >
             My Orders
           </Link>
         ) : (
           <Link
             to="/checkout"
-            className="blueButton w-[390px] py-4 font-medium text-center text-[18px] leading-[15px] rounded-[10px]"
+            className="blueButton max-w-[390px] w-full py-4 font-medium text-center text-[18px] leading-[15px] rounded-[10px] "
           >
             Back To Cart
           </Link>

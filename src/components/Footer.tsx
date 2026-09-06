@@ -18,54 +18,49 @@ const Footer = () => {
   const { t } = useTranslation("translation", { keyPrefix: "footer" });
   const { cartItems } = useCartContext();
 
-const footerBg = `${import.meta.env.BASE_URL}footershape.png`;
+  const footerBg = `${import.meta.env.BASE_URL}footershape.png`;
 
   return (
     <>
-      <footer
-        className=" md:hidden bg-no-repeat text-[#FFFFFF]  z-100 
-      w-full min-w-full sticky bottom-0 left-0 right-0  "
-      >
-        <section className=" min-w-full flex flex-col items-center relative pb-2 w-full">
+      <footer className="md:hidden bg-no-repeat text-[#FFFFFF] z-999 w-full fixed bottom-0 left-0 right-0 ">
+        <section className="flex flex-col items-center relative pb-2 w-full">
           <img
             src={footerBg}
             alt="background of footer"
             fetchPriority="high"
             className="absolute inset-0 w-full h-full object-cover object-bottom -z-10"
           />
+
           {/* cart button */}
           <Link
             to="/checkout"
-            className="headerButton md:grid relative   size-[64.21px] rounded-full bg-blue-50 
-            flex items-center justify-center pt-2 pr-2   "
+            className="headerButton md:grid relative size-[64.21px] rounded-full bg-blue-50 
+        flex items-center justify-center pt-2 pr-2"
           >
-            <img src={cart} alt="seach icon" className="size-[26.81px] " />
-            <div
-              className="absolute top-2 right-2 rounded-full 
-                 bg-[#FF4C4C] w-4 h-4.5  text-center center"
-            >
-              <span className=" text-[14px] text-[#FFFFFF] absolute bottom-0 right-1">
+            <img src={cart} alt="search icon" className="size-[26.81px]" />
+            <div className="absolute top-2 right-2 rounded-full bg-[#FF4C4C] w-5 h-5 flex items-center justify-center">
+              <span className="text-[12px] text-[#FFFFFF] font-bold">
                 {cartItems.length}
               </span>
             </div>
           </Link>
 
-          <div className=" flex items-center w-full text-white justify-around pb-4.25 mx-9 ">
-            {/* MAIN PAGE BUTTON  */}
+          <div className="flex items-center w-full text-white justify-around pb-4.25 ">
+            {/* MAIN PAGE BUTTON */}
             <Link
-              className="flex items-baseline justify-center gap-2 p text-[16px]   cursor-pointer   "
+              className="flex items-baseline justify-center gap-2 text-[16px] cursor-pointer"
               to="/"
             >
-              <FaHouse className="size-6"/> 
-              <p className="">{t("home")}</p>
+              <FaHouse className="size-6" />
+              <p>{t("home")}</p>
             </Link>
 
-            {/* PROFILE PAGE BUTTON  */}
+            {/* PROFILE PAGE BUTTON */}
             <Link
-              className="flex gap-2  cursor-pointer  items-center"
+              className="flex gap-2 cursor-pointer items-center"
               to="/user/profile"
             >
-              <FaUser/>
+              <FaUser />
               <p>{t("profile")}</p>
             </Link>
           </div>

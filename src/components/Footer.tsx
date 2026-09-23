@@ -13,6 +13,8 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
 import { FaHouse } from "react-icons/fa6";
+import { FaFacebookF, FaLinkedinIn, FaTiktok } from "react-icons/fa6";
+import { IoLogoInstagram } from "react-icons/io";
 
 const Footer = () => {
   const { t } = useTranslation("translation", { keyPrefix: "footer" });
@@ -20,51 +22,56 @@ const Footer = () => {
 
   const footerBg = `${import.meta.env.BASE_URL}footershape.png`;
 
+  const SOCIALS = [
+    { icon: facebook, alt: "facebook icon" },
+    { icon: instagram, alt: "instagram icon" },
+    { icon: linkedin, alt: "linkedin icon" },
+    { icon: tiktok, alt: "tiktok icon" },
+  ];
+
   return (
     <>
-      <footer className="md:hidden bg-no-repeat text-[#FFFFFF] z-999 w-full fixed bottom-0 left-0 right-0 ">
-        <section className="flex flex-col items-center relative pb-2 w-full">
-          <img
-            src={footerBg}
-            alt="background of footer"
-            fetchPriority="high"
-            className="absolute inset-0 w-full h-full object-cover object-bottom -z-10"
-          />
+      <footer className="flex flex-col items-center pb-2 w-full  md:hidden bg-no-repeat text-[#FFFFFF] w-full fixed bottom-0  right-0 left-0 z-999">
+        <img
+          src={footerBg}
+          alt="background of footer"
+          fetchPriority="high"
+          className="absolute inset-0 w-full h-full object-cover  -z-10 "
+        />
 
-          {/* cart button */}
+        {/* cart button */}
+        <Link
+          to="/checkout"
+          className="headerButton md:grid relative size-[64.21px] rounded-full bg-blue-50  
+        flex items-center justify-center pt-2 pr-2  "
+        >
+          <img src={cart} alt="search icon" className="size-[26.81px]" />
+          <div className="absolute top-2 right-2 rounded-full bg-[#FF4C4C] w-5 h-5 flex items-center justify-center">
+            <span className="text-[12px] text-[#FFFFFF] font-bold">
+              {cartItems.length}
+            </span>
+          </div>
+        </Link>
+
+        <div className="flex items-center w-full text-white justify-around pb-4.25 ">
+          {/* MAIN PAGE BUTTON */}
           <Link
-            to="/checkout"
-            className="headerButton md:grid relative size-[64.21px] rounded-full bg-blue-50 
-        flex items-center justify-center pt-2 pr-2"
+            className="flex items-baseline justify-center gap-2 text-[16px] cursor-pointer"
+            to="/"
           >
-            <img src={cart} alt="search icon" className="size-[26.81px]" />
-            <div className="absolute top-2 right-2 rounded-full bg-[#FF4C4C] w-5 h-5 flex items-center justify-center">
-              <span className="text-[12px] text-[#FFFFFF] font-bold">
-                {cartItems.length}
-              </span>
-            </div>
+            <FaHouse className="size-6" />
+            <p>{t("home")}</p>
           </Link>
 
-          <div className="flex items-center w-full text-white justify-around pb-4.25 ">
-            {/* MAIN PAGE BUTTON */}
-            <Link
-              className="flex items-baseline justify-center gap-2 text-[16px] cursor-pointer"
-              to="/"
-            >
-              <FaHouse className="size-6" />
-              <p>{t("home")}</p>
-            </Link>
-
-            {/* PROFILE PAGE BUTTON */}
-            <Link
-              className="flex gap-2 cursor-pointer items-center"
-              to="/user/profile"
-            >
-              <FaUser />
-              <p>{t("profile")}</p>
-            </Link>
-          </div>
-        </section>
+          {/* PROFILE PAGE BUTTON */}
+          <Link
+            className="flex gap-2 cursor-pointer items-center"
+            to="/user/profile"
+          >
+            <FaUser />
+            <p>{t("profile")}</p>
+          </Link>
+        </div>
       </footer>
 
       {/* DESKTOP FOOTER */}
@@ -146,20 +153,12 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* social network links */}
-          <div className="flex gap-1.75 mt-4">
-            <button className="rounded-full  bg-white  center">
-              <img src={facebook} alt="facebook icon" />
-            </button>
-            <button className="rounded-full  bg-white center">
-              <img src={instagram} alt="instagram icon" />
-            </button>
-            <button className="rounded-full  bg-white center">
-              <img src={linkedin} alt="instagram icon" />
-            </button>
-            <button className="rounded-full  bg-white center">
-              <img src={tiktok} alt="tiktok icon" />
-            </button>
+          <div className="flex gap-1.75 mt-4 ">
+            {SOCIALS.map(({ icon, alt }) => (
+              <button key={alt} className="rounded-full bg-white center">
+                <img src={icon} alt={alt} />
+              </button>
+            ))}
           </div>
         </section>
       </footer>

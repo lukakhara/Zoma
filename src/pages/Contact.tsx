@@ -6,7 +6,7 @@ import {
   FaLinkedinIn,
   FaTiktok,
 } from "react-icons/fa6";
-import { FaInstagram } from "react-icons/fa";
+import { IoLogoInstagram } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 
 type OfficeLocation = {
@@ -44,13 +44,12 @@ const phones = [
   /* Social icons */
 }
 const SOCIALS = [
-  { Icon: FaFacebookF, bg: "bg-blue-600" },
+  { Icon: FaFacebookF },
   {
-    Icon: FaInstagram,
-    bg: "bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600",
+    Icon: IoLogoInstagram,
   },
-  { Icon: FaLinkedinIn, bg: "bg-blue-700" },
-  { Icon: FaTiktok, bg: "bg-black" },
+  { Icon: FaLinkedinIn },
+  { Icon: FaTiktok },
 ];
 
 function OfficeCard({ office }: { office: OfficeLocation }) {
@@ -88,12 +87,12 @@ function OfficeCard({ office }: { office: OfficeLocation }) {
       </div>
 
       <div className="flex gap-2">
-        {SOCIALS.map(({ Icon, bg }, i) => (
+        {SOCIALS.map(({ Icon }, i) => (
           <div
             key={i}
-            className={`md:size-9 size-6 rounded-full ${bg} flex items-center justify-center`}
+            className="md:size-9 size-6 rounded-full bg-[#2E4790]  flex items-center justify-center"
           >
-            <Icon className="text-white w-4 h-4" />
+            <Icon className={`text-white   ${Icon === IoLogoInstagram} ? 'w-6 h-6' : 'w-4 h-4'`}/>
           </div>
         ))}
       </div>

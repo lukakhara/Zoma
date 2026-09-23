@@ -22,3 +22,19 @@ Zoma is a React/TypeScript e-commerce storefront for cleaning products, built as
 - i18next (Georgian/English)
 - Tailwind CSS
 - Zustand (cart state)
+
+## Preview
+
+## Screenshots
+
+### Desktop
+
+![Homepage](./screenshots/homepage.png)
+
+### Product Listing
+
+![Product listing](./screenshots/products.png)
+
+### Mobile
+
+![Mobile version](./screenshots/mobile.png)

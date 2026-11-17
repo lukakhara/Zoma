@@ -31,10 +31,17 @@ Zoma is a React/TypeScript e-commerce storefront for cleaning products, built as
 
 ![Homepage](./screenshots/homepage.png)
 
-### Product Listing
-
-![Product listing](./screenshots/products.png)
-
 ### Mobile
 
 ![Mobile version](./screenshots/mobile.png)
+
+### Product Detail
+
+![Product listing](./screenshots/product-detail-desktop.png)
+
+### Profile Page
+
+![Product listing](./screenshots/profile-page.png)
+
+
+

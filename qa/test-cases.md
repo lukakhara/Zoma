@@ -3,178 +3,216 @@
 Build/commit: be0e88224cd3a7c8b9158d3dfe9c0e323c824ae1
 Date: 2026-11-16
 Environment: Local (localhost:3000), Firefox 160.0, Windows 11
+Result: 8 passed, 2 failed (TC-009, TC-010)
+
 Test data:
 
 - User: luka@dev.com / 123
-- Product A: "ზომა - ქაფი " (ID 12), price 8.61 ₾, price before discount 9.78 ₾, in stock
-- Product B: "ზომა - შუშის საწმენდი 1L" (ID 15), price 6.75 ₾, price before discount 7.5 ₾, in stock
+- Product A: "ZOMA BAFIX FOAM (500 ml)" (ID 12), price before discount 9.78 ₾, discount -1.17 ₾, price with discount 8.61 ₾, in stock
+- Product B: "ZOMA GLASS CLEANER" (ID 15), price before discount 7.50 ₾, discount -0.75 ₾, price with discount 6.75 ₾, in stock
 
-# TC-001: Add product from product details page
+---
+
+## TC-001: Add product from product details page
 
 Preconditions:
 
-- User opens a product details page.
-- Product is available.
+- Cart is empty.
+- Product A is available.
 
-  Steps:
+Steps:
 
-1. Open a product details page.
+1. Open the product details page of Product A.
 2. Click Add to Cart.
 3. Open the shopping cart.
-   Expected result:
 
-Expected Result:
-
-- Product appears in the cart.
-- Correct product name and price are displayed.
-- Quantity is 1.
-
-Actual Result:
+Expected result:
 
 - Product appears in the cart.
-- Correct product name and price are displayed.
-- Quantity is 1.
+- Name: ZOMA BAFIX FOAM (500 ml)
+- Quantity: 1
+- Price before discount: 9.78 ₾
+- Discount: -1.17 ₾
+- Price with discount: 8.61 ₾
+
+Actual result:
+
+- Product appears in the cart.
+- Name: ZOMA BAFIX FOAM (500 ml)
+- Quantity: 1
+- Price before discount: 9.78 ₾
+- Discount: -1.17 ₾
+- Price with discount: 8.61 ₾
 
 Status: PASS
 
-# TC-002: Add product from product listing page
+---
+
+## TC-002: Add product from product listing page
 
 Preconditions:
 
-- User opens the product listing page.
-- Products are available.
-  Steps:
+- Cart is empty.
+- Product B is available.
 
-1. Open the product listing.
-2. Click Add to Cart on a product.
+Steps:
+
+1. Open the product listing page.
+2. Click Add to Cart on Product B.
 3. Open the shopping cart.
 
-   Expected result:
+Expected result:
 
-- Number on cart icon on products page in top right corner changed from '0' to '1'
-- Selected product appeared in the cart page.
-- Correct product name and price are displayed in cart page.
-- Quantity of product is 1.
+- Cart icon (top right of the products page) changes from 0 to 1.
+- Product B appears in the cart.
+- Name: ZOMA GLASS CLEANER
+- Quantity: 1
+- Price before discount: 7.50 ₾
+- Discount: -0.75 ₾
+- Price with discount: 6.75 ₾
 
-Actual Result:
+Actual result:
 
-- Number on cart icon on products page in top right corner changed from '0' to '1'
-- Selected product appeared in the cart page.
-- Correct product name and price are displayed in cart page.
-- Quantity of product is 1.
+- Cart icon (top right of the products page) changes from 0 to 1.
+- Product B appears in the cart.
+- Name: ZOMA GLASS CLEANER
+- Quantity: 1
+- Price before discount: 7.50 ₾
+- Discount: -0.75 ₾
+- Price with discount: 6.75 ₾
 
 Status: PASS
 
-# TC-003: Add the same product from both pages (products and products detail pages)
+---
+
+## TC-003: Add the same product from both pages (product listing and product details)
 
 Preconditions:
 
-- Cart is initially empty.
-- Product is available.
-  Steps:
+- Cart is empty.
+- Product A is available.
 
-1. Open the product details page.
-2. Add the product to the cart.
-3. Return to the product listing.
-4. Add the same product again.
+Steps:
+
+1. Open the product details page of Product A.
+2. Click Add to Cart.
+3. Return to the product listing page.
+4. Click Add to Cart on Product A.
 5. Open the shopping cart.
 
-   Expected result:
+Expected result:
 
-- Number on cart icon on products page in top right corner changed from '0' to '2'
-- Product quantity is updated to 2 (if that is the intended behavior).
-- Product has been duplicated as a separate cart item.
-- Total price has been calculated correctly.
+- Cart icon shows 2.
+- Cart has ONE line item for Product A with quantity 2.
+- Price without discount: 19.56 ₾
+- Discount: -2.34 ₾
+- Total to pay: 17.22 ₾
 
-Actual Result:
+Actual result:
 
-- Number on cart icon on products page in top right corner changed from '0' to '2'
-- Product quantity is updated to 2 (if that is the intended behavior).
-- Product has been duplicated as a separate cart item.
-- Total price is calculated correctly.
+- Cart icon shows 2.
+- Cart has ONE line item for Product A with quantity 2.
+- Price without discount: 19.56 ₾
+- Discount: -2.34 ₾
+- Total to pay: 17.22 ₾
 
 Status: PASS
+
+---
 
 ## TC-004: Product filtering
 
 Preconditions:
 
-- User opens the product page.
+- User is on the products page.
+- All products are displayed.
 
 Steps:
 
-1. Select a product category.
-2. Select same product category again.
+1. Click the category "<category name>".
+2. Click the same category again.
 
 Expected result:
 
-- Only products belonging to the selected category are displayed and Products from other categories are hidden.
-- after second click the filtering must be disabled and all products must be showed
-
-Actual Result:
-
-- Only products belonging to the selected category are displayed and Products from other categories are hidden.
-- after second click the filtering is disabled and all products are showed
-
-Status: PASS
-
-## TC-005: Product deleting from cart
-
-Preconditions:
-
-- User opens the product page.
-- Product is added to cart
-
-Steps:
-
-1. clicking delete icon in cart page
-
-Expected result:
-
-- product is deleted from cart
-- data on summary window returned to state before adding cart item
+- Only the <N> products of "<category name>" are displayed; products from other categories are hidden.
+- After the second click, filtering is disabled and all products are displayed.
 
 Actual result:
 
-- product is deleted from cart
-- data on summary window returned to state before adding cart item
+- Only the <N> products of "<category name>" are displayed; products from other categories are hidden.
+- After the second click, filtering is disabled and all products are displayed.
 
 Status: PASS
 
-## TC-006: 'Buy Now' button in cart page is disabled when cart is empty
+---
+
+## TC-005: Delete product from cart
 
 Preconditions:
 
-- User opens the cart page.
-- Cart is empty
+- Cart contains only Product A.
 
 Steps:
 
-1. User opens the cart page.
-2. Click on 'Buy Now'.
+1. Open the cart page.
+2. Click the delete icon on Product A.
 
 Expected result:
 
-- Buy Now button is disabled
-- Nothing happens with click on button
+- Product A is removed from the cart.
+- Total price: 0.00 ₾
+- Total discount: 0.00 ₾
+- Total price to pay: 0.00 ₾
+- Buy Now button is disabled.
 
 Actual result:
 
-- Buy Now button is disabled
-- Nothing happens with click on button
+- Product A is removed from the cart.
+- Total price: 0.00 ₾
+- Total discount: 0.00 ₾
+- Total price to pay: 0.00 ₾
+- Buy Now button is disabled.
 
 Status: PASS
 
-## TC-007: Price calculations
+---
+
+## TC-006: Buy Now button is disabled when cart is empty
 
 Preconditions:
 
-- User adds products to a cart.
+- Cart is empty.
 
 Steps:
 
-1. Add ZOMA BAFIX FOAM (A price before discount 9.78 ₾, price with discount 8.61 ₾), quantity 1.
-2. change product quantity from 1 to 3 .
+1. Open the cart page.
+2. Click the Buy Now button.
+
+Expected result:
+
+- Buy Now button is disabled.
+- Nothing happens on click.
+
+Actual result:
+
+- Buy Now button is disabled.
+- Nothing happens on click.
+
+Status: PASS
+
+---
+
+## TC-007: Cart price calculations
+
+Preconditions:
+
+- Cart is empty.
+- Product A is available.
+
+Steps:
+
+1. Add Product A to the cart (price before discount 9.78 ₾, price with discount 8.61 ₾), quantity 1.
+2. In the cart, change the quantity from 1 to 3.
 
 Expected result:
 
@@ -184,54 +222,66 @@ Expected result:
 
 Actual result:
 
-Expected result:
-
 - Price without discount: 29.34 ₾
 - Discount: -3.51 ₾
 - Total to pay: 25.83 ₾
 
 Status: PASS
 
-## TC-008: order appears in My Orders
+---
+
+## TC-008: Order appears in My Orders
 
 Preconditions:
 
-- product is avalibe.
-- user is loged in.
-- product is added in cart
+- User is logged in.
+- Product A is available.
+- Cart contains only Product A, quantity 1.
 
 Steps:
 
-1. click buy now button
-2. select buying method 'TBC Bank'
-3. agree to terms and conditions
-4. click pay button
-5. click myOrders buttons
+1. Click the Buy Now button in the cart.
+2. Select payment method "TBC Bank".
+3. Agree to the terms and conditions.
+4. Click the Pay button.
+5. Click the My Orders button.
 
 Expected result:
 
-- we get Transaction Successful page and order number
-- product is added to the user orders page
-- order date and product name,price,discount and summary price data are correct.
+- "Transaction Successful" page with an order number is displayed.
+- A new order appears in My Orders with:
+  - Date: 16 November 2026
+  - Quantity: 1
+  - Product: ZOMA BAFIX FOAM (500 ml)
+  - Price without discount: 9.78 ₾
+  - Price with discount: 8.61 ₾
+  - Total: 8.61 ₾
 
 Actual result:
 
-- we get Transaction Successful page and order number
-- product is added to the user orders page
-- order date and product name,price,discount and summary price data are correct.
+- "Transaction Successful" page with an order number is displayed.
+- A new order appears in My Orders with:
+  - Date: 16 November 2026
+  - Quantity: 1
+  - Product: ZOMA BAFIX FOAM (500 ml)
+  - Price without discount: 9.78 ₾
+  - Price with discount: 8.61 ₾
+  - Total: 8.61 ₾
 
 Status: PASS
 
-## TC-009: changing amount of product in product detail page
+---
+
+## TC-009: Changing product quantity on the product details page
 
 Preconditions:
 
-- product is avalibe.
+- Product A is available.
 
 Steps:
 
-1. move to product detail page of product A  by clicking 'Buy Now' button.
-2. change product quantity from 1 to 3.
+1. On the Products page, click the Buy Now button on Product A to open its details page.
+2. Change the quantity from 1 to 3.
 
 Expected result:
 
@@ -245,37 +295,46 @@ Actual result:
 - Discount: -3.51 ₾
 - Total to pay: 25.83 ₾
 
+Note: Price without discount does not update when quantity changes on the product details page.
 
 Status: FAIL
+Severity: Low
+Priority: Low
 
-Severity:Low
-Priority:Low
+---
 
-## TC-010: removing cart item after clicking buy now button
+## TC-010: Removing cart item after clicking Buy Now
 
 Preconditions:
 
-- product is avalibe.
+- User is logged in.
+- Product A is available.
+- Cart is empty.
 
 Steps:
 
-1. Open the product details page.
-2. Add the product to the cart.
-3. go to cart page.
-4. click buy now button
-5. remove cart item
+1. Open the product details page of Product A.
+2. Click Add to Cart.
+3. Open the cart page.
+4. Click the Buy Now button (checkout form opens).
+5. Remove Product A from the cart.
+6. Select payment method "TBC Bank".
+7. Agree to the terms and conditions.
+8. Click the Pay button.
 
 Expected result:
 
-- checkout form is off
-- we get disabled buy now button
+- Checkout form is closed or disabled.
+- Buy Now button is disabled.
+- Creating an order is not possible.
+- No new order appears in My Orders.
 
 Actual result:
 
-- checkout form is active
-- we can select purchace method, apply to conditions and create empthy user order
+- Checkout form stays active.
+- Payment method can be selected, terms can be accepted, and an order can be created.
+- An empty order (without items) was created and is visible in My Orders.
 
 Status: FAIL
-
-Severity:high
-Priority:high
+Severity: High
+Priority: High
